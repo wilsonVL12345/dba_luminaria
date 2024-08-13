@@ -1,3 +1,5 @@
+@can('Distritos.show')
+	
 @extends('layout.index')
 
 @section('contenido')
@@ -51,12 +53,19 @@
 															</div>
 															<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 																<!--begin::Export dropdown-->
+																@can('Distritos.export')
+																	
 																<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 																	<i class="ki-duotone ki-exit-down fs-2"><span class="path1"></span><span class="path2"></span></i>
 																	Export Report
 																</button>
+																@endcan
+																@can('Distritos.Retirado.create')
 																<button type="button" class="btn btn-primary" data-bs-toggle="modal"
 																data-bs-target="#modalRegistroUrbanizacion">Agregar Nuevo</button>
+																@endcan
+																@can('Distritos.export')
+																
 																<!--begin::Menu-->
 																<div id="kt_datatable_example_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">
 																	<!--begin::Menu item-->
@@ -90,10 +99,11 @@
 																</div>
 																<!--end::Menu-->
 																<!--end::Export dropdown-->
-													
+																
 																<!--begin::Hide default export buttons-->
 																<div id="kt_datatable_example_buttons" class="d-none"></div>
 																<!--end::Hide default export buttons-->
+																@endcan
 															</div>
 														</div>
 														<div class="card-body">
@@ -135,12 +145,15 @@
 																			<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
 																				data-kt-menu="true">
 																				<!--begin::Menu item-->
-																				
+																				@can('Distritos.edit')
+																					
 																				<div class="menu-item px-3">
 																					<a href="{{url('/editar/urbanizacion/'.$itemurb->id) }}" 
 																						class="menu-link px-3 "  >Editar</a>
 																				</div>
-																				
+																				@endcan
+																				@can('Distritos.delete')
+																					
 																				<!--end::Menu item-->
 																				<!--begin::Menu item-->
 																				<div class="menu-item px-3">
@@ -149,6 +162,8 @@
 																						data-kt-customer-table-filter="delete_row">Eliminar</a>
 																					
 																				</div>
+																				@endcan
+
 																				<!--end::Menu item-->
 																			</div>
 																			<!--end::Menu-->
@@ -166,7 +181,7 @@
 																				<!--begin::Modal content-->
 																				<div class="modal-content">
 																					<!--begin::Form-->
-																					<form class="form" action="{{route('registro.distrito')}}" id="formregistroUrbanizacion" method="POST">
+																					<form class="form" action="{{route('registro.distrito')}}" id="" method="POST">
 																						@csrf
 																						<!--begin::Modal header-->
 																						<div class="modal-header" id="kt_modal_new_address_header">
@@ -252,6 +267,8 @@
 																<!--begin::Modal content-->
 																<div class="modal-content">
 																	<!--begin::Form-->
+																	@can('Distritos.create')
+																		
 																	<form class="form" action="{{route('registro.distrito')}}" id="formregistroUrbanizacion" method="POST">
 																		@csrf
 																		<!--begin::Modal header-->
@@ -333,6 +350,8 @@
 																		</div>
 																		<!--end::Modal footer-->
 																	</form>
+																	@endcan
+
 																	<!--end::Form-->
 																</div>
 															</div>
@@ -349,3 +368,4 @@
 </div>
 
 @endsection
+@endcan

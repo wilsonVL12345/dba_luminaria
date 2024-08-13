@@ -77,7 +77,7 @@
 														</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre del componente" name="txtnombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*" />
+														<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre del componente" name="txtnombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" />
 														<!--end::Input-->
 													</div>
 													<!--end::Input group-->
@@ -267,7 +267,7 @@
 																			</label>
 																			<!--end::Label-->
 																			<!--begin::Input-->
-																			<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre del componente" name="txtnombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*" value="{{$item->Nombre_Item}}"  required/>
+																			<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre del componente" name="txtnombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" value="{{$item->Nombre_Item}}"  required/>
 																			<!--end::Input-->
 																		</div>
 																		<!--end::Input group-->

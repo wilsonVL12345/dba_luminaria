@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\distrito;
 use Illuminate\Http\Request;
 use App\Models\equipamiento;
+use Illuminate\Support\Facades\DB;
 
 class equipamientoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($dist)
     {
-        $equipamiento = equipamiento::orderBy('Distritos_id', 'asc')->get();
+        $equipamiento = equipamiento::where('Distritos_id', $dist)->get();
         $lista = Distrito::where('id', '<>', 15)->get();
 
         return view('plantilla.Equipos.Equipamiento', ['equipos' => $equipamiento], ['lista' => $lista]);
@@ -43,9 +44,27 @@ class equipamientoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function showEquipDistrito(Request $request)
     {
+        $lista = Distrito::where('id', '<>', 15)->get();
+
+        // Agrupar por distritos_id y contar los registros
+        $grupEquip = Equipamiento::select('distritos_id', DB::raw('COUNT(*) as total'))
+            ->groupBy('distritos_id')
+            ->get();
+
+        // Crear un array para almacenar los conteos de los distritos 1 al 14
+        $equipamientosPorDistrito = [];
+
+        for ($i = 1; $i <= 14; $i++) {
+            // Obtener el conteo específico para cada distrito
+            $equipamientosPorDistrito[$i] = $grupEquip->firstWhere('distritos_id', $i)->total ?? 0;
+        }
+
+        return view('plantilla.Equipos.EquipomiendoDistrito', compact('lista', 'equipamientosPorDistrito'));
     }
+
+
     /**
      * Display the specified resource.
      */

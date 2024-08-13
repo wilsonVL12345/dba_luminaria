@@ -89,7 +89,7 @@
 
 																			</label>
 
-																			<input type="text" class="form-control form-control-solid " id="txtcod" name="txtcod" pattern="^[0-9]{2}-[0-9]{4}-[0-9]{2}-[0-9]{7}-[0-9]-[0-9]$" placeholder="Ingresar Datos" >
+																			<input type="text" class="form-control form-control-solid " id="txtcod" name="txtcod" pattern="^[0-9]{2}-[0-9]{4}-[0-9]{2}-[0-9]{6}-[0-9]-[0-9a-zA-Z]$" placeholder="Ingresar Datos" >
 																		</div>
 																		<div class="col-md-4 mb-3">
 																			<label for="txtdistrito" class="required fs-5 fw-bold mb-2">Distrito</label>
@@ -170,7 +170,7 @@
 																			<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
 
 																				</label>
-																				<input  type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre del Proveedor" name="txtproveedor" id="txtproveedor" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*" required  />
+																				<input  type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre del Proveedor" name="txtproveedor" id="txtproveedor" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" required  />
 
 
 																			</div>
@@ -181,7 +181,7 @@
 																			<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
 
 																		</label>
-																		<input type="text" class="form-control form-control-solid" placeholder="Ingresar Datos" name="txtobjeto" id="txtobjeto" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*" required  />
+																		<input type="text" class="form-control form-control-solid" placeholder="Ingresar Datos" name="txtobjeto" id="txtobjeto" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" required  />
 
 																		<!--end::Label-->
 																		<!--begin::Input-->
@@ -533,14 +533,14 @@
 																			<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
 
 																		</label>
-																		<input type="text" class="form-control form-control-solid " id="txtobjetoEsp" name="txtobjetoEsp" value="{{$item->Objeto_Contratacion}}" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*" required>
+																		<input type="text" class="form-control form-control-solid " id="txtobjetoEsp" name="txtobjetoEsp" value="{{$item->Objeto_Contratacion}}" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" required>
 																	</div>
 																	<div class="col-md-4 mb-3">
 																		<label for="txtprovProyEsp" class="required fs-5 fw-bold mb-2">Proveedor
 																			<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
 
 																		</label>
-																		<input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*" value="{{$item->Proveedor}}" required>
+																		<input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" value="{{$item->Proveedor}}" required>
 																	</div>
 																</div>
 

@@ -14,6 +14,7 @@ class userseeder extends Seeder
     */
    public function run(): void
    {
+      $admin = 'Administrador';
 
       $user = new User();
       $user->name = "admin";
@@ -30,6 +31,7 @@ class userseeder extends Seeder
       $user->email = "admin@gob.bo";
       // $user->Password = Hash::make('adminadmin');
       $user->Password = Hash::make('adminadmin');
+      $user->assignRole('Administrador');
       $user->save();
    }
 }

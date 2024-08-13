@@ -66,7 +66,7 @@
 												</label>
 												<!--end::Label-->
 												<!--begin::Input-->
-												<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de el Equipamiento" name="txtnombre" id="txtnombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*"  required />
+												<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de el Equipamiento" name="txtnombre" id="txtnombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*"  required />
 												<!--end::Input-->
 											</div>
 											<!--end::Input group-->
@@ -126,11 +126,11 @@
 							</div>
 						</div>
 					</div>
-								<!--begin::Modal - registrar equipamiento - Add-->
+							<!--endbegin::Modal - registrar equipamiento - Add-->
 
-					<div>
+					{{-- <div>
 						@include('layout.notificacioncrud')
-					</div>
+					</div> --}}
 					<div class="card card-p-0 card-flush">
 						<div class="card-header align-items-center py-5 gap-2 gap-md-5">
 							<div class="card-title">
@@ -151,7 +151,7 @@
 									Export Report
 								</button>
 								<!--begin::Add customer-->
-								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Agregar Nuevo</button>
+								{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Agregar Nuevo</button> --}}
 								<!--end::Add customer-->
 								<!--begin::Menu-->
 								<div id="kt_datatable_example_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">
@@ -289,7 +289,7 @@
 																		</label>
 																		<!--end::Label-->
 																		<!--begin::Input-->
-																		<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de el Equipamiento" name="txtnombre" id="txtnombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*"  value="{{$itememp->Nombre_Item}}" required />
+																		<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de el Equipamiento" name="txtnombre" id="txtnombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*"  value="{{$itememp->Nombre_Item}}" required />
 																		<!--end::Input-->
 																	</div>
 																	<!--end::Input group-->

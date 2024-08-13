@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\role;
 
 class UserController extends Controller
 {
@@ -18,7 +19,8 @@ class UserController extends Controller
     public function users()
     {
         $users = User::all();
-        return view('plantilla.Usuarios.usuarios', ['user' => $users]);
+        $role = role::all();
+        return view('plantilla.Usuarios.usuarios', ['user' => $users, 'role' => $role]);
     }
 
 
@@ -29,6 +31,8 @@ class UserController extends Controller
     public function create(Request $request)
     {
         // dd($request->all());
+        $rol = Role::where('name', $request->txtcargo)->first();
+
 
         if ($request->txtgenero == 'M') {
             $perf = '/storage/perfiles/perfilmas.jpg';
@@ -62,7 +66,7 @@ class UserController extends Controller
             $user->perfil = $perf;
             $user->email = $usuario . $lash;
             $user->Password =  Hash::make($contrase);
-            // $user->Password = Hash::make($contrase);
+            $user->assignRole($rol->name);
             $user->save();
 
             $sql = true;
@@ -101,6 +105,7 @@ class UserController extends Controller
 
     public function edit(Request $request)
     {
+        $rolee = Role::where('name', $request->txtcargo)->first();
 
         try {
             $userd = User::find($request->txtid);
@@ -113,6 +118,7 @@ class UserController extends Controller
             $userd->Genero = $request->txtgenero;
             $userd->Cargo = $request->txtcargo;
             $userd->Lugar_Designado = $request->txtlugarDesignado;
+            $userd->assignRole($rolee->name);
             $userd->save();
             $sql = true;
         } catch (\Throwable $th) {

@@ -64,7 +64,7 @@
                                                                                 </label>
                                                                                 <!--end::Label-->
                                                                                 <!--begin::Input-->
-                                                                                <input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de la Urbanizacion" name="txtzonaUrbanizacionm" id="txtzonaUrbanizacionm" value="{{$urbEdit->nombre_urbanizacion}}" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*" required/>
+                                                                                <input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de la Urbanizacion" name="txtzonaUrbanizacionm" id="txtzonaUrbanizacionm" value="{{$urbEdit->nombre_urbanizacion}}" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" required/>
                                                                                 <!--end::Input-->
                                                                             </div>
                                                                             <!--end::Col-->

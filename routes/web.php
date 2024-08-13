@@ -83,13 +83,16 @@ Route::middleware('auth', 'verified')->group(function () {
 
     //rutas para equipamiento y accesorios--------------------------------------------------------------------------------
     //ruta para ver detalles equipamientos
-    Route::get('equipos/equipamiento', [equipamientoController::class, 'index'])->name('equipos.equipamientos');
+    Route::get('/equipos/equipamiento/{dist}', [equipamientoController::class, 'index'])->name('equipos.equipamientos');
     //ruta para lista de accesorios
     Route::get('/equipos/accesorios', [lista_accesorioController::class, 'index'])->name('equipos.accesorios');
     //ruta para registrar ala lista de accesorios
     Route::post('/registro/accesorios', [lista_accesorioController::class, 'create'])->name('registro.accesorios');
     Route::post('/editar/accesorios', [lista_accesorioController::class, 'edit'])->name('editar.accesorios');
     Route::get('/eliminar/accesorios/{id}', [lista_accesorioController::class, 'destroy'])->name('eliminar.accesorios');
+
+    Route::get('/equipamiento/distrito', [equipamientoController::class, 'showEquipDistrito'])->name('equipamiento.distrito');
+
 
 
     //rutar para la parte de equipos equipamientos

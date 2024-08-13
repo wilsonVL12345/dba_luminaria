@@ -10,6 +10,7 @@
         <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
             id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                @role('Administrador')
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -53,7 +54,9 @@
                         
                         
                     </div>
+                    
                 </div>
+                    
                 <div class="menu-item">
                     <a class="menu-link" href="/usuario/usuarios">
                         <span class="menu-icon">
@@ -77,12 +80,14 @@
                         <span class="menu-title">Usuarios</span>
                     </a>
                 </div>
+                @endrole
             </div>
             <div class="menu-item">
                 <div class="menu-content pt-8 pb-2">
                     <span class="menu-section text-muted text-uppercase fs-8 ls-1">Organizacion Ocupacional</span>
                 </div>
             </div>
+            @role('Tecnico')
             <div class="menu-item">
                 <a class="menu-link" href="/pendiente/trabajo">
                     <span class="menu-icon">
@@ -97,6 +102,9 @@
                     <span class="menu-title">Realizar Trabajo</span>
                 </a>
             </div>
+            @endrole
+
+            @can('agendar.show')
             <div class="menu-item">
                 <a class="menu-link" href="/agendar">
                     <span class="menu-icon">
@@ -117,7 +125,8 @@
                     <span class="menu-title">Agendar</span>
                 </a>
             </div>
-            
+            @endcan
+            @can('detallesGen.show')
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <span class="menu-link">
                     <span class="menu-icon">
@@ -160,6 +169,9 @@
                     
                 </div>
             </div>
+                @endcan
+
+             @can('proyecto.show')
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <span class="menu-link">
                     <span class="menu-icon">
@@ -212,9 +224,10 @@
                     
                 </div>
             </div>
+            @endcan
 
 
-
+            @can('inspecciones.show')
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <span class="menu-link">
                     <span class="menu-icon">
@@ -257,7 +270,9 @@
             
                 </div>
             </div>
+            @endcan
             
+            @hasanyrole('Administrador|Coordinador|Tecnico')
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <span class="menu-link">
                     <span class="menu-icon">
@@ -286,7 +301,7 @@
                 </span>
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                     <div class="menu-item">
-                        <a class="menu-link" href="/equipos/equipamiento">
+                        <a class="menu-link" href="/equipamiento/distrito">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
@@ -303,6 +318,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="menu-item">
                 <a class="menu-link" href="/censoLuminarias">
                     <span class="menu-icon">
@@ -326,6 +342,7 @@
                     <span class="menu-title">Censo Luminarias</span>
                 </a>
             </div>
+
             <div class="menu-item">
                 <a class="menu-link"   href="/detallesDistritos">
                     <span class="menu-icon">
@@ -361,6 +378,7 @@
                     <span class="menu-title">Cerrar Sesion</span>
                 </a>
             </div>
+            @endhasanyrole
 
             
         </div>

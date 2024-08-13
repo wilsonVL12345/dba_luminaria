@@ -358,13 +358,13 @@
 																		<label for="txtobjetoObras" class=" fs-5 fw-bold mb-2">Objeto de Contratacion
 																						<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
 																		</label>
-																		<input type="text" class="form-control form-control-solid " id="txtobjetoObras" name="txtobjetoObras" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*" value="{{$items->Objeto_Contratacion}}" required>
+																		<input type="text" class="form-control form-control-solid " id="txtobjetoObras" name="txtobjetoObras" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" value="{{$items->Objeto_Contratacion}}" required>
 																	</div>
 																	<div class="col-md-4 mb-3">
 																		<label for="txtprovProyObras" class=" fs-5 fw-bold mb-2">Proveedor
 																							<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
 																		</label>
-																		<input type="text" class="form-control form-control-solid " id="txtprovProyObras" name="txtprovProyObras" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*" value="{{$items->Proveedor}}" required>
+																		<input type="text" class="form-control form-control-solid " id="txtprovProyObras" name="txtprovProyObras" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" value="{{$items->Proveedor}}" required>
 																	</div>
 																</div>
 
