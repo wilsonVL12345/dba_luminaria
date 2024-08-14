@@ -432,6 +432,12 @@
 															data-kt-customer-table-filter="delete_row">Desbloquear</a>
 															@endif
 													</div>
+													<div class="menu-item px-3">
+														
+														<a href="{{url('/eliminar/usuario'.$itemus->id)}}" class="menu-link px-3"
+															data-kt-customer-table-filter="delete_row">Eliminar</a>
+															
+													</div>
 													<!--end::Menu item-->
 												</div>
 												<!--end::Menu-->

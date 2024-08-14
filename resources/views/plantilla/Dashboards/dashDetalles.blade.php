@@ -1,3 +1,5 @@
+@can('dashboard.show')
+
 @extends('layout.index')
 @section('contenido')
 
@@ -178,3 +180,4 @@
 					</div>
 		
 @endsection
+@endcan

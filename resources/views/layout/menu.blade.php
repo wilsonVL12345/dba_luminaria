@@ -272,7 +272,7 @@
             </div>
             @endcan
             
-            @hasanyrole('Administrador|Coordinador|Tecnico')
+            @can('Distritos.show')
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <span class="menu-link">
                     <span class="menu-icon">
@@ -378,7 +378,7 @@
                     <span class="menu-title">Cerrar Sesion</span>
                 </a>
             </div>
-            @endhasanyrole
+            @endcan
 
             
         </div>

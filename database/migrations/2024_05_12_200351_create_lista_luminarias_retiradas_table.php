@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign(columns: 'datos_luminaria_id')->references(columns: 'id')
                 ->on(table: 'datos_luminaria_retiradas');    //onDelete(action:'cascada'); si en caso se elimina algo en la tabla padre, se eliminara todo referido a esa fila
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

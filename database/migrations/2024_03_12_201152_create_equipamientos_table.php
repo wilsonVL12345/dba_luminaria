@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign(columns: 'Distritos_id')->references(columns: 'id')
                 ->on(table: 'distritos')->onDelete(action: 'cascade');
 
+            $table->softDeletes();
             $table->timestamps();
             // $table->softDeletes();
         });

@@ -1,3 +1,5 @@
+@can('proyecto.install')
+
 @extends('layout.index')
 
 @section('contenido')
@@ -277,3 +279,4 @@
 	
 </div> 
 @endsection
+@endcan

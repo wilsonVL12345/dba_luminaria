@@ -30,6 +30,7 @@ return new class extends Migration
             $table->unsignedBigInteger(column: 'Detalles_id');
             $table->foreign(columns: 'Detalles_id')->references(columns: 'id')
                 ->on(table: 'detalles');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

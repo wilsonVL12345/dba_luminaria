@@ -367,9 +367,16 @@ class detalleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(detalle $id)
     {
-        //
+        // Eliminar todas las filas de 'lista_luminarias_retirada' donde el 'datos_luminaria_id' sea igual al id proporcionado
+        accesorio::where('Detalles_id', $id->id)->delete();
+
+        // Luego eliminar la fila de 'datos_luminaria_retirada'
+        $id->delete();
+
+        // Retornar la respuesta
+        return back()->with("correcto", "Datos Eliminados Correctamente");
     }
     //funciona para la parte de consultas luminarias -------------------------------------------------------------------------------------v
     public function datosatencion()

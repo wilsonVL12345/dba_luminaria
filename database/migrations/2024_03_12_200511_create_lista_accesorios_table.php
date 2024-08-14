@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('lista_accesorios', function (Blueprint $table) {
             $table->id();
             $table->string('Nombre_Item', 200)->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

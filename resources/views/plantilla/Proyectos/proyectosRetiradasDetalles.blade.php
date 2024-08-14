@@ -1,3 +1,5 @@
+@can('proyecto.Retirado.show')
+	
 @extends('layout.index')
 
 @section('contenido')
@@ -147,3 +149,4 @@
 	
 </div> 
 @endsection
+@endcan

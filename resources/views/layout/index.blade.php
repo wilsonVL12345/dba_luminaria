@@ -45,7 +45,7 @@
 								</a>
 							</div> --}}
 							<div class="logo-container">
-								<a href="/dashdetalles" class="d-flex align-items-center">
+								<a href="#" class="d-flex align-items-center">
 									<img alt="Logo" src="{{ asset('assets/media/logos/trace.svg') }}" class="h-50px logo loguito  " />
 									<span class="logo-text logo loguito"> LUMINARIA</span>
 

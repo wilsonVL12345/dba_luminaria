@@ -1,3 +1,5 @@
+@can('inspecciones.show')
+	
 @extends('layout.index')
 
 @section('contenido')
@@ -52,51 +54,59 @@
 									<!--end::Export buttons-->
 								</div>
 								<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+									@can('inspecciones.export')
+	
 									<!--begin::Export dropdown-->
 									<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 										<i class="ki-duotone ki-exit-down fs-2"><span class="path1"></span><span class="path2"></span></i>
 										Export Report
 									</button>
-									<button type="button" class="btn btn-primary" data-bs-toggle="modal"
-												data-bs-target="#modalRegistroInspeccion">Agregar Nuevo</button>
 									<!--begin::Menu-->
 									<div id="kt_datatable_example_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">
 										<!--begin::Menu item-->
 										<div class="menu-item px-3">
 											<a href="#" class="menu-link px-3" data-kt-export="copy">
-											Copy to clipboard
+												Copy to clipboard
 											</a>
 										</div>
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
 										<div class="menu-item px-3">
 											<a href="#" class="menu-link px-3" data-kt-export="excel">
-											Export as Excel
+												Export as Excel
 											</a>
 										</div>
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
 										<div class="menu-item px-3">
 											<a href="#" class="menu-link px-3" data-kt-export="csv">
-											Export as CSV
+												Export as CSV
 											</a>
 										</div>
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
 										<div class="menu-item px-3">
 											<a href="#" class="menu-link px-3" data-kt-export="pdf">
-											Export as PDF
+												Export as PDF
 											</a>
 										</div>
 										<!--end::Menu item-->
 									</div>
 									<!--end::Menu-->
 									<!--end::Export dropdown-->
-						
+									
 									<!--begin::Hide default export buttons-->
 									<div id="kt_datatable_example_buttons" class="d-none"></div>
+									@endcan
+
 									<!--end::Hide default export buttons-->
-								</div>
+									@can('inspecciones.create')
+	
+									<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+												data-bs-target="#modalRegistroInspeccion">Agregar Nuevo</button>
+									@endcan
+								
+											</div>
 							</div>
 							<div class="card-body">
 								<table class="table align-middle border rounded table-row-dashed fs-6 g-5" id="kt_datatable_example">
@@ -172,20 +182,30 @@
 												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
 													data-kt-menu="true">
 													<!--begin::Menu item-->
+													@can('inspecciones.install')
+	
 													<div class="menu-item px-3">
 														<a href="#" data-bs-toggle="modal" data-bs-target="#modalEmpezarInspeccion{{$item->id}}"
 															class="menu-link px-3">Empezar</a>
-													</div>
+														</div>
+														@endcan
+													@can('inspecciones.edit')
+
 													<div class="menu-item px-3">
 														<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarInspeccion{{$item->id}}"
 															class="menu-link px-3">Editar</a>
 													</div>
+													@endcan
+													@can('inspecciones.delete')
+
 													<!--end::Menu item-->
 													<!--begin::Menu item-->
 													<div class="menu-item px-3">
-														<a href="#" class="menu-link px-3"
-															data-kt-customer-table-filter="delete_row">Delete</a>
+														<a href="{{url('/eliminar/inspeccion'.$item->id) }}" class="menu-link px-3"
+															data-kt-customer-table-filter="delete_row">Eliminar</a>
 													</div>
+													@endcan
+
 													<!--end::Menu item-->
 												</div>
 												<!--end::Menu-->
@@ -239,6 +259,8 @@
 													<!--end::Modal dialog-->
 												</div>
 												<!--end::Modal - imagen carta-->
+												@can('inspecciones.edit')
+
 												<!--begin::Modal - Modal para  modificar inspecciones en espera-->
 												<div class="modal fade" id="modalModificarInspeccion{{$item->id}}" tabindex="-1" aria-hidden="true">
 													<!--begin::Modal dialog-->
@@ -382,8 +404,12 @@
 													</div>
 													<!--end::Modal dialog-->
 												</div>
+												@endcan
+
 												<!--end::Modal - Modal para  modificar inspecciones en espera-->
 												<!--begin::Modal -Empezar inspeccion-->
+												@can('inspecciones.install')
+
 												<div class="modal fade" id="modalEmpezarInspeccion{{$item->id}}" tabindex="-1" aria-hidden="true">
 													<!--begin::Modal dialog-->
 													<div class="modal-dialog modal-dialog-centered mw-650px">
@@ -546,6 +572,8 @@
 													</div>
 													<!--end::Modal dialog-->
 												</div>
+												@endcan
+
 												<!--end::Modal - Empezar inspeccion-->
 											
 										</tr>
@@ -554,6 +582,8 @@
 
 									</tbody>
 								</table>
+								@can('inspecciones.create')
+
 								<!--begin::Modal - Modal para  registrar inspecciones en espera-->
 							<div class="modal fade" id="modalRegistroInspeccion" tabindex="-1" aria-hidden="true">
 								<!--begin::Modal dialog-->
@@ -693,6 +723,7 @@
 								</div>
 								<!--end::Modal dialog-->
 							</div>
+								@endcan
 							<!--end::Modal - Modal para  registrar inspecciones en espera-->
 							</div>
 						</div>
@@ -700,17 +731,7 @@
 					
 				</div>
 			</div>
-			{{-- <div class="card mb-5 mb-xl-10">
-				<div class="card-body pt-9 pb-0">
-					<h1>Agendar Trabajo</h1>
-					<h4 class="a">dsfasfasdsdgsd</h4>
-					</div>
-				</div>
-			</div> --}}
-		
-		
 			
-		
 		</div>
 		<!--end::Container-->
 	</div> 
@@ -718,6 +739,7 @@
 </div> 
 
 @endsection
+@endcan
 
 
 

@@ -1,3 +1,5 @@
+@can('detallesGen.show')
+
 @extends('layout.index')
 
 @section('contenido')
@@ -137,100 +139,7 @@
 								</table>
 							</div>
                          
-                       {{--   @if (!$reutilizada->isEmpty())
-						 <h3>luminarias Reutilizadas</h3>
-							<div class="table-responsive">
-								<table class="table table-bordered" >
-									<thead>
-										<tr class="fw-bold fs-6 text-gray-800">
-											<th style="font-weight: bold; text-transform: uppercase; ">Nombre Item</th>
-											<th style="font-weight: bold; text-transform: uppercase;">Cantidad</th>
-											<th style="font-weight: bold; text-transform: uppercase;">Utilizados</th>
-											<th style="font-weight: bold; text-transform: uppercase;">Disponibles</th>
-											
-										</tr>
-									</thead>
-									<tbody>
-										@foreach ($reutilizada as $item)
-										<tr>
-											<td>{{$item->Nombre_Item}}</td>
-										<td>{{$item->Cantidad}}</td>
-										<td>{{$item->Utilizados}}</td>
-
-										<td>{{$item->Disponibles}}</td>
-										</tr>
-										@endforeach
-
-										
-									</tbody>
-								</table>
-							</div>
-									
-									@else
-										<h5 class="badge badge-light-danger">No hay luminarias Reutilizadas Disponibles</h5>
-									@endif
-									
-									
-									@if (!$accesorios->isEmpty())
-									<h3>Accesorios</h3>
-
-									
-									<div class="table-responsive">
-										<table class="table table-bordered">
-											<thead>
-												<tr class="fw-bold fs-6 text-gray-800">
-													<th style="font-weight: bold; text-transform: uppercase; ">Nombre Item</th>
-													<th style="font-weight: bold; text-transform: uppercase; ">Cantidad</th>
-													<th style="font-weight: bold; text-transform: uppercase; ">Utilizados</th>
-													<th style="font-weight: bold; text-transform: uppercase; ">Disponibles</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach ($accesorios as $itemacc)
-												<tr>
-													<td>{{$itemacc->Lista_accesorio->Nombre_Item}}</td>
-													<td>{{$itemacc->Cantidad}}</td>
-													<td>{{$itemacc->Utilizados}}</td>
-													<td>{{$itemacc->Disponibles}}</td>
-												</tr>
-											@endforeach
-
-											</tbody>
-										</table>
-									</div>
-									@else
-									<h5 class="badge badge-light-danger">No hay Accesorios en este Proyecto</h5>
-								@endif
-									
-									@if (!$luminaria->isEmpty())
-									<h3>Luminarias LED</h3>
-
-									
-									<div class="table-responsive">
-										<table class="table table-bordered">
-											<thead>
-												<tr class="fw-bold fs-6 text-gray-800">
-													<th style="font-weight: bold; text-transform: uppercase; ">Cod_Luminaria Item</th>
-													<th style="font-weight: bold; text-transform: uppercase; ">Modelo</th>
-													<th style="font-weight: bold; text-transform: uppercase; ">Marca</th>
-													<th style="font-weight: bold; text-transform: uppercase; ">Potencia</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach ($luminaria as $itemlum)
-										<tr>
-											<td>{{$itemlum->Cod_Luminaria}}</td>
-											<td>{{$itemlum->Marca}}</td>
-											<td>{{$itemlum->Modelo}}</td>
-											<td>{{$itemlum->Potencia}}</td>
-										</tr>
-										@endforeach
-											</tbody>
-										</table>
-									</div>
-									@else
-									<h5 class="badge badge-light-danger">No hay luminarias LED en este Proyecto</h5>
-								@endif --}}
+                      
 							
 						</div>
 					</div>
@@ -253,3 +162,4 @@
 	
 </div> 
 @endsection
+@endcan

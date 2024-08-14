@@ -1,3 +1,5 @@
+@can('Distritos.edit')
+    
 @extends('layout.index')
 
 @section('contenido')
@@ -93,3 +95,4 @@
 </div>
 
 @endsection
+@endcan

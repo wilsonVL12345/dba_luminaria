@@ -13,6 +13,8 @@ use Illuminate\Routing\Router;
 // use App\Http\Controllers\logincontroller;
 use App\Http\Controllers\luminaria_retiradasController;
 use App\Http\Controllers\proyectoController;
+use App\Models\datos_luminaria_retirada;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +57,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/usuario/bloquear/{id}', [UserController::class, 'bloquear'])->name('usuario.bloquear');
     Route::get('/usuario/desbloquear/{id}', [UserController::class, 'desbloquear'])->name('usuario.bloquear');
     Route::get('/usuario/perfil/{id}', [UserController::class, 'perfil'])->name('usuario.perfil');
+    Route::get('/eliminar/usuario{id}', [UserController::class, 'destroy'])->name('eliminar.usuario');
 
 
     //ruta para agregar un nuevo usuario
@@ -69,6 +72,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/registro/distrito', [distritoController::class, 'create'])->name('registro.distrito');
     Route::post('/editar/distrito/{id}', [distritoController::class, 'edit'])->name('editar.distrito');
     Route::get('/editar/urbanizacion/{id}', [distritoController::class, 'datosEdit'])->name('editar.urbanizacion');
+    Route::get('/eliminar/urbanizacion{id}', [distritoController::class, 'destroy'])->name('eliminar.urbanizacion');
+
 
 
     //ruta para inspecciones----------------------------------------------------------------------------------------------------
@@ -78,18 +83,23 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/empezar/inspeccionespera', [inspeccionController::class, 'ready'])->name('empezar.inspeccionespera');
     Route::get('/inspecciones/realizadas', [inspeccionController::class, 'realizadas'])->name('inspecciones.espera');
     Route::post('/inspecciones/editrealizadas/{id}', [inspeccionController::class, 'editRealizada'])->name('inspecciones.editrealizadas');
+    Route::get('/eliminar/inspeccion{id}', [inspeccionController::class, 'destroy'])->name('eliminar.inspeccion');
 
 
 
     //rutas para equipamiento y accesorios--------------------------------------------------------------------------------
     //ruta para ver detalles equipamientos
     Route::get('/equipos/equipamiento/{dist}', [equipamientoController::class, 'index'])->name('equipos.equipamientos');
+    Route::get('/eliminar/equipamiento{id}', [equipamientoController::class, 'destroy'])->name('eliminar.equipamiento');
+
     //ruta para lista de accesorios
     Route::get('/equipos/accesorios', [lista_accesorioController::class, 'index'])->name('equipos.accesorios');
+    Route::get('/eliminar/accesorios{id}', [lista_accesorioController::class, 'destroy'])->name('eliminar.accesorios');
+
     //ruta para registrar ala lista de accesorios
     Route::post('/registro/accesorios', [lista_accesorioController::class, 'create'])->name('registro.accesorios');
     Route::post('/editar/accesorios', [lista_accesorioController::class, 'edit'])->name('editar.accesorios');
-    Route::get('/eliminar/accesorios/{id}', [lista_accesorioController::class, 'destroy'])->name('eliminar.accesorios');
+    // Route::get('/eliminar/accesorios/{id}', [lista_accesorioController::class, 'destroy'])->name('eliminar.accesorios');
 
     Route::get('/equipamiento/distrito', [equipamientoController::class, 'showEquipDistrito'])->name('equipamiento.distrito');
 
@@ -105,6 +115,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/registro/retirados', [luminaria_retiradasController::class, 'create'])->name('registro.retirados');
     Route::get('/detalles/luminarias/retiradas/{id}', [luminaria_retiradasController::class, 'retiradaDetalle'])->name('detalles.luminarias.retiradas');
     Route::post('/modificar/retirados/{id}', [luminaria_retiradasController::class, 'editretirada'])->name('modificar.retirados');
+    Route::get('/eliminar/retirada{id}', [luminaria_retiradasController::class, 'destroy'])->name('eliminar.retirada');
 
     //rutas proyectos  ---------------------------------------------------------------------------------------------------------
     // para lo que es almacen
@@ -112,6 +123,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/registro/almacen', [proyectoController::class, 'create'])->name('registro.almacen');
     Route::post('/modificar/almacen/{id}', [proyectoController::class, 'editEsperaAlmacen'])->name('modificar.almacen');
     Route::post('/modificar/ObrasEjecuatas/{id}', [proyectoController::class, 'editObrasEjecutadas'])->name('modificar.ObrasEjecuatas');
+    Route::get('/eliminar/proyecto{id}', [proyectoController::class, 'destroy'])->name('eliminar.proyecto');
 
 
     Route::get('/detallesAccesorios/almacen/{id}', [proyectoController::class, 'reu'])->name('detallesAccesorios.almacen');
@@ -136,6 +148,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/detalles/espera', [detalleController::class, 'index'])->name('detalles.espera');
     Route::get('/detalles/realizados', [detalleController::class, 'realizados'])->name('detalles.realizados');
     Route::get('detalle/realizados/informacion/{id}', [detalleController::class, 'DetallesRealizado'])->name('detalle.realizados.informacion');
+    Route::get('/eliminar/detallegen{id}', [detalleController::class, 'destroy'])->name('eliminar.detallegen');
 
 
     //rutas  para  detalles en espera,realizar trabajo------------------------------------------------------------------------------------------

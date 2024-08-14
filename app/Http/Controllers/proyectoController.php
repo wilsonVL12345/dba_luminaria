@@ -29,8 +29,12 @@ class proyectoController extends Controller
         $listazonaurb = urbanizacion::all();
         return view('plantilla.Proyectos.proyectosAlmacen', [
             'proyecto' => $proyecto,
-            'listadistrito' => $listadistrito, 'listazonaurb' => $listazonaurb,
-            'reutilizada' => $reutilizadas, 'accesorio' => $accesorio, 'luminaria' => $luminaria, 'today' => $today
+            'listadistrito' => $listadistrito,
+            'listazonaurb' => $listazonaurb,
+            'reutilizada' => $reutilizadas,
+            'accesorio' => $accesorio,
+            'luminaria' => $luminaria,
+            'today' => $today
 
         ]);
     }
@@ -51,7 +55,7 @@ class proyectoController extends Controller
         $espera = 'En espera';
         /*  dd($request->all()); */
         /* if se encarga de  verificar si los campos estan llenos y si no  notifica y se sale  */
-        if (!empty($request->campocod) || !empty($request->camponombre) || !empty($request->campocomponentes)) {
+        if (!empty($request->campocod) || !empty($request->camponom) || !empty($request->campocomponentes)) {
             try {
 
 
@@ -96,7 +100,7 @@ class proyectoController extends Controller
                 $reuNombre = $request->camponom;
                 $reuCant = $request->campocant;
                 /*  $reuObser = $request->campoobs; */
-                if (!empty($reuNombre)) {
+                if ($reuNombre) {
                     foreach ($reuNombre as $key => $value) {
 
                         $nuevoReutilizado = new luminarias_reutilizada();
@@ -292,8 +296,11 @@ class proyectoController extends Controller
 
         return view('plantilla.Proyectos.proyectosObrasEjecutadas', [
             'proyectoObras' => $proyectoObras,
-            'listadistrito' => $listadistrito, 'listazonaurb' => $listazonaurb,
-            'reutilizada' => $reutilizadas, 'accesorio' => $accesorio, 'luminaria' => $luminaria
+            'listadistrito' => $listadistrito,
+            'listazonaurb' => $listazonaurb,
+            'reutilizada' => $reutilizadas,
+            'accesorio' => $accesorio,
+            'luminaria' => $luminaria
 
         ]);
     }
@@ -324,10 +331,20 @@ class proyectoController extends Controller
         }
     }
 
-    public function destroy(string $id)
+    public function destroy(proyecto $id)
     {
-        //
+        // Eliminar todas las filas de 'lista_luminarias_retirada' donde el 'datos_luminaria_id' sea igual al id proporcionado
+        accesorio::where('Proyectos_id', $id->id)->delete();
+        luminaria::where('Proyectos_id', $id->id)->delete();
+        luminarias_reutilizada::where('Proyectos_id', $id->id)->delete();
+
+        // Luego eliminar la fila de 'datos_luminaria_retirada'
+        $id->delete();
+
+        // Retornar la respuesta
+        return back()->with("correcto", "Datos Eliminados Correctamente");
     }
+
     public function dashproy()
     {
         $dash = proyecto::all();

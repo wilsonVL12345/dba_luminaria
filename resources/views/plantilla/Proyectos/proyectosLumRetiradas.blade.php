@@ -1,3 +1,5 @@
+@can('proyecto.Retirado.show')
+	
 @extends('layout.index')
 
 @section('contenido')
@@ -34,10 +36,9 @@
 					<div class="margin">
 						<h1>Detalles Luminarias Retiradas</h1>
 						@include('layout.notificacioncrud')
-						<!-- Button trigger modal -->
 						
-
-						
+						@can('proyecto.Retirado.create')
+							
 							<!--begin::Modal - Registro Almacen-->
 							<div class="modal fade" id="modalRegistroRetirados" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 								<!--begin::Modal dialog-->
@@ -210,6 +211,7 @@
 								<!--end::Modal dialog-->
 							</div>
 								<!--end::Modal - Registro Almacen-->
+								@endcan
 					
 							<?php 
 							$num=1;
@@ -237,6 +239,7 @@
 											<!--end::Export buttons-->
 										</div>
 										<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+											@can('proyecto.Retirado.export')
 											<!--begin::Export dropdown-->
 											<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 												<i class="ki-duotone ki-exit-down fs-2"><span class="path1"></span><span class="path2"></span></i>
@@ -257,15 +260,7 @@
 													Export as Excel
 													</a>
 												</div>
-												<!--end::Menu item-->
-												<!--begin::Menu item-->
-												{{-- <div class="menu-item px-3">
-													<a href="#" class="menu-link px-3" data-kt-export="csv">
-													Export as CSV
-													</a>
-												</div> --}}
-												<!--end::Menu item-->
-												<!--begin::Menu item-->
+												
 												<div class="menu-item px-3">
 													<a href="#" class="menu-link px-3" data-kt-export="pdf">
 													Export as PDF
@@ -278,9 +273,11 @@
 								
 											<!--begin::Hide default export buttons-->
 											<div id="kt_datatable_example_buttons" class="d-none"></div>
+											@endcan
 											<!--end::Hide default export buttons-->
+											@can('proyecto.Retirado.create')
 											<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRegistroRetirados">Agregar Nuevo</button>
-
+											@endcan
 										</div>
 									</div>
 									<div class="card-body">
@@ -334,24 +331,28 @@
 																<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
 																	data-kt-menu="true">
 																	<!--begin::Menu item-->
-																	
+																	@can('proyecto.Retirado.edit')
 																	<div class="menu-item px-3">
 																		<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarLumRetiradas{{$item->id}}"
 																			class="menu-link px-3">Editar</a>
 																	</div>
+																	@endcan
 																	<!--end::Menu item-->
 																	<!--begin::Menu item-->
+																	@can('proyecto.Retirado.delete')
 																	<div class="menu-item px-3">
 																		
-																		<a href="{{url('/usuario/bloquear/'.$item->id) }}" class="menu-link px-3"
+																		<a href="{{url('/eliminar/retirada'.$item->id) }}" class="menu-link px-3"
 																			data-kt-customer-table-filter="delete_row">Eliminar</a>
 																		
 																	</div>
+																	@endcan
 																	<!--end::Menu item-->
 																</div>
 																<!--end::Menu-->
 															</td>
 															<!--end::Action=-->
+															@can('proyecto.Retirado.edit')
 
 														<!--begin::Modal - Modificar Almacen-->
 														<div class="modal fade" id="modalModificarLumRetiradas{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
@@ -498,7 +499,7 @@
 																					<!--end::Modal footer-->
 																									
 																								
-																						</div>
+																				</div>
 																							<!--end::Scroll-->
 																				
 																					
@@ -516,6 +517,8 @@
 															</div>
 															<!--end::Modal dialog-->
 														</div>
+														@endcan
+
 															<!--end::Modal - Modificar Almacen-->
 													</tr>
 												@endforeach
@@ -528,12 +531,7 @@
 				</div>
 				
 			</div>
-				<div class="card mb-5 mb-xl-10">
-					<div class="card-body pt-9 pb-0">
-						<h1>Agendar Trabajo</h1>
-						
-					</div>
-				</div>
+				
 		</div>
 		
 		
@@ -545,3 +543,4 @@
 	
 </div> 
 @endsection
+@endcan

@@ -29,7 +29,7 @@ return new class extends Migration
             $table->unsignedBigInteger(column: 'Distritos_id');
             $table->foreign(columns: 'Distritos_id')->references(columns: 'id')
                 ->on(table: 'distritos')->onDelete(action: 'cascade');
-
+            $table->softDeletes();
 
             $table->timestamps();
         });

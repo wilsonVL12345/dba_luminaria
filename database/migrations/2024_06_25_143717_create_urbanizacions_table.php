@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nombre_urbanizacion');
             $table->text('lng')->nullable();
             $table->text('lat')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -78,8 +78,9 @@ class lista_accesorioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    /* public function destroy($id)
     {
+       
 
         try {
             $accedestroy = lista_accesorio::find($id);
@@ -99,5 +100,11 @@ class lista_accesorioController extends Controller
         } else {
             return back()->with("incorrecto", "Error al Eliminar");
         }
+    }
+    */
+    public function destroy(lista_accesorio $id)
+    {
+        $id->delete();
+        return back()->with("correcto", "Datos Eliminados Correctamente");
     }
 }

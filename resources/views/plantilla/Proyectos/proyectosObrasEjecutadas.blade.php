@@ -1,3 +1,5 @@
+@can('proyecto.show')
+
 @extends('layout.index')
 
 @section('contenido')
@@ -7,19 +9,7 @@
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Informacion Proyectos Finalizados con Exito</h1>
 				<span class="h-20px border-gray-300 border-start mx-4"></span>
-				{{-- <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-					<li class="breadcrumb-item text-muted">
-						<a href="../../demo1/dist/index.html" class="text-muted text-hover-primary">Home</a>
-					</li>
-					<li class="breadcrumb-item">
-						<span class="bullet bg-gray-300 w-5px h-2px"></span>
-					</li>
-					<li class="breadcrumb-item text-muted">Account</li>
-					<li class="breadcrumb-item">
-						<span class="bullet bg-gray-300 w-5px h-2px"></span>
-					</li>
-					<li class="breadcrumb-item text-dark">Security</li>
-				</ul> --}}
+				
 			</div>
 		</div>
 	</div>
@@ -53,6 +43,8 @@
 										<div id="kt_datatable_example_1_export" class="d-none"></div>
 										<!--end::Export buttons-->
 									</div>
+								@can('proyecto.export')
+
 									<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 										<!--begin::Export dropdown-->
 										<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -97,6 +89,7 @@
 										<div id="kt_datatable_example_buttons" class="d-none"></div>
 										<!--end::Hide default export buttons-->
 									</div>
+									@endcan
 								</div>
 								<div class="card-body">
 									<table class="table align-middle border rounded table-row-dashed fs-6 g-5" id="tablaEjecutado">
@@ -205,29 +198,40 @@
 													$total=$totalcant+$totallum+$totalreu
 													?>
 													@if ($cant>0 || $cantreu>0 || $cantlum>0 )
+											@can('proyecto.install')
+
 													<div class="menu-item px-3">
 														
 														<a href="{{url('/datos/ejecutar/'.$items->id)}}" 
 															class="menu-link px-3">Terminar Inst </a>
 													</div>
+											@endcan
 													@endif
+											@can('proyecto.edit')
+
 													<div class="menu-item px-3">
 														<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarObrasEjecutadas{{$items->id}}"
 															class="menu-link px-3">Editar</a>
 													</div>
+											@endcan
 													<!--end::Menu item-->
 													<!--begin::Menu item-->
+											@can('proyecto.delete')
+													
 													<div class="menu-item px-3">
 														
-														<a href="{{url('/usuario/bloquear/'.$items->id) }}" class="menu-link px-3"
+														<a href="{{url('/eliminar/proyecto'.$items->id) }}" class="menu-link px-3"
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
 														
 													</div>
+											@endcan
 													<!--end::Menu item-->
 												</div>
 												<!--end::Menu-->
 											</td>
 											<!--end::Action=-->
+											@can('proyecto.edit')
+											
 											<!--begin::Modal - modificar proyectoAlmacen Obras Ejecutadas-->
 											<div class="modal fade" id="modalModificarObrasEjecutadas{{$items->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 												<!--begin::Modal dialog-->
@@ -394,7 +398,7 @@
 												<!--end::Modal dialog-->
 											</div>
 											<!--end::Modal - modificar proyectoAlmacen Obras Ejecutadas-->	
-												
+											@endcan
 											</tr>
 											@endforeach
 										</tbody>
@@ -405,12 +409,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="card mb-5 mb-xl-10">
-				<div class="card-body pt-9 pb-0">
-					<h1>Mas detalles</h1>
-						
-				</div>
-			</div>
+			
 		</div>
 		
 		
@@ -422,3 +421,4 @@
 	
 
 @endsection
+@endcan

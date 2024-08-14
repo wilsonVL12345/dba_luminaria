@@ -1,3 +1,5 @@
+@can('agendar.show')
+
 @extends('layout.index')
 
 @section('contenido')
@@ -183,3 +185,4 @@
 	});
 	</script>
 @endsection
+@endcan

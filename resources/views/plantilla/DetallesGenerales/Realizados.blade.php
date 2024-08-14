@@ -1,3 +1,5 @@
+@can('detallesGen.show')
+
 @extends('layout.index')
 
 @section('contenido')
@@ -47,6 +49,8 @@
 									<div id="kt_datatable_example_1_export" class="d-none"></div>
 									<!--end::Export buttons-->
 								</div>
+								@can('detallesGen.export')
+
 								<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 									<!--begin::Export dropdown-->
 									<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -91,6 +95,7 @@
 									<div id="kt_datatable_example_buttons" class="d-none"></div>
 									<!--end::Hide default export buttons-->
 								</div>
+								@endcan
 							</div>
 							<div class="card-body">
 								<table class="table align-middle border rounded table-row-dashed fs-6 g-5" id="detalleRealizado">
@@ -176,18 +181,22 @@
 														<a href="{{url('/datos/ejecutar/'.$item->id)}}" 
 															class="menu-link px-3">Instalar</a>
 													</div> --}}
-													<div class="menu-item px-3">
+											@can('detallesGen.edit')
+											<div class="menu-item px-3">
 														<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarRealizado{{$itemtrab->id}}"
 															class="menu-link px-3">Editar</a>
 													</div>
 													<!--end::Menu item-->
 													<!--begin::Menu item-->
-													<div class="menu-item px-3">
+											@endcan
+											@can('detallesGen.delete')
+											<div class="menu-item px-3">
 														
-														<a href="{{-- {{url('/usuario/bloquear/'.$item->id) }} --}}" class="menu-link px-3"
+														<a href="{{url('/eliminar/detallegen'.$itemtrab->id) }}" class="menu-link px-3"
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
 														
 													</div>
+													@endcan
 													<!--end::Menu item-->
 												</div>
 												<!--end::Menu-->
@@ -241,6 +250,8 @@
 												<!--end::Modal dialog-->
 											</div>
 											<!--end::Modal - imagen carta-->
+											@can('detallesGen.edit')
+
 											{{-- modal para modificar trabajos realizados --}}
 											<div class="modal fade" id="modalModificarRealizado{{$itemtrab->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 												<!--begin::Modal dialog-->
@@ -401,6 +412,7 @@
 													</div>
 												</div>
 											</div>
+											@endcan
 											{{-- endmodal para modificar trabajos realizados --}}
 										</tr>
 											@endforeach
@@ -426,3 +438,4 @@
 	
 
 @endsection
+@endcan

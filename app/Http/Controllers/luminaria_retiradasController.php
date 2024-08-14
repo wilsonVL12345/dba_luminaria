@@ -8,6 +8,7 @@ use App\Models\distrito;
 use App\Models\lista_accesorio;
 use App\Models\lista_luminarias_retirada;
 use App\Models\urbanizacion;
+use Illuminate\Support\Facades\DB;
 
 class luminaria_retiradasController extends Controller
 {
@@ -25,7 +26,9 @@ class luminaria_retiradasController extends Controller
         $listaluminaria = lista_luminarias_retirada::all();
         return view('plantilla.Proyectos.proyectosLumRetiradas', [
             'listazona' => $listazona,
-            'listadistritos' => $listadistrito, 'accesorios' => $listaaccesorios, 'datosluminaria' => $datosluminaria
+            'listadistritos' => $listadistrito,
+            'accesorios' => $listaaccesorios,
+            'datosluminaria' => $datosluminaria
         ]);
     }
     public function retiradaDetalle(String $id)
@@ -39,10 +42,9 @@ class luminaria_retiradasController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    /* public function create(Request $request)
     {
 
-        // dd($request->all());
         try {
             $datosretirados = new datos_luminaria_retirada();
 
@@ -54,7 +56,6 @@ class luminaria_retiradasController extends Controller
             $datosretirados->User_id = session('id');
             $datosretirados->Distritos_id = $request->txtdistrito;
             $datosretirados->save();
-
             $nombre_item = $request->campoitem;
             $reutilizables = $request->camporeutilizables;
             $noreutilizables = $request->camponoreutilizables;
@@ -93,6 +94,64 @@ class luminaria_retiradasController extends Controller
             return back()->with("correcto", "Luminarias Retiradas  Registrado Correctamente");
         } else {
             return back()->with("incorrecto", "Error al Registrar Luminarias Retiradas");
+        }
+    } */
+    public function create(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $datosretirados = new datos_luminaria_retirada();
+            $datosretirados->zona = $request->txtzona;
+            $datosretirados->Nro_sisco = $request->txtnrosisco;
+            $datosretirados->Fecha = $request->txtfechamante;
+            $datosretirados->Proyecto = $request->txtproyecto;
+            $datosretirados->Direccion = $request->txtdireccion;
+            $datosretirados->User_id = session('id');
+            $datosretirados->Distritos_id = $request->txtdistrito;
+            $datosretirados->save();
+
+            $nombre_item = $request->campoitem;
+            $reutilizables = $request->camporeutilizables;
+            $noreutilizables = $request->camponoreutilizables;
+
+            $listaGuardada = false;
+
+            if ($nombre_item) {
+                # code...
+                for ($i = 1; $i <= count($nombre_item); $i++) {
+                    $nombre = $nombre_item[$i]['txtitem'] ?? null;
+                    $reutilizable = $reutilizables[$i]['txtreutilizables'] ?? null;
+                    $noreutilizable = $noreutilizables[$i]['txtnoreutilizables'] ?? null;
+
+                    // Validación de campos vacíos
+                    if (empty($nombre) || $reutilizable === null || $noreutilizable === null) {
+                        continue;
+                    }
+
+                    $cantidad = $reutilizable + $noreutilizable;
+                    $listaretirados = new lista_luminarias_retirada();
+                    $listaretirados->Nombre = $nombre;
+                    $listaretirados->Cantidad = $cantidad;
+                    $listaretirados->Reutilizables = $reutilizable;
+                    $listaretirados->NoReutilizables = $noreutilizable;
+                    $listaretirados->datos_luminaria_id = $datosretirados->id;
+                    $listaretirados->save();
+
+                    $listaGuardada = true;
+                }
+            }
+
+
+            if (!$listaGuardada) {
+                throw new \Exception("No se guardó ninguna lista de luminarias retiradas.");
+            }
+
+            DB::commit();
+            return back()->with("correcto", "Luminarias Retiradas Registradas Correctamente");
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with("incorrecto", "Error al Registrar Luminarias Retiradas: " . $e->getMessage());
         }
     }
 
@@ -155,8 +214,15 @@ class luminaria_retiradasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(datos_luminaria_retirada $id)
     {
-        //
+        // Eliminar todas las filas de 'lista_luminarias_retirada' donde el 'datos_luminaria_id' sea igual al id proporcionado
+        lista_luminarias_retirada::where('datos_luminaria_id', $id->id)->delete();
+
+        // Luego eliminar la fila de 'datos_luminaria_retirada'
+        $id->delete();
+
+        // Retornar la respuesta
+        return back()->with("correcto", "Datos Eliminados Correctamente");
     }
 }

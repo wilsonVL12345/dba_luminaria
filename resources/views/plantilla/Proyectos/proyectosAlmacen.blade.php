@@ -1,3 +1,5 @@
+@can('proyecto.show')
+
 @extends('layout.index')
 
 @section('contenido')
@@ -7,19 +9,7 @@
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Informacion de Proyectos en Almacen</h1>
 				<span class="h-20px border-gray-300 border-start mx-4"></span>
-				{{-- <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-					<li class="breadcrumb-item text-muted">
-						<a href="../../demo1/dist/index.html" class="text-muted text-hover-primary">Home</a>
-					</li>
-					<li class="breadcrumb-item">
-						<span class="bullet bg-gray-300 w-5px h-2px"></span>
-					</li>
-					<li class="breadcrumb-item text-muted">Account</li>
-					<li class="breadcrumb-item">
-						<span class="bullet bg-gray-300 w-5px h-2px"></span>
-					</li>
-					<li class="breadcrumb-item text-dark">Security</li>
-				</ul> --}}
+			
 			</div>
 		</div>
 	</div>
@@ -36,6 +26,8 @@
 								
 								
 								<!--begin::Modal - Registro Almacen-->
+								@can('proyecto.create')
+
 									<div class="modal fade" id="modalregistroProyecto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 										<!--begin::Modal dialog-->
 										<div class="modal-dialog mw-1000px">
@@ -89,7 +81,7 @@
 
 																			</label>
 
-																			<input type="text" class="form-control form-control-solid " id="txtcod" name="txtcod" pattern="^[0-9]{2}-[0-9]{4}-[0-9]{2}-[0-9]{6}-[0-9]-[0-9a-zA-Z]$" placeholder="Ingresar Datos" >
+																			<input type="text" class="form-control form-control-solid " id="txtcod" name="txtcod" pattern="^[0-9]{2}-[0-9]{4}-[0-9]{2}-[0-9]{6}-[0-9]-[0-9a-zA-Z]$" placeholder="Ingresar Datos" required >
 																		</div>
 																		<div class="col-md-4 mb-3">
 																			<label for="txtdistrito" class="required fs-5 fw-bold mb-2">Distrito</label>
@@ -121,7 +113,7 @@
 																				<!--end::Svg Icon-->
 																				<!--end::Icon-->
 																				<!--begin::Datepicker-->
-																				<input type="date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="dtfecha" id="dtfecha" />
+																				<input type="date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="dtfecha" id="dtfecha"  required/>
 																				<!--end::Datepicker-->
 																			</div>
 																			<!--end::Input-->
@@ -242,6 +234,7 @@
 										</div>
 										<!--end::Modal dialog-->
 									</div>
+									@endcan
 								<!--end::Modal - Registro Almacen-->
 								<!-- Modal registro  proyecto -->
 							<h1>Proyectos Pendintes Almacen</h1>
@@ -267,6 +260,7 @@
 								<!--end::Export buttons-->
 							</div>
 							<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+								@can('proyecto.export')
 								
 								<!--begin::Export dropdown-->
 								<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -289,15 +283,7 @@
 										Export as Excel
 										</a>
 									</div>
-									<!--end::Menu item-->
-									<!--begin::Menu item-->
-									{{-- <div class="menu-item px-3">
-										<a href="#" class="menu-link px-3" data-kt-export="csv">
-										Export as CSV
-									</a>
-									</div> --}}
-								<!--end::Menu item-->
-								<!--begin::Menu item-->
+									
 								<div class="menu-item px-3">
 									<a href="#" class="menu-link px-3" data-kt-export="pdf">
 										Export as PDF
@@ -305,14 +291,18 @@
 								</div>
 								<!--end::Menu item-->
 								</div>
-								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalregistroProyecto">Agregar Nuevo</button>
-
+								
 								<!--end::Menu-->
 								<!--end::Export dropdown-->
-					
+								
 								<!--begin::Hide default export buttons-->
 								<div id="tablaAlmacenexport" class="d-none"></div>
+								@endcan
 								<!--end::Hide default export buttons-->
+								@can('proyecto.create')
+
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalregistroProyecto">Agregar Nuevo</button>
+								@endcan
 							</div>
 							
 						</div>
@@ -388,29 +378,38 @@
 												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
 													data-kt-menu="true">
 													<!--begin::Menu item-->
+											@can('proyecto.install')
+
 													<div class="menu-item px-3">
 														<a href="{{url('/datos/ejecutar/'.$item->id)}}" 
 															class="menu-link px-3">Instalar</a>
 													</div>
-													<div class="menu-item px-3">
+											@endcan
+											@can('proyecto.edit')
+											<div class="menu-item px-3">
 														<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarProyAlmacen{{$item->id}}"
 															class="menu-link px-3">Editar</a>
 													</div>
 													<!--end::Menu item-->
 													<!--begin::Menu item-->
+													@endcan
+													@can('proyecto.delete')
 													<div class="menu-item px-3">
 														
-														<a href="{{url('/usuario/bloquear/'.$item->id) }}" class="menu-link px-3"
+														<a href="{{url('/eliminar/proyecto'.$item->id) }}" class="menu-link px-3"
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
 														
 													</div>
-													<!--end::Menu item-->
+													@endcan
+											<!--end::Menu item-->
 												</div>
 												<!--end::Menu-->
 											</td>
 											<!--end::Action=-->
 
 											<!--begin::Modal - modificar proyectoAlmacen-->
+											@can('proyecto.edit')
+
 											<div class="modal fade" id="modalModificarProyAlmacen{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 												<!--begin::Modal dialog-->
 												<div class="modal-dialog mw-1000px">
@@ -569,6 +568,7 @@
 												</div>
 												<!--end::Modal dialog-->
 											</div>
+											@endcan
 											<!--end::Modal - modificar proyectoAlmacen-->	
 										</tr>
 										@endforeach
@@ -586,12 +586,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="card mb-5 mb-xl-10">
-				<div class="card-body pt-9 pb-0">
-					<h1>Mas detalles</h1>
-						
-				</div>
-			</div>
+			
 		</div>
 		
 		
@@ -600,6 +595,6 @@
 	</div>
 		<!--end::Container-->
 </div> 
-	
 
 @endsection
+@endcan

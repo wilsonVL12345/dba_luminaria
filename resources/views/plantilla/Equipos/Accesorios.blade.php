@@ -1,3 +1,6 @@
+@can('accesorios.show')
+	
+
 @extends('layout.index')
 
 @section('contenido')
@@ -125,12 +128,14 @@
 										<!--end::Export buttons-->
 									</div>
 									<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+										@can('accesorios.export')
+											
 										<!--begin::Export dropdown-->
 										<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 											<i class="ki-duotone ki-exit-down fs-2"><span class="path1"></span><span class="path2"></span></i>
 											Export Report
 										</button>
-										<a href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#modalRegistroAccesorios">Agregar Componente</a>
+										
 
 										<!--begin::Menu-->
 										<div id="kt_datatable_example_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">
@@ -169,6 +174,11 @@
 										<!--begin::Hide default export buttons-->
 										<div id="kt_datatable_example_buttons" class="d-none"></div>
 										<!--end::Hide default export buttons-->
+										@endcan
+										
+										@can('accesorios.create')
+										<a href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#modalRegistroAccesorios">Agregar Componente</a>
+										@endcan
 									</div>
 								</div>
 								<div class="card-body">
@@ -208,14 +218,20 @@
 													<!--begin::Menu-->
 													<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
 														<!--begin::Menu item-->
+													@can('accesorios.edit')
 														<div class="menu-item px-3">
 															<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarAccesorios{{$item->id}}" class="menu-link px-3">Editar</a>
 														</div>
+													@endcan
 														<!--end::Menu item-->
 														<!--begin::Menu item-->
+														@can('accesorios.delete')
+
 														<div class="menu-item px-3">
-															<a href="{{route('eliminar.accesorios',$item->id)}}" class="menu-link px-3" onclick="return res() " data-kt-customer-table-filter="delete_row">Delete</a>
+															<a href="{{url('/eliminar/accesorios'.$item->id) }}" class="menu-link px-3"  data-kt-customer-table-filter="delete_row">Eliminar</a>
 														</div>
+														@endcan
+
 														<!--end::Menu item-->
 													</div>
 													</td>
@@ -223,6 +239,8 @@
 													$num++
 													?>
 													{{-- modal para modificar accesorios --}}
+													@can('accesorios.edit')
+														
 												<div class="modal fade" id="modalModificarAccesorios{{$item->id}}" tabindex="-1" aria-hidden="true">
 													<!--begin::Modal dialog-->
 													<div class="modal-dialog modal-dialog-centered mw-650px">
@@ -302,6 +320,8 @@
 													</div>
 													<!--end::Modal dialog-->
 												</div>
+												@endcan
+
 													{{-- endmodal para modificar accesorios --}}
 
 											</tr>
@@ -342,3 +362,4 @@
 	
 </div> 
 @endsection
+@endcan

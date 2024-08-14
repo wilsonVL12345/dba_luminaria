@@ -37,6 +37,7 @@ return new class extends Migration
             $table->foreign(columns: 'Distritos_id')->references(columns: 'id')
                 ->on(table: 'distritos');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

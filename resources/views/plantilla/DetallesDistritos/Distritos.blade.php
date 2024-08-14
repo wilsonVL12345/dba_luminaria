@@ -60,7 +60,7 @@
 																	Export Report
 																</button>
 																@endcan
-																@can('Distritos.Retirado.create')
+																@can('Distritos.create')
 																<button type="button" class="btn btn-primary" data-bs-toggle="modal"
 																data-bs-target="#modalRegistroUrbanizacion">Agregar Nuevo</button>
 																@endcan
@@ -158,7 +158,7 @@
 																				<!--begin::Menu item-->
 																				<div class="menu-item px-3">
 																					
-																					<a href="{{url('/usuario/bloquear/'.$itemurb->id) }}" class="menu-link px-3"
+																					<a href="{{url('/eliminar/urbanizacion'.$itemurb->id) }}" class="menu-link px-3"
 																						data-kt-customer-table-filter="delete_row">Eliminar</a>
 																					
 																				</div>

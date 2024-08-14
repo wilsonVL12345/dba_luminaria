@@ -1,3 +1,5 @@
+@can('equipamiento.show')
+	
 @extends('layout.index')
 
 @section('contenido')
@@ -129,8 +131,8 @@
 							<!--endbegin::Modal - registrar equipamiento - Add-->
 
 					{{-- <div>
-						@include('layout.notificacioncrud')
 					</div> --}}
+					@include('layout.notificacioncrud')
 					<div class="card card-p-0 card-flush">
 						<div class="card-header align-items-center py-5 gap-2 gap-md-5">
 							<div class="card-title">
@@ -144,6 +146,8 @@
 								<div id="kt_datatable_example_1_export" class="d-none"></div>
 								<!--end::Export buttons-->
 							</div>
+							@can('equipamiento.delete')
+								
 							<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 								<!--begin::Export dropdown-->
 								<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -191,6 +195,8 @@
 								<div id="kt_datatable_example_buttons" class="d-none"></div>
 								<!--end::Hide default export buttons-->
 							</div>
+							@endcan
+
 						</div>
 						<div class="card-body">
 							<table class="table align-middle border rounded table-row-dashed fs-6 g-5" id="equipamientotabla">
@@ -232,18 +238,26 @@
 											<!--begin::Menu-->
 											<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
 												<!--begin::Menu item-->
+												@can('equipamiento.edit')
+												
 												<div class="menu-item px-3">
 													<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificar{{$itememp->id}}" class="menu-link px-3">Editar</a>
 												</div>
+												@endcan
+
 												<!--end::Menu item-->
 												<!--begin::Menu item-->
+												@can('equipamiento.delete')
 												<div class="menu-item px-3">
-													<a href="#" class="menu-link px-3" data-kt-customer-table-filter="delete_row">Delete</a>
+													<a href="{{url('/eliminar/equipamiento'.$itememp->id) }}" class="menu-link px-3" data-kt-customer-table-filter="delete_row">Eliminar</a>
 												</div>
+												@endcan
+
 												<!--end::Menu item-->
 											</div>
 										</td>
 										{{-- modal para modificar --}}
+										@can('equipamiento.edit')
 										<div class="modalmodificar">
 											<div class="modal fade" id="modalModificar{{$itememp->id}}" tabindex="-1" aria-hidden="true">
 												<!--begin::Modal dialog-->
@@ -357,6 +371,7 @@
 											<!--begin::Modal - New Target-->
 
 										</div>
+										@endcan
 										{{-- endmodal para modificar --}}
 
 									</tr>
@@ -370,11 +385,8 @@
 			</div>
 		</div>
 	</div>
-				<div class="card mb-5 mb-xl-10">
-					<div class="card-body pt-9 pb-0">
-						<h1>Agendar Trabajo</h1>
-					</div>
-				</div>
+				
 		<!--end::Container-->
 </div> 
 @endsection
+@endcan
