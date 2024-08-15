@@ -133,7 +133,7 @@
 					{{-- <div>
 					</div> --}}
 					@include('layout.notificacioncrud')
-					<div class="card card-p-0 card-flush">
+					<div class="card card-p-0 card-flush" >
 						<div class="card-header align-items-center py-5 gap-2 gap-md-5">
 							<div class="card-title">
 								<!--begin::Search-->

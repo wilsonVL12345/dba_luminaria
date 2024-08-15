@@ -331,7 +331,7 @@
 																					<label for="txtcontratacion" class="required fs-5 fw-bold mb-2">Apoyo a Distrito</label>
 																					<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="apoyoDistRe" data-id="apoyoDistRe" required>
 																						<option value="">Seleccione...</option>
-																						@foreach ($listadistrito as $item)
+																						@foreach ($disApoyo as $item)
 																							@php
 																								// Extraer el número del distrito actual
 																								preg_match('/D-(\d+)/', $item->Distrito, $itemMatches);

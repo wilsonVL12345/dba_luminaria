@@ -77,24 +77,25 @@
 																	<div class="from row">
 																		<div class="col-md-4 mb-3">
 																			<label for="txtcod" class="required fs-5 fw-bold mb-2">Codigo Proyecto
-																				<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permite numeros en  este formato ejemplo 24-2303-00-1465119-1-9"></i>
+																				{{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permite numeros en  este formato ejemplo 24-2303-00-1465119-1-9"></i> --}}
 
 																			</label>
 
-																			<input type="text" class="form-control form-control-solid " id="txtcod" name="txtcod" pattern="^[0-9]{2}-[0-9]{4}-[0-9]{2}-[0-9]{6}-[0-9]-[0-9a-zA-Z]$" placeholder="Ingresar Datos" required >
+																			<input type="text" class="form-control form-control-solid " id="txtcod" name="txtcod" {{-- pattern="^[0-9]{2}-[0-9]{4}-[0-9]{2}-[0-9]{6}-[0-9]-[0-9a-zA-Z]$" --}} placeholder="Ingresar Datos" required >
 																		</div>
-																		<div class="col-md-4 mb-3">
+																		<div class="col-md-2 mb-1">
 																			<label for="txtdistrito" class="required fs-5 fw-bold mb-2">Distrito</label>
 																			<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtdistrito" id="txtdistrito" required >
 																			<option value="" >Seleccione...</option>
 																			@foreach ($listadistrito as $item)
 																			<option value="{{$item->id}}">{{$item->Distrito}}</option>
 																			@endforeach
+																			</select>	
 																		</div>
-																		</select>																		</div>
+
 																	
 																		<!--begin::Col-->
-																		<div class="col-md-4 mb-3">
+																		<div class="col-md-3 mb-2">
 																			<label class="required fs-6 fw-bold mb-2">Fecha de Adquisicion
 																				<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permite fechas actuales o entre la semana"></i>
 
@@ -116,10 +117,21 @@
 																				<input type="date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="dtfecha" id="dtfecha"  required/>
 																				<!--end::Datepicker-->
 																			</div>
-																			<!--end::Input-->
 																		</div>
+																				<div class="col-md-3 mb-2">
+																					<label for="sltrabajo" class="required fs-5 fw-bold mb-2">Trabajo</label>
+																					<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="sltrabajo" id="sltrabajo" required >
+																					<option value="" >Seleccione...</option>
+																					<option value="Central" >Central</option>
+																					@foreach ($listadistrito as $item)
+																					<option value="{{$item->Distrito}}">{{$item->Distrito}}</option>
+																					@endforeach
+																					</select>	
+																				</div>
+																				<!--end::Input-->
+																		</div>
+																		
 																		<!--end::Col-->
-																	</div>
 																	<div class="from row">
 																		<div class="col-md-8 mb-3"> <!-- Ocupa el doble del tamaño -->
 																			<label for="txtzona" class="required fs-5 fw-bold mb-2">Urbanizacion</label>
@@ -148,12 +160,12 @@
 																		<div class="col-md-6 fv-row">
 																			<!--begin::Label-->
 																			<label class="required fs-5 fw-bold mb-2">Modalidad
-																			<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten max 4 digitos numeros o letras "></i>
+																			{{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten max 4 digitos numeros o letras "></i> --}}
 
 																			</label>
 																			<!--end::Label-->
 																			<!--begin::Input-->
-																			<input type="text" class="form-control form-control-solid" placeholder="Ingresar Datos" name="txtmodalidad" id="txtmodalidad" pattern="[A-Za-z0-9]{1,4}" required  />
+																			<input type="text" class="form-control form-control-solid" placeholder="Ingresar Datos" name="txtmodalidad" id="txtmodalidad" {{-- pattern="[A-Za-z0-9]{1,4}" --}} required  />
 																			<!--end::Input-->
 																		</div> 
 																		<!--end::Col-->
@@ -449,10 +461,10 @@
 															<div class="from row">
 																<div class="col-md-3 mb-3">
 																	<label for="txtcodProyEsp" class="required fs-5 fw-bold mb-2">Codigo Proyecto
-																		<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permite numeros en  este formato ejemplo 24-2303-00-1465119-1-9"></i>
+																		{{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permite numeros en  este formato ejemplo 24-2303-00-1465119-1-9"></i> --}}
 
 																	</label>
-																	<input type="text" class="form-control form-control-solid " id="txtcodProyEsp" name="txtcodProyEsp" pattern="^[0-9]{2}-[0-9]{4}-[0-9]{2}-[0-9]{7}-[0-9]-[0-9]$" value="{{$item->Cuce_Cod}}" required>
+																	<input type="text" class="form-control form-control-solid " id="txtcodProyEsp" name="txtcodProyEsp" {{-- pattern="^[0-9]{2}-[0-9]{4}-[0-9]{2}-[0-9]{7}-[0-9]-[0-9]$" --}} value="{{$item->Cuce_Cod}}" required>
 																</div>
 																<div class="col-md-3 mb-3">
 																	<label for="sldisProyEsp" class="required fs-5 fw-bold mb-2">Distrito</label>
@@ -498,10 +510,10 @@
 															<div class="from row">
 																<div class="col-md-6 mb-3">
 																	<label for="txtmodProyEsp" class="required fs-5 fw-bold mb-2">Modalidad
-																		<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten max 4 digitos numeros o letras "></i>
+																		{{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten max 4 digitos numeros o letras "></i> --}}
 
 																	</label>
-																	<input type="text" class="form-control form-control-solid " id="txtmodProyEsp" name="txtmodProyEsp" pattern="[A-Za-z0-9]{1,4}" value="{{$item->Modalidad}}" required>
+																	<input type="text" class="form-control form-control-solid " id="txtmodProyEsp" name="txtmodProyEsp" {{-- pattern="[A-Za-z0-9]{1,4}" --}} value="{{$item->Modalidad}}" required>
 																</div>
 																	
 																

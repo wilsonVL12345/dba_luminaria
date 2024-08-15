@@ -345,12 +345,7 @@
 						</style> --}}
 				</div>
 			</div>
-			<div class="card mb-5 mb-xl-10">
-				<div class="card-body pt-9 pb-0">
-					<h1>Agendar Trabajo</h1>
-						
-					</div>
-				</div>
+			 
 			</div>
 		
 		

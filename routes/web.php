@@ -53,111 +53,109 @@ Route::middleware('auth', 'verified')->group(function () {
 
 
     //rutas para la parte de usuarios ----------------------------------------------------------------------------------------------------
-    Route::get('/usuario/usuarios', [UserController::class, 'users'])->name('usuario.usuarios');
+    Route::get('/usuario/usuarios', [UserController::class, 'users'])->name('usuario.usuarios')->middleware('can:user.show');
     Route::get('/usuario/bloquear/{id}', [UserController::class, 'bloquear'])->name('usuario.bloquear');
     Route::get('/usuario/desbloquear/{id}', [UserController::class, 'desbloquear'])->name('usuario.bloquear');
     Route::get('/usuario/perfil/{id}', [UserController::class, 'perfil'])->name('usuario.perfil');
-    Route::get('/eliminar/usuario{id}', [UserController::class, 'destroy'])->name('eliminar.usuario');
+    Route::get('/eliminar/usuario{id}', [UserController::class, 'destroy'])->name('eliminar.usuario')->middleware('can:user.delete');
 
 
     //ruta para agregar un nuevo usuario
-    Route::post('/registro/usuario', [UserController::class, 'create'])->name('registro.usuario');
+    Route::post('/registro/usuario', [UserController::class, 'create'])->name('registro.usuario')->middleware('can:user.create');
     //ruta para editar usuario
-    Route::post('/editar/usuario', [UserController::class, 'edit'])->name('editar.usuario');
+    Route::post('/editar/usuario', [UserController::class, 'edit'])->name('editar.usuario')->middleware('can:user.edit');
 
 
 
     //ruta para ver  distritos----------------------------------------------------------------------
-    Route::get('/detallesDistritos', [distritoController::class, 'index'])->name('detalles.Distritos');
-    Route::post('/registro/distrito', [distritoController::class, 'create'])->name('registro.distrito');
-    Route::post('/editar/distrito/{id}', [distritoController::class, 'edit'])->name('editar.distrito');
-    Route::get('/editar/urbanizacion/{id}', [distritoController::class, 'datosEdit'])->name('editar.urbanizacion');
-    Route::get('/eliminar/urbanizacion{id}', [distritoController::class, 'destroy'])->name('eliminar.urbanizacion');
+    Route::get('/detallesDistritos', [distritoController::class, 'index'])->name('detalles.Distritos')->middleware('can:Distritos.show');
+    Route::post('/registro/distrito', [distritoController::class, 'create'])->name('registro.distrito')->middleware('can:Distritos.create');
+    Route::post('/editar/distrito/{id}', [distritoController::class, 'edit'])->name('editar.distrito')->middleware('can:Distritos.edit');
+    Route::get('/editar/urbanizacion/{id}', [distritoController::class, 'datosEdit'])->name('editar.urbanizacion')->middleware('can:Distritos.edit');
+    Route::get('/eliminar/urbanizacion{id}', [distritoController::class, 'destroy'])->name('eliminar.urbanizacion')->middleware('can:Distritos.delete');
 
 
 
     //ruta para inspecciones----------------------------------------------------------------------------------------------------
-    Route::get('/inspecciones/espera', [inspeccionController::class, 'index'])->name('inspecciones.espera');
-    Route::post('/registro/inspecciones', [inspeccionController::class, 'create'])->name('registro.inspecciones');
-    Route::post('/editar/inspeccionespera', [inspeccionController::class, 'edit'])->name('editar.inspeccionespera');
-    Route::post('/empezar/inspeccionespera', [inspeccionController::class, 'ready'])->name('empezar.inspeccionespera');
-    Route::get('/inspecciones/realizadas', [inspeccionController::class, 'realizadas'])->name('inspecciones.espera');
-    Route::post('/inspecciones/editrealizadas/{id}', [inspeccionController::class, 'editRealizada'])->name('inspecciones.editrealizadas');
-    Route::get('/eliminar/inspeccion{id}', [inspeccionController::class, 'destroy'])->name('eliminar.inspeccion');
+    Route::get('/inspecciones/espera', [inspeccionController::class, 'index'])->name('inspecciones.espera')->middleware('can:inspecciones.show');
+    Route::post('/registro/inspecciones', [inspeccionController::class, 'create'])->name('registro.inspecciones')->middleware('can:inspecciones.create');
+    Route::post('/editar/inspeccionespera', [inspeccionController::class, 'edit'])->name('editar.inspeccionespera')->middleware('can:inspecciones.edit');
+    Route::post('/empezar/inspeccionespera', [inspeccionController::class, 'ready'])->name('empezar.inspeccionespera')->middleware('can:inspecciones.install');
+    Route::get('/inspecciones/realizadas', [inspeccionController::class, 'realizadas'])->name('inspecciones.espera')->middleware('can:inspecciones.show');
+    Route::post('/inspecciones/editrealizadas/{id}', [inspeccionController::class, 'editRealizada'])->name('inspecciones.editrealizadas')->middleware('can:inspecciones.edit');
+    Route::get('/eliminar/inspeccion{id}', [inspeccionController::class, 'destroy'])->name('eliminar.inspeccion')->middleware('can:inspecciones.delete');
 
 
 
     //rutas para equipamiento y accesorios--------------------------------------------------------------------------------
     //ruta para ver detalles equipamientos
-    Route::get('/equipos/equipamiento/{dist}', [equipamientoController::class, 'index'])->name('equipos.equipamientos');
-    Route::get('/eliminar/equipamiento{id}', [equipamientoController::class, 'destroy'])->name('eliminar.equipamiento');
+    Route::get('/equipos/equipamiento/{dist}', [equipamientoController::class, 'index'])->name('equipos.equipamientos')->middleware('can:equipamiento.show');
+    Route::get('/eliminar/equipamiento{id}', [equipamientoController::class, 'destroy'])->name('eliminar.equipamiento')->middleware('can:equipamiento.delete');
 
     //ruta para lista de accesorios
-    Route::get('/equipos/accesorios', [lista_accesorioController::class, 'index'])->name('equipos.accesorios');
-    Route::get('/eliminar/accesorios{id}', [lista_accesorioController::class, 'destroy'])->name('eliminar.accesorios');
+    Route::get('/equipos/accesorios', [lista_accesorioController::class, 'index'])->name('equipos.accesorios')->middleware('can:accesorios.show');
+    Route::get('/eliminar/accesorios{id}', [lista_accesorioController::class, 'destroy'])->name('eliminar.accesorios')->middleware('can:accesorios.delete');
 
     //ruta para registrar ala lista de accesorios
-    Route::post('/registro/accesorios', [lista_accesorioController::class, 'create'])->name('registro.accesorios');
-    Route::post('/editar/accesorios', [lista_accesorioController::class, 'edit'])->name('editar.accesorios');
+    Route::post('/registro/accesorios', [lista_accesorioController::class, 'create'])->name('registro.accesorios')->middleware('can:accesorios.create');
+    Route::post('/editar/accesorios', [lista_accesorioController::class, 'edit'])->name('editar.accesorios')->middleware('can:accesorios.edit');
     // Route::get('/eliminar/accesorios/{id}', [lista_accesorioController::class, 'destroy'])->name('eliminar.accesorios');
 
-    Route::get('/equipamiento/distrito', [equipamientoController::class, 'showEquipDistrito'])->name('equipamiento.distrito');
-
-
-
+    Route::get('/equipamiento/distrito', [equipamientoController::class, 'showEquipDistrito'])->name('equipamiento.distrito')->middleware('can:equipamiento.show');
     //rutar para la parte de equipos equipamientos
-    Route::post('/registro/equipamiento', [equipamientoController::class, 'create'])->name('registro.equipamiento');
-    Route::post('/editar/equipamiento', [equipamientoController::class, 'edit'])->name('editar.equipamiento');
+    Route::post('/registro/equipamiento', [equipamientoController::class, 'create'])->name('registro.equipamiento')->middleware('can:equipamiento.create');
+    Route::post('/editar/equipamiento', [equipamientoController::class, 'edit'])->name('editar.equipamiento')->middleware('can:equipamiento.edit');
 
 
     //rutas para luminarias retiradas
-    Route::get('/proyectos/luminariasRetiradas', [luminaria_retiradasController::class, 'index'])->name('proyectos.luminariasretiradas');
-    Route::post('/registro/retirados', [luminaria_retiradasController::class, 'create'])->name('registro.retirados');
-    Route::get('/detalles/luminarias/retiradas/{id}', [luminaria_retiradasController::class, 'retiradaDetalle'])->name('detalles.luminarias.retiradas');
-    Route::post('/modificar/retirados/{id}', [luminaria_retiradasController::class, 'editretirada'])->name('modificar.retirados');
-    Route::get('/eliminar/retirada{id}', [luminaria_retiradasController::class, 'destroy'])->name('eliminar.retirada');
+    Route::get('/proyectos/luminariasRetiradas', [luminaria_retiradasController::class, 'index'])->name('proyectos.luminariasretiradas')->middleware('can:proyecto.Retirado.show');
+    Route::post('/registro/retirados', [luminaria_retiradasController::class, 'create'])->name('registro.retirados')->middleware('can:proyecto.Retirado.create');
+    Route::get('/detalles/luminarias/retiradas/{id}', [luminaria_retiradasController::class, 'retiradaDetalle'])->name('detalles.luminarias.retiradas')->middleware('can:proyecto.Retirado.show');
+    Route::post('/modificar/retirados/{id}', [luminaria_retiradasController::class, 'editretirada'])->name('modificar.retirados')->middleware('can:proyecto.Retirado.edit');
+    Route::get('/eliminar/retirada{id}', [luminaria_retiradasController::class, 'destroy'])->name('eliminar.retirada')->middleware('can:proyecto.Retirado.delete');
 
     //rutas proyectos  ---------------------------------------------------------------------------------------------------------
     // para lo que es almacen
-    Route::get('/proyectos/almacen', [proyectoController::class, 'index'])->name('proyectos.almacen');
-    Route::post('/registro/almacen', [proyectoController::class, 'create'])->name('registro.almacen');
-    Route::post('/modificar/almacen/{id}', [proyectoController::class, 'editEsperaAlmacen'])->name('modificar.almacen');
-    Route::post('/modificar/ObrasEjecuatas/{id}', [proyectoController::class, 'editObrasEjecutadas'])->name('modificar.ObrasEjecuatas');
-    Route::get('/eliminar/proyecto{id}', [proyectoController::class, 'destroy'])->name('eliminar.proyecto');
+    Route::get('/proyectos/almacen', [proyectoController::class, 'index'])->name('proyectos.almacen')->middleware('can:proyecto.show');
+    Route::post('/registro/almacen', [proyectoController::class, 'create'])->name('registro.almacen')->middleware('can:proyecto.create');
+    Route::post('/modificar/almacen/{id}', [proyectoController::class, 'editEsperaAlmacen'])->name('modificar.almacen')->middleware('can:proyecto.edit');
+    Route::post('/modificar/ObrasEjecuatas/{id}', [proyectoController::class, 'editObrasEjecutadas'])->name('modificar.ObrasEjecuatas')->middleware('can:proyecto.edit');
+    Route::get('/eliminar/proyecto{id}', [proyectoController::class, 'destroy'])->name('eliminar.proyecto')->middleware('can:proyecto.delete');
 
 
-    Route::get('/detallesAccesorios/almacen/{id}', [proyectoController::class, 'reu'])->name('detallesAccesorios.almacen');
-    Route::get('/detallesAccesorios/almacen', [proyectoController::class, 'reu'])->name('detallesAccesorios.almacendatos');
-    Route::get('/datos/ejecutar/{id}', [proyectoController::class, 'ejecutarProyectodatos'])->name('datos.ejecutar');
-    Route::post('/registrar/trabajoEjecutado/{id}', [proyectoController::class, 'registrarTrabajo'])->name('registrar.trabajoejecutado');
+    Route::get('/detallesAccesorios/almacen/{id}', [proyectoController::class, 'reu'])->name('detallesAccesorios.almacen')->middleware('can:proyecto.show');
+    // Route::get('/detallesAccesorios/almacen', [proyectoController::class, 'reu'])->name('detallesAccesorios.almacendatos')->middleware('can:· ·');
+    Route::get('/datos/ejecutar/{id}', [proyectoController::class, 'ejecutarProyectodatos'])->name('datos.ejecutar')->middleware('can:proyecto.install');
+    Route::post('/registrar/trabajoEjecutado/{id}', [proyectoController::class, 'registrarTrabajo'])->name('registrar.trabajoejecutado')->middleware('can:proyecto.create');
 
-    Route::get('/proyectos/ObrasEjecutadas', [proyectoController::class, 'datosObras'])->name('proyectos.ObrasEjecutadas');
+    Route::get('/proyectos/ObrasEjecutadas', [proyectoController::class, 'datosObras'])->name('proyectos.ObrasEjecutadas')->middleware('can:proyecto.show');
 
-    Route::get('/dashproyectos', [proyectoController::class, 'dashproy'])->name('dashproyectos');
-    Route::get('/dashdetalles', [proyectoController::class, 'dashdetall'])->name('dashdetalles');
+    Route::get('/dashproyectos', [proyectoController::class, 'dashproy'])->name('dashproyectos')->middleware('can:dashboard.show');
+    Route::get('/dashdetalles', [proyectoController::class, 'dashdetall'])->name('dashdetalles')->middleware('can:dashboard.show');
 
 
 
 
 
     //rutar para agendar trabajos---------------------------------------------------------------------------------------------------------
-    Route::get('/agendar', [detalleController::class, 'agendar'])->name('agendar');
-    Route::post('/agendar/trabajo', [detalleController::class, 'create'])->name('agendar.trabajo');
+    Route::get('/agendar', [detalleController::class, 'agendar'])->name('agendar')->middleware('can:agendar.show');
+    // crea el trabajo para que posteriormente lo ejecute el tecnico
+    Route::post('/agendar/trabajo', [detalleController::class, 'create'])->name('agendar.trabajo')->middleware('can:agendar.show');
 
     //ruta para ver los detalles generales de los trabajos------------------------------------------------------------------------------------------
-    Route::get('/detalles/espera', [detalleController::class, 'index'])->name('detalles.espera');
-    Route::get('/detalles/realizados', [detalleController::class, 'realizados'])->name('detalles.realizados');
-    Route::get('detalle/realizados/informacion/{id}', [detalleController::class, 'DetallesRealizado'])->name('detalle.realizados.informacion');
-    Route::get('/eliminar/detallegen{id}', [detalleController::class, 'destroy'])->name('eliminar.detallegen');
+    Route::get('/detalles/espera', [detalleController::class, 'index'])->name('detalles.espera')->middleware('can:detallesGen.show');
+    Route::get('/detalles/realizados', [detalleController::class, 'realizados'])->name('detalles.realizados')->middleware('can:detallesGen.show');
+    Route::get('detalle/realizados/informacion/{id}', [detalleController::class, 'DetallesRealizado'])->name('detalle.realizados.informacion')->middleware('can:detallesGen.show');
+    Route::get('/eliminar/detallegen{id}', [detalleController::class, 'destroy'])->name('eliminar.detallegen')->middleware('can:detallesGen.delete');
 
 
     //rutas  para  detalles en espera,realizar trabajo------------------------------------------------------------------------------------------
-    Route::get('/ejecutar/trabajo/{id}', [detalleController::class, 'ejecutar'])->name('ejecutar.trabajo');
-    Route::get('/pendiente/trabajo', [detalleController::class, 'pendiente'])->name('pendiente.trabajo');
-    Route::post('/store/trabajo/{id}', [detalleController::class, 'storeTrabajo'])->name('store.trabajo');
+    Route::get('/ejecutar/trabajo/{id}', [detalleController::class, 'ejecutar'])->name('ejecutar.trabajo')->middleware('can:realizar.show');
+    Route::get('/pendiente/trabajo', [detalleController::class, 'pendiente'])->name('pendiente.trabajo')->middleware('can:realizar.show');
+    Route::post('/store/trabajo/{id}', [detalleController::class, 'storeTrabajo'])->name('store.trabajo')->middleware('can:realizar.show');
 
-    Route::post('/edit/espera/{id}', [detalleController::class, 'edit'])->name('edit.espera');
-    Route::post('/edit/realizado/{id}', [detalleController::class, 'editRealizado'])->name('edit.realizado');
+    Route::post('/edit/espera/{id}', [detalleController::class, 'edit'])->name('edit.espera')->middleware('can:detallesGen.edit');
+    Route::post('/edit/realizado/{id}', [detalleController::class, 'editRealizado'])->name('edit.realizado')->middleware('can:detallesGen.edit');
 
 
     /* Auth::routes(); */

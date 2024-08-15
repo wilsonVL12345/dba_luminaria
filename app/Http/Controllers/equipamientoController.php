@@ -14,10 +14,21 @@ class equipamientoController extends Controller
      */
     public function index($dist)
     {
-        $equipamiento = equipamiento::where('Distritos_id', $dist)->get();
-        $lista = Distrito::where('id', '<>', 15)->get();
+        if (session('cargo') == 'Administrador') {
+            $equipamiento = equipamiento::where('Distritos_id', $dist)->get();
+            $lista = Distrito::where('id', '<>', 15)->get();
 
-        return view('plantilla.Equipos.Equipamiento', ['equipos' => $equipamiento], ['lista' => $lista]);
+            return view('plantilla.Equipos.Equipamiento', ['equipos' => $equipamiento], ['lista' => $lista]);
+        } else {
+            $equipamiento = equipamiento::where('Distritos_id', $dist)
+                ->get();
+
+            $lista = Distrito::where('id', '<>', 15)
+                ->get();
+
+
+            return view('plantilla.Equipos.Equipamiento', ['equipos' => $equipamiento], ['lista' => $lista]);
+        }
     }
 
     public function create(Request $request)
@@ -46,8 +57,14 @@ class equipamientoController extends Controller
      */
     public function showEquipDistrito(Request $request)
     {
-        $lista = Distrito::where('id', '<>', 15)->get();
+        if (session('cargo') == 'Administrador') {
 
+            $lista = Distrito::where('id', '<>', 15)
+                ->get();
+        } else {
+            $lista = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+        }
         // Agrupar por distritos_id y contar los registros
         $grupEquip = Equipamiento::select('distritos_id', DB::raw('COUNT(*) as total'))
             ->groupBy('distritos_id')

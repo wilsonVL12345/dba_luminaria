@@ -79,7 +79,7 @@
 											<label for="txtcontratacion" class="required fs-5 fw-bold mb-2">Apoyo a Distrito</label>
 											<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtapoyo" id="txtapoyo"  >
 												<option value="" >Seleccione...</option>
-												@foreach ($listadistrito as $item)
+												@foreach ($disApoyo as $item)
 												<option value="{{$item->Distrito}}">{{$item->Distrito}}</option>
 												@endforeach
 												</select>

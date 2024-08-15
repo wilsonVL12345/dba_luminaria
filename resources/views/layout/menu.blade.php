@@ -144,7 +144,7 @@
                         </span>
                         <!--end::Svg Icon-->
                     </span>
-                    <span class="menu-title">Detalles Generales</span>
+                    <span class="menu-title">Trabajos Registrados</span>
                     <span class="menu-arrow"></span>
                 </span>
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -215,7 +215,7 @@
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Luminarias Retiradas</span>
+                            <span class="menu-title">Accesorios y Luminarias Retiradas</span>
                         </a>
                     </div>
                     

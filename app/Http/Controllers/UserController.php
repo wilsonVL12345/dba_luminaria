@@ -118,6 +118,10 @@ class UserController extends Controller
             $userd->Genero = $request->txtgenero;
             $userd->Cargo = $request->txtcargo;
             $userd->Lugar_Designado = $request->txtlugarDesignado;
+            // Eliminar todos los roles actuales del usuario
+            $userd->syncRoles([]);
+
+            // Asignar el nuevo rol
             $userd->assignRole($rolee->name);
             $userd->save();
             $sql = true;
@@ -131,9 +135,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function perfil(Request $request,  $id)
     {
 

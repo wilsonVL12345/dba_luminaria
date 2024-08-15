@@ -19,24 +19,49 @@ class proyectoController extends Controller
      */
     public function index()
     {
-        $today = now()->toDateString();
-        $proyecto = proyecto::where('Estado', 'En espera')
-            ->orderBy('id', 'desc')->get();
-        $reutilizadas = luminarias_reutilizada::all();
-        $accesorio = accesorio::all();
-        $luminaria = luminaria::all();
-        $listadistrito = Distrito::where('id', '<>', 15)->get();
-        $listazonaurb = urbanizacion::all();
-        return view('plantilla.Proyectos.proyectosAlmacen', [
-            'proyecto' => $proyecto,
-            'listadistrito' => $listadistrito,
-            'listazonaurb' => $listazonaurb,
-            'reutilizada' => $reutilizadas,
-            'accesorio' => $accesorio,
-            'luminaria' => $luminaria,
-            'today' => $today
+        if (session('cargo') == 'Administrador') {
+            $today = now()->toDateString();
+            $proyecto = proyecto::where('Estado', 'En espera')
+                ->orderBy('id', 'desc')->get();
+            $reutilizadas = luminarias_reutilizada::all();
+            $accesorio = accesorio::all();
+            $luminaria = luminaria::all();
+            $listadistrito = Distrito::where('id', '<>', 15)->get();
+            /* $listazonaurb = urbanizacion::all(); */
+            return view('plantilla.Proyectos.proyectosAlmacen', [
+                'proyecto' => $proyecto,
+                'listadistrito' => $listadistrito,
+                /*  'listazonaurb' => $listazonaurb, */
+                'reutilizada' => $reutilizadas,
+                'accesorio' => $accesorio,
+                'luminaria' => $luminaria,
+                'today' => $today
 
-        ]);
+            ]);
+        } else {
+            $today = now()->toDateString();
+            $proyecto = proyecto::where('Estado', 'En espera')
+                ->orderBy('id', 'desc')
+                ->where('Distritos_id', session('Lugar_Designado'))->get();
+
+            $reutilizadas = luminarias_reutilizada::all();
+            $accesorio = accesorio::all();
+            $luminaria = luminaria::all();
+            $listadistrito = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+
+            /* $listazonaurb = urbanizacion::all(); */
+            return view('plantilla.Proyectos.proyectosAlmacen', [
+                'proyecto' => $proyecto,
+                'listadistrito' => $listadistrito,
+                /*  'listazonaurb' => $listazonaurb, */
+                'reutilizada' => $reutilizadas,
+                'accesorio' => $accesorio,
+                'luminaria' => $luminaria,
+                'today' => $today
+
+            ]);
+        }
     }
 
     /**
@@ -174,7 +199,8 @@ class proyectoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+
+    /* public function show(string $id)
     {
         $detItem = proyecto::find($id);
 
@@ -182,7 +208,7 @@ class proyectoController extends Controller
         $detAccesorio = accesorio::where('Proyectos_id', $id)->get();
         $detLuminarias = luminaria::where('Proyectos_id', $id)->get();
         return view('plantilla.Proyectos.proyectosAlmacen', compact('detItem', 'detReutilizada', 'detAccesorio', 'detLuminarias'));
-    }
+    } */
 
     /**
      * Show the form for editing the specified resource.
@@ -191,6 +217,7 @@ class proyectoController extends Controller
     {
         //
     }
+    // muestra todos los datos detallados de proyecto almacen ejecutado toda la lista de los accesorios ,luminarias y reutilzadas
     //emvia todos los datos necesarios para luminarias reutilizadas con su fk
     public function reu($id)
     {
@@ -219,9 +246,9 @@ class proyectoController extends Controller
         $ejecLuminarias = luminaria::where('Proyectos_id', $id)->get();
 
         $zonaUrbSelecionada = $ejecProyecto->Zona;
-        $calleAv = urbanizacion::where('nombre_urbanizacion', $zonaUrbSelecionada)->get();
+        /*  $calleAv = urbanizacion::where('nombre_urbanizacion', $zonaUrbSelecionada)->get(); */
 
-        return view('plantilla.Proyectos.almacenEjecutarProyecto', compact('ejecProyecto', 'ejecAccesorios', 'ejecReutilizados', 'ejecLuminarias', 'calleAv'));
+        return view('plantilla.Proyectos.almacenEjecutarProyecto', compact('ejecProyecto', 'ejecAccesorios', 'ejecReutilizados', 'ejecLuminarias'/* , 'calleAv' */));
     }
     //en esta parte registra todo el trabajo hecho   en proyecto almacen
     public function registrarTrabajo(Request $request, $idp)
@@ -282,27 +309,51 @@ class proyectoController extends Controller
             return back()->with("incorrecto", "Trabajo Fallido datos Incoerentes");
         }
     }
-    //proyecto obras ejecutadas  funciones---------------------------------------------------------------------------------------------------------
+    //proyecto obras ejecutadas muestra  funciones---------------------------------------------------------------------------------------------------------
     public function datosObras()
     {
-        $proyectoObras = proyecto::where('Estado', 'Finalizado')
-            ->orderBy('id', 'desc')
-            ->get();
-        $reutilizadas = luminarias_reutilizada::all();
-        $accesorio = accesorio::all();
-        $luminaria = luminaria::all();
-        $listadistrito = Distrito::where('id', '<>', 15)->get();
-        $listazonaurb = urbanizacion::all();
+        if (session('cargo') == 'Administrador') {
+            $proyectoObras = proyecto::where('Estado', 'Finalizado')
+                ->orderBy('id', 'desc')
+                ->get();
+            $reutilizadas = luminarias_reutilizada::all();
+            $accesorio = accesorio::all();
+            $luminaria = luminaria::all();
+            $listadistrito = Distrito::where('id', '<>', 15)->get();
+            /* $listazonaurb = urbanizacion::all(); */
 
-        return view('plantilla.Proyectos.proyectosObrasEjecutadas', [
-            'proyectoObras' => $proyectoObras,
-            'listadistrito' => $listadistrito,
-            'listazonaurb' => $listazonaurb,
-            'reutilizada' => $reutilizadas,
-            'accesorio' => $accesorio,
-            'luminaria' => $luminaria
+            return view('plantilla.Proyectos.proyectosObrasEjecutadas', [
+                'proyectoObras' => $proyectoObras,
+                'listadistrito' => $listadistrito,
+                /* 'listazonaurb' => $listazonaurb, */
+                'reutilizada' => $reutilizadas,
+                'accesorio' => $accesorio,
+                'luminaria' => $luminaria
 
-        ]);
+            ]);
+        } else {
+            $proyectoObras = proyecto::where('Estado', 'Finalizado')
+                ->orderBy('id', 'desc')
+                ->where('Distritos_id', session('Lugar_Designado'))->get();
+
+            $reutilizadas = luminarias_reutilizada::all();
+            $accesorio = accesorio::all();
+            $luminaria = luminaria::all();
+            $listadistrito = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+
+            /* $listazonaurb = urbanizacion::all(); */
+
+            return view('plantilla.Proyectos.proyectosObrasEjecutadas', [
+                'proyectoObras' => $proyectoObras,
+                'listadistrito' => $listadistrito,
+                /* 'listazonaurb' => $listazonaurb, */
+                'reutilizada' => $reutilizadas,
+                'accesorio' => $accesorio,
+                'luminaria' => $luminaria
+
+            ]);
+        }
     }
     function editObrasEjecutadas(Request $request, $id)
     {

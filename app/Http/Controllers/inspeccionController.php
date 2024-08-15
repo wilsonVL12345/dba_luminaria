@@ -18,14 +18,28 @@ class inspeccionController extends Controller
      */
     public function index()
     {
-        /* $inspeccion = inspeccion::all(); */
-        $inspeccion = inspeccion::where('Inspeccion', 'En espera')
-            ->orderBy('created_at', 'desc')
-            ->get();
-        $listadistrito = Distrito::where('id', '<>', 15)->get();
-        $listazonaurb = urbanizacion::all();
+        if (session('cargo') == 'Administrador') {
+            /* $inspeccion = inspeccion::all(); */
+            $inspeccion = inspeccion::where('Inspeccion', 'En espera')
+                ->orderBy('created_at', 'desc')
+                ->get();
+            $listadistrito = Distrito::where('id', '<>', 15)->get();
+            /* $listazonaurb = urbanizacion::all(); */
 
-        return view('plantilla.Inspecciones.Espera', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito, 'listazonaurb' => $listazonaurb]);
+            return view('plantilla.Inspecciones.Espera', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */]);
+        } else {
+            $inspeccion = inspeccion::where('Inspeccion', 'En espera')
+                ->where('Distritos_id', session('Lugar_Designado'))
+
+                ->orderBy('created_at', 'desc')
+                ->get();
+            $listadistrito = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+
+            /* $listazonaurb = urbanizacion::all(); */
+
+            return view('plantilla.Inspecciones.Espera', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */]);
+        }
     }
 
     /**
@@ -172,12 +186,24 @@ class inspeccionController extends Controller
 
     public function realizadas(Request $request)
     {
-        $inspeccion = inspeccion::where('Inspeccion', 'Finalizado')->get();
-        $inspector = user::all();
-        $listadistrito = Distrito::where('id', '<>', 15)->get();
-        $listazonaurb = urbanizacion::all();
-        return view('plantilla.Inspecciones.Realizadas', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito, 'listazonaurb' => $listazonaurb, 'inspector' => $inspector]);
+        if (session('cargo') == 'Administrador') {
+            $inspeccion = inspeccion::where('Inspeccion', 'Finalizado')->get();
+            $inspector = user::all();
+            $listadistrito = Distrito::where('id', '<>', 15)->get();
+            /*  $listazonaurb = urbanizacion::all(); */
+            return view('plantilla.Inspecciones.Realizadas', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */, 'inspector' => $inspector]);
+        } else {
+            $inspeccion = inspeccion::where('Inspeccion', 'Finalizado')
+                ->where('Distritos_id', session('Lugar_Designado'))->get();
+            $inspector = user::all();
+            $listadistrito = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+
+            /*  $listazonaurb = urbanizacion::all(); */
+            return view('plantilla.Inspecciones.Realizadas', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */, 'inspector' => $inspector]);
+        }
     }
+
 
     public function update(Request $request, string $id)
     {

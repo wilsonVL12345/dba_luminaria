@@ -269,9 +269,9 @@
 															<label class="required fs-6 fw-bold mb-2">Cargo</label>
 															<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtcargo" required >
 																<option value="" >Seleccione...</option>
-																@foreach ($role as $itemrol)
-																	<option value="{{$itemrol->name}}">{{$itemrol->name}}</option>
-																@endforeach
+																<option value="Administrador">Administrador</option>
+																<option value="Coordinador">Coordinador</option>
+																<option value="Tecnico">Tecnico</option>
 														
 															</select>
 													
@@ -584,9 +584,9 @@
 																					<label class="required fs-6 fw-bold mb-2">Cargo</label>
 																					<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtcargo" required >
 																						<option value="" >Seleccione...</option>
-																						@foreach ($role as $itemrol)
-																							<option value="{{$itemrol->name}}">{{$itemrol->name}}</option>
-																						@endforeach
+																						<option value="Administrador" {{$itemus->Cargo=='Administrador'?'selected':''}}>Administrador</option>
+																						<option value="Coordinador" {{$itemus->Cargo=='Coordinador'?'selected':''}}>Coordinador</option>
+																						<option value="Tecnico" {{$itemus->Cargo=='Tecnico'?'selected':''}}>Tecnico</option>
 																				
 																					</select>
 																				</div>

@@ -16,49 +16,107 @@ use Illuminate\Support\Facades\Validator;
 
 class detalleController extends Controller
 {
-
+    // se encarga de mostrar todo de proyecto almacen en espera
     public function index()
     {
+        if (session('cargo') == 'Administrador') {
+            $detalles = detalle::where('Estado', 'En Espera')
+                ->get();
+            $listadistrito = Distrito::where('id', '<>', 15)->get();
+            // $listazonaurb = urbanizacion::all();
+            $disApoyo = distrito::where('id', '<>', 15)->get();
 
-        $detalles = detalle::where('Estado', 'En Espera')->get();
-        $listadistrito = Distrito::where('id', '<>', 15)->get();
-        $listazonaurb = urbanizacion::all();
 
-        return view('plantilla.DetallesGenerales.Espera', compact('detalles', 'listadistrito', 'listazonaurb'));
+            return view('plantilla.DetallesGenerales.Espera', compact('detalles', 'listadistrito', 'disApoyo'/* , 'listazonaurb' */));
+        } else {
+
+            $detalles = detalle::where('Estado', 'En Espera')
+                ->where('Distritos_id', session('Lugar_Designado'))->get();
+            $listadistrito = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+
+            $disApoyo = distrito::where('id', '<>', 15)->get();
+            // $listazonaurb = urbanizacion::all();
+
+            return view('plantilla.DetallesGenerales.Espera', compact('detalles', 'listadistrito', 'disApoyo'/* , 'listazonaurb' */));
+        }
     }
+    // muestra la tabla de detalles de trabajos realizados
     public function realizados()
     {
-        $detallesrealizados = detalle::where('Estado', 'Finalizado')->orderBy('id', 'desc')->get();
-        $listdistritos = Distrito::where('id', '<>', 15)->get();
-        $listurb = urbanizacion::all();
-        return view('plantilla.DetallesGenerales.Realizados', compact('detallesrealizados', 'listurb', 'listdistritos'));
+        if (session('cargo') == 'Administrador') {
+
+            $detallesrealizados = detalle::where('Estado', 'Finalizado')->orderBy('id', 'desc')->get();
+            $listdistritos = Distrito::where('id', '<>', 15)->get();
+            $listurb = urbanizacion::all();
+            $disApoyo = distrito::where('id', '<>', 15)->get();
+
+            return view('plantilla.DetallesGenerales.Realizados', compact('detallesrealizados', 'listurb', 'listdistritos', 'disApoyo'));
+        } else {
+            $detallesrealizados = detalle::where('Estado', 'Finalizado')->orderBy('id', 'desc')
+                ->where('Distritos_id', session('Lugar_Designado'))->get();
+            $listdistritos = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+            $disApoyo = distrito::where('id', '<>', 15)->get();
+            $listurb = urbanizacion::all();
+            return view('plantilla.DetallesGenerales.Realizados', compact('detallesrealizados', 'listurb', 'disApoyo'/* , 'listdistritos' */));
+        }
     }
+    // en esta parte en donde se llena los datos para ejecutar un trabajo 
     public function ejecutar($id)
     {
-        $listadistrito = Distrito::where('id', '<>', 15)->get();
-        $trabajo = detalle::find($id);
-        $listacom = lista_accesorio::all();
-        return view('plantilla.DetallesGenerales.EjecutarTrabajo', compact('listadistrito', 'trabajo', 'listacom'));
+        if (session('cargo') == 'Administrador') {
+            $listadistrito = Distrito::where('id', '<>', 15)->get();
+            $trabajo = detalle::find($id);
+            $listacom = lista_accesorio::all();
+            return view('plantilla.DetallesGenerales.EjecutarTrabajo', compact('listadistrito', 'trabajo', 'listacom'));
+        } else {
+            $listadistrito = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+            $trabajo = detalle::find($id);
+            $listacom = lista_accesorio::all();
+            return view('plantilla.DetallesGenerales.EjecutarTrabajo', compact('listadistrito', 'trabajo', 'listacom'));
+        }
     }
     public function agendar()
     {
-        $listadistrito = Distrito::where('id', '<>', 15)->get();
-        $listazonaurb = urbanizacion::all();
-        return view('plantilla.Agendar.agendar', compact('listadistrito', 'listazonaurb'));
+        if (session('cargo') == 'Administrador') {
+
+            $listadistrito = Distrito::where('id', '<>', 15)->get();
+            // $listazonaurb = urbanizacion::all();
+            $disApoyo = distrito::where('id', '<>', 15)->get();
+
+            return view('plantilla.Agendar.agendar', compact('listadistrito', 'disApoyo'));
+        } else {
+            $listadistrito = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+            $disApoyo = distrito::where('id', '<>', 15)->get();
+            /*  $listazonaurb = urbanizacion::all(); */
+            return view('plantilla.Agendar.agendar', compact('listadistrito', 'disApoyo'/* , 'listazonaurb' */));
+        }
     }
     // en esta parte muestra la vista Realizar trabajos donde esta detallados todos los trabajos a realizar pendiente
     public function pendiente()
     {
-        $detall = detalle::where('Estado', 'En Espera')->orderBy('id', 'desc')->get();
+        $detall = detalle::where('Estado', 'En Espera')->orderBy('id', 'desc')
+            ->where('Distritos_id', session('Lugar_Designado'))->get();
 
         return view('plantilla.RealizarTrabajo.trabajos', compact('detall'));
     }
 
-    public function detallesEspera()
+    // genera toda la tabla de detalles en espera
+    /*  public function detallesEspera()
     {
-        $detall = detalle::where('Estado', 'En Espera')->orderBy('id', 'desc')->get();
-        return view('plantilla.RealizarTrabajo.trabajos', compact('detall'));
-    }
+        if (session('cargo') == 'Administrador') {
+
+            $detall = detalle::where('Estado', 'En Espera')->orderBy('id', 'desc')->get();
+            return view('plantilla.RealizarTrabajo.trabajos', compact('detall'));
+        } else {
+            $detall = detalle::where('Estado', 'En Espera')->orderBy('id', 'desc')
+                ->where('Distritos_id', session('Lugar_Designado'))->get();
+            return view('plantilla.RealizarTrabajo.trabajos', compact('detall'));
+        }
+    } */
 
     // para agregar  mantenimiento en espera
     public function create(Request $request)

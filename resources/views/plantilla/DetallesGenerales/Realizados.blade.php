@@ -332,6 +332,7 @@
 																			
 																								
 																			</div>
+																			{{-- esta parte no esta visible --}}
 																			<div class="col-md-3 mb-3" id="apoyoDistR"  style="display: none;" >
 																				
 																					@php
@@ -343,7 +344,7 @@
 																					<label for="txtcontratacion" class="required fs-5 fw-bold mb-2">Apoyo a Distrito</label>
 																					<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="apoyoDistRealizado" data-id="apoyoDistRealizado">
 																						<option value="">Seleccione...</option>
-																						@foreach ($listdistritos as $item)
+																						@foreach ($disApoyo as $item)
 																							@php
 																								// Extraer el número del distrito actual
 																								preg_match('/D-(\d+)/', $item->Distrito, $itemMatches);

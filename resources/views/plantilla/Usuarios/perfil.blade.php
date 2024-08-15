@@ -61,7 +61,7 @@
 													<div class="d-flex flex-column">
 														<!--begin::Name-->
 														<div class="d-flex align-items-center mb-2">
-															<a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{$perfiluser->name}} {{$perfiluser->Paterno}}</a>
+															<a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{ucfirst($perfiluser->name)}} {{ucfirst($perfiluser->Paterno)}}</a>
 															<a href="#">
 																<!--begin::Svg Icon | path: icons/duotune/general/gen026.svg-->
 																<span class="svg-icon svg-icon-1 svg-icon-primary">
@@ -264,11 +264,11 @@
 										<!--begin::Row-->
 										<div class="row mb-7">
 											<!--begin::Label-->
-											<label class="col-lg-4 fw-bold text-muted">name</label>
+											<label class="col-lg-4 fw-bold text-muted">Nombre</label>
 											<!--end::Label-->
 											<!--begin::Col-->
 											<div class="col-lg-8">
-												<span class="fw-bolder fs-6 text-gray-800">{{$perfiluser->name}}</span>
+												<span class="fw-bolder fs-6 text-gray-800">{{ucfirst($perfiluser->name)}}</span>
 											</div>
 											<!--end::Col-->
 										</div>
@@ -280,7 +280,7 @@
 											<!--end::Label-->
 											<!--begin::Col-->
 											<div class="col-lg-8 fv-row">
-												<span class="fw-bold text-gray-800 fs-6">{{$perfiluser->Paterno}}</span>
+												<span class="fw-bold text-gray-800 fs-6">{{ucfirst( $perfiluser->Paterno)}}</span>
 											</div>
 											<!--end::Col-->
 										</div>
@@ -290,7 +290,7 @@
 											<!--end::Label-->
 											<!--begin::Col-->
 											<div class="col-lg-8 fv-row">
-												<span class="fw-bold text-gray-800 fs-6">{{$perfiluser->Materno}}</span>
+												<span class="fw-bold text-gray-800 fs-6">{{ucfirst($perfiluser->Materno)}}</span>
 											</div>
 											<!--end::Col-->
 										</div>

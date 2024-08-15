@@ -42,7 +42,10 @@ class apiDashboardController extends Controller
                     ->where('Estado', 'Finalizado')
                     ->whereMonth('Fecha_Inicio', $currentMonth)
                     ->count(),
-
+                'inspecciones_espera' => inspeccion::where('Distritos_id', $distrito)
+                    ->where('Inspeccion', 'En espera')
+                    ->whereMonth('Fecha_Inspeccion', $currentMonth)
+                    ->count(),
                 'inspecciones_realizadas' => inspeccion::where('Distritos_id', $distrito)
                     ->where('Inspeccion', 'Finalizado')
                     ->whereMonth('Fecha_Inspeccion', $currentMonth)

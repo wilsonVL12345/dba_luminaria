@@ -6,60 +6,78 @@ use Illuminate\Http\Request;
 use App\Models\distrito;
 use App\Models\urbanizacion;
 use GuzzleHttp\Promise\Create;
+use PhpParser\Node\Expr\FuncCall;
 
 use function PHPUnit\Framework\returnSelf;
 use Yajra\DataTables\Facades\DataTables;
 
 class distritoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    /*  public function index()
+    /* public function __construct()
     {
-        $todoUrban = urbanizacion::orderBy('id', 'desc')
-            ->where('nombre_urbanizacion', '<>', '')
-            ->get();
-        $distritos = Distrito::where('id', '<>', 15)->get();
-        $listadistrito = urbanizacion::distinct()->get(['nombre_urbanizacion']);
-
-
-        return view('plantilla.DetallesDistritos.Distritos', [
-            'todoUrban' => $todoUrban,
-            'listadistrito' => $listadistrito,
-            'distrito' => $distritos
-        ]);
+        $this->middleware('can:Distritos.edit')->only('edit');
     } */
 
     public function index(Request $request)
     {
-        // Verifica si la solicitud es Ajax
-        if ($request->ajax()) {
-            try {
-                // Consulta directa a la tabla personas
-                $todoUrban = urbanizacion::select('id as idurb', 'Nrodistrito', 'nombre_urbanizacion');
+        if (session('cargo') == 'Administrador') {
+            // Verifica si la solicitud es Ajax
+            if ($request->ajax()) {
+                try {
+                    // Consulta directa a la tabla personas
+                    $todoUrban = urbanizacion::select('id as idurb', 'Nrodistrito', 'nombre_urbanizacion');
 
-                // Devolver los datos en formato JSON para DataTables
-                return DataTables::of($todoUrban)->make(true);
-            } catch (\Exception $e) {
-                // Manejar errores de consulta a la base de datos
-                return response()->json(['error' => 'Error al recuperar los datos de personas'], 500);
+                    // Devolver los datos en formato JSON para DataTables
+                    return DataTables::of($todoUrban)->make(true);
+                } catch (\Exception $e) {
+                    // Manejar errores de consulta a la base de datos
+                    return response()->json(['error' => 'Error al recuperar los datos de personas'], 500);
+                }
             }
+
+            // Consultas para las vistas
+            $todoUrban = urbanizacion::orderBy('id', 'desc')
+                ->where('nombre_urbanizacion', '<>', '')
+                ->get();
+            $distritos = Distrito::where('id', '<>', 15)->get();
+
+
+            // Renderizar la vista con los datos
+            return view('plantilla.DetallesDistritos.Distritos', [
+                'todoUrban' => $todoUrban,
+                'distrito' => $distritos
+            ]);
+        } else {
+            // Verifica si la solicitud es Ajax
+            if ($request->ajax()) {
+                try {
+                    // Consulta directa a la tabla urbanizacion
+                    $todoUrban = urbanizacion::select('id as idurb', 'Nrodistrito', 'nombre_urbanizacion')
+                        ->where('Nrodistrito', session('Lugar_Designado'));
+
+                    // Devolver los datos en formato JSON para DataTables
+                    return DataTables::of($todoUrban)->make(true);
+                } catch (\Exception $e) {
+                    // Manejar errores de consulta a la base de datos
+                    return response()->json(['error' => 'Error al recuperar los datos de personas'], 500);
+                }
+            }
+
+            // Consultas para las vistas
+            $todoUrban = urbanizacion::orderBy('id', 'desc')
+                ->where('Nrodistrito', session('Lugar_Designado'))
+                ->get();
+            $distritos = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+
+
+
+            // Renderizar la vista con los datos
+            return view('plantilla.DetallesDistritos.Distritos', [
+                'todoUrban' => $todoUrban,
+                'distrito' => $distritos
+            ]);
         }
-
-        // Consultas para las vistas
-        $todoUrban = urbanizacion::orderBy('id', 'desc')
-            ->where('nombre_urbanizacion', '<>', '')
-            ->get();
-        $distritos = Distrito::where('id', '<>', 15)->get();
-        $listadistrito = urbanizacion::distinct()->get(['nombre_urbanizacion']);
-
-        // Renderizar la vista con los datos
-        return view('plantilla.DetallesDistritos.Distritos', [
-            'todoUrban' => $todoUrban,
-            'listadistrito' => $listadistrito,
-            'distrito' => $distritos
-        ]);
     }
 
 
@@ -99,16 +117,28 @@ class distritoController extends Controller
     /**
      * Display the specified resource.
      */
-
     public function datosEdit($id)
     {
-        $urbEdit = urbanizacion::find($id);
-        $distEdit = Distrito::where('id', '<>', 15)->get();
-        return view('plantilla.DetallesDistritos.editDistrito', compact('urbEdit', 'distEdit'));
+        if (session('cargo') == 'Administrador') {
+
+            $urbEdit = urbanizacion::find($id);
+            $distEdit = Distrito::where('id', '<>', 15)->get();
+            return view('plantilla.DetallesDistritos.editDistrito', compact('urbEdit', 'distEdit'));
+        } else {
+
+
+            $urbEdit = urbanizacion::find($id);
+            $distEdit = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+
+            return view('plantilla.DetallesDistritos.editDistrito', compact('urbEdit', 'distEdit'));
+        }
     }
     /**
      * Show the form for editing the specified resource.
      */
+    // modifica los datos de urbanizacion
+
     public function edit(Request $request, $id)
     {
         try {

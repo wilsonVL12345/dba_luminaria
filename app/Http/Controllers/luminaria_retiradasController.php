@@ -17,13 +17,30 @@ class luminaria_retiradasController extends Controller
      */
     public function index()
     {
-        $datosluminaria = datos_luminaria_retirada::all();
+        if (session('cargo') == 'Administrador') {
+            $datosluminaria = datos_luminaria_retirada::all();
 
-        $listadistrito = Distrito::where('id', '<>', 15)->get();
+            $listadistrito = Distrito::where('id', '<>', 15)->get();
+            /*  $listazona = distrito::select('Zona_Urbanizacion')->distinct()->get(); */
+            $listazona = urbanizacion::all();
+            $listaaccesorios = lista_accesorio::all();
+            $listaluminaria = lista_luminarias_retirada::all();
+            return view('plantilla.Proyectos.proyectosLumRetiradas', [
+                'listazona' => $listazona,
+                'listadistritos' => $listadistrito,
+                'accesorios' => $listaaccesorios,
+                'datosluminaria' => $datosluminaria
+            ]);
+        } else {
+        }
+        $datosluminaria = datos_luminaria_retirada::where('Distritos_id', session('Lugar_Designado'))->get();
+
+        $listadistrito = Distrito::where('id', '<>', 15)
+            ->where('id', session('Lugar_Designado'))->get();
+
         /*  $listazona = distrito::select('Zona_Urbanizacion')->distinct()->get(); */
         $listazona = urbanizacion::all();
         $listaaccesorios = lista_accesorio::all();
-        $listaluminaria = lista_luminarias_retirada::all();
         return view('plantilla.Proyectos.proyectosLumRetiradas', [
             'listazona' => $listazona,
             'listadistritos' => $listadistrito,

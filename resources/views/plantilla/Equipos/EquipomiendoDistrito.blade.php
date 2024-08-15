@@ -139,8 +139,8 @@
                                     <br>
                                   
 
-                                    <div class="row gy-5 g-xl-10">
-                                        <div class="col-sm-6 col-xl-2 mb-xl-10">
+                                    <div class="row gy-5 g-xl-10" data-lugar-designado="{{ session('Lugar_Designado') }}" id="app">
+                                        <div class="col-sm-6 col-xl-2 mb-xl-10" style="display: none;" id="d-1">
                                             <a href="/equipos/equipamiento/1" >
                                             <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -188,7 +188,7 @@
                                             </a>
                                         </div>
                                         <!--end::Col-->
-                                        <div class="col-sm-6 col-xl-2 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-xl-10" style="display: none;" id="d-2">
                                             <a href="/equipos/equipamiento/2" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -236,7 +236,7 @@
                                         </a>
                                         </div>
                                         <!--end::Col-->
-                                        <div class="col-sm-6 col-xl-2 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-xl-10" style="display: none;" id="d-3">
                                             <a href="/equipos/equipamiento/3" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -284,7 +284,7 @@
                                         </a>
                                         </div>
                                         <!--end::Col-->
-                                        <div class="col-sm-6 col-xl-2 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-xl-10" style="display: none;" id="d-4">
                                             <a href="/equipos/equipamiento/4" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -335,7 +335,7 @@
                                         </a>
                                         </div>
                                         <!--end::Col-->
-                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10" style="display: none;" id="d-5">
                                             <a href="/equipos/equipamiento/5" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -383,7 +383,7 @@
                                         </a>
                                         </div>
                                         <!--end::Col-->
-                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10" style="display: none;" id="d-6">
                                             <a href="/equipos/equipamiento/6" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -430,7 +430,7 @@
                                              <!--end::Card widget 2-->
                                         </a>
                                         </div>
-                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10" style="display: none;" id="d-7">
                                             <a href="/equipos/equipamiento/7" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -478,7 +478,7 @@
                                         </a>
                                         </div>
                                         <!--end::Col-->
-                                        <div class="col-sm-6 col-xl-2 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-xl-10" style="display: none;" id="d-8">
                                             <a href="/equipos/equipamiento/8" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -526,7 +526,7 @@
                                         </a>
                                         </div>
                                         <!--end::Col-->
-                                        <div class="col-sm-6 col-xl-2 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-xl-10" style="display: none;" id="d-9">
                                             <a href="/equipos/equipamiento/9" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -574,7 +574,7 @@
                                         </a>
                                         </div>
                                         <!--end::Col-->
-                                        <div class="col-sm-6 col-xl-2 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-xl-10" style="display: none;" id="d-10">
                                             <a href="/equipos/equipamiento/10" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -622,7 +622,7 @@
                                         </a>
                                         </div>
                                         <!--end::Col-->
-                                        <div class="col-sm-6 col-xl-2 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-xl-10" style="display: none;" id="d-11">
                                             <a href="/equipos/equipamiento/11" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -673,7 +673,7 @@
                                         </a>
                                         </div>
                                         <!--end::Col-->
-                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10" style="display: none;" id="d-12">
                                             <a href="/equipos/equipamiento/12" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -721,7 +721,7 @@
                                         </a>
                                         </div>
                                         <!--end::Col-->
-                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10" style="display: none;" id="d-13">
                                             <a href="/equipos/equipamiento/13" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -768,7 +768,7 @@
                                              <!--end::Card widget 2-->
                                         </a>
                                         </div>
-                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10">
+                                        <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10" style="display: none;" id="d-14">
                                             <a href="/equipos/equipamiento/14" >
                                                 <!--begin::Card widget 2-->
                                             <div class="card h-lg-100">
@@ -818,15 +818,13 @@
                                     </div>
                                 </div>
                            </div>
+                           
                        
 		</div>
 	</div>
-				<div class="card mb-5 mb-xl-10">
-					<div class="card-body pt-9 pb-0">
-						<h1>Agendar Trabajo</h1>
-					</div>
-				</div>
+				
 		<!--end::Container-->
+       
 </div> 
 @endsection
 @endcan
