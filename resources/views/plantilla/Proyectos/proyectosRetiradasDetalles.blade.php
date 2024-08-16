@@ -59,7 +59,7 @@
 										<input type="text" class="form-control form-control-solid " name="txtcomponentes" value="{{$datosLum->Proyecto}}" readonly>
 									</div>
 									<div class="col-md-3 mb-3">
-                                        <label class="required fs-6 fw-bold mb-2">Fecha de Adquisicion</label>
+                                        <label class=" fs-6 fw-bold mb-2">Fecha de Adquisicion</label>
                                         <!--begin::Input-->
                                         <div class="position-relative d-flex align-items-center">
                                             <!--begin::Icon-->
@@ -97,22 +97,22 @@
 						
 								<h3>luminarias Reutilizadas</h3>
 									<div class="table-responsive">
-										<table style="border: 1px solid black; border-collapse: collapse;" class="table table-bordered">
+										<table  class="table table-bordered">
 											<thead>
 												<tr class="fw-bold fs-6 text-gray-800">
-													<th style="font-weight: bold;  border: 1px solid black;"> Nombre Item</th>
-													<th style="font-weight: bold;  border: 1px solid black;">Cantidad</th>
-													<th style="font-weight: bold;  border: 1px solid black;">Reutilizables</th>
-													<th style="font-weight: bold;  border: 1px solid black;">No Reutilizables</th>
+													<th > Nombre Item</th>
+													<th >Cantidad</th>
+													<th >Reutilizables</th>
+													<th >No Reutilizables</th>
 												</tr>
 											</thead>
 											<tbody>
 												@foreach ($listalum as $item)
 												<tr class="fw-bold fs-6 text-gray-800" >
-												<td style="border: 1px solid black;">{{$item->Nombre}}</td>
-												<td style="border: 1px solid black;">{{$item->Cantidad}}</td>
-												<td style="border: 1px solid black;">{{$item->Reutilizables}}</td>
-												<td style="border: 1px solid black;">{{$item->NoReutilizables}}</td>
+												<td >{{$item->Nombre}}</td>
+												<td >{{$item->Cantidad}}</td>
+												<td >{{$item->Reutilizables}}</td>
+												<td >{{$item->NoReutilizables}}</td>
 												</tr>
 												@endforeach
 
@@ -127,7 +127,10 @@
 									
 									
 									
-							
+									<div class="modal-footer flex-end">
+
+										<a href="/proyectos/luminariasRetiradas" type="button" i class="btn btn-danger me-3">Cerrar</a>
+									</div>
 						</div>
 					</div>
 				</div>

@@ -25,7 +25,22 @@
 													</div>
 												</div> 
 								</div>
-											<div class="post d-flex flex-column-fluid" id="kt_post">
+								<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+									<div class="card card-bordered">
+										<div class="card-body">
+											<div id="graficosproyectos"  style="height: 350px;"></div>
+										</div>
+									</div> 
+								</div>
+								<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+									<div class="card card-bordered">
+										<div class="card-body">
+											<div id="graficosinspecciones"  style="height: 350px;"></div>
+										</div>
+									</div> 
+								</div>
+					
+											{{-- <div class="post d-flex flex-column-fluid" id="kt_post">
 												<div id="kt_content_container" class="container-xxl">
 													<div class="row g-5 g-xl-10 mb-xl-10">
 														<div class="col-lg-12 col-xl-12 col-xxl-6 mb-5 mb-xl-0">
@@ -175,7 +190,7 @@
 														</div>
 													</div>
 												</div>
-											</div>
+											</div> --}}
 							</div>
 					</div>
 		

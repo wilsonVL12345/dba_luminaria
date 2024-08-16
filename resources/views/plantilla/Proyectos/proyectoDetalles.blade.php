@@ -49,15 +49,17 @@
 										<input type="text" class="form-control form-control-solid " id="txtdistrito" name="txtdistrito" value="{{$proyec->distrito->Distrito}}" readonly>
 									</div>
 									<div class="col-md-6 mb-3">
-										<label for="txturbanizacion" class=" fs-5 fw-bold mb-2">Urbanizacion</label>
-										<input type="text" class="form-control form-control-solid " id="txturbanizacion" name="txturbanizacion" value="{{$proyec->Zona}}" readonly>
-									</div>
-								</div>
-								<div class="from row">
-									<div class="col-md-6 mb-3">
 										<label for="txtcomponentes" class=" fs-5 fw-bold mb-2">Tipos de Componentes</label>
 										<input type="text" class="form-control form-control-solid " id="txtcomponentess" name="txtcomponentes" value="{{$proyec->Tipo_Componentes}}" readonly>
 									</div>
+									
+								</div>
+								<div class="from row">
+									<div class="col-md-6 mb-3">
+										<label for="txturbanizacion" class=" fs-5 fw-bold mb-2">Urbanizacion</label>
+										<input type="text" class="form-control form-control-solid " id="txturbanizacion" name="txturbanizacion" value="{{$proyec->Zona}}" readonly>
+									</div>
+									
 									<div class="col-md-3 mb-3">
 										<label for="txtcontratacion" class=" fs-5 fw-bold mb-2">Tipo de Contratacion</label>
 										<input type="text" class="form-control form-control-solid " id="txtcontratacion" name="txtcontratacion" value="{{$proyec->Tipo_Contratacion}}" readonly>
@@ -68,11 +70,15 @@
 									</div>
 								</div>
 								<div class="from row">
-									<div class="col-md-6 mb-3">
+									<div class="col-md-3 mb-2">
 										<label for="txtmodalidad" class=" fs-5 fw-bold mb-2">Modalidad</label>
 										<input type="text" class="form-control form-control-solid " id="txtmodalidad" name="txtmodalidad" value="{{$proyec->Modalidad}}" readonly>
 									</div>
-									@if ($proyec->Estado=='En espera')
+									<div class="col-md-3 mb-2">
+										<label for="txtmodalidad" class=" fs-5 fw-bold mb-2">Trabajo</label>
+										<input type="text" class="form-control form-control-solid " id="" name="" value="{{$proyec->Trabajo}}" readonly>
+									</div>
+								@if ($proyec->Estado=='En espera')
 										
 									<div class="col-md-3 mb-3">
 										<label for="txtestado" class=" fs-5 fw-bold mb-2">Estado</label>
@@ -101,7 +107,7 @@
 											<!--end::Input-->
 									</div>
 										
-									@else
+								@else
 									<div class="col-md-3 mb-3">
 										<label for="txtestado" class=" fs-5 fw-bold mb-2">Ejecutado Por</label>
 										<input type="text" class="form-control form-control-solid " id="txtestado" name="txtestado" value="{{$proyec->Ejecutado_Por}}" readonly>

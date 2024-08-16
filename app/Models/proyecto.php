@@ -28,6 +28,7 @@ class proyecto extends Model
         'Fecha_Ejecutada',
         'Observaciones',
         'Realizado_Por',
+        'Trabajo',
 
         'Proveedor',
         'Users_id',

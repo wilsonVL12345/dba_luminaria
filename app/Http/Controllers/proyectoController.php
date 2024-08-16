@@ -97,7 +97,7 @@ class proyectoController extends Controller
                 $proy->Tipo_Componentes = $listaTipo;
                 $proy->Proveedor = $request->txtproveedor;
                 $proy->Users_id = session('id');
-
+                $proy->Trabajo = $request->sltrabajo;
                 $proy->save();
                 $cuceProyecto = proyecto::where('Cuce_Cod', $request->txtcod)->first();
                 $idProyecto = $cuceProyecto->id;
@@ -184,6 +184,8 @@ class proyectoController extends Controller
             $editProy->Fecha_Programada = $request->txtfechaEsp;
             $editProy->Objeto_Contratacion = $request->txtobjetoEsp;
             $editProy->Proveedor = $request->txtprovProyEsp;
+            $editProy->Trabajo = $request->slTrabajom;
+
             $editProy->save();
             $sql = true;
         } catch (\Throwable $th) {
@@ -196,23 +198,6 @@ class proyectoController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-
-    /* public function show(string $id)
-    {
-        $detItem = proyecto::find($id);
-
-        $detReutilizada = luminarias_reutilizada::where('Proyectos_id', $id)->get();
-        $detAccesorio = accesorio::where('Proyectos_id', $id)->get();
-        $detLuminarias = luminaria::where('Proyectos_id', $id)->get();
-        return view('plantilla.Proyectos.proyectosAlmacen', compact('detItem', 'detReutilizada', 'detAccesorio', 'detLuminarias'));
-    } */
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
@@ -369,6 +354,7 @@ class proyectoController extends Controller
             $editRea->Subasta = $request->slsubproObras;
             $editRea->Objeto_Contratacion = $request->txtobjetoObras;
             $editRea->Proveedor = $request->txtprovProyObras;
+            $editRea->Trabajo = $request->sltrabajoobras;
             $editRea->save();
 
             $sql = true;

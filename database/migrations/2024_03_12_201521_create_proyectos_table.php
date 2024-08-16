@@ -25,6 +25,7 @@ return new class extends Migration
             $table->date('Fecha_Programada')->nullable();
             $table->date('Fecha_Ejecutada')->nullable();
             $table->text('Observaciones')->nullable();
+            $table->string('Trabajo', 10)->nullable();
             $table->integer('Realizado_Por')->nullable();
             $table->string('Proveedor')->nullable();
 

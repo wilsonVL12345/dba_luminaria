@@ -30,7 +30,7 @@
                                         <!--begin::Modal content-->
                                         <div class="modal-content">
                                             <!--begin::Form-->
-                                            <form class="form" action="{{route("registro.equipamiento")}}" id="kt_modal_add_customer_form" data-kt-redirect="assets/dist/apps/customers/list.html" method="POST" >
+                                            <form class="form" action="{{route("registro.equipamiento")}}" id="forregistrarEquipamiento" data-kt-redirect="assets/dist/apps/customers/list.html" method="POST" >
                                                 @csrf
                                                 <!--begin::Modal header-->
                                                 <div class="modal-header" id="kt_modal_add_customer_header">
@@ -116,7 +116,8 @@
                                                 <div class="modal-footer flex-center">
                                                     <div class="text-center">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                        <button type="submit" class="btn btn-primary">Registrar</button>
+                                                        <button type="submit" id="submitButtons" class="btn btn-primary">Registrar</button>
+                                                        
                                                     </div>
                                                 
                                                 </div>

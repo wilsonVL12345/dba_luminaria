@@ -43,7 +43,7 @@
 <script src="{{ asset('assets/js/proyectos/detallesProy.js') }}" defer></script>
 <script src="{{ asset('assets/js/proyectos/ejecutarProyecto.js') }}" defer></script>
 <script src="{{ asset('assets/js/proyectos/selecMultiplebotones.js') }}" defer></script>
-<script src="{{ asset('assets/js/selectorMultiple.js') }}" defer></script>
+<script src="{{ asset('assets/js/enviarForm.js') }}" defer></script>
 <script src="{{ asset('assets/js/distrito/actualizacionzona.js') }}" defer></script>
 
 {{-- <script src="{{ asset('assets/js/detallesGenerales/ejecutarApoyo.js') }}" defer></script> --}}
@@ -92,6 +92,8 @@
 <script src="{{ asset('assets/js/detallesGenerales/realizado/apoyoreal.js') }}" defer></script>
 <script src="{{ asset('assets/js/dashboards/dashProyecto/chartgenerales.js') }}" defer></script>
 <script src="{{ asset('assets/js/dashboards/dashdetalle/chatdetalles.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/dashdetalle/chatinspecciones.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/dashdetalle/chartproyectos.js') }}" defer></script>
 <script src="{{ asset('assets/js/dashboards/dashdetalle/dashDis1.js') }}" defer></script>
 
 

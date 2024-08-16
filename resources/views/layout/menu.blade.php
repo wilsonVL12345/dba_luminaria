@@ -319,7 +319,7 @@
                 </div>
             </div>
             
-            <div class="menu-item">
+            {{-- <div class="menu-item">
                 <a class="menu-link" href="/censoLuminarias">
                     <span class="menu-icon">
                         <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
@@ -341,7 +341,7 @@
                     </span>
                     <span class="menu-title">Censo Luminarias</span>
                 </a>
-            </div>
+            </div> --}}
 
             <div class="menu-item">
                 <a class="menu-link"   href="/detallesDistritos">

@@ -215,12 +215,12 @@
 															<div class="col-md-6 fv-row">
 																<!--begin::Label-->
 																<label class="required fs-5 fw-bold mb-2">C.I.
-															<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Solo se permiten números de 7 a 8 digitos"></i>
+															<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Solo se permiten números de 6 a 10 digitos"></i>
 
 																</label>
 																<!--end::Label-->
 																<!--begin::Input-->
-																<input type="text" class="form-control form-control-solid" placeholder="" name="txtci"  pattern="^[0-9]{7,9}$"
+																<input type="text" class="form-control form-control-solid" placeholder="" name="txtci"  pattern="^[a-zA-Z0-9]{6,10}$"
 																required  />
 																<!--end::Input-->
 															</div> 

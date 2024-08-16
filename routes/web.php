@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\detalleController;
@@ -43,7 +45,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     /* Route::post('/inicia-sesion', [logincontroller::class, 'login'])->name('inicia-sesion');
     Route::get('/logout', [logincontroller::class, 'logout'])->name('logout'); */
-
 
 
     Route::view('/index', 'layout.index')->name('index');
