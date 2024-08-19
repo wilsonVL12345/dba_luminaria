@@ -48,20 +48,68 @@
                                 columns: ':not(:last-child)'
                             }
                         },
-                        {
+                       /*  {
                             extend: 'csvHtml5',
                             title: documentTitle,
                             exportOptions: {
                                 columns: ':not(:last-child)'
                             }
-                        },
+                        }, */
                         {
                             extend: 'pdfHtml5',
                             title: documentTitle,
                             exportOptions: {
                                 columns: ':not(:last-child)'
+                            },
+                            customize: function(doc) {
+                               
+                               // Ajustar el ancho de las columnas (50% para "Distrito", 50% para "Urbanización")
+                                  doc.content[1].table.widths = ['10%', '80%']; // Reducimos el ancho de la primera columna
+
+                                   // Centrar el contenido de la primera columna
+                                    doc.content[1].table.body.forEach(function(row) {
+                                        row[0].alignment = 'center'; // Columna "Distrito" (índice 0)
+                                    });
+                                // Centrar el contenido del PDF de las columnas el texto
+                                // doc.content[1].table.widths = Array(doc.content[1].table.body[0].length).fill('*');
+                                doc.styles.tableBodyEven.alignment = 'left';
+                                doc.styles.tableBodyOdd.alignment = 'left';
+                                
+                                // Alinear el título al centro
+                                doc.styles.title = {
+                                    alignment: 'center',
+                                    fontSize: 14,
+                                    bold: true
+                                };
+                        
+                                // Ajustar márgenes
+                                doc.pageMargins = [40, 60, 40, 60]; // Izquierda, Arriba, Derecha, Abajo
                             }
-                        }
+                        },
+
+                        {
+    extend: 'pdfHtml5',
+    title: documentTitle,
+    exportOptions: {
+        columns: ':not(:last-child)'
+    },
+    customize: function(doc) {
+        // Centrar el contenido del PDF
+        doc.content[1].table.widths = Array(doc.content[1].table.body[0].length).fill('*');
+        doc.styles.tableBodyEven.alignment = 'center';
+        doc.styles.tableBodyOdd.alignment = 'center';
+        
+        // Alinear el título al centro
+        doc.styles.title = {
+            alignment: 'center',
+            fontSize: 14,
+            bold: true
+        };
+
+        // Ajustar márgenes
+        doc.pageMargins = [40, 60, 40, 60]; // Izquierda, Arriba, Derecha, Abajo
+    }
+}
                 ]
             }).container().appendTo($('#kt_datatable_example_buttons'));
 

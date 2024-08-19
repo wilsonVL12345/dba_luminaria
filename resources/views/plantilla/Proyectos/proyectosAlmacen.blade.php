@@ -85,7 +85,7 @@
 																		</div>
 																		<div class="col-md-2 mb-1">
 																			<label for="txtdistrito" class="required fs-5 fw-bold mb-2">Distrito</label>
-																			<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtdistrito" id="txtdistrito" required >
+																			<select  aria-label="Select a Country" data-dropdown-parent="#modalregistroProyecto" class="form-control form-select-solid " data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtdistrito" id="txtdistrito" required >
 																			<option value="" >Seleccione...</option>
 																			@foreach ($listadistrito as $item)
 																			<option value="{{$item->id}}">{{$item->Distrito}}</option>
@@ -120,7 +120,7 @@
 																		</div>
 																				<div class="col-md-3 mb-2">
 																					<label for="sltrabajo" class="required fs-5 fw-bold mb-2">Trabajo</label>
-																					<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="sltrabajo" id="sltrabajo" required >
+																					<select  aria-label="Select a Country" data-dropdown-parent="#modalregistroProyecto" class="form-control form-select-solid " data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="sltrabajo" id="sltrabajo" required >
 																					<option value="" >Seleccione...</option>
 																					<option value="Central" >Central</option>
 																					@foreach ($listadistrito as $item)
@@ -468,7 +468,7 @@
 																</div>
 																<div class="col-md-2 mb-1">
 																	<label for="sldisProyEsp" class="required fs-5 fw-bold mb-2">Distrito</label>
-																	<select class="form-control form-select-solid" data-control="select2" name="sldisProyEsp" data-id="sldisProyEsp" required>
+																	<select  aria-label="Select a Country" data-dropdown-parent="#modalModificarProyAlmacen{{$item->id}}" class="form-control form-select-solid " data-control="select2" name="sldisProyEsp" data-id="sldisProyEsp" required>
 																		@foreach ($listadistrito as $dis)
 																		<option value="{{$dis->id}}" {{$item->Distritos_id==$dis->id ? 'selected':''}}>{{$dis->Distrito}}</option>
 																		@endforeach
@@ -498,7 +498,7 @@
 																</div>
 																<div class="col-md-2 mb-1">
 																	<label for="slTrabajom" class="required fs-5 fw-bold mb-2">Trabajo</label>
-																	<select class="form-control form-select-solid" data-control="select2" name="slTrabajom" data-id="slTrabajom" required>
+																	<select   data-dropdown-parent="#modalModificarProyAlmacen{{$item->id}}" class="form-control form-select-solid " data-control="select2" name="slTrabajom" data-id="slTrabajom" required>
 																		<option value="Central">Central</option>
 																		@foreach ($listadistrito as $dis)
 																		<option value="{{$dis->Distrito}}" {{$item->Distritos_id==$dis->id ? 'selected':''}}>{{$dis->Distrito}}</option>

@@ -285,10 +285,10 @@
 											<thead>
 												<!--begin::Table row-->
 												<tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
-													<th class="min-w-100px">Distrito</th>
-													<th class="min-w-100px">Urbanizacion</th>
-													<th class="min-w-100px">Fecha Mantenimiento</th>
 													<th class="min-w-100px">Numero  Sisco</th>
+													<th class="min-w-100px">Urbanizacion</th>
+													<th class="min-w-100px">Distrito</th>
+													<th class="min-w-100px">Fecha Mantenimiento</th>
 													<th class="tmin-w-100px">Detalles</th>
 													<th class="min-w-100px">Actividad</th>
 												</tr>
@@ -298,15 +298,15 @@
 												@foreach ($datosluminaria as $item)
 													<tr class="text-start text-gray-500 fw-bold fs-7">
 														<td>
-															<a href="#" class="text-gray-900 text-hover-primary">{{$item->distrito->Distrito}}</a>
+															<a href="#" class="text-gray-900 text-hover-primary">{{$item->Nro_sisco}}</a>
 														</td>
 														<td>
 															<a href="#" class="text-gray-900 text-hover-primary">{{$item->zona}}</a>
 														</td>
-														<td data-order="2022-03-10T14:40:00+05:00">{{$item->Fecha}}</td>
 														<td>
-															<a href="#" class="text-gray-900 text-hover-primary">{{$item->Nro_sisco}}</a>
+															<a href="#" class="text-gray-900 text-hover-primary">{{$item->distrito->Distrito}}</a>
 														</td>
+														<td class="text-gray-900 text-hover-primary">{{$item->Fecha}}</td>
 														<td >
 														<a href="{{url('/detalles/luminarias/retiradas/'.$item->id)}}" class="text-gray-600 text-hover-primary mb-1"><i class="fa-regular fa-eye"></i>
 															{{-- <a href="{{url('/detallesAccesorios/almacen/'. $item->id ) }}" class="text-gray-600 text-hover-primary mb-1"><i class="fa-regular fa-eye"></i> --}}

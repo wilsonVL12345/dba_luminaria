@@ -13,6 +13,7 @@
 
 <script>var hostUrl = "{{ asset('assets/') }}";</script>
 <!-- Global Javascript Bundle(used by all pages) -->
+
 <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 <!-- Page Vendors Javascript(used by this page) -->
@@ -26,6 +27,8 @@
 <!-- scrip   -->
 <script src="{{ asset('assets/js/ejecutarTrabajo/Empezar.js') }}"></script>
 <script src="{{ asset('assets/js/consultaAtencion/atencion.js') }}"></script>
+
+
 
 
 <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
@@ -56,6 +59,7 @@
 <script src="{{ asset('assets/js/agendar/apoyocarro.js') }}" defer></script>
 
 
+
 <script src="{{ asset('assets/js/inspeccion/enEspera/tabaespe.js') }}" defer></script>
 <script src="{{ asset('assets/js/inspeccion/enEspera/filtraUrbInspEsp.js') }}" defer></script>
 <script src="{{ asset('assets/js/inspeccion/realizado/tablareali.js') }}" defer></script>
@@ -83,6 +87,7 @@
 <script src="{{ asset('assets/js/proyectos/almacenejecutada/datetablefinal.js') }}" defer></script>
 
 
+
 <script src="{{ asset('assets/js/distrito/datetable.js') }}" defer></script>
 
 <script src="{{ asset('assets/js/distrito/loading.js') }}" defer></script>
@@ -90,15 +95,16 @@
 <script src="{{ asset('assets/js/equipos/accesorios/tablaAccesorios.js') }}" defer></script>
 <script src="{{ asset('assets/js/detallesGenerales/realizado/filtraurbreal.js') }}" defer></script>
 <script src="{{ asset('assets/js/detallesGenerales/realizado/apoyoreal.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/dashProyecto/chartgenerales.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/dashdetalle/chatdetalles.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/dashdetalle/chatinspecciones.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/dashdetalle/chartproyectos.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/dashdetalle/dashDis1.js') }}" defer></script>
 
 
+<script src="{{ asset('assets/js/dashboards/chartproyectos.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/chatdetalles.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/chatinspecciones.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/dashDis1.js') }}" defer></script>
 
-
+<script src="{{ asset('assets/js/dashboards/proyectoAnual.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/inspeccionAnual.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/detallesAnual.js') }}" defer></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

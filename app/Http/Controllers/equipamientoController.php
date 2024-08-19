@@ -55,6 +55,7 @@ class equipamientoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // vista de  equipamientos divididos por distritos
     public function showEquipDistrito(Request $request)
     {
         if (session('cargo') == 'Administrador') {

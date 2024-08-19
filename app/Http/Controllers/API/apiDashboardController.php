@@ -56,6 +56,78 @@ class apiDashboardController extends Controller
         return response()->json($dashdetall);
     }
 
+    public function dashdis2()
+    {
+        $currentYear = Carbon::now()->year;
+
+        $dashdetall2 = [];
+
+        for ($distrito = 1; $distrito <= 14; $distrito++) {
+            $dashdetall2[$distrito] = [
+                'proyectos_espera' => proyecto::where('Distritos_id', $distrito)
+                    ->where('Estado', 'En espera')
+                    ->whereyear('Fecha_Programada', $currentYear)
+                    ->count(),
+                'proyectos_finalizados' => proyecto::where('Distritos_id', $distrito)
+                    ->where('Estado', 'Finalizado')
+                    ->whereyear('Fecha_Ejecutada', $currentYear)
+                    ->count(),
+
+
+            ];
+        }
+
+        return response()->json($dashdetall2);
+    }
+    public function dashdis3()
+    {
+        $currentYear = Carbon::now()->year;
+
+        $dashdetall3 = [];
+
+        for ($distrito = 1; $distrito <= 14; $distrito++) {
+            $dashdetall3[$distrito] = [
+
+
+                'mantenimientos_espera' => detalle::where('Distritos_id', $distrito)
+                    ->where('Estado', 'En espera')
+                    ->whereyear('Fecha_Programado', $currentYear)
+                    ->count(),
+
+
+                'mantenimientos_finalizados' => detalle::where('Distritos_id', $distrito)
+                    ->where('Estado', 'Finalizado')
+                    ->whereyear('Fecha_Inicio', $currentYear)
+                    ->count(),
+
+            ];
+        }
+
+        return response()->json($dashdetall3);
+    }
+    public function dashdis4()
+    {
+        $currentYear = Carbon::now()->year;
+
+        $dashdetall4 = [];
+
+        for ($distrito = 1; $distrito <= 14; $distrito++) {
+            $dashdetall4[$distrito] = [
+
+                'inspecciones_espera' => inspeccion::where('Distritos_id', $distrito)
+                    ->where('Inspeccion', 'En espera')
+                    ->whereyear('Fecha_Inspeccion', $currentYear)
+                    ->count(),
+                'inspecciones_realizadas' => inspeccion::where('Distritos_id', $distrito)
+                    ->where('Inspeccion', 'Finalizado')
+                    ->whereyear('Fecha_Inspeccion', $currentYear)
+                    ->count(),
+            ];
+        }
+
+        return response()->json($dashdetall4);
+    }
+
 
 
 

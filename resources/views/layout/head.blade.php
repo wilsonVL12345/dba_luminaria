@@ -48,7 +48,6 @@
 
 
 
-
  
 {{-- aqui estaba el select2  el de abajo lo agregamos resien--}}
 

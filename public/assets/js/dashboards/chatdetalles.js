@@ -55,7 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     return "+ " + val + " total "
                 }
             }
-        }
+        },
+
+        colors: ['#2358E5', '#0BCE32'] // Azul para finalizados, Verde para en espera
+
     };
 
     let chart = new ApexCharts(element, options);

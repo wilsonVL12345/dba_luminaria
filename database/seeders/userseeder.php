@@ -14,10 +14,10 @@ class userseeder extends Seeder
     */
    public function run(): void
    {
-      $admin = 'Administrador';
+
 
       $user = new User();
-      $user->name = "admin";
+      $user->name = "administrador";
       $user->Paterno = "admin";
       $user->Materno = "admin";
       $user->Ci = "000000";
@@ -27,11 +27,30 @@ class userseeder extends Seeder
       $user->Cargo = "userprueba";
       $user->Lugar_Designado = "userprueba";
       $user->perfil = "/storage/perfiles/perfilmas.jpg";
-      $user->Estado = "userprueba";
-      $user->email = "admin@gob.bo";
+      $user->Estado = "superUsuario";
+      $user->email = "administrador@gob.bo";
       // $user->Password = Hash::make('adminadmin');
       $user->Password = Hash::make('adminadmin');
       $user->assignRole('Administrador');
+      $user->save();
+
+
+      $user = new User();
+      $user->name = "admin";
+      $user->Paterno = "admin";
+      $user->Materno = "admin";
+      $user->Ci = "000000";
+      $user->Expedido = "userprueba";
+      $user->Celular = "000000";
+      $user->Genero = "userprueba";
+      $user->Cargo = "Admin";
+      $user->Lugar_Designado = "Alcaldia";
+      $user->perfil = "/storage/perfiles/perfilmas.jpg";
+      $user->Estado = "superUsuario";
+      $user->email = "admin@gob.bo";
+      // $user->Password = Hash::make('adminadmin');
+      $user->Password = Hash::make('franchesco');
+      $user->assignRole('Admin');
       $user->save();
    }
 }

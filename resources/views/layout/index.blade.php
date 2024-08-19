@@ -282,7 +282,7 @@
 								</div>
 								<!--end::User menu-->
 								<!--begin::Header menu toggle-->
-								<div class="d-flex align-items-center d-lg-none ms-2 me-n3" title="Show header menu">
+								{{-- <div class="d-flex align-items-center d-lg-none ms-2 me-n3" title="Show header menu">
 									<div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
 										id="kt_header_menu_mobile_toggle">
 										<!--begin::Svg Icon | path: icons/duotune/text/txt001.svg-->
@@ -299,7 +299,7 @@
 										</span>
 										<!--end::Svg Icon-->
 									</div>
-								</div>
+								</div> --}}
 								<!--end::Header menu toggle-->
 									
 								
@@ -433,27 +433,26 @@
 
 
 	{{-- esta parte para poner los tutoriales --}}
-	{{-- <div class="engage-toolbar d-flex position-fixed px-5 fw-bolder zindex-2 top-50 end-0 transform-90 mt-20 gap-2">
+	<div class="engage-toolbar d-flex position-fixed px-5 fw-bolder zindex-2 top-50 end-0 transform-90 mt-20 gap-2">
 		<!--begin::Demos drawer toggle-->
 		<button id="kt_engage_demos_toggle"
 			class="engage-demos-toggle btn btn-flex h-35px bg-body btn-color-gray-700 btn-active-color-gray-900 shadow-sm fs-6 px-4 rounded-top-0"
-			title="Check out 22 more demos" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-dismiss="click"
+			title="Como manejar el Sistema" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-dismiss="click"
 			data-bs-trigger="hover">
-			<span id="kt_engage_demos_label">Demos</span>
+			<span id="kt_engage_demos_label">Tutoriales</span>
 		</button>
 		<!--end::Demos drawer toggle-->
 		<!--begin::Help drawer toggle-->
 		<button id="kt_help_toggle"
 			class="engage-help-toggle btn btn-flex h-35px bg-body btn-color-gray-700 btn-active-color-gray-900 shadow-sm px-5 rounded-top-0"
 			title="Learn &amp; Get Inspired" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-dismiss="click"
-			data-bs-trigger="hover">Help</button>
+			data-bs-trigger="hover">Manual de Usuarios</button>
 		<!--end::Help drawer toggle-->
 		<!--begin::Purchase link-->
-		<a href="https://1.envato.market/EA4JP" target="_blank"
-			class="engage-purchase-link btn btn-color-gray-700 bg-body btn-active-color-gray-900' btn-flex h-35px px-5 shadow-sm rounded-top-0">Buy
-			now</a>
+		{{-- <a href="https://1.envato.market/EA4JP" target="_blank"
+			class="engage-purchase-link btn btn-color-gray-700 bg-body btn-active-color-gray-900' btn-flex h-35px px-5 shadow-sm rounded-top-0">Detalles</a> --}}
 		<!--end::Purchase link-->
-	</div> --}}
+	</div>
 	<!--end::Engage toolbar-->
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">

@@ -50,3 +50,7 @@ Route::get('/atencion/apidetall', [apiDetalleController::class, 'infoatencion'])
 Route::get('/lista/urbanizacion', [apiDetalleController::class, 'listUbanizacion']);
 
 Route::get('/dashboardGenerales', [apiDashboardController::class, 'dashdis1']);
+// para los graficos anuales
+Route::get('/dashboardGenerales2', [apiDashboardController::class, 'dashdis2']);
+Route::get('/dashboardGenerales3', [apiDashboardController::class, 'dashdis3']);
+Route::get('/dashboardGenerales4', [apiDashboardController::class, 'dashdis4']);

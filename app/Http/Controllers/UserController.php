@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function users()
     {
-        $users = User::all();
+        $users = User::where('Estado', 'Activo')->get();
         $role = role::all();
         return view('plantilla.Usuarios.usuarios', ['user' => $users, 'role' => $role]);
     }
@@ -40,11 +40,7 @@ class UserController extends Controller
             $perf = '/storage/perfiles/perfilfem.jpg';
         }
         $lash = '@gob.bo';
-        if ($request->txtestado) {
-            $estado = 'Activo';
-        } else {
-            $estado = 'Bloqueado';
-        }
+        $estado = 'Activo';
         try {
             $user = new User();
             $primera = strtolower(substr($request->txtnombre, 0, 1));

@@ -92,11 +92,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 chart.updateSeries([
                     {
-                        name: 'Proyectos Finalizados',
+                        name: 'Inspecciones Finalizados',
                         data: inspeccionesFinalizados
                     },
                     {
-                        name: 'Proyectos en Espera',
+                        name: 'Inspecciones en Espera',
                         data: inspeccionesEnEspera
                     }
                 ]);
