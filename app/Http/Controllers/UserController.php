@@ -77,25 +77,10 @@ class UserController extends Controller
     }
 
 
-    public function bloquear($id)
+    public function cambiarContrasena(Request $request)
     {
-        $bloq = 'Bloqueado';
-        $userbloquear = User::find($id);
-        $userbloquear->Estado = $bloq;
-        $userbloquear->save();
-        return back()->with("incorrecto", "Usuario Bloqueado Correctamente");
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function desbloquear($id)
-    {
-        $desbloq = 'Activo';
-        $userdesbloquear = User::find($id);
-        $userdesbloquear->Estado = $desbloq;
-        $userdesbloquear->save();
-        return back()->with("correcto", "Usuario Desbloqueado Correctamente");
+        return view('auth.new-password', compact('request'));
     }
 
 

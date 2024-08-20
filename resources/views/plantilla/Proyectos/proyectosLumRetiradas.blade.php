@@ -71,7 +71,7 @@
 														
 														<!--begin::Form-->
 														<!--begin::Form-->
-													<form class="form" action="{{route('registro.retirados')}}" id="form1" method="POST">
+													<form class="form" action="{{route('registro.retirados')}}" id="formregistroLuminariasre" method="POST">
 															@csrf
 															<!--begin::Modal header-->
 															
@@ -386,7 +386,7 @@
 																					
 																					<!--begin::Form-->
 																					<!--begin::Form-->
-																				<form class="form" action="{{route('modificar.retirados',$item->id)}}" id="form1" method="POST">
+																				<form class="form" action="{{route('modificar.retirados',$item->id)}}" id="formRetiradasModificar" method="POST">
 																						@csrf
 																						<!--begin::Modal header-->
 																						

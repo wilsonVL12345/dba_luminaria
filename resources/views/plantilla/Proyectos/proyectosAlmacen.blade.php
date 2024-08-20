@@ -194,6 +194,8 @@
 																	<div class="from row">
 																		<div class="col-md-8 mb-3"> <!-- Ocupa el doble del tamaño -->
 																			<label for="input1" class="required fs-5 fw-bold mb-2">Tipos de Componentes</label>
+																			<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Seleccione 1 o mas Componentes "></i>
+
 																			<select class="form-control form-select-lg form-select-solid" data-control="select2" name="selectedStates[]" id="selector" data-placeholder="Seleccione..." data-allow-clear="true" multiple="multiple" required>
 																				<option value="Accesorios">Accesorios</option>
 																				<option value="Lum. Reacondicionadas">Lum. Reacondicionadas</option>
@@ -210,11 +212,13 @@
 																		</div>
 																	</div>
 																</div>
+																<br>
 																<!--end::Scroll-->
 																<div class="mb-3">
 																<button  type="button" class="btn btn-dark" id="btnAccesorio"   style="display: none;">Accesorios</button>
 																<button type="button"  class="btn btn-dark" id="btnReacondicionado"  style="display: none; " >Lum. Reacondicionadas</button>
 																<button type="button"  class="btn btn-dark" id="btnLuminaria"  style="display: none;">Luminaria LED</button>
+																<br>
 																<div id="listaproy">
 																</div>
 																</div>
@@ -455,7 +459,7 @@
 																<!--begin::Modal content-->
 													<div class="modal-content">
 														<!--begin::Form-->
-														<form action="{{route('modificar.almacen',$item->id)}}" id="formproyecto" method="POST" >
+														<form action="{{route('modificar.almacen',$item->id)}}" id="formproyectoModificar" method="POST" >
 															@csrf
 							
 															<div class="from row">

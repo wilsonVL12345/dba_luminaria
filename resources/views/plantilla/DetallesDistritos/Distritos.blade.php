@@ -367,5 +367,13 @@
 							
 </div>
 
+
+<div class="page-loader">
+    <!-- Aquí puedes colocar el ícono o animación de cargando -->
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Cargando...</span>
+    </div>
+</div>
+
 @endsection
 @endcan

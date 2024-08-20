@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('Nro_Sisco')->unique();
             $table->string('Zona')->nullable();
-            $table->string('Tipo_Trabajo', 50);
+            $table->string('Tipo_Trabajo', 100);
             $table->text('Foto_Carta')->nullable();
             $table->integer('Puntos')->nullable();
             $table->date('Fecha_Programado');

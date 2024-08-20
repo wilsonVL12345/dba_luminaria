@@ -266,7 +266,7 @@
 															</div>
 															<!--end::Modal header-->
 															<!--begin::Form-->
-															<form  class="form" action="{{route('editar.accesorios')}}" method="POST">
+															<form  class="form" action="{{route('editar.accesorios')}}" id="formMoficarAccesorio" method="POST">
 																@csrf
 																<!--begin::Modal body-->
 																<div class="modal-body py-10 px-lg-17">

@@ -286,7 +286,7 @@
 															<!--begin::Modal body-->
 															<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
 																<!--begin:Form-->
-																<form id="kt_modal_new_target_form" class="form" action="{{route('editar.inspeccionespera')}}" method="POST" enctype="multipart/form-data">
+																<form id="formInspeccionEsperaModificar" class="form" action="{{route('editar.inspeccionespera')}}" method="POST" enctype="multipart/form-data">
 																	@csrf
 																	<!--begin::Heading-->
 																	<div class="mb-13 text-center">
@@ -354,7 +354,7 @@
 																		<!--begin::Col-->
 																		<div class="col-md-6 fv-row">
 																			<label class=" fs-6 fw-bold mb-2">Foto de la Carta</label>
-																			<input type="file" id="imgcartaa"  name="imgcartaa" accept="image/*" class="form-control">
+																			<input type="file" id="imgcartaa"  name="imgcartaa"  accept="image/png, image/jpeg" class="form-control">
 																			@error('imgcarta')
 																				<small class="text-danger">{{$message}}</small>
 																			@enderror
@@ -434,7 +434,7 @@
 															<!--begin::Modal body-->
 															<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
 																<!--begin:Form-->
-																<form id="kt_modal_new_target_form" class="form" action="{{route('empezar.inspeccionespera')}}" method="POST">
+																<form id="formEmpezarInspeccion" class="form" action="{{route('empezar.inspeccionespera')}}" method="POST">
 																	@csrf
 																	<!--begin::Heading-->
 																	<div class="mb-13 text-center">
@@ -609,7 +609,7 @@
 										<!--begin::Modal body-->
 										<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
 											<!--begin:Form-->
-											<form id="kt_modal_new_target_form" class="form" action="{{route('registro.inspecciones')}}" method="POST" enctype="multipart/form-data">
+											<form id="formInspeccionEsperaRegistrar" class="form" action="{{route('registro.inspecciones')}}" method="POST" enctype="multipart/form-data">
 												@csrf
 												<!--begin::Heading-->
 												<div class="mb-13 text-center">
@@ -673,7 +673,7 @@
 													<!--begin::Col-->
 													<div class="col-md-6 fv-row">
 														<label class=" fs-6 fw-bold mb-2">Foto de la Carta</label>
-														<input type="file" id="imgcarta"  name="imgcarta" accept="image/*" class="form-control">
+														<input type="file" id="imgcarta"  name="imgcarta"  accept="image/png, image/jpeg" class="form-control">
 														@error('imgcarta')
 															<small class="text-danger">{{$message}}</small>
 														@enderror

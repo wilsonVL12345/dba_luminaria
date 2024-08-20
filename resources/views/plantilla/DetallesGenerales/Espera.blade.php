@@ -265,7 +265,7 @@
 																<!--end::Close-->
 															</div>
 															<div class="modal-body">
-																<form action="{{route('edit.espera',$itemEspera->id)}}" id="formagendar" method="POST" enctype="multipart/form-data">
+																<form action="{{route('edit.espera',$itemEspera->id)}}" id="formdetallesModificarEspera" method="POST" enctype="multipart/form-data">
 																	@csrf
 									
 																	<div class="from row">
@@ -348,7 +348,7 @@
 																	<div class="from row">
 																		<div class="col-md-6 mb-3">
 																			<label for="imgcarta" class=" fs-5 fw-bold mb-2">Carta</label>
-																			<input type="file" id="imgcarta"  name="imgcarta" accept="image/*" class="form-control" >
+																			<input type="file" id="imgcarta"  name="imgcarta"  accept="image/png, image/jpeg" class="form-control" >
 																				@error('imgcarta')
 																					<small class="text-danger">{{$message}}</small>
 																				@enderror

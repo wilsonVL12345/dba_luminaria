@@ -60,7 +60,209 @@
 							@include('layout.notificacioncrud')
 						</div>
 						<div class="card card-p-0 card-flush">
-							
+							<!--begin::Modal - registrar usuarios-->
+							<div class="modal fade" id="modadRegistraUsuarios" tabindex="-1" aria-hidden="true">
+								<!--begin::Modal dialog-->
+								<div class="modal-dialog modal-dialog-centered mw-650px">
+									<!--begin::Modal content-->
+									<div class="modal-content">
+										<!--begin::Form-->
+										<form class="form" action="{{route("registro.usuario")}}" id="modadRegistraUsuarios_form" method="POST">
+											@csrf
+											<!--begin::Modal header-->
+											<div class="modal-header" id="modadRegistraUsuarios_header">
+												<!--begin::Modal title-->
+												<h2>Registrar Nuevo Usuario</h2>
+												<!--end::Modal title-->
+												<!--begin::Close-->
+												<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+													<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+													<span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+															<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+															<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Close-->
+											</div>
+											<!--end::Modal header-->
+											<!--begin::Modal body-->
+											<div class="modal-body py-10 px-lg-17">
+												<!--begin::Scroll-->
+												<div class="scroll-y me-n7 pe-7" id="modadRegistraUsuarios_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#modadRegistraUsuarios_header" data-kt-scroll-wrappers="#modadRegistraUsuarios_scroll" data-kt-scroll-offset="300px">
+													<!--begin::Notice-->
+													<!--begin::Notice-->
+													
+													<!--end::Notice-->
+													<!--end::Notice-->
+													<!--begin::Input group-->
+													<div class="d-flex flex-column mb-5 fv-row">
+														<!--begin::Label-->
+														<label class="required fs-5 fw-bold mb-2">Nombres
+														<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Solo se permiten letras y espacios"></i>
+
+														</label>
+														<!--end::Label-->
+														<!--begin::Input-->
+														<input  type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre" name="txtnombre" pattern="[A-Za-z\s]+"  required  />
+														 {{-- @error('txtnombre')
+															<span style="color: red;">{{ $message }}</span>
+														@enderror --}}
+														<!--end::Input-->
+													</div> 
+													<div class="row mb-5">
+														<!--begin::Col-->
+														<div class="col-md-6 fv-row">
+															<!--begin::Label-->
+															<label class="required fs-5 fw-bold mb-2">Paterno
+														<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten letras, sin espacios"></i>
+
+															</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" class="form-control form-control-solid" placeholder="" pattern="^[A-Za-záéíóúüñÁÉÍÓÚÜ]+$" name="txtpaterno"  title="Solo se permiten letras y espacios" required  />
+															<!--end::Input-->
+														</div> 
+														<!--end::Col-->
+														<!--begin::Col-->
+														<div class="col-md-6 fv-row">
+															<!--end::Label-->
+															<label class="required fs-5 fw-bold mb-2">Materno
+														<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten letras, sin espacios"></i>
+
+															</label>
+															<!--end::Label-->
+															<!--end::Input-->
+															<input type="text" class="form-control form-control-solid" placeholder="" name="txtmaterno" pattern="^[A-Za-záéíóúüñÁÉÍÓÚÜ]+$" required  />
+															<!--end::Input-->
+														</div> 
+														<!--end::Col-->
+													</div>
+													<!--end::Input group-->
+													<!--begin::Input group-->
+													
+													<div class="row mb-5">
+														<!--begin::Col-->
+														<div class="col-md-6 fv-row">
+															<!--begin::Label-->
+															<label class="required fs-5 fw-bold mb-2">C.I.
+														<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Solo se permiten números de 6 a 10 digitos"></i>
+
+															</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" class="form-control form-control-solid" placeholder="" name="txtci"  pattern="^[a-zA-Z0-9]{6,10}$"
+															required  />
+															<!--end::Input-->
+														</div> 
+														<!--end::Col-->
+														<!--begin::Col-->
+														
+															<div class="col-md-6 fv-row">
+																<label class="required fs-6 fw-bold mb-2">Expedido</label>
+																<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtexpedido" required >
+																	<option value="" >Seleccione...</option>
+																	 <option value="LP">La paz</option>
+																	<option value="SCZ">Santa Cruz</option>
+																	<option value="CO">Cochabamba</option>
+																	<option value="OR">Oruro</option>
+																	<option value="PO">Potosí</option>
+																	<option value="TJ">Tarija</option>
+																	<option value="CH">Chuquisaca</option>
+																	<option value="BE">Beni</option>
+																	<option value="PA">Pando</option>
+															</select>
+															</div>
+														
+														<!--end::Col-->
+													</div>
+													<div class="d-flex flex-column mb-5 fv-row">
+														<!--begin::Label-->
+														<label class="required fs-5 fw-bold mb-2">Celular
+														<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números"></i>
+
+														</label>
+														<!--end::Label-->
+														<!--begin::Input-->
+														<input  type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre" name="txtcelular" required pattern="^[0-9]{7,9}$" id="txtcelular"  />
+														<!--end::I requirednput-->
+													</div>
+													<div class="d-flex flex-column mb-5 fv-row">
+														<label class="required fs-6 fw-bold mb-2">Genero</label>
+														<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..."  name="txtgenero" required >
+															<option value="" >Seleccione...</option>
+															 <option value="F">Femenino</option>
+															<option value="M">Masculino</option>
+													</select>
+													</div>
+													<!--end::Input group-->
+										<div class="from row">
+
+													<div class="col-md-6 fv-row">
+														<label class="required fs-6 fw-bold mb-2">Cargo</label>
+														<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..."  name="txtcargo" required >
+															<option value="" >Seleccione...</option>
+															<option value="Administrador">Administrador</option>
+															<option value="Coordinador">Coordinador</option>
+															<option value="Tecnico">Tecnico</option>
+													
+														</select>
+												
+													
+													</div>
+													<div class="col-md-6 fv-row">
+														<label class="required fs-6 fw-bold mb-2">Responsable de</label>
+														<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..."   name="txtlugarDesignado" required >
+																	<option value="" >Seleccione...</option>
+																	 <option value="1">D-1</option> 
+																	<option value="2">D-2</option> 
+																	<option value="3">D-3</option> 
+																	<option value="4">D-4</option> 
+																	<option value="5">D-5</option> 
+																	<option value="6">D-6</option> 
+																	<option value="7">D-7</option> 
+																	<option value="8">D-8</option> 
+																	<option value="9">D-9</option> 
+																	<option value="10">D-10</option> 
+																	<option value="11">D-11</option> 
+																	<option value="12">D-12</option> 
+																	<option value="13">D-13</option> 
+																	<option value="14">D-14</option> 
+																	<option value="Alcaldia">Alcaldia</option> 
+																</select>
+													</div>
+												</div>
+													<!--begin::Input group-->
+													<!--end::Input group-->
+													
+													
+													<!--end::Input group-->
+												</div>
+												<!--end::Scroll-->
+											</div>
+											<!--end::Modal body-->
+											<!--begin::Modal footer-->
+											<div class="modal-footer flex-center">
+												<!--begin::Button-->
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+												<!--end::Button-->
+												<!--begin::Button-->
+												<button type="submit" id="modadRegistraUsuarios_submit" class="btn btn-primary">
+													<span class="indicator-label">Registrar</span>
+													<span class="indicator-progress">Please wait...
+													<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+												</button>
+												<!--end::Button-->
+											</div>
+											<!--end::Modal footer-->
+										</form>
+										<!--end::Form-->
+									</div>
+								</div>
+							</div>
+							<!--end::Modal - registrar usuarios-->
 							<div class="card-header align-items-center py-5 gap-2 gap-md-5">
 								<div class="card-title">
 									<!--begin::Search-->
@@ -75,267 +277,68 @@
 											</span>
 										<input type="text" data-kt-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Buscar Usuarios" />
 									</div>
+									
 									<!--end::Search-->
 									<!--begin::Export buttons-->
-									<div id="tablaUsuarios_1_export" class="d-none"></div>
+									<div id="kt_datatable_example_1_export" class="d-none"></div>
 									<!--end::Export buttons-->
 								</div>
 								<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 									
 									<!--begin::Export dropdown-->
-									<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-										<i class="ki-duotone ki-exit-down fs-2"><span class="path1"></span><span class="path2"></span></i>
-										Export Report
-									</button>
-									
-									<!--begin::Menu-->
-									<div id="tablaUsuarios_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">
-										<!--begin::Menu item-->
-										<div class="menu-item px-3">
-											<a href="#" class="menu-link px-3" data-kt-export="copy">
-												Copy to clipboard
-											</a>
-										</div>
-										<!--end::Menu item-->
-										<!--begin::Menu item-->
-										<div class="menu-item px-3">
-											<a href="#" class="menu-link px-3" data-kt-export="excel">
-											Export as Excel
-											</a>
-										</div>
-										<!--end::Menu item-->
-										<!--begin::Menu item-->
-										<div class="menu-item px-3">
-											<a href="#" class="menu-link px-3" data-kt-export="csv">
-											Export as CSV
-										</div>
+								<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+									<i class="ki-duotone ki-exit-down fs-2"><span class="path1"></span><span class="path2"></span></i>
+									Export Report
+								</button>
+								<!--begin::Menu-->
+								<div id="kt_datatable_example_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">
+									<!--begin::Menu item-->
+									<div class="menu-item px-3">
+										<a href="#" class="menu-link px-3" data-kt-export="copy">
+										Copy to clipboard
 										</a>
-										<!--end::Menu item-->
-										<!--begin::Menu item-->
-										<div class="menu-item px-3">
-											<a href="#" class="menu-link px-3" data-kt-export="pdf">
-												Export as PDF
-											</a>
-										</div>
-										<!--end::Menu item-->
-								    </div>
-									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modadRegistraUsuarios">Agregar Nuevo</button>
-									<!--end::Menu-->
-									<!--end::Export dropdown-->
-						
-									<!--begin::Hide default export buttons-->
-									<div id="tablausuariosexport" class="d-none"></div>
-									<!--end::Hide default export buttons-->
-								</div>
-								<!--begin::Modal - registrar usuarios-->
-								<div class="modal fade" id="modadRegistraUsuarios" tabindex="-1" aria-hidden="true">
-									<!--begin::Modal dialog-->
-									<div class="modal-dialog modal-dialog-centered mw-650px">
-										<!--begin::Modal content-->
-										<div class="modal-content">
-											<!--begin::Form-->
-											<form class="form" action="{{route("registro.usuario")}}" id="modadRegistraUsuarios_form" method="POST">
-												@csrf
-												<!--begin::Modal header-->
-												<div class="modal-header" id="modadRegistraUsuarios_header">
-													<!--begin::Modal title-->
-													<h2>Registrar Nuevo Usuario</h2>
-													<!--end::Modal title-->
-													<!--begin::Close-->
-													<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-														<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-														<span class="svg-icon svg-icon-1">
-															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-																<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-															</svg>
-														</span>
-														<!--end::Svg Icon-->
-													</div>
-													<!--end::Close-->
-												</div>
-												<!--end::Modal header-->
-												<!--begin::Modal body-->
-												<div class="modal-body py-10 px-lg-17">
-													<!--begin::Scroll-->
-													<div class="scroll-y me-n7 pe-7" id="modadRegistraUsuarios_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#modadRegistraUsuarios_header" data-kt-scroll-wrappers="#modadRegistraUsuarios_scroll" data-kt-scroll-offset="300px">
-														<!--begin::Notice-->
-														<!--begin::Notice-->
-														
-														<!--end::Notice-->
-														<!--end::Notice-->
-														<!--begin::Input group-->
-														<div class="d-flex flex-column mb-5 fv-row">
-															<!--begin::Label-->
-															<label class="required fs-5 fw-bold mb-2">Nombres
-															<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Solo se permiten letras y espacios"></i>
-
-															</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input  type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre" name="txtnombre" pattern="[A-Za-z\s]+"  required  />
-															 {{-- @error('txtnombre')
-																<span style="color: red;">{{ $message }}</span>
-															@enderror --}}
-															<!--end::Input-->
-														</div> 
-														<div class="row mb-5">
-															<!--begin::Col-->
-															<div class="col-md-6 fv-row">
-																<!--begin::Label-->
-																<label class="required fs-5 fw-bold mb-2">Paterno
-															<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten letras, sin espacios"></i>
-
-																</label>
-																<!--end::Label-->
-																<!--begin::Input-->
-																<input type="text" class="form-control form-control-solid" placeholder="" pattern="^[A-Za-záéíóúüñÁÉÍÓÚÜ]+$" name="txtpaterno"  title="Solo se permiten letras y espacios" required  />
-																<!--end::Input-->
-															</div> 
-															<!--end::Col-->
-															<!--begin::Col-->
-															<div class="col-md-6 fv-row">
-																<!--end::Label-->
-																<label class="required fs-5 fw-bold mb-2">Materno
-															<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten letras, sin espacios"></i>
-
-																</label>
-																<!--end::Label-->
-																<!--end::Input-->
-																<input type="text" class="form-control form-control-solid" placeholder="" name="txtmaterno" pattern="^[A-Za-záéíóúüñÁÉÍÓÚÜ]+$" required  />
-																<!--end::Input-->
-															</div> 
-															<!--end::Col-->
-														</div>
-														<!--end::Input group-->
-														<!--begin::Input group-->
-														
-														<div class="row mb-5">
-															<!--begin::Col-->
-															<div class="col-md-6 fv-row">
-																<!--begin::Label-->
-																<label class="required fs-5 fw-bold mb-2">C.I.
-															<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Solo se permiten números de 6 a 10 digitos"></i>
-
-																</label>
-																<!--end::Label-->
-																<!--begin::Input-->
-																<input type="text" class="form-control form-control-solid" placeholder="" name="txtci"  pattern="^[a-zA-Z0-9]{6,10}$"
-																required  />
-																<!--end::Input-->
-															</div> 
-															<!--end::Col-->
-															<!--begin::Col-->
-															
-																<div class="col-md-6 fv-row">
-																	<label class="required fs-6 fw-bold mb-2">Expedido</label>
-																	<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtexpedido" required >
-																		<option value="" >Seleccione...</option>
- 																		<option value="LP">La paz</option>
-																		<option value="SCZ">Santa Cruz</option>
-																		<option value="CO">Cochabamba</option>
-																		<option value="OR">Oruro</option>
-																		<option value="PO">Potosí</option>
-																		<option value="TJ">Tarija</option>
-																		<option value="CH">Chuquisaca</option>
-																		<option value="BE">Beni</option>
-																		<option value="PA">Pando</option>
-																</select>
-																</div>
-															
-															<!--end::Col-->
-														</div>
-														<div class="d-flex flex-column mb-5 fv-row">
-															<!--begin::Label-->
-															<label class="required fs-5 fw-bold mb-2">Celular
-															<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números"></i>
-
-															</label>
-															<!--end::Label-->
-															<!--begin::Input-->
-															<input  type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre" name="txtcelular" required pattern="^[0-9]{7,9}$" id="txtcelular"  />
-															<!--end::I requirednput-->
-														</div>
-														<div class="d-flex flex-column mb-5 fv-row">
-															<label class="required fs-6 fw-bold mb-2">Genero</label>
-															<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtgenero" required >
-																<option value="" >Seleccione...</option>
- 																<option value="F">Femenino</option>
-																<option value="M">Masculino</option>
-														</select>
-														</div>
-														<!--end::Input group-->
-														<div class="col-md-6 fv-row">
-															<label class="required fs-6 fw-bold mb-2">Cargo</label>
-															<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtcargo" required >
-																<option value="" >Seleccione...</option>
-																<option value="Administrador">Administrador</option>
-																<option value="Coordinador">Coordinador</option>
-																<option value="Tecnico">Tecnico</option>
-														
-															</select>
-													
-														
-													</div>
-														<!--begin::Input group-->
-														<div class="d-flex flex-column mb-5 fv-row">
-															<label class="required fs-6 fw-bold mb-2">Responsable de</label>
-																	<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtlugarDesignado" required >
-																		<option value="" >Seleccione...</option>
- 																		<option value="1">Distrito 1</option> 
-																		<option value="2">Distrito 2</option> 
-																		<option value="3">Distrito 3</option> 
-																		<option value="4">Distrito 4</option> 
-																		<option value="5">Distrito 5</option> 
-																		<option value="6">Distrito 6</option> 
-																		<option value="7">Distrito 7</option> 
-																		<option value="8">Distrito 8</option> 
-																		<option value="9">Distrito 9</option> 
-																		<option value="10">Distrito 10</option> 
-																		<option value="11">Distrito 11</option> 
-																		<option value="12">Distrito 12</option> 
-																		<option value="13">Distrito 13</option> 
-																		<option value="14">Distrito 14</option> 
-																		<option value="Alcaldia">Alcaldia</option> 
-																	</select>
-														</div>
-														<!--end::Input group-->
-														
-														
-														<!--end::Input group-->
-													</div>
-													<!--end::Scroll-->
-												</div>
-												<!--end::Modal body-->
-												<!--begin::Modal footer-->
-												<div class="modal-footer flex-center">
-													<!--begin::Button-->
-													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-													<!--end::Button-->
-													<!--begin::Button-->
-													<button type="submit" id="modadRegistraUsuarios_submit" class="btn btn-primary">
-														<span class="indicator-label">Registrar</span>
-														<span class="indicator-progress">Please wait...
-														<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-													</button>
-													<!--end::Button-->
-												</div>
-												<!--end::Modal footer-->
-											</form>
-											<!--end::Form-->
-										</div>
 									</div>
+									<!--end::Menu item-->
+									<!--begin::Menu item-->
+									<div class="menu-item px-3">
+										<a href="#" class="menu-link px-3" data-kt-export="excel">
+										Export as Excel
+										</a>
+									</div>
+									<!--end::Menu item-->
+									<!--begin::Menu item-->
+									<div class="menu-item px-3">
+										<a href="#" class="menu-link px-3" data-kt-export="csv">
+										Export as CSV
+										</a>
+									</div>
+									<!--end::Menu item-->
+									<!--begin::Menu item-->
+									<div class="menu-item px-3">
+										<a href="#" class="menu-link px-3" data-kt-export="pdf">
+										Export as PDF
+										</a>
+									</div>
+									<!--end::Menu item-->
 								</div>
-								<!--end::Modal - registrar usuarios-->
+								<!--end::Menu-->
+								<!--end::Export dropdown-->
+
+								<!--begin::Hide default export buttons-->
+								<div id="kt_datatable_example_buttons" class="d-none"></div>
+									<!--end::Hide default export buttons-->
+									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modadRegistraUsuarios">Agregar Nuevo</button>
+								</div>
+								
 							</div>
 							<div class="card-body">
-								<table class="table align-middle border rounded table-row-dashed fs-6 g-5" id="tablaUsuarios">
+								<table class="table align-middle border rounded table-row-dashed fs-6 g-5" id="tableDeUsuarios">
 									<thead>
 										<tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
-											<th class="min-w-100px">name</th>
+											<th class="min-w-100px">Nombre</th>
 											<th class="min-w-100px">Paterno</th>
 											<th class="min-w-100px">Materno</th>
-											<th class="min-w-100px">Status</th>
+											<th class="min-w-100px">Estado</th>
 											<th class="min-w-100px">C.I.</th>
 											<th class="text-end min-w-75px">Expedido</th>
 											<th class="min-w-100px">Cargo</th>
@@ -371,15 +374,12 @@
 											</td>
 											
 											<td class="text-end pe-0">{{$itemus->Lugar_Designado}}</td>
-											<!--begin::Action=-->
-											@if ($itemus->Cargo=='Administrador')
-												
-											@else
-												
+											
 											<td class="text-end">
+												
 												<a href="#" class="btn btn-sm btn-light btn-active-light-primary"
 													data-kt-menu-trigger="click"
-													data-kt-menu-placement="bottom-end">Actions
+													data-kt-menu-placement="bottom-end">Accion
 													<!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
 													<span class="svg-icon svg-icon-5 m-0">
 														<svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -391,6 +391,10 @@
 													</span>
 													<!--end::Svg Icon--></a>
 												<!--begin::Menu-->
+												<!--begin::Action=-->
+												@if ($itemus->Cargo=='Administrador')
+													
+												@else
 												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
 													data-kt-menu="true">
 													<!--begin::Menu item-->
@@ -410,9 +414,9 @@
 													<!--end::Menu item-->
 												</div>
 												<!--end::Menu-->
+												@endif
 											</td>
 											<!--end::Action=-->
-											@endif
 											
 
 													<!--begin::Modal - modificar usuarios-->

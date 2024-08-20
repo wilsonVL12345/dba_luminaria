@@ -123,6 +123,8 @@ class detalleController extends Controller
     {
         /* dd($request->all()); */
         //se a creado un acceso directo para que pueda acceder a esa carpeta
+
+
         $espera = 'En Espera';
         $tipTrabajo = '';
         $apoyo = '';
@@ -143,7 +145,7 @@ class detalleController extends Controller
             $apoyo = ' ' . 'Asistencia' . ' ' . $request->txtapoyo;
         }
         $request->validate([
-            'imgcarta' => 'image|max:8048'   // estas son las reglas que tiene que cumplir para poder subir la imagen required| lo quitamos
+            'imgcarta' => 'image|mimes:png,jpg,jpeg|max:8048' // estas son las reglas que tiene que cumplir para poder subir la imagen required| lo quitamos
         ]);
         try {
 

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 
 <html lang="en">
 <!--begin::Head-->
 
 <head>
     <base href="../../../">
-    <title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel by Keenthemes</title>
+    <title>Direccion de luminarias publicas</title>
     <meta charset="utf-8" />
     <meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
     <meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
@@ -46,11 +46,11 @@
                         </a>
                         <!--end::Logo-->
                         <!--begin::Title-->
-                        <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Welcome to Metronic</h1>
+                        <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Bienvenido a la Direccion de Sistemas</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
-                        <p class="fw-bold fs-2" style="color: #986923;">Discover Amazing Metronic
-                            <br />with great build tools
+                        <p class="fw-bold fs-2" style="color: #986923;">Se le recomienda Cambiar su contraseña
+                            <br />Cada 3 meses
                         </p>
                         <!--end::Description-->
                     </div>
@@ -73,11 +73,11 @@
                             <!--begin::Heading-->
                             <div class="text-center mb-10">
                                 <!--begin::Title-->
-                                <h1 class="text-dark mb-3">Setup New Password</h1>
+                                <h1 class="text-dark mb-3">Cambiar Contraseña</h1>
                                 <!--end::Title-->
                                 <!--begin::Link-->
-                                <div class="text-gray-400 fw-bold fs-4">Already have reset your password ?
-                                    <a href="../../demo1/dist/authentication/layouts/aside/sign-in.html" class="link-primary fw-bolder">Sign in here</a>
+                                <div class="text-gray-400 fw-bold fs-4">Quieres Inisiar Sesion?
+                                    <a href="../../demo1/dist/authentication/layouts/aside/sign-in.html" class="link-primary fw-bolder">Ingresar al Sistema</a>
                                 </div>
                                 <!--end::Link-->
                             </div>
@@ -87,11 +87,11 @@
                                 <!--begin::Wrapper-->
                                 <div class="mb-1">
                                     <!--begin::Label-->
-                                    <label class="form-label fw-bolder text-dark fs-6">Password</label>
+                                    <label class="form-label fw-bolder text-dark fs-6">Nueva Contraseña</label>
                                     <!--end::Label-->
                                     <!--begin::Input wrapper-->
                                     <div class="position-relative mb-3">
-                                        <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" autocomplete="off" />
+                                        <input class="form-control form-control form-control-solid" type="password" placeholder="" name="password" autocomplete="off" />
                                         <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                                             <i class="bi bi-eye-slash fs-2"></i>
                                             <i class="bi bi-eye fs-2 d-none"></i>
@@ -109,13 +109,13 @@
                                 </div>
                                 <!--end::Wrapper-->
                                 <!--begin::Hint-->
-                                <div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div>
+                                <div class="text-muted">Usar 8 o mas Caracterteres con Numero,Letras y Simbolos</div>
                                 <!--end::Hint-->
                             </div>
                             <!--end::Input group=-->
                             <!--begin::Input group=-->
                             <div class="fv-row mb-10">
-                                <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
+                                <label class="form-label fw-bolder text-dark fs-6">Confirmar Contraseña</label>
                                 <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm-password" autocomplete="off" />
                             </div>
                             <!--end::Input group=-->
@@ -177,3 +177,4 @@
 <!--end::Body-->
 
 </html>
+

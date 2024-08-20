@@ -232,22 +232,14 @@
 										</div>
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
-										<div class="menu-item px-5">
-											<a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">
-												<span class="menu-text">My Projects</span>
-												<span class="menu-badge">
-													<span
-														class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
-												</span>
-											</a>
-										</div>
+										
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
 										<div class="menu-item px-5 my-1">
-											<a href="../../demo1/dist/account/settings.html"
-												class="menu-link px-5">Restablecer Contraseña</a>
+											<a href="{{url('/cambiar/contrasena'.session('id')) }}"
+												class="menu-link px-5">Cambiar Contraseña</a>
 										</div>
-										<!--end::Menu item-->
+										<!--end::Menu item-->	
 										<div class="separator my-2"></div>
 
 										<!--begin::Menu item-->

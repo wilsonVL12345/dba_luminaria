@@ -89,7 +89,7 @@
 									<div class="from row">
 										<div class="col-md-6 mb-3">
 											<label for="imgcarta" class=" fs-5 fw-bold mb-2">Carta</label>
-											<input type="file" id="imgcarta"  name="imgcarta" accept="image/*" class="form-control">
+											<input type="file" id="imgcarta"  name="imgcarta" accept="image/png, image/jpeg" class="form-control">
 												@error('imgcarta')
 													<small class="text-danger">{{$message}}</small>
 												@enderror
@@ -166,7 +166,7 @@
     <span class="spinner-border text-primary" role="status"></span>
     <span class="text-gray-800 fs-6 fw-semibold mt-5">Loading...</span>
 </div>
-<script>
+{{-- <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		const form = document.getElementById('formagendar');
 		const loadingEl = document.querySelector('.page-loader');
@@ -183,6 +183,37 @@
 			}, 100);
 		});
 	});
-	</script>
+	</script> --}}
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const form = document.getElementById('formagendar');
+			const loadingEl = document.querySelector('.page-loader');
+		
+			form.addEventListener('submit', function() {
+				// Mostrar el loading
+				loadingEl.style.display = 'flex';
+		
+				// El formulario se enviará normalmente
+			});
+		});
+		</script>
+		<style>
+					/* CSS para centrar el icono de cargando */
+					.page-loader {
+    position: fixed; /* Fija el loader en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    height: 100%; /* Ocupa todo el alto de la pantalla */
+    z-index: 9999; /* Asegura que esté por encima de otros elementos */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+    display: flex; /* Habilita Flexbox para centrar contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    display: none; /* Oculto por defecto */
+}
+
+		</style>
+		
 @endsection
 @endcan

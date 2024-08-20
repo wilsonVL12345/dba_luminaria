@@ -30,6 +30,7 @@
                                         <!--begin::Modal content-->
                                         <div class="modal-content">
                                             <!--begin::Form-->
+                                            {{-- formulario de registro de equipamiento --}}
                                             <form class="form" action="{{route("registro.equipamiento")}}" id="forregistrarEquipamiento" data-kt-redirect="assets/dist/apps/customers/list.html" method="POST" >
                                                 @csrf
                                                 <!--begin::Modal header-->

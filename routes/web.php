@@ -55,18 +55,25 @@ Route::middleware('auth', 'verified')->group(function () {
 
     //rutas para la parte de usuarios ----------------------------------------------------------------------------------------------------
     Route::get('/usuario/usuarios', [UserController::class, 'users'])->name('usuario.usuarios')->middleware('can:user.show');
-    Route::get('/usuario/bloquear/{id}', [UserController::class, 'bloquear'])->name('usuario.bloquear');
-    Route::get('/usuario/desbloquear/{id}', [UserController::class, 'desbloquear'])->name('usuario.bloquear');
+    /*  Route::get('/usuario/bloquear/{id}', [UserController::class, 'bloquear'])->name('usuario.bloquear');
+    Route::get('/usuario/desbloquear/{id}', [UserController::class, 'desbloquear'])->name('usuario.bloquear'); */
     Route::get('/usuario/perfil/{id}', [UserController::class, 'perfil'])->name('usuario.perfil');
     Route::get('/eliminar/usuario{id}', [UserController::class, 'destroy'])->name('eliminar.usuario')->middleware('can:user.delete');
-
+    // cambiar contraseña
+    Route::get('/cambiar/contrasena{id}', [UserController::class, 'cambiarContrasena'])->name('cambiar.contrasena');
 
     //ruta para agregar un nuevo usuario
     Route::post('/registro/usuario', [UserController::class, 'create'])->name('registro.usuario')->middleware('can:user.create');
     //ruta para editar usuario
     Route::post('/editar/usuario', [UserController::class, 'edit'])->name('editar.usuario')->middleware('can:user.edit');
 
+    Route::get('/reset-password/{token}', [UserController::class, 'create'])
+        ->middleware('guest')
+        ->name('password.reset');
 
+    Route::post('/reset-password', [NewPasswordController::class, 'store'])
+        ->middleware('guest')
+        ->name('password.store');
 
     //ruta para ver  distritos----------------------------------------------------------------------
     Route::get('/detallesDistritos', [distritoController::class, 'index'])->name('detalles.Distritos')->middleware('can:Distritos.show');

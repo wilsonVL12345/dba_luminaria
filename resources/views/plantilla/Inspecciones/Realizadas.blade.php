@@ -296,7 +296,7 @@
 															<!--begin::Modal body-->
 															<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
 																<!--begin:Form-->
-																<form id="kt_modal_new_target_form" class="form" action="{{route('inspecciones.editrealizadas',$item->id)}}" method="POST" enctype="multipart/form-data">
+																<form id="formInspeccionModificarRealizado" class="form" action="{{route('inspecciones.editrealizadas',$item->id)}}" method="POST" enctype="multipart/form-data">
 																	@csrf
 																	<!--begin::Heading-->
 																	<div class="mb-13 text-center">

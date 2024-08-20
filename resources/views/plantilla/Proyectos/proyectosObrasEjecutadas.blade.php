@@ -266,7 +266,7 @@
 																<!--begin::Modal content-->
 													<div class="modal-content">
 														<!--begin::Form-->
-														<form action="{{route('modificar.ObrasEjecuatas',$items->id)}}" id="formproyecto" method="POST" >
+														<form action="{{route('modificar.ObrasEjecuatas',$items->id)}}" id="formObrasEjecutadas" method="POST" >
 															@csrf
 							
 															<div class="from row">
