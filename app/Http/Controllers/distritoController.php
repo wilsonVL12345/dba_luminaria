@@ -13,16 +13,17 @@ use Yajra\DataTables\Facades\DataTables;
 
 class distritoController extends Controller
 {
+
     /* public function __construct()
     {
         $this->middleware('can:Distritos.edit')->only('edit');
-    } */
+    }  */
 
     public function index(Request $request)
     {
         if (session('cargo') == 'Administrador') {
             // Verifica si la solicitud es Ajax
-            if ($request->ajax()) {
+            /* if ($request->ajax()) {
                 try {
                     // Consulta directa a la tabla personas
                     $todoUrban = urbanizacion::select('id as idurb', 'Nrodistrito', 'nombre_urbanizacion');
@@ -33,10 +34,11 @@ class distritoController extends Controller
                     // Manejar errores de consulta a la base de datos
                     return response()->json(['error' => 'Error al recuperar los datos de personas'], 500);
                 }
-            }
+            } */
 
             // Consultas para las vistas
-            $todoUrban = urbanizacion::orderBy('id', 'desc')
+            $todoUrban = urbanizacion::select('id', 'Nrodistrito', 'nombre_urbanizacion')
+                ->orderBy('id', 'desc')
                 ->where('nombre_urbanizacion', '<>', '')
                 ->get();
             $distritos = Distrito::where('id', '<>', 15)->get();
@@ -49,7 +51,7 @@ class distritoController extends Controller
             ]);
         } else {
             // Verifica si la solicitud es Ajax
-            if ($request->ajax()) {
+            /* if ($request->ajax()) {
                 try {
                     // Consulta directa a la tabla urbanizacion
                     $todoUrban = urbanizacion::select('id as idurb', 'Nrodistrito', 'nombre_urbanizacion')
@@ -62,7 +64,7 @@ class distritoController extends Controller
                     return response()->json(['error' => 'Error al recuperar los datos de personas'], 500);
                 }
             }
-
+ */
             // Consultas para las vistas
             $todoUrban = urbanizacion::orderBy('id', 'desc')
                 ->where('Nrodistrito', session('Lugar_Designado'))
@@ -79,7 +81,6 @@ class distritoController extends Controller
             ]);
         }
     }
-
 
     /**
      * Show the form for creating a new resource.

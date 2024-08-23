@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\distrito;
 use App\Models\lista_accesorio;
 use App\Models\lista_luminarias_retirada;
+use App\Models\luminarias_reutilizada;
 use App\Models\urbanizacion;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +25,7 @@ class luminaria_retiradasController extends Controller
             /*  $listazona = distrito::select('Zona_Urbanizacion')->distinct()->get(); */
             $listazona = urbanizacion::all();
             $listaaccesorios = lista_accesorio::all();
-            $listaluminaria = lista_luminarias_retirada::all();
+            // $listaluminaria = lista_luminarias_retirada::all();
             return view('plantilla.Proyectos.proyectosLumRetiradas', [
                 'listazona' => $listazona,
                 'listadistritos' => $listadistrito,
@@ -171,7 +172,17 @@ class luminaria_retiradasController extends Controller
             return back()->with("incorrecto", "Error al Registrar Luminarias Retiradas: " . $e->getMessage());
         }
     }
+    function editLuminariasRetiradasShow($id)
+    {
+        $item = datos_luminaria_retirada::find($id);
+        $listadistritos = Distrito::where('id', '<>', 15)->get();
+        $listazona = urbanizacion::all();
+        $listAccesorios = lista_accesorio::all();
 
+        $datosLum = datos_luminaria_retirada::find($id);
+        $listalum = lista_luminarias_retirada::where('datos_luminaria_id', $id)->get();
+        return view('plantilla.Proyectos.editarProyectoRetiradasDetalles', compact('item', 'listadistritos', 'listazona', 'listAccesorios', 'datosLum', 'listalum'));
+    }
     function editretirada(Request $request, $id)
     {
         try {

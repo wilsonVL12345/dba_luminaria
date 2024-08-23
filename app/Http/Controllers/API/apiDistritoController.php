@@ -14,7 +14,7 @@ class apiDistritoController extends Controller
      */
     public function index()
     {
-        $urb = urbanizacion::all();
+        $urb = urbanizacion::select('id', 'Nrodistrito', 'nombre_urbanizacion')->get();
         /* $distritos = distrito::whereBetween('id', [1000, 1013])->get(); */
         return response()->json($urb);
     }

@@ -54,7 +54,7 @@
 <script src="{{ asset('assets/js/usuario/tabla.js') }}" defer></script>
 <script src="{{ asset('assets/js/usuario/estado.js') }}" defer></script>
 
-<script src="{{ asset('assets/js/agendar/flatpickrAge.js') }}" defer></script>
+<script src="{{ asset('assets/js/flatpickrAge.js') }}" defer></script>
 <script src="{{ asset('assets/js/agendar/filtraUrb.js') }}" defer></script>
 <script src="{{ asset('assets/js/agendar/apoyocarro.js') }}" defer></script>
 

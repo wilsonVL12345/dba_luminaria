@@ -45,6 +45,7 @@ Route::get('/retiradasFin/proyecto', [apiProyectoController::class, 'proyectosFi
 
 Route::get('/espera/detalles', [apiDetalleController::class, 'detallesEspera']);
 Route::get('/finalizado/detalles', [apiDetalleController::class, 'detallesFinalizados']);
+Route::get('/fechas/trabajo', [apiDetalleController::class, 'fechasDetalles']);
 
 Route::get('/atencion/apidetall', [apiDetalleController::class, 'infoatencion']);
 Route::get('/lista/urbanizacion', [apiDetalleController::class, 'listUbanizacion']);

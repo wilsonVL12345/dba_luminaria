@@ -388,13 +388,14 @@ let proyectoAlmacen = function () {
                         extend: 'pdfHtml5',
                         title: documentTitle,
                         exportOptions: {
-                            columns: ':not(:last-child)'
+                            columns: [0, 1, 2, 3 ,4 ,5,6]  // Excluye la columna 6 (índice 6)
+
                         },
                         customize: function(doc) {
                              // Establecer la orientación de la página en horizontal
                              doc.pageOrientation = 'landscape';
                            // Ajustar el ancho de las columnas (50% para "Distrito", 50% para "Urbanización")
-                              doc.content[1].table.widths = ['15%', '7%', '29%', '10%', '10%', '8%', '15%', '6%']; // Reducimos el ancho de la primera columna
+                              doc.content[1].table.widths = ['15%', '7%', '29%', '10%', '10%', '8%', '21%',]; // Reducimos el ancho de la primera columna
 
                                // Centrar el contenido de la primera columna
                                 doc.content[1].table.body.forEach(function(row) {

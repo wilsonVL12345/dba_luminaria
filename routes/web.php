@@ -121,11 +121,15 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/detalles/luminarias/retiradas/{id}', [luminaria_retiradasController::class, 'retiradaDetalle'])->name('detalles.luminarias.retiradas')->middleware('can:proyecto.Retirado.show');
     Route::post('/modificar/retirados/{id}', [luminaria_retiradasController::class, 'editretirada'])->name('modificar.retirados')->middleware('can:proyecto.Retirado.edit');
     Route::get('/eliminar/retirada{id}', [luminaria_retiradasController::class, 'destroy'])->name('eliminar.retirada')->middleware('can:proyecto.Retirado.delete');
+    Route::get('/proyectos/luminariasRetiradas{id}', [luminaria_retiradasController::class, 'editLuminariasRetiradasShow'])->name('proyectoss.luminariasRetiradas')->middleware('can:proyecto.Retirado.edit');
 
     //rutas proyectos  ---------------------------------------------------------------------------------------------------------
     // para lo que es almacen
     Route::get('/proyectos/almacen', [proyectoController::class, 'index'])->name('proyectos.almacen')->middleware('can:proyecto.show');
     Route::post('/registro/almacen', [proyectoController::class, 'create'])->name('registro.almacen')->middleware('can:proyecto.create');
+    Route::get('/showModificar/almacen/{id}', [proyectoController::class, 'editShowEsperaAlmacen'])->name('showmodificar.almacen')->middleware('can:proyecto.edit');
+    Route::get('/showModificar/obras/{id}', [proyectoController::class, 'editShowObras'])->name('showmodificar.obras')->middleware('can:proyecto.edit');
+
     Route::post('/modificar/almacen/{id}', [proyectoController::class, 'editEsperaAlmacen'])->name('modificar.almacen')->middleware('can:proyecto.edit');
     Route::post('/modificar/ObrasEjecuatas/{id}', [proyectoController::class, 'editObrasEjecutadas'])->name('modificar.ObrasEjecuatas')->middleware('can:proyecto.edit');
     Route::get('/eliminar/proyecto{id}', [proyectoController::class, 'destroy'])->name('eliminar.proyecto')->middleware('can:proyecto.delete');
@@ -153,6 +157,8 @@ Route::middleware('auth', 'verified')->group(function () {
     //ruta para ver los detalles generales de los trabajos------------------------------------------------------------------------------------------
     Route::get('/detalles/espera', [detalleController::class, 'index'])->name('detalles.espera')->middleware('can:detallesGen.show');
     Route::get('/detalles/realizados', [detalleController::class, 'realizados'])->name('detalles.realizados')->middleware('can:detallesGen.show');
+    Route::get('/detalles/realizados/edit{id}', [detalleController::class, 'editRealizadosShow'])->name('detalles.realizadosEdit')->middleware('can:detallesGen.edit');
+
     Route::get('detalle/realizados/informacion/{id}', [detalleController::class, 'DetallesRealizado'])->name('detalle.realizados.informacion')->middleware('can:detallesGen.show');
     Route::get('/eliminar/detallegen{id}', [detalleController::class, 'destroy'])->name('eliminar.detallegen')->middleware('can:detallesGen.delete');
 

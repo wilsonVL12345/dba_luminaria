@@ -7,52 +7,18 @@
 	<div class="toolbar" id="kt_toolbar">
 		<div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Información de Zonas y Urbanizaciones</h1>
+				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">&nbsp;&nbsp; ANALISIS DE ACTIVIDADES DE MANTENIMIENTO, INSPECCION Y PROYECTOS </h1>
 
 				<span class="h-20px border-gray-300 border-start mx-4"></span>
 			</div>
 		</div>
 	</div>
 </div>
-
-	{{-- <div class="post d-flex flex-column-fluid" id="kt_post">
-		<!--begin::Container-->
-		<div id="kt_content_container" class="container-xxl"> --}}
-			<!--begin::Navbar-->
-
-			{{--
-								<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-												 <div class="card card-bordered">
-													<div class="card-body">
-														<div id="graficosdetalles"  style="height: 350px;"></div>
-													</div>
-												</div>
-											</div>
-											--}}
-								{{-- <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-									<div class="card card-bordered">
-										<div class="card-body">
-											<div id="graficosproyectos"  style="height: 350px;"></div>
-										</div>
-									</div>
-								</div> --}}
-								{{-- <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-									<div class="card card-bordered">
-										<div class="card-body">
-											<div id="graficosinspecciones"  style="height: 350px;"></div>
-										</div>
-									</div>
-								</div> --}}
-		{{-- </div>
-
-	</div> --}}
 	 {{-- para la parte de detalles --}}
 		<div class="post d-flex flex-column-fluid" id="kt_post">
 			<div id="kt_content_container" class="container-xxl">
 					<div class="row g-5 g-xl-10">
-						<h2 class="responsive-heading">
-							ANÁLISIS DE ACTIVIDADES DE  MANTENIMIENTO MENSUAL Y ANUAL DE LA CIUDAD EL ALTO
-							</h2>
+						
 							<div class="col-xl-4 mb-xl-10">
 
 								<div class="card card-flush h-md-100">
@@ -108,10 +74,7 @@
 		<div id="kt_content_container" class="container-xxl">
 				<div class="row g-5 g-xl-10">
 
-					<h2 class="responsive-heading">
-						ANÁLISIS DE ACTIVIDADES DE  INSPECCION MENSUAL Y ANUAL DE LA CIUDAD DE EL ALTO
-
-						</h2>
+					
 
 						<div class="col-xl-4 mb-xl-10">
 								<div class="card card-flush h-md-100">
@@ -167,9 +130,7 @@
 	<div class="post d-flex flex-column-fluid" id="kt_post">
 			<div id="kt_content_container" class="container-xxl">
 					<div class="row g-5 g-xl-10">
-						<H2 class="responsive-heading">
-							ANÁLISIS DE ACTIVIDADES DE  PROYECTOS  MENSUAL Y ANUAL DE LA CIUDAD DE EL ALTO
-						</H2>
+						
 						<style>
 							.responsive-heading {
 							  font-family: Arial, sans-serif;

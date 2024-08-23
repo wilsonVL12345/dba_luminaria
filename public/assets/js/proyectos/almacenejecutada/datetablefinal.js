@@ -280,13 +280,14 @@ let proyectoEjecutado = function () {
                         extend: 'pdfHtml5',
                         title: documentTitle,
                         exportOptions: {
-                            columns: ':not(:last-child)'
+                            columns: [0, 1, 2, 3 ,4 ,5]  // Excluye la columna 6 (índice 6)
+
                         },
                         customize: function(doc) {
                              // Establecer la orientación de la página en horizontal
                              doc.pageOrientation = 'landscape';
                            // Ajustar el ancho de las columnas (50% para "Distrito", 50% para "Urbanización")
-                              doc.content[1].table.widths = ['15%', '6%', '33%', '10%', '20%', '10%', '6%']; // Reducimos el ancho de la primera columna
+                              doc.content[1].table.widths = ['21%', '6%', '33%', '10%', '20%', '10%', ]; // Reducimos el ancho de la primera columna
 
                                // Centrar el contenido de la primera columna
                                 doc.content[1].table.body.forEach(function(row) {
@@ -299,7 +300,7 @@ let proyectoEjecutado = function () {
                                 });
                                 // Centrar el contenido de la ultima columna
                                 doc.content[1].table.body.forEach(function(row) {
-                                    row[5].alignment = 'center'; // Columna "Distrito" (índice 0)
+                                    row[4].alignment = 'center'; // Columna "Distrito" (índice 0)
                                 });
                             // Centrar el contenido del PDF de las columnas el texto
                             // doc.content[1].table.widths = Array(doc.content[1].table.body[0].length).fill('*');

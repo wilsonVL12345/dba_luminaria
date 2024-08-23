@@ -183,7 +183,7 @@
 													</div> --}}
 											@can('detallesGen.edit')
 											<div class="menu-item px-3">
-														<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarRealizado{{$itemtrab->id}}"
+														<a href="{{url('/detalles/realizados/edit'.$itemtrab->id) }}" 
 															class="menu-link px-3">Editar</a>
 													</div>
 													<!--end::Menu item-->
@@ -253,7 +253,7 @@
 											@can('detallesGen.edit')
 
 											{{-- modal para modificar trabajos realizados --}}
-											<div class="modal fade" id="modalModificarRealizado{{$itemtrab->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+											{{-- <div class="modal fade" id="modalModificarRealizado{{$itemtrab->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 												<!--begin::Modal dialog-->
 												<div class="modal-dialog mw-1000px">
 													<!--begin::Modal content-->
@@ -332,7 +332,6 @@
 																			
 																								
 																			</div>
-																			{{-- esta parte no esta visible --}}
 																			<div class="col-md-3 mb-3" id="apoyoDistR"  style="display: none;" >
 																				
 																					@php
@@ -412,7 +411,7 @@
 														</div>
 													</div>
 												</div>
-											</div>
+											</div> --}}
 											@endcan
 											{{-- endmodal para modificar trabajos realizados --}}
 										</tr>

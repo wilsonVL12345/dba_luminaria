@@ -28,7 +28,7 @@
 	{{-- todo el lugar que te interesa --}}
 	<div class="post d-flex flex-column-fluid" id="kt_post">
 		<!--begin::Container-->
-		<div id="kt_content_container" class="container">
+		<div id="kt_content_container" class="container ">
 										<div class="card mb-5 mb-xl-10">
 											<div class="card-body pt-9 pb-0">
 												<div class="margin ">
@@ -66,7 +66,7 @@
                                                                                 </label>
                                                                                 <!--end::Label-->
                                                                                 <!--begin::Input-->
-                                                                                <input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de la Urbanizacion" name="txtzonaUrbanizacionm" id="txtzonaUrbanizacionm" value="{{$urbEdit->nombre_urbanizacion}}" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" required/>
+                                                                                <input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de la Urbanizacion" name="txtzonaUrbanizacionm" id="txtzonaUrbanizacionm" value="{{$urbEdit->nombre_urbanizacion}}" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*"  required oninput="this.value = this.value.toUpperCase();" required/>
                                                                                 <!--end::Input-->
                                                                             </div>
                                                                             <!--end::Col-->

@@ -36,7 +36,7 @@
 				<div class="card-body pt-9 pb-0">
 					<div class="card-body pt-9 pb-0">
 						<div class="margin">
-                            <form action="{{route('registro.almacen')}}" id="formproyecto" method="POST" >
+                            <form action="" id="formproyecto">
                                 @csrf
 
 								<div class="from row">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\proyecto;
 use App\Models\distrito;
 use App\Models\accesorio;
+use App\Models\lista_accesorio;
 use App\Models\luminarias_reutilizada;
 use App\Models\luminaria;
 use App\Models\urbanizacion;
@@ -69,7 +70,7 @@ class proyectoController extends Controller
      */
     public function create(Request $request)
     {
-        /* dd($request->all()); */
+        // dd($request);
 
         $listaTipo = '';
         foreach ($request->selectedStates as $key => $value) {
@@ -170,6 +171,29 @@ class proyectoController extends Controller
             return back()->with("incorrecto", "Error al registrar no agregaste componentes");
         }
     }
+    function editShowObras(Request $request, $id)
+    {
+
+        $proyec = proyecto::find($id);
+        $reutilizada = luminarias_reutilizada::where('Proyectos_id', $id)->get();
+        $accesorios = accesorio::where('Proyectos_id', $id)->get();
+        $luminaria = luminaria::where('Proyectos_id', $id)->get();
+        $listadistrito = Distrito::where('id', '<>', 15)->get();
+        $listAccesorios = lista_accesorio::all();
+        return view('plantilla.Proyectos.editarProyectoObras', compact('id', 'proyec', 'reutilizada', 'accesorios', 'luminaria', 'listadistrito', 'listAccesorios'));
+    }
+    function editShowEsperaAlmacen(Request $request, $id)
+    {
+
+        $proyec = proyecto::find($id);
+        $reutilizada = luminarias_reutilizada::where('Proyectos_id', $id)->get();
+        $accesorios = accesorio::where('Proyectos_id', $id)->get();
+        $luminaria = luminaria::where('Proyectos_id', $id)->get();
+        $listadistrito = Distrito::where('id', '<>', 15)->get();
+        $listAccesorios = lista_accesorio::all();
+        return view('plantilla.Proyectos.editarProyectoAlmacen', compact('id', 'proyec', 'reutilizada', 'accesorios', 'luminaria', 'listadistrito', 'listAccesorios'));
+    }
+
     function editEsperaAlmacen(Request $request, $id)
     {
         try {

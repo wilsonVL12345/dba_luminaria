@@ -48,13 +48,7 @@
                                 columns: ':not(:last-child)'
                             }
                         },
-                       /*  {
-                            extend: 'csvHtml5',
-                            title: documentTitle,
-                            exportOptions: {
-                                columns: ':not(:last-child)'
-                            }
-                        }, */
+                       
                         {
                             extend: 'pdfHtml5',
                             title: documentTitle,
@@ -180,4 +174,4 @@
         urbanizacions.init();
     }); 
 
-   
+ 

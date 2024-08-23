@@ -117,12 +117,18 @@
 																	</tr>
 																	<!--end::Table row-->
 																</thead>
+																<?php
+																	$div="D-";
+																?>
 																<tbody class="fw-semibold text-gray-600">
 																	@foreach ($todoUrban as $itemurb)
 																	<tr class="text-start text-gray-500 fw-bold fs-7">
 																		<td>
-																			<a href="#" class="text-gray-900 text-hover-primary">{{$itemurb->Nrodistrito}}</a>
+																			<a href="#" class="text-gray-900 text-hover-primary">		<?php
+																				echo $div;
+																				?>{{$itemurb->Nrodistrito}}</a>
 																		</td>
+																		
 																		<td>
 																			<a href="#" class="text-gray-900 text-hover-primary">{{$itemurb->nombre_urbanizacion}}</a>
 																		</td>
@@ -322,9 +328,8 @@
 																					<!--begin::Label-->
 																					<label class="required fs-5 fw-bold mb-2">Urbanizacion</label>
 																					<!--end::Label-->
-																					<!--begin::Input-->
-																					<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de la Urbanizacion" name="txtzonaUrba" id="txtzonaUrba" required/>
-																					<!--end::Input-->
+																					<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de la Urbanizacion" name="txtzonaUrba" id="txtzonaUrba" required oninput="this.value = this.value.toUpperCase();" />
+
 																				</div>
 																				<!--end::Input group-->
 																				
@@ -365,14 +370,6 @@
 										</div>
 		</div>
 							
-</div>
-
-
-<div class="page-loader">
-    <!-- Aquí puedes colocar el ícono o animación de cargando -->
-    <div class="spinner-border text-primary" role="status">
-        <span class="sr-only">Cargando...</span>
-    </div>
 </div>
 
 @endsection

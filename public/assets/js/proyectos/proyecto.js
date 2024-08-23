@@ -120,7 +120,7 @@ $(document).ready(function() {
             </div>
         `;
         
-        $("#listaproy").append(nuevoComponenteacc);
+        $("#listaAccesorios").append(nuevoComponenteacc);
          // Cargar opciones para el nuevo selector
          cargarOpcionesSelectoracc(`#txtcomponentes_${accesoriosCount}`);
        
@@ -210,7 +210,7 @@ $(document).ready(function() {
             </div>
         `;
         
-        $("#listaproy").append(nuevoComponenteled);
+        $("#listaLed").append(nuevoComponenteled);
         
         
     });
@@ -255,7 +255,7 @@ $(document).ready(function() {
             </div>
         `;
         
-        $("#listaproy").append(nuevoComponentereacon);
+        $("#listaLuminariasReu").append(nuevoComponentereacon);
         
         
         

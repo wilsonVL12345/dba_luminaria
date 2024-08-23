@@ -216,10 +216,14 @@
 																<!--end::Scroll-->
 																<div class="mb-3">
 																<button  type="button" class="btn btn-dark" id="btnAccesorio"   style="display: none;">Accesorios</button>
-																<button type="button"  class="btn btn-dark" id="btnReacondicionado"  style="display: none; " >Lum. Reacondicionadas</button>
 																<button type="button"  class="btn btn-dark" id="btnLuminaria"  style="display: none;">Luminaria LED</button>
+																<button type="button"  class="btn btn-dark" id="btnReacondicionado"  style="display: none; " >Lum. Reacondicionadas</button>
 																<br>
-																<div id="listaproy">
+																<div id="listaAccesorios">
+																</div>
+																<div id="listaLed">
+																</div>
+																<div id="listaLuminariasReu">
 																</div>
 																</div>
 															</div>
@@ -403,7 +407,7 @@
 											@endcan
 											@can('proyecto.edit')
 											<div class="menu-item px-3">
-														<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarProyAlmacen{{$item->id}}"
+														<a href="{{url('/showModificar/almacen/'.$item->id)}}" 
 															class="menu-link px-3">Editar</a>
 													</div>
 													<!--end::Menu item-->
@@ -425,7 +429,7 @@
 
 											<!--begin::Modal - modificar proyectoAlmacen-->
 											@can('proyecto.edit')
-
+											{{-- se esta eliminando --}}
 											<div class="modal fade" id="modalModificarProyAlmacen{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 												<!--begin::Modal dialog-->
 												<div class="modal-dialog mw-1000px">
@@ -459,7 +463,7 @@
 																<!--begin::Modal content-->
 													<div class="modal-content">
 														<!--begin::Form-->
-														<form action="{{route('modificar.almacen',$item->id)}}" id="formproyectoModificar" method="POST" >
+														{{-- <form action="{{route('modificar.almacen',$item->id)}}" id="formproyectoModificar" method="POST" >
 															@csrf
 							
 															<div class="from row">
@@ -541,10 +545,9 @@
 															<div class="from row">
 																<div class="col-md-6 mb-3">
 																	<label for="txtmodProyEsp" class="required fs-5 fw-bold mb-2">Modalidad
-																		{{-- <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten max 4 digitos numeros o letras "></i> --}}
 
 																	</label>
-																	<input type="text" class="form-control form-control-solid " id="txtmodProyEsp" name="txtmodProyEsp" {{-- pattern="[A-Za-z0-9]{1,4}" --}} value="{{$item->Modalidad}}" required>
+																	<input type="text" class="form-control form-control-solid " id="txtmodProyEsp" name="txtmodProyEsp" value="{{$item->Modalidad}}" required>
 																</div>
 																<div class="col-md-6 mb-3">
 																	<label for="sltipProyEsp" class="required fs-5 fw-bold mb-2">Tipos de Componentes</label>
@@ -584,7 +587,7 @@
 																	</button>
 																	<!--end::Button-->
 																</div>
-															</form>
+														</form> --}}
 														<!--end::Form-->
 													</div>
 																<!--end::Form-->

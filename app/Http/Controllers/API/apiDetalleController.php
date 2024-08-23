@@ -58,17 +58,27 @@ class apiDetalleController extends Controller
     }
 
 
-    public function store(Request $request)
-    {
-        //
-    }
+    /*  */
+
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function fechasDetalles()
     {
-        //
+        /*  $fechasTrabajo = detalle::select('Fecha_Programado')->get();
+        return response()->json($fechasTrabajo); */
+        // Obtener la fecha del primer día del mes actual
+        $inicioMesActual = Carbon::now()->startOfMonth();
+        // Obtener la fecha del último día del tercer mes desde ahora
+        $finTresMeses = Carbon::now()->addMonths(3)->endOfMonth();
+
+        // Filtrar las fechas que están entre el inicio del mes actual y el final de los próximos 3 meses
+        $fechasMante = detalle::select('Fecha_Programado', 'Distritos_id')
+            ->whereBetween('Fecha_Programado', [$inicioMesActual, $finTresMeses])
+            ->get();
+
+        return response()->json($fechasMante);
     }
 
     /**

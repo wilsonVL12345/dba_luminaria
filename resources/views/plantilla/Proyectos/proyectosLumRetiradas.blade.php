@@ -333,7 +333,7 @@
 																	<!--begin::Menu item-->
 																	@can('proyecto.Retirado.edit')
 																	<div class="menu-item px-3">
-																		<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarLumRetiradas{{$item->id}}"
+																		<a href="{{url('/proyectos/luminariasRetiradas'.$item->id)}}"
 																			class="menu-link px-3">Editar</a>
 																	</div>
 																	@endcan
@@ -355,7 +355,7 @@
 															@can('proyecto.Retirado.edit')
 
 														<!--begin::Modal - Modificar Almacen-->
-														<div class="modal fade" id="modalModificarLumRetiradas{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+														{{-- <div class="modal fade" id="modalModificarLumRetiradas{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 															<!--begin::Modal dialog-->
 															<div class="modal-dialog mw-1000px">
 																<!--begin::Modal content-->
@@ -424,7 +424,6 @@
 																													<!--begin::Input-->
 																													<select  aria-label="Select a Country"
 																														data-control="select2"
-																														{{-- data-placeholder="Selec Urb" --}}
 																														data-dropdown-parent="#modalModificarLumRetiradas{{$item->id}}"
 																														class="form-control form-select-solid fw-bolder" name="txtzonaMod" data-id="txtzonaMod">
 																														<option value="{{$item->zona}}">{{$item->zona}}</option>
@@ -484,22 +483,22 @@
 																									<!--end::Input-->
 																								</div>
 																									<!--begin::Modal footer-->
-																					<div class="modal-footer justify-content-end">
-																						<!--begin::Button-->
-																						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-																						<!--end::Button-->
-																						<!--begin::Button-->
-																						<button type="submit" id="modadRegistraUsuarios_submit" class="btn btn-primary">
-																							<span class="indicator-label">Registrar</span>
-																							<span class="indicator-progress">Please wait...
-																							<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-																						</button>
-																						<!--end::Button-->
-																					</div>
-																					<!--end::Modal footer-->
+																									<div class="modal-footer justify-content-end">
+																										<!--begin::Button-->
+																										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+																										<!--end::Button-->
+																										<!--begin::Button-->
+																										<button type="submit" id="modadRegistraUsuarios_submit" class="btn btn-primary">
+																											<span class="indicator-label">Registrar</span>
+																											<span class="indicator-progress">Please wait...
+																											<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+																										</button>
+																										<!--end::Button-->
+																									</div>
+																									<!--end::Modal footer-->
 																									
 																								
-																				</div>
+																					</div>
 																							<!--end::Scroll-->
 																				
 																					
@@ -516,7 +515,7 @@
 																<!--end::Modal content-->
 															</div>
 															<!--end::Modal dialog-->
-														</div>
+														</div> --}}
 														@endcan
 
 															<!--end::Modal - Modificar Almacen-->

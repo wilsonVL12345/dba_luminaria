@@ -107,7 +107,9 @@
 												<!--end::Label-->
 											</label>
 										</div>
-										
+											<div style="display: none;">
+												<input type="text" name="lugarSession" id="lugarSession" value={{session('Lugar_Designado')}}>
+											</div>										
 										<div class="col-md-3 mb-3">
 												<label class="required fs-6 fw-bold mb-2">Fecha Programada
 													<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permite fechas actuales"></i>
@@ -166,24 +168,7 @@
     <span class="spinner-border text-primary" role="status"></span>
     <span class="text-gray-800 fs-6 fw-semibold mt-5">Loading...</span>
 </div>
-{{-- <script>
-	document.addEventListener('DOMContentLoaded', function() {
-		const form = document.getElementById('formagendar');
-		const loadingEl = document.querySelector('.page-loader');
-	
-		form.addEventListener('submit', function(e) {
-			e.preventDefault();
-	
-			// Mostrar el loading
-			loadingEl.style.display = 'flex';
-	
-			// Enviar el formulario
-			setTimeout(() => {
-				form.submit();
-			}, 100);
-		});
-	});
-	</script> --}}
+
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			const form = document.getElementById('formagendar');
@@ -212,6 +197,12 @@
     align-items: center; /* Centra verticalmente */
     display: none; /* Oculto por defecto */
 }
+.highlighted {
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+}
+
 
 		</style>
 		

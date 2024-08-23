@@ -13,7 +13,8 @@ class apilistaAccesoriosController extends Controller
      */
     public function index()
     {
-        $listaAccesorios = Lista_accesorio::orderBy('id', 'desc')->get();
+        $listaAccesorios = Lista_accesorio::select('id', 'Nombre_Item')
+            ->orderBy('id', 'desc')->get();
         return response()->json($listaAccesorios);
     }
 

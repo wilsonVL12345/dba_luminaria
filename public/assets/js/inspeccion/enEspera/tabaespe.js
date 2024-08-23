@@ -63,13 +63,14 @@ let inspeccionEspera = function () {
                         extend: 'pdfHtml5',
                         title: documentTitle,
                         exportOptions: {
-                            columns: ':not(:last-child)'
+                            columns: [0, 1, 2, 4]  // Excluye la columna 6 (índice 6)
+
                         },
                         customize: function(doc) {
                              // Establecer la orientación de la página en horizontal
                            /*   doc.pageOrientation = 'landscape'; */
                            // Ajustar el ancho de las columnas (50% para "Distrito", 50% para "Urbanización")
-                              doc.content[1].table.widths = ['20%', '30%', '10%', '10%', '20%']; // Reducimos el ancho de la primera columna
+                              doc.content[1].table.widths = ['20%', '40%', '20%', '20%']; // Reducimos el ancho de la primera columna
 
                                // Centrar el contenido de la primera columna
                                 doc.content[1].table.body.forEach(function(row) {
@@ -82,7 +83,7 @@ let inspeccionEspera = function () {
                                 });
                                 // Centrar el contenido de la ultima columna
                                 doc.content[1].table.body.forEach(function(row) {
-                                    row[4].alignment = 'center'; // Columna "Distrito" (índice 0)
+                                    row[3].alignment = 'center'; // Columna "Distrito" (índice 0)
                                 });
                             // Centrar el contenido del PDF de las columnas el texto
                             // doc.content[1].table.widths = Array(doc.content[1].table.body[0].length).fill('*');

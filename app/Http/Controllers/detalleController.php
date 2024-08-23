@@ -59,7 +59,7 @@ class detalleController extends Controller
                 ->where('id', session('Lugar_Designado'))->get();
             $disApoyo = distrito::where('id', '<>', 15)->get();
             $listurb = urbanizacion::all();
-            return view('plantilla.DetallesGenerales.Realizados', compact('detallesrealizados', 'listurb', 'disApoyo'/* , 'listdistritos' */));
+            return view('plantilla.DetallesGenerales.Realizados', compact('detallesrealizados', 'listurb', 'disApoyo', 'listdistritos'));
         }
     }
     // en esta parte en donde se llena los datos para ejecutar un trabajo 
@@ -234,63 +234,7 @@ class detalleController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    /* public function edit(Request $request, $id)
-    {
-        $tipTrabajoe = '';
-        $apoyoe = '';
-        $urle = '';
-        if ($request->imgcarta) {
-            $dire = $request->file('imgcarta')->store('public/fileagendar');
-            $urle = Storage::url($dire);
-        }
 
-
-        foreach ($request->tetipTrabres as $tips) {
-            $tipTrabajoe = $tipTrabajoe . ' ' . $tips;
-        }
-
-        if ($request->apoyoDistRe) {
-            $apoyoe = ' ' . 'Asistencia' . ' ' . $request->apoyoDistRe;
-        }
-
-
-        $request->validate([
-            'imgcarta' => 'image|max:8048'   // estas son las reglas que tiene que cumplir para poder subir la imagen required| lo quitamos
-        ]);
-
-
-
-        try {
-            $editdetall = detalle::find($id);
-
-            $editdetall->Distritos_id = $request->sldistrimodi;
-            $editdetall->Zona = $request->txtzonaurb;
-            $editdetall->Nro_Sisco = $request->txtnrosisco;
-            $editdetall->Tipo_Trabajo = $tipTrabajoe . ' ' . $apoyoe;
-            if ($urle) {
-                $editdetall->Foto_Carta = $urle;
-            }
-            if ($request->rnotificar == 1) {
-                $editdetall->Observaciones = 'NOTIFICADO!!!';
-            } else {
-                $editdetall->Observaciones = '';
-            }
-
-            $editdetall->Fecha_Programado = $request->txtfechaprogramada;
-            $editdetall->save();
-            $sql = true;
-        } catch (\Throwable $th) {
-            $sql = false;
-        }
-        if ($sql == true) {
-            return back()->with("correcto", "Dato Modificado Correctamente");
-        } else {
-            return back()->with("incorrecto", "Error al Modificar los datos");
-        }
-    } */
     public function edit(Request $request, $id)
     {
 
@@ -370,6 +314,19 @@ class detalleController extends Controller
         }
     }
  */
+    function editRealizadosShow($id)
+    {
+        $itemtrab = detalle::find($id);
+        $detallesrealizados = detalle::where('Estado', 'Finalizado')->orderBy('id', 'desc')->get();
+        $listdistritos = Distrito::where('id', '<>', 15)->get();
+        $listurb = urbanizacion::all();
+        $disApoyo = distrito::where('id', '<>', 15)->get();
+        $listacc = accesorio::where('Detalles_id', $id)->get();
+        $listAccesorios = lista_accesorio::all();
+
+
+        return view('plantilla.DetallesGenerales.EditRealizados', compact('detallesrealizados', 'listurb', 'listdistritos', 'disApoyo', 'itemtrab', 'listacc', 'listAccesorios'));
+    }
     public function editRealizado(Request $request, $id)
     {
         try {

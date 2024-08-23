@@ -210,7 +210,7 @@
 											@can('proyecto.edit')
 
 													<div class="menu-item px-3">
-														<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarObrasEjecutadas{{$items->id}}"
+														<a href="{{url('/showModificar/obras/'.$items->id)}}"  {{-- data-bs-target="#modalModificarObrasEjecutadas{{$items->id}}" --}}
 															class="menu-link px-3">Editar</a>
 													</div>
 											@endcan
@@ -233,7 +233,7 @@
 											@can('proyecto.edit')
 											
 											<!--begin::Modal - modificar proyectoAlmacen Obras Ejecutadas-->
-											<div class="modal fade" id="modalModificarObrasEjecutadas{{$items->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+											{{-- <div class="modal fade" id="modalModificarObrasEjecutadas{{$items->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 												<!--begin::Modal dialog-->
 												<div class="modal-dialog mw-1000px">
 													<!--begin::Modal content-->
@@ -407,7 +407,7 @@
 													<!--end::Modal content-->
 												</div>
 												<!--end::Modal dialog-->
-											</div>
+											</div> --}}
 											<!--end::Modal - modificar proyectoAlmacen Obras Ejecutadas-->	
 											@endcan
 											</tr>
