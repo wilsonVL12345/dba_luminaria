@@ -36,7 +36,9 @@
 				<div class="card-body pt-9 pb-0">
 					<div class="card-body pt-9 pb-0">
 						<div class="margin">
-                            <form  id="formproyectoModificar" method="POST" >
+														@include('layout.notificacioncrud')
+
+                            <form  id="formproyectoModificar" action="{{route('modificar.ObrasEjecuatas',$proyec->id)}}" method="POST" >
                                 @csrf
 
                                 <div class="from row">
@@ -45,11 +47,11 @@
                                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permite de 6 a 16 digitos numeros y letras"></i>
 
                                         </label>
-                                        <input type="text" class="form-control form-control-solid " id="txtcodProyEsp" name="txtcodProyEsp" pattern="^[a-zA-Z0-9\/\-]{6,16}$" value="{{$proyec->Cuce_Cod}}" required>
+                                        <input type="text" class="form-control form-control-solid " id="txtcodProyEsp" name="txtcodProyObras" pattern="^[a-zA-Z0-9\/\-]{6,16}$" value="{{$proyec->Cuce_Cod}}" required>
                                     </div>
                                     <div class="col-md-2 mb-1">
                                         <label for="sldisProyEsp" class="required fs-5 fw-bold mb-2">Distrito</label>
-                                        <select  aria-label="Select a Country"  class="form-control form-select-solid " data-control="select2" name="sldisProyEsp" data-id="sldisProyEsp" required>
+                                        <select  aria-label="Select a Country"  class="form-control form-select-solid " data-control="select2" name="sldisProyObras" data-id="sldisProyEsp" required>
                                             @foreach ($listadistrito as $dis)
                                             <option value="{{$dis->id}}" {{$proyec->Distritos_id==$dis->id ? 'selected':''}}>{{$dis->Distrito}}</option>
                                             @endforeach
@@ -72,14 +74,14 @@
                                             <!--end::Svg Icon-->
                                             <!--end::Icon-->
                                             <!--begin::Datepicker-->
-                                            <input type="date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="txtfechaEsp" id="txtfechaEsp" value="{{$proyec->Fecha_Ejecutada}}" required />
+                                            <input type="date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="txtfechaObras" id="txtfechaEsp" value="{{$proyec->Fecha_Ejecutada}}" required />
                                             <!--end::Datepicker-->
                                         </div>
                                         <!--end::Input-->
                                     </div>
                                     <div class="col-md-2 mb-1">
                                         <label for="slTrabajom" class="required fs-5 fw-bold mb-2">Trabajo</label>
-                                        <select    class="form-control form-select-solid " data-control="select2" name="slTrabajom" data-id="slTrabajom" required>
+                                        <select    class="form-control form-select-solid " data-control="select2" name="slTrabaObras" data-id="slTrabajom" required>
                                             <option value="Central">Central</option>
                                             @foreach ($listadistrito as $dis)
                                             <option value="{{$dis->Distrito}}" {{$proyec->Distritos_id==$dis->id ? 'selected':''}}>{{$dis->Distrito}}</option>
@@ -92,14 +94,14 @@
                                 <div class="from row">
                                     <div class="col-md-6 mb-3">
                                         <label for="slUrbproyEsp" class="required fs-5 fw-bold mb-2">Urbanizacion</label>
-                                        <select class="form-control form-select-solid" data-control="select2"  name="slUrbproyEsp" data-id="slUrbproyEsp" required>
+                                        <select class="form-control form-select-solid" data-control="select2"  name="slUrbproyObras" data-id="slUrbproyEsp" required>
                                             <option value="{{$proyec->Zona}}">{{$proyec->Zona}}</option>
                                         </select>
                                     </div>
                                     
                                     <div class="col-md-3 mb-3">
                                         <label for="sltipContraProyEsp" class="required fs-5 fw-bold mb-2">Tipo de Contratacion</label>
-                                        <select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="sltipContraProyEsp" required >
+                                        <select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="sltipContraProyObras" required >
                                             <option value="" >Seleccione...</option>
                                             <option value="Bienes" {{$proyec->Tipo_Contratacion=='Bienes'?'selected':''}}>Bienes</option>
                                             <option value="Servicios"{{$proyec->Tipo_Contratacion=='Servicios'?'selected':''}}>Servicios</option>
@@ -107,7 +109,7 @@
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label for="slsubproEsp" class="required fs-5 fw-bold mb-2">Subasta</label>
-                                        <select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="slsubproEsp" required >
+                                        <select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="slsubproObras" required >
                                             <option value="" >Seleccione...</option>
                                             <option value="Si" {{$proyec->Subasta=='Si'?'selected':''}} >Si</option>
                                             <option value="No" {{$proyec->Subasta=='No'?'selected':''}}>No</option>
@@ -120,11 +122,11 @@
                                         <label for="txtmodProyEsp" class="required fs-5 fw-bold mb-2">Modalidad
 
                                         </label>
-                                        <input type="text" class="form-control form-control-solid " id="txtmodProyEsp" name="txtmodProyEsp" value="{{$proyec->Modalidad}}" required>
+                                        <input type="text" class="form-control form-control-solid " id="txtmodProyEsp" name="txtmodProyObras" value="{{$proyec->Modalidad}}" required>
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label for="slsubproEsp" class="required fs-5 fw-bold mb-2">Ejecutado Por</label>
-                                        <select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="slsubproEsp" required >
+                                        <select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="slEjeproObras" required >
                                             <option value="GAMEA" {{$proyec->Ejecutado_Por=='GAMEA'?'selected':''}} >GAMEA</option>
                                             <option value="Externo" {{$proyec->Ejecutado_Por=='Externo'?'selected':''}}>Externo</option>
                                             
@@ -132,7 +134,7 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="sltipProyEsp" class="required fs-5 fw-bold mb-2">Tipos de Componentes</label>
-                                        <input type="text" class="form-control form-control-solid " id="sltipProyEsp" name="sltipProyEsp" value="{{$proyec->Tipo_Componentes}}" readonly>
+                                        <input type="text" class="form-control form-control-solid " id="sltipProyEsp" name="sltipProyObras" value="{{$proyec->Tipo_Componentes}}" readonly>
                                         
                                             
                                                         
@@ -145,14 +147,14 @@
                                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
 
                                             </label>
-                                            <input type="text" class="form-control form-control-solid " id="txtobjetoEsp" name="txtobjetoEsp" value="{{$proyec->Objeto_Contratacion}}" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" required>
+                                            <input type="text" class="form-control form-control-solid " id="txtobjetoEsp" name="txtobjetoObras" value="{{$proyec->Objeto_Contratacion}}" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" required>
                                         </div>
                                         <div class="col-md-4 mb-3">
                                             <label for="txtprovProyEsp" class="required fs-5 fw-bold mb-2">Proveedor
                                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
 
                                             </label>
-                                            <input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" value="{{$proyec->Proveedor}}" required>
+                                            <input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyObras"  pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" value="{{$proyec->Proveedor}}" required>
                                         </div>
                                     </div>
 
@@ -169,14 +171,18 @@
 										<tr class="fw-bold fs-6 text-gray-800">
 											<th style="font-weight: bold; text-transform: uppercase; ">Nombre Item</th>
 											<th style="font-weight: bold; text-transform: uppercase;">Cantidad</th>
+											<th style="font-weight: bold; text-transform: uppercase;">Utilizados</th>
+											<th style="font-weight: bold; text-transform: uppercase;">Disponibles</th>
 											
 										</tr>
 									</thead>
 									<tbody>
 										@foreach ($reutilizada as $item)
 										<tr>
-											<td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$item->Nombre_Item}}" required></td>
-                                            <td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$item->Cantidad}}" required></td>
+											<td><input type="text" class="form-control form-control-solid " id="obrasLumReuNombreEdit[{{$item->id}}]" name="obrasLumReuNombreEdit[{{$item->id}}]"  value="{{$item->Nombre_Item}}" required></td>
+                                            <td><input type="text" class="form-control form-control-solid " id="obrasLumReuCanEdit[{{$item->id}}]" name="obrasLumReuCanEdit[{{$item->id}}]"  value="{{$item->Cantidad}}" required></td>
+                                            <td><input type="text" class="form-control form-control-solid " id="obrasLumReuUtilEdit[{{$item->id}}]" name="obrasLumReuUtilEdit[{{$item->id}}]"  value="{{$item->Utilizados}}" readonly></td>
+                                            <td><input type="text" class="form-control form-control-solid " id="obrasLumReuDisEdit[{{$item->id}}]" name="obrasLumReuDisEdit[{{$item->id}}]"  value="{{$item->Disponibles}}" readonly></td>
 										</tr>
 										@endforeach
 
@@ -200,23 +206,27 @@
 												<tr class="fw-bold fs-6 text-gray-800">
 													<th style="font-weight: bold; text-transform: uppercase; ">Nombre Item</th>
 													<th style="font-weight: bold; text-transform: uppercase; ">Cantidad</th>
+													<th style="font-weight: bold; text-transform: uppercase; ">Utilizados</th>
+													<th style="font-weight: bold; text-transform: uppercase; ">Disponibles</th>
 												</tr>
 											</thead>
 											<tbody>
 												@foreach ($accesorios as $itemacc)
 												<tr>
 													<td>
-                                                        <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="" id="">
+                                                        <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="obraAccItem[{{$itemacc->id}}]" id="obraAccItem[{{$itemacc->id}}]">
                                                         @foreach ($listAccesorios as $item)
                                                             
-                                                        <option value="{{$item->Nombre_Item}}" {{ $item->id == $itemacc->Lista_accesorio->id ? 'selected' : '' }}>
+                                                        <option value="{{$item->id}}" {{ $item->id == $itemacc->Lista_accesorio->id ? 'selected' : '' }}>
                                                             {{$item->Nombre_Item}}
                                                         </option>
                                                         @endforeach
                                                     </select>
                                                     </td>
 
-													<td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$itemacc->Cantidad}}" required></td>
+													<td><input type="text" class="form-control form-control-solid " id="obrasAccEditCan[{{$itemacc->id}}]" name="obrasAccEditCan[{{$itemacc->id}}]"  value="{{$itemacc->Cantidad}}" required></td>
+													<td><input type="text" class="form-control form-control-solid " id="obrasAccEditUtil[{{$itemacc->id}}]" name="obrasAccEditUtil[{{$itemacc->id}}]"  value="{{$itemacc->Utilizados}}" readonly></td>
+													<td><input type="text" class="form-control form-control-solid " id="obrasAccEditDis[{{$itemacc->id}}]" name="obrasAccEditDis[{{$itemacc->id}}]"  value="{{$itemacc->Disponibles}}" readonly></td>
 												</tr>
                                                 
 											@endforeach
@@ -240,21 +250,29 @@
 													<th style="font-weight: bold; text-transform: uppercase; ">Modelo</th>
 													<th style="font-weight: bold; text-transform: uppercase; ">Marca</th>
 													<th style="font-weight: bold; text-transform: uppercase; ">Potencia</th>
+													<th style="font-weight: bold; text-transform: uppercase; ">Instalado</th>
 												</tr>
 											</thead>
 											<tbody>
 												@foreach ($luminaria as $itemlum)
 										<tr>
-											<td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$itemlum->Cod_Luminaria}}" required></td>
-											<td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$itemlum->Marca}}" required></td>
-											<td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$itemlum->Modelo}}" required></td>
+											<td><input type="text" class="form-control form-control-solid " id="obraslumEditCod[{{$itemlum->id}}]" name="obraslumEditCod[{{$itemlum->id}}]"  value="{{$itemlum->Cod_Luminaria}}" required></td>
+											<td><input type="text" class="form-control form-control-solid " id="obraslumEditMar[{{$itemlum->id}}]" name="obraslumEditMar[{{$itemlum->id}}]"  value="{{$itemlum->Marca}}" required></td>
+											<td><input type="text" class="form-control form-control-solid " id="obraslumEditMod[{{$itemlum->id}}]" name="obraslumEditMod[{{$itemlum->id}}]"  value="{{$itemlum->Modelo}}" required></td>
 											
                                             <td>
-                                                <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="" id="">
+                                                <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="obraslumEditPot[{{$itemlum->id}}]" id="obraslumEditPot[{{$itemlum->id}}]">
                                                     <option value="75 Watts"{{'75 Watts'==$itemlum->Potencia ? 'selected':''}}>75 Watts</option>
                                                     <option value="150 Watts"{{'150 Watts'==$itemlum->Potencia ? 'selected':''}}>150 Watts</option>
                                                     <option value="200 Watts"{{'200 Watts'==$itemlum->Potencia ? 'selected':''}}>200 Watts</option>
                                                     <option value="250 Watts"{{'250 Watts'==$itemlum->Potencia ? 'selected':''}}>250 Watts</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="obraLugarEdit[{{$itemlum->id}}]" id="obraLugarEdit[{{$itemlum->id}}]">
+                                                    <option value="Si"{{'Si'==$itemlum->Lugar_Instalado ? 'selected':''}}>Si</option>
+                                                    <option value=" "{{''==$itemlum->Lugar_Instalado ? 'selected':''}}>No</option>
+                                                    
                                                 </select>
                                             </td>
 											

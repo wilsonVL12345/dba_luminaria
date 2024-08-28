@@ -363,6 +363,20 @@ class detalleController extends Controller
 
             $editdetallRealizado->save();
 
+            $editAccItem = $request->itemReal;
+            $editAccCan = $request->txtcantRea;
+            if (!empty($editAccItem)) {
+                foreach ($editAccItem as $key => $value) {
+                    $editAcc = accesorio::find($key);
+                    $editAcc->Id_Lista_accesorios = $editAccItem[$key];
+                    $editAcc->Cantidad = $editAccCan[$key];
+                    $editAcc->Proyectos_id = 1;
+                    $editAcc->Detalles_id = $id;
+
+                    $editAcc->save();
+                }
+            }
+
             return back()->with("correcto", "Dato Modificado Correctamente");
         } catch (\Throwable $th) {
             return back()->with("incorrecto", "Error al Modificar los datos: " . $th->getMessage());

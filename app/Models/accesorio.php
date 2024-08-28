@@ -18,8 +18,6 @@ class accesorio extends Model
         'Cantidad',
         'Utilizados',
         'Disponibles',
-
-
         'Proyectos_id',
         'Detalles_id'
     ];

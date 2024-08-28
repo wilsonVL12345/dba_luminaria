@@ -197,6 +197,21 @@ class luminaria_retiradasController extends Controller
             $modRetirada->User_id = session('id');
             $modRetirada->save();
 
+            $editNombre = $request->lumRetiradaProyEdit;
+            $editReu = $request->lumReuEdit;
+            $editNoReu = $request->lumNoReu;
+            if ($editReu) {
+                foreach ($editReu as $key => $value) {
+                    $reutilizadosEdit = lista_luminarias_retirada::find($key);
+                    $reutilizadosEdit->Nombre = $editNombre[$key];
+                    $reutilizadosEdit->Reutilizables = $editReu[$key];
+                    $reutilizadosEdit->NoReutilizables = $editNoReu[$key];
+                    $reutilizadosEdit->datos_luminaria_id = $id;
+                    $reutilizadosEdit->save();
+                }
+            }
+
+
             $sql = true;
         } catch (\Throwable $th) {
             $sql = false;

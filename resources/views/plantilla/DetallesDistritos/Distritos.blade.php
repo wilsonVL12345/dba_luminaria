@@ -25,7 +25,6 @@
 	</div>
 	<!--end::Toolbar-->
 	<!--begin::Post-->
-	{{-- todo el lugar que te interesa --}}
 	<div class="post d-flex flex-column-fluid" id="kt_post">
 		<!--begin::Container-->
 		<div id="kt_content_container" class="container-xxl">
@@ -372,5 +371,8 @@
 							
 </div>
 
+
 @endsection
+
+
 @endcan

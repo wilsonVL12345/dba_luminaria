@@ -124,6 +124,7 @@
 							?>
                          
                          @if (!$ejecReutilizados->isEmpty())
+                         <div class="table-responsive">
 							<table class="table table-bordered" >
 								<tr class="fw-bold fs-6 text-gray-800">
 									<th style="font-weight: bold; text-transform: uppercase; ">Nro</th>
@@ -160,6 +161,8 @@
 									<?php $con++;?>
                                     @endforeach
                                 </table>
+                            </div>
+
                                 
                             @else
                                 <h5 class="badge badge-light-danger">No hay luminarias Reutilizadas</h5>
@@ -170,6 +173,7 @@
 							$cond=1;
 							?>
                              @if (!$ejecAccesorios->isEmpty())
+                             <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr class="fw-bold fs-6 text-gray-800">
                                     <th style="font-weight: bold; text-transform: uppercase; " >Nro</th>
@@ -207,6 +211,8 @@
                                 <?php $cond++;?>
                                 @endforeach
                             </table>
+                        </div>
+
                             
                             @else
                             <h5 class="badge badge-light-danger">No hay Accesorios en este Proyecto</h5>
@@ -216,6 +222,7 @@
 							$cond=1;
 							?>
                              @if (!$ejecLuminarias->isEmpty())
+                             <div class="table-responsive">
                             <table class="table table-bordered" >
                                 <tr class="fw-bold fs-6 text-gray-800">
                                     <th style="font-weight: bold; text-transform: uppercase; ">Nro</th>
@@ -227,21 +234,21 @@
 
                                 </tr>
                                 @foreach ($ejecLuminarias as $itemlum)
-                                <tr>
-                                    <td><?php echo $con;?></td>
-                                    <td>{{$itemlum->Cod_Luminaria}}</td>
-                                    <td>{{$itemlum->Marca}}</td>
-                                    <td>{{$itemlum->Modelo}}</td>
-                                    <td>{{$itemlum->Potencia}}</td>
+                                <tr class="fw-bold fs-6 text-gray-800">
+                                    <td ><?php echo $con;?></td>
+                                    <td >{{$itemlum->Cod_Luminaria}}</td>
+                                    <td >{{$itemlum->Marca}}</td>
+                                    <td >{{$itemlum->Modelo}}</td>
+                                    <td >{{$itemlum->Potencia}}</td>
                                     @if ($itemlum->Lugar_Instalado=='Si')
-                                    <td>{{$itemlum->Lugar_Instalado}}</td>
+                                    <td >{{$itemlum->Lugar_Instalado}}</td>
                                         
                                     @else
                                     <td>
-                                        <select name="lugarlum[{{$itemlum->id}}]" id="txtlugar" class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione...">
+                                        <select name="lugarlum[{{$itemlum->id}}]" id="lugarlum[{{$itemlum->id}}]" class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione...">
                                             <option value="" disabled selected >Seleccione...</option>
                                             <option value="Si"  >Si</option>
-                                            <option value="No"  >No</option>
+                                            <option value="No"   >No</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -249,6 +256,7 @@
                                 <?php $cond++;?>
                                 @endforeach
                             </table>
+						</div>
                                    
                             @else
                             <h5 class="badge badge-light-danger">No hay luminarias LED en este Proyecto</h5>

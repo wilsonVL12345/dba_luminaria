@@ -36,6 +36,8 @@
 				<div class="card-body pt-9 pb-0">
 					<div class="card-body pt-9 pb-0">
 						<div class="margin">
+                            @include('layout.notificacioncrud')
+
                             <form class="form" action="{{route('modificar.retirados',$item->id)}}" id="formRetiradasModificar" method="POST">
                                 @csrf
                                 <!--begin::Modal header-->
@@ -74,7 +76,7 @@
                                                             <select  aria-label="Select a Country"
                                                                 data-control="select2"
                                                                 {{-- data-placeholder="Selec Urb" --}}
-                                                                data-dropdown-parent="#modalModificarLumRetiradas{{$item->id}}"
+                                                                
                                                                 class="form-control form-select-solid fw-bolder" name="txtzonaMod" data-id="txtzonaMod">
                                                                 <option value="{{$item->zona}}">{{$item->zona}}</option>
                                                                 
@@ -158,11 +160,11 @@
 									<div class="table-responsive">
 										<table  class="table table-bordered">
 											<thead>
-												<tr class="required fs-5 fw-bold mb-2">
-													<th > Nombre Item</th>
+												<tr class=" fs-5 fw-bold mb-2">
+													<th class="required fs-5 fw-bold mb-2" > Nombre Item</th>
 													<th >Cantidad</th>
-													<th >Reutilizables</th>
-													<th >No Reutilizables</th>
+													<th class="required fs-5 fw-bold mb-2">Reutilizables</th>
+													<th class="required fs-5 fw-bold mb-2">No Reutilizables</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -170,7 +172,7 @@
 												<tr class="fw-bold fs-6 text-gray-800" >
 												<td >
                                                     {{-- {{$item->Nombre}} --}}
-                                                    <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="" id="">
+                                                    <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="lumRetiradaProyEdit[{{$item->id}}]" id="lumRetiradaProyEdit[{{$item->id}}]">
                                                         @foreach ($listAccesorios as $items)
                                                             
                                                         <option value="{{$items->Nombre_Item}}" {{ $item->Nombre ==$items->Nombre_Item  ? 'selected' : '' }}>
@@ -179,14 +181,14 @@
                                                         @endforeach
                                                     </select>
                                                 </td>
-												<td >
-                                                    <input type="text" class="form-control form-control-solid " id="txtcantidadlum" name="txtcantidadlum" pattern="^([1-9][0-9]{0,2}|100)$" value="{{$item->Cantidad}}" required>
+												<td  >
+                                                    <input type="text" class="form-control form-control-solid " id="txtcantidadlum" name="txtcantidadlum" pattern="^([1-9][0-9]{0,2}|100)$" value="{{$item->Cantidad}}" readonly>
                                                 </td>
 												<td >
-                                                    <input type="text" class="form-control form-control-solid " id="txtcantidadlum" name="txtcantidadlum" pattern="^([1-9][0-9]{0,2}|100)$" value="{{$item->Reutilizables}}" required>
+                                                    <input type="text" class="form-control form-control-solid " id="lumReuEdit[{{$item->id}}]" name="lumReuEdit[{{$item->id}}]" pattern="^([1-9][0-9]{0,2}|100)$" value="{{$item->Reutilizables}}" required>
                                                     </td>
 												<td >
-                                                    <input type="text" class="form-control form-control-solid " id="txtcantidadlum" name="txtcantidadlum" pattern="^([1-9][0-9]{0,2}|100)$" value="{{$item->NoReutilizables}}" required>
+                                                    <input type="text" class="form-control form-control-solid " id="lumNoReu[{{$item->id}}]" name="lumNoReu[{{$item->id}}]" pattern="^([1-9][0-9]{0,2}|100)$" value="{{$item->NoReutilizables}}" required>
                                                     </td>
 												</tr>
 												@endforeach

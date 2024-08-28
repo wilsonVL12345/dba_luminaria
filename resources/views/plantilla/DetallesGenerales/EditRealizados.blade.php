@@ -36,6 +36,9 @@
 				<div class="card-body pt-9 pb-0">
 					<div class="card-body pt-9 pb-0">
 						<div class="margin">
+                            <div>
+                                @include('layout.notificacioncrud')
+                            </div>
                             <form class="form" action="{{route('edit.realizado',$itemtrab->id) }}" id="formaModRealizado" method="POST" enctype="multipart/form-data">
                                 @csrf
                                     <div class="scroll-y me-n7 pe-7" id="modadRegistraUsuarios_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#modadRegistraUsuarios_header" data-kt-scroll-wrappers="#modadRegistraUsuarios_scroll" data-kt-scroll-offset="300px">
@@ -60,7 +63,7 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="slurbr" class="required fs-5 fw-bold mb-2">Urbanizacion</label>
-                                                <select class="form-control form-select-solid" data-control="select2" data-dropdown-parent="#modalModificarRealizado{{$itemtrab->id}}" name="slurbr" data-id="slurbr" required>
+                                                <select class="form-control form-select-solid" data-control="select2"  name="slurbr" data-id="slurbr" required>
                                                     <option value="{{$itemtrab->Zona}}"  >{{$itemtrab->Zona}}</option>
                                                 </select>
                                             </div>
@@ -180,16 +183,16 @@
 											<td><?php echo $num; ?></td>
 											<td>
                                                 {{-- {{$item->lista_accesorio->Nombre_Item}} --}}
-                                                <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="" id="">
+                                                <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="itemReal[{{$item->id}}]" id="itemReal[{{$item->id}}]">
                                                     @foreach ($listAccesorios as $items)
                                                         
-                                                    <option value="{{$items->Nombre_Item}}" {{ $items->id == $item->lista_accesorio->id ? 'selected' : '' }}>
+                                                    <option value="{{$items->id}}" {{ $items->id == $item->lista_accesorio->id ? 'selected' : '' }}>
                                                         {{$items->Nombre_Item}}
                                                     </option>
                                                     @endforeach
                                                 </select>
                                             </td>
-											<td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$item->Cantidad}}" required></td>
+											<td><input type="text" class="form-control form-control-solid " id="txtcantRea[{{$items->id}}]" name="txtcantRea[{{$item->id}}]" pattern="^([1-9][0-9]{0,2}|500)$" value="{{$item->Cantidad}}" required></td>
                                             <?php  $num++; ?>
 										</tr>
 										@endforeach
@@ -202,7 +205,7 @@
                                 <div id="listaproy"></div>
                             </div>
                         <div class="modal-footer justify-content-end">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <a href="/detalles/realizados" type="button" i class="btn btn-danger me-3">Cerrar</a>
                             <button type="submit" id="modadRegistraUsuarios_submit" class="btn btn-primary">
                                 <span class="indicator-label">Modificar</span>
                                 <span class="indicator-progress">Please wait...

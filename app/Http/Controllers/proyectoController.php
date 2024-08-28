@@ -196,6 +196,8 @@ class proyectoController extends Controller
 
     function editEsperaAlmacen(Request $request, $id)
     {
+
+
         try {
             $editProy = proyecto::find($id);
 
@@ -211,6 +213,54 @@ class proyectoController extends Controller
             $editProy->Trabajo = $request->slTrabajom;
 
             $editProy->save();
+
+            $reuNombre = $request->txtReuAlmacen;
+            $reuCan = $request->txtReuAlmacenCan;
+
+            $accItem = $request->editAlmacenItem;
+            $accCan = $request->editAlmacenCan;
+
+            $lumCod = $request->lumCodEdit;
+            $lumMar = $request->lumMarEdit;
+            $lumMod = $request->lumModEdit;
+            $lumPot = $request->lumPotEdit;
+
+            if ($reuNombre) {
+                foreach ($reuNombre as $key => $value) {
+                    $editReu = luminarias_reutilizada::find($key);
+                    $editReu->Nombre_Item = $reuNombre[$key];
+                    $editReu->Cantidad = $reuCan[$key];
+                    $editReu->Disponibles = $reuCan[$key];
+                    $editReu->Utilizados = 0;
+                    $editReu->Proyectos_id = 1;
+                    $editReu->save();
+                }
+            }
+            if ($accItem) {
+                foreach ($accItem as $key => $value) {
+                    $editAcc = accesorio::find($key);
+                    $editAcc->Id_Lista_accesorios = $accItem[$key];
+                    $editAcc->Cantidad = $accCan[$key];
+                    $editAcc->Proyectos_id = $id;
+                    $editAcc->Utilizados = 0;
+                    $editAcc->Disponibles = $accCan[$key];
+                    $editAcc->Detalles_id = 1;
+                    $editAcc->save();
+                }
+            }
+            if ($lumCod) {
+                foreach ($lumCod as $key => $value) {
+                    $editLum = luminaria::find($key);
+                    $editLum->Cod_Luminaria = $lumCod[$key];
+                    $editLum->Marca = $lumMar[$key];
+                    $editLum->Modelo = $lumMod[$key];
+                    $editLum->Potencia = $lumPot[$key];
+                    $editLum->Proyectos_id = $id;
+                    $editLum->Detalles_id = 1;
+                    $editLum->save();
+                }
+            }
+
             $sql = true;
         } catch (\Throwable $th) {
             $sql = false;
@@ -373,20 +423,87 @@ class proyectoController extends Controller
             $editRea->Zona = $request->slUrbproyObras;
             $editRea->Tipo_Contratacion = $request->sltipContraProyObras;
             $editRea->Modalidad = $request->txtmodProyObras;
-            $editRea->Ejecutado_Por = $request->slejecut;
+            $editRea->Ejecutado_Por = $request->slEjeproObras;
             $editRea->Fecha_Ejecutada = $request->txtfechaObras;
             $editRea->Subasta = $request->slsubproObras;
             $editRea->Objeto_Contratacion = $request->txtobjetoObras;
             $editRea->Proveedor = $request->txtprovProyObras;
-            $editRea->Trabajo = $request->sltrabajoobras;
+            $editRea->Trabajo = $request->slTrabaObras;
             $editRea->save();
+
+            $reuNomb = $request->obrasLumReuNombreEdit;
+            $reuCant = $request->obrasLumReuCanEdit;
+            $reuUtil = $request->obrasLumReuUtilEdit;
+            $reuDisp = $request->obrasLumReuDisEdit;
+
+
+
+
+            if ($reuNomb) {
+                foreach ($reuNomb as $key => $value) {
+                    $editReu = luminarias_reutilizada::find($key);
+                    $editReu->Nombre_Item = $reuNomb[$key];
+                    if ($reuCant[$key] >= $editReu->Utilizados) {
+                        # code...
+                        $editReu->Cantidad = $reuCant[$key];
+                        $editReu->Utilizados = $editReu->Utilizados;
+                        $editReu->Disponibles = $reuCant[$key] - $editReu->Utilizados;
+                        $editReu->Proyectos_id = $id;
+                        $editReu->save();
+                    } else {
+                        return back()->with("incorrecto", "Error al Modificar");
+                    }
+                }
+            }
+
+            $obrasItem = $request->obraAccItem;
+            $obrasCant = $request->obrasAccEditCan;
+            $obrasUtil = $request->obrasAccEditUtil;
+            $obrasDisp = $request->obrasAccEditDis;
+
+            if ($obrasItem) {
+                foreach ($obrasItem as $key => $value) {
+                    $editAcc = accesorio::find($key);
+
+                    if ($obrasCant[$key] >= $editAcc->Utilizados) {
+                        $editAcc->Id_Lista_accesorios = $obrasItem[$key];
+                        # code...
+                        $editAcc->Cantidad = $obrasCant[$key];
+                        $editAcc->Utilizados = $editAcc->Utilizados;
+                        $editAcc->Disponibles = $obrasCant[$key] - $editAcc->Utilizados;
+                        $editAcc->Proyectos_id = $id;
+                        $editAcc->save();
+                    } else {
+                        return back()->with("incorrecto", "Cantidad insuficientes");
+                    }
+                }
+            }
+
+            $lumCodi = $request->obraslumEditCod;
+            $lumMarc = $request->obraslumEditMar;
+            $lumMode = $request->obraslumEditMod;
+            $lumPote = $request->obraslumEditPot;
+            $lumLuga = $request->obraLugarEdit;
+            if ($lumCodi) {
+                foreach ($lumCodi as $key => $value) {
+                    $editlum = luminaria::find($key);
+                    $editlum->Cod_Luminaria = $lumCodi[$key];
+                    $editlum->Marca = $lumMarc[$key];
+                    $editlum->Modelo = $lumMode[$key];
+                    $editlum->Potencia = $lumPote[$key];
+                    $editlum->Lugar_Instalado = $lumLuga[$key];
+                    $editlum->Proyectos_id = $id;
+                    $editlum->Detalles_id = 1;
+                    $editlum->save();
+                }
+            }
 
             $sql = true;
         } catch (\Throwable $th) {
             $sql = false;
         }
         if ($sql == true) {
-            return redirect(route('proyectos.ObrasEjecutadas'))->with("correcto", "Modificardo Correctamente");
+            return back()->with("correcto", "Modificado Correctamente");
         } else {
             return back()->with("incorrecto", "Error al Modificar");
         }

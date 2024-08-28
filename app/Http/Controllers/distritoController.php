@@ -7,9 +7,9 @@ use App\Models\distrito;
 use App\Models\urbanizacion;
 use GuzzleHttp\Promise\Create;
 use PhpParser\Node\Expr\FuncCall;
-
 use function PHPUnit\Framework\returnSelf;
 use Yajra\DataTables\Facades\DataTables;
+use Carbon\Carbon;
 
 class distritoController extends Controller
 {
@@ -23,18 +23,7 @@ class distritoController extends Controller
     {
         if (session('cargo') == 'Administrador') {
             // Verifica si la solicitud es Ajax
-            /* if ($request->ajax()) {
-                try {
-                    // Consulta directa a la tabla personas
-                    $todoUrban = urbanizacion::select('id as idurb', 'Nrodistrito', 'nombre_urbanizacion');
 
-                    // Devolver los datos en formato JSON para DataTables
-                    return DataTables::of($todoUrban)->make(true);
-                } catch (\Exception $e) {
-                    // Manejar errores de consulta a la base de datos
-                    return response()->json(['error' => 'Error al recuperar los datos de personas'], 500);
-                }
-            } */
 
             // Consultas para las vistas
             $todoUrban = urbanizacion::select('id', 'Nrodistrito', 'nombre_urbanizacion')
@@ -51,20 +40,7 @@ class distritoController extends Controller
             ]);
         } else {
             // Verifica si la solicitud es Ajax
-            /* if ($request->ajax()) {
-                try {
-                    // Consulta directa a la tabla urbanizacion
-                    $todoUrban = urbanizacion::select('id as idurb', 'Nrodistrito', 'nombre_urbanizacion')
-                        ->where('Nrodistrito', session('Lugar_Designado'));
 
-                    // Devolver los datos en formato JSON para DataTables
-                    return DataTables::of($todoUrban)->make(true);
-                } catch (\Exception $e) {
-                    // Manejar errores de consulta a la base de datos
-                    return response()->json(['error' => 'Error al recuperar los datos de personas'], 500);
-                }
-            }
- */
             // Consultas para las vistas
             $todoUrban = urbanizacion::orderBy('id', 'desc')
                 ->where('Nrodistrito', session('Lugar_Designado'))
@@ -81,6 +57,7 @@ class distritoController extends Controller
             ]);
         }
     }
+
 
     /**
      * Show the form for creating a new resource.

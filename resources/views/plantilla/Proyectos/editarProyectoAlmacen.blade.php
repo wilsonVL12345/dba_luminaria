@@ -36,7 +36,8 @@
 				<div class="card-body pt-9 pb-0">
 					<div class="card-body pt-9 pb-0">
 						<div class="margin">
-                            <form  id="formproyectoModificar" method="POST" >
+									@include('layout.notificacioncrud')
+                            <form  id="formproyectoModificar" action="{{route('modificar.almacen',$proyec->id)}}" method="POST" >
                                 @csrf
 
                                 <div class="from row">
@@ -167,8 +168,8 @@
 									<tbody>
 										@foreach ($reutilizada as $item)
 										<tr>
-											<td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$item->Nombre_Item}}" required></td>
-                                            <td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$item->Cantidad}}" required></td>
+											<td><input type="text" class="form-control form-control-solid " id="txtReuAlmacen[]" name="txtReuAlmacen[{{$item->id}}]"  value="{{$item->Nombre_Item}}" required></td>
+                                            <td><input type="text" class="form-control form-control-solid " id="txtReuAlmacenCan[]" name="txtReuAlmacenCan[{{$item->id}}]"  value="{{$item->Cantidad}}" required></td>
 										</tr>
 										@endforeach
 
@@ -198,17 +199,17 @@
 												@foreach ($accesorios as $itemacc)
 												<tr>
 													<td>
-                                                        <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="" id="">
+                                                        <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="editAlmacenItem[{{$itemacc->id}}]" id="editAlmacenItem[]">
                                                         @foreach ($listAccesorios as $item)
                                                             
-                                                        <option value="{{$item->Nombre_Item}}" {{ $item->id == $itemacc->Lista_accesorio->id ? 'selected' : '' }}>
+                                                        <option value="{{$item->id}}" {{ $item->id == $itemacc->Lista_accesorio->id ? 'selected' : '' }}>
                                                             {{$item->Nombre_Item}}
                                                         </option>
                                                         @endforeach
                                                     </select>
                                                     </td>
 
-													<td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$itemacc->Cantidad}}" required></td>
+													<td><input type="text" class="form-control form-control-solid " id="editAlmacenCan[]" name="editAlmacenCan[{{$itemacc->id}}]"  value="{{$itemacc->Cantidad}}" required></td>
 												</tr>
                                                 
 											@endforeach
@@ -237,12 +238,12 @@
 											<tbody>
 												@foreach ($luminaria as $itemlum)
 										<tr>
-											<td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$itemlum->Cod_Luminaria}}" required></td>
-											<td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$itemlum->Marca}}" required></td>
-											<td><input type="text" class="form-control form-control-solid " id="txtprovProyEsp" name="txtprovProyEsp"  value="{{$itemlum->Modelo}}" required></td>
+											<td><input type="text" class="form-control form-control-solid " id="lumCodEdit[]" name="lumCodEdit[{{$itemlum->id}}]"  value="{{$itemlum->Cod_Luminaria}}" required></td>
+											<td><input type="text" class="form-control form-control-solid " id="lumMarEdit[]" name="lumMarEdit[{{$itemlum->id}}]"  value="{{$itemlum->Marca}}" required></td>
+											<td><input type="text" class="form-control form-control-solid " id="lumModEdit[]" name="lumModEdit[{{$itemlum->id}}]"  value="{{$itemlum->Modelo}}" required></td>
 											
                                             <td>
-                                                <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="" id="">
+                                                <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="lumPotEdit[{{$itemlum->id}}]" id="lumPotEdit[{{$itemlum->id}}]">
                                                     <option value="75 Watts"{{'75 Watts'==$itemlum->Potencia ? 'selected':''}}>75 Watts</option>
                                                     <option value="150 Watts"{{'150 Watts'==$itemlum->Potencia ? 'selected':''}}>150 Watts</option>
                                                     <option value="200 Watts"{{'200 Watts'==$itemlum->Potencia ? 'selected':''}}>200 Watts</option>
@@ -267,7 +268,7 @@
                             <!--end::Button-->
                             <!--begin::Button-->
                             <button type="submit" id="modadRegistraUsuarios_submit" class="btn btn-primary">
-                                <span class="indicator-label">Registrar</span>
+                                <span class="indicator-label">Modificar</span>
                                 <span class="indicator-progress">Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
