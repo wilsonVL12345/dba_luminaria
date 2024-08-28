@@ -10,9 +10,14 @@ use PhpParser\Node\Expr\FuncCall;
 use function PHPUnit\Framework\returnSelf;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
+use App\DataTables\UrbanizacionDataTable;
 
 class distritoController extends Controller
 {
+    public function iindex(UrbanizacionDataTable $dataTable)
+    {
+        return $dataTable->render('urbanizacion.iindex');
+    }
 
     /* public function __construct()
     {

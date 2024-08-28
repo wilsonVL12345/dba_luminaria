@@ -400,7 +400,7 @@
 																	
 																	<div class="modal-footer">
 																		<button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
-																		<button type="submit" class="btn btn-primary">Modificar</button>
+																		<button type="submit" class="btn btn-primary" id="detalleEsperaMod">Modificar</button>
 																	</div>
 																</form>
 															</div>

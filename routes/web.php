@@ -28,6 +28,8 @@ use App\Models\datos_luminaria_retirada;
 |
 */
 
+Route::get('/urbanizaciones', [distritoController::class, 'iindex'])->name('urbanizacion.iindex');
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -176,6 +178,7 @@ Route::middleware('auth', 'verified')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
 
 
 

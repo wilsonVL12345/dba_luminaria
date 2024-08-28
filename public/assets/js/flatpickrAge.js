@@ -37,141 +37,71 @@ let fechaFormateada = `${anio}-${mes}-${dia}`;
 console.log(fechaFormateada);
 
 let variableFechasString='';
-/* if (session(Lugar_Designado)=='Administrador') { */
 
-$(document).ready(function() {
+
+
+$(document).ready(function () {
+    const $distritoSelect = $('#txtdistirto');
+    let fechasDistrito = [];
+    let flatpickrInstance;
+
     $.ajax({
         url: '/api/fechas/trabajo',
-        method: 'GET',
+        type: 'GET',
         dataType: 'json',
-        success: function(response) {
-            let variableFechas = response.map(function(item) {
-                return moment(item.Fecha_Programado).format('YYYY-MM-DD');
+        success: function (data) {
+            fechasDistrito = data.map(function(item) {
+                return {
+                    fecha: moment(item.Fecha_Programado).format('YYYY-MM-DD'),
+                    distritoId: item.Distritos_id
+                };
             });
-            
-            // Crear una representación de string personalizada
-            variableFechasString = '[\n    ' +
-                variableFechas.map(fecha => '"' + fecha + '"').join(',\n    ') +
-                '\n];';
-            
-            console.log(variableFechasString);
-            
-            // Inicializa flatpickr aquí, después de que los datos se hayan cargado
-            initializeFlatpickr();
-        },
-        error: function(xhr, status, error) {
-            console.log('Error al obtener las fechas:', error);
-        }
-    });
-});
 
-// para la parte de agendar----------------------------------------
-/* let fp = flatpickr("#txtfechaprogramada", { */
-function initializeFlatpickr() {
-    flatpickr("#txtfechaprogramada", {
-   
-    minDate: "today",
+            function actualizarCalendario() {
+                const distritoSeleccionado = parseInt($distritoSelect.val());
 
-    maxDate: fechaFormateada,
-    "disable": [
-        function(date) {
-            // Deshabilita fines de semana
-            return (date.getDay() === 0 || date.getDay() === 6);
-        }
-    ],
-    "locale": {
-        "firstDayOfWeek": 1 // Comienza la semana en lunes
-    },
-    dateFormat: "Y-m-d",
-   
-    onDayCreate: function(dObj, dStr, fp, dayElem) {
-        const date = dayElem.dateObj.toISOString().slice(0, 10);
-        if (variableFechasString.includes(date)) {
-            dayElem.classList.add('highlighted');
-        }
-    },
-    onChange: function(selectedDates, dateStr, instance) {
-        if (variableFechasString.includes(dateStr)) {
-            alert("Has seleccionado una fecha destacada: " + dateStr);
-        }
-    }
-});
-}
-/*  }else{  
-    $(document).ready(function() {
-        $.ajax({
-            url: '/api/fechas/trabajo',
-            method: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                let variableFechas = response.map(function(item) {
-                    return moment(item.Fecha_Programado).format('YYYY-MM-DD');
+                let fechasFiltradas = fechasDistrito.filter(item => item.distritoId === distritoSeleccionado)
+                                                   .map(item => item.fecha);
+
+                if (flatpickrInstance) {
+                    flatpickrInstance.destroy();
+                }
+
+                flatpickrInstance = flatpickr("#txtfechaprogramada", {
+                    minDate: "today",
+                    maxDate: new Date().fp_incr(365), // Un año desde hoy como máximo
+                    "disable": [
+                        function(date) {
+                            return (date.getDay() === 0 || date.getDay() === 6);
+                        }
+                    ],
+                    "locale": {
+                        "firstDayOfWeek": 1
+                    },
+                    dateFormat: "Y-m-d",
+                    onDayCreate: function(dObj, dStr, fp, dayElem) {
+                        const date = dayElem.dateObj.toISOString().slice(0, 10);
+                        if (fechasFiltradas.includes(date)) {
+                            dayElem.classList.add('highlighted');
+                        }
+                    },
+                    onChange: function(selectedDates, dateStr, instance) {
+                        if (fechasFiltradas.includes(dateStr)) {
+                            alert("Has seleccionado una fecha destacada: " + dateStr);
+                        }
+                    }
                 });
-                
-                // Crear una representación de string personalizada
-                variableFechasString = '[\n    ' +
-                    variableFechas.map(fecha => '"' + fecha + '"').join(',\n    ') +
-                    '\n];';
-                
-                console.log(variableFechasString);
-                
-                // Inicializa flatpickr aquí, después de que los datos se hayan cargado
-                initializeFlatpickr();
-            },
-            error: function(xhr, status, error) {
-                console.log('Error al obtener las fechas:', error);
-            }
-        });
-    });
-    
-    // para la parte de agendar----------------------------------------
-    function initializeFlatpickr() {
-        flatpickr("#txtfechaprogramada", {
-       
-        minDate: "today",
-    
-        maxDate: fechaFormateada,
-        "disable": [
-            function(date) {
-                // Deshabilita fines de semana
-                return (date.getDay() === 0 || date.getDay() === 6);
-            }
-        ],
-        "locale": {
-            "firstDayOfWeek": 1 // Comienza la semana en lunes
-        },
-        dateFormat: "Y-m-d",
-       
-        onDayCreate: function(dObj, dStr, fp, dayElem) {
-            const date = dayElem.dateObj.toISOString().slice(0, 10);
-            if (variableFechasString.includes(date)) {
-                dayElem.classList.add('highlighted');
-            }
-        },
-        onChange: function(selectedDates, dateStr, instance) {
-            if (variableFechasString.includes(dateStr)) {
-                alert("Has seleccionado una fecha destacada: " + dateStr);
-            }
-        }
-    });
-    }
-    
-}
- */
-/*  let fp = flatpickr("#txtfechaprogramada", {
-    minDate: "today",
-    "disable": [
-        function(date) {
-            // return true to disable
-            return (date.getDay() === 0 || date.getDay() === 6);
 
+            }
+
+            $distritoSelect.on('change', actualizarCalendario);
+            actualizarCalendario(); // Inicializar el calendario al cargar la página
+        },
+        error: function (xhr, status, error) {
+            console.error('Error al obtener las fechas de trabajo:', error);
         }
-    ],
-    "locale": {
-        "firstDayOfWeek": 1 // start week on Monday
-    }
-    
-}); */
+    });
+});
 //fecha detalles  espera editar--------------------
  let fps = flatpickr("#txtfechaprogramadaedit", 
     {
