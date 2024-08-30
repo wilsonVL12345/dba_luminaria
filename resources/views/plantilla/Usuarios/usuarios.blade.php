@@ -198,19 +198,17 @@
 													</select>
 													</div>
 													<!--end::Input group-->
-										<div class="from row">
+											<div class="from row">
 
 													<div class="col-md-6 fv-row">
 														<label class="required fs-6 fw-bold mb-2">Cargo</label>
 														<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..."  name="txtcargo" required >
 															<option value="" >Seleccione...</option>
-															<option value="Administrador">Administrador</option>
-															<option value="Coordinador">Coordinador</option>
-															<option value="Tecnico">Tecnico</option>
+															@foreach ($role as $item)
+																<option value="{{$item->name}}">{{$item->name}}</option>
+															@endforeach
 													
 														</select>
-												
-													
 													</div>
 													<div class="col-md-6 fv-row">
 														<label class="required fs-6 fw-bold mb-2">Responsable de</label>
@@ -306,13 +304,7 @@
 										</a>
 									</div>
 									<!--end::Menu item-->
-									<!--begin::Menu item-->
-									<div class="menu-item px-3">
-										<a href="#" class="menu-link px-3" data-kt-export="csv">
-										Export as CSV
-										</a>
-									</div>
-									<!--end::Menu item-->
+									
 									<!--begin::Menu item-->
 									<div class="menu-item px-3">
 										<a href="#" class="menu-link px-3" data-kt-export="pdf">
@@ -559,9 +551,10 @@
 																					<label class="required fs-6 fw-bold mb-2">Cargo</label>
 																					<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtcargo" required >
 																						<option value="" >Seleccione...</option>
-																						<option value="Administrador" {{$itemus->Cargo=='Administrador'?'selected':''}}>Administrador</option>
-																						<option value="Coordinador" {{$itemus->Cargo=='Coordinador'?'selected':''}}>Coordinador</option>
-																						<option value="Tecnico" {{$itemus->Cargo=='Tecnico'?'selected':''}}>Tecnico</option>
+																						@foreach ($role as $itemss)
+																							
+																						<option value="{{$itemss->name}}" {{$itemus->Cargo==$itemss->name?'selected':''}}>{{$itemss->name}}</option>
+																						@endforeach
 																				
 																					</select>
 																				</div>

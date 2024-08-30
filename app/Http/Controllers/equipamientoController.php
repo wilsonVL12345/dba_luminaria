@@ -14,7 +14,7 @@ class equipamientoController extends Controller
      */
     public function index($dist)
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
             $equipamiento = equipamiento::where('Distritos_id', $dist)->get();
             $lista = Distrito::where('id', '<>', 15)->get();
 
@@ -58,7 +58,7 @@ class equipamientoController extends Controller
     // vista de  equipamientos divididos por distritos
     public function showEquipDistrito(Request $request)
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
 
             $lista = Distrito::where('id', '<>', 15)
                 ->get();

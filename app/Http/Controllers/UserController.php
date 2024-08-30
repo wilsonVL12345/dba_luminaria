@@ -19,7 +19,8 @@ class UserController extends Controller
     public function users()
     {
         $users = User::where('Estado', 'Activo')->get();
-        $role = role::all();
+        $role = role::where('name', '<>', 'Admin')->get();
+
         return view('plantilla.Usuarios.usuarios', ['user' => $users, 'role' => $role]);
     }
 
@@ -77,11 +78,11 @@ class UserController extends Controller
     }
 
 
-    public function cambiarContrasena(Request $request)
+    /* public function cambiarContrasena(Request $request)
     {
 
-        return view('auth.new-password', compact('request'));
-    }
+        return view('auth.reset-password', compact('request'));
+    } */
 
 
     public function edit(Request $request)

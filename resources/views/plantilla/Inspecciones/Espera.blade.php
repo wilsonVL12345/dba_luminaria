@@ -78,12 +78,7 @@
 										</div>
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
-										<div class="menu-item px-3">
-											<a href="#" class="menu-link px-3" data-kt-export="csv">
-												Export as CSV
-											</a>
-										</div>
-										<!--end::Menu item-->
+										
 										<!--begin::Menu item-->
 										<div class="menu-item px-3">
 											<a href="#" class="menu-link px-3" data-kt-export="pdf">
@@ -637,14 +632,15 @@
 												<!--begin::Input group-->
 												<div class="row g-9 mb-8">
 													<!--begin::Col-->
+													
 													<div class="col-md-6 fv-row">
-														<label class="required fs-6 fw-bold mb-2">Distrito</label>
-														<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione..." name="txtdistirto" id="txtdistirto">
-															<option value="">Seleccione...</option>
-															@foreach ($listadistrito as $item)
-															<option value="{{$item->id}}">{{$item->Distrito}}</option>
-															@endforeach
-														</select>
+														<label for="txtdistrito" class="required fs-5 fw-bold mb-2">Distrito</label>
+														<select  aria-label="Select a Country" data-dropdown-parent="#modalRegistroInspeccion" class="form-control form-select-solid " data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtdistirtoo" data-id="txtdistirtoo" required >
+														<option value="" >Seleccione...</option>
+														@foreach ($listadistrito as $item)
+														<option value="{{$item->id}}">{{$item->Distrito}}</option>
+														@endforeach
+														</select>	
 													</div>
 													<div class="col-md-6 fv-row">
 														<label class="fs-6 fw-bold mb-2">
@@ -657,7 +653,7 @@
 															data-control="select2"
 															data-placeholder="Selec Urb"
 															data-dropdown-parent="#modalRegistroInspeccion"
-															class="form-control form-select-solid fw-bolder" name="txturbs" id="txturbs">
+															class="form-control form-select-solid fw-bolder" name="txturbs" data-id="txturbs">
 															<option value="">Seleccion...</option>
 															
 															

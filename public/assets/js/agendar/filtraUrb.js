@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const $distritoSelect = $('#txtdistirto');
+    const $distritoSelect = $('#txtdistirtoAgen');
     const $zonaUrbanizacionSelect = $('#txtzonaurb');
 
     $.ajax({

@@ -19,7 +19,7 @@ class detalleController extends Controller
     // se encarga de mostrar todo de proyecto almacen en espera
     public function index()
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
             $detalles = detalle::where('Estado', 'En Espera')
                 ->get();
             $listadistrito = Distrito::where('id', '<>', 15)->get();
@@ -44,7 +44,7 @@ class detalleController extends Controller
     // muestra la tabla de detalles de trabajos realizados
     public function realizados()
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
 
             $detallesrealizados = detalle::where('Estado', 'Finalizado')->orderBy('id', 'desc')->get();
             $listdistritos = Distrito::where('id', '<>', 15)->get();
@@ -65,7 +65,7 @@ class detalleController extends Controller
     // en esta parte en donde se llena los datos para ejecutar un trabajo 
     public function ejecutar($id)
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
             $listadistrito = Distrito::where('id', '<>', 15)->get();
             $trabajo = detalle::find($id);
             $listacom = lista_accesorio::all();
@@ -80,7 +80,7 @@ class detalleController extends Controller
     }
     public function agendar()
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
 
             $listadistrito = Distrito::where('id', '<>', 15)->get();
             // $listazonaurb = urbanizacion::all();
@@ -107,7 +107,7 @@ class detalleController extends Controller
     // genera toda la tabla de detalles en espera
     /*  public function detallesEspera()
     {
-        if (session('cargo') == 'Administrador') {
+        if (        session('cargo') == 'Administrador' || session('cargo') == 'Admin') {
 
             $detall = detalle::where('Estado', 'En Espera')->orderBy('id', 'desc')->get();
             return view('plantilla.RealizarTrabajo.trabajos', compact('detall'));

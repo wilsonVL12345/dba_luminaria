@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('lista_luminarias_retiradas', function (Blueprint $table) {
             $table->bigIncrements('id'); // Columna autoincrementable y clave primaria
-            $table->string('Nombre', 50);
+            $table->string('Nombre', 150);
             $table->integer('Cantidad');
 
             $table->integer('Reutilizables')->nullable();

@@ -29,27 +29,37 @@
 <!--begin::Body-->
 
 <body id="kt_body" class="bg-body">
+    {{-- para ver los errores al momento de cambiar la contraseña --}}
+   {{--  @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif --}}
     <!--begin::Main-->
     <!--begin::Root-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - New password -->
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
             <!--begin::Aside-->
-            <div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background-color: #F2C98A">
+            <div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background-color: #1A243E">
                 <!--begin::Wrapper-->
                 <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
                     <!--begin::Content-->
                     <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
                         <!--begin::Logo-->
-                        <a href="../../demo1/dist/index.html" class="py-9 mb-5">
-                            <img alt="Logo" src="assets/media/logos/logo-2.svg" class="h-60px" />
+                        <a href="#" class="py-9 mb-5">
+                            <img alt="Logo" src="assets/media/logos/gamea.svg" class="h-150px" />
                         </a>
                         <!--end::Logo-->
                         <!--begin::Title-->
-                        <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Bienvenido a la Direccion de Sistemas</h1>
+                        <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #EEF2F9;">Bienvenido a la Direccion de Luminarias</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
-                        <p class="fw-bold fs-2" style="color: #986923;">Se le recomienda Cambiar su contraseña
+                        <p class="fw-bold fs-2" style="color: #EEF2F9;">Se le recomienda Cambiar su contraseña
                             <br />Cada 3 meses
                         </p>
                         <!--end::Description-->
@@ -67,21 +77,30 @@
                 <!--begin::Content-->
                 <div class="d-flex flex-center flex-column flex-column-fluid">
                     <!--begin::Wrapper-->
+                    @include('layout.notificacioncrud')
                     <div class="w-lg-550px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
-                        <form class="form w-100" novalidate="novalidate" id="kt_new_password_form">
-                            <!--begin::Heading-->
+                        <!--begin::Heading-->
+
+                            <form class="form w-100" action="{{ route('cambiar.contrasena', $userold->id) }}" method="POST">
+                                @csrf
                             <div class="text-center mb-10">
                                 <!--begin::Title-->
                                 <h1 class="text-dark mb-3">Cambiar Contraseña</h1>
                                 <!--end::Title-->
                                 <!--begin::Link-->
-                                <div class="text-gray-400 fw-bold fs-4">Quieres Inisiar Sesion?
-                                    <a href="../../demo1/dist/authentication/layouts/aside/sign-in.html" class="link-primary fw-bolder">Ingresar al Sistema</a>
-                                </div>
+                             
                                 <!--end::Link-->
                             </div>
                             <!--begin::Heading-->
+                            <div class="fv-row mb-10">
+                                <label class="form-label fw-bolder text-dark fs-6">Nombre de Usuario</label>
+                                <input class="form-control  form-control-solid" type="text"   value="{{$userold->email}}" readonly />
+                            </div> 
+                            <div class="fv-row mb-10">
+                                <label class="form-label fw-bolder text-dark fs-6">Ingrese su Contraseña actual</label>
+                                <input class="form-control  form-control-solid" type="text" placeholder="" name="oldpassword"  required />
+                            </div>
                             <!--begin::Input group-->
                             <div class="mb-10 fv-row" data-kt-password-meter="true">
                                 <!--begin::Wrapper-->
@@ -91,7 +110,7 @@
                                     <!--end::Label-->
                                     <!--begin::Input wrapper-->
                                     <div class="position-relative mb-3">
-                                        <input class="form-control form-control form-control-solid" type="password" placeholder="" name="password" autocomplete="off" />
+                                        <input class="form-control form-control form-control-solid" type="password" placeholder="" name="newpassword" autocomplete="off" required />
                                         <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                                             <i class="bi bi-eye-slash fs-2"></i>
                                             <i class="bi bi-eye fs-2 d-none"></i>
@@ -116,22 +135,14 @@
                             <!--begin::Input group=-->
                             <div class="fv-row mb-10">
                                 <label class="form-label fw-bolder text-dark fs-6">Confirmar Contraseña</label>
-                                <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm-password" autocomplete="off" />
+                                <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="newpasswordConfirm"  required />
                             </div>
                             <!--end::Input group=-->
-                            <!--begin::Input group=-->
-                            <div class="fv-row mb-10">
-                                <div class="form-check form-check-custom form-check-solid form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="toc" value="1" />
-                                    <label class="form-check-label fw-bold text-gray-700 fs-6">I Agree &amp;
-                                        <a href="#" class="ms-1 link-primary">Terms and conditions</a>.</label>
-                                </div>
-                            </div>
-                            <!--end::Input group=-->
+                           
                             <!--begin::Action-->
                             <div class="text-center">
-                                <button type="button" id="kt_new_password_submit" class="btn btn-lg btn-primary fw-bolder">
-                                    <span class="indicator-label">Submit</span>
+                                <button type="submit"  class="btn btn-lg btn-primary fw-bolder">
+                                    <span class="indicator-label">Cambiar</span>
                                     <span class="indicator-progress">Please wait...
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>

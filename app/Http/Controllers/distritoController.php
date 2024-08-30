@@ -26,7 +26,7 @@ class distritoController extends Controller
 
     public function index(Request $request)
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
             // Verifica si la solicitud es Ajax
 
 
@@ -102,7 +102,7 @@ class distritoController extends Controller
      */
     public function datosEdit($id)
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
 
             $urbEdit = urbanizacion::find($id);
             $distEdit = Distrito::where('id', '<>', 15)->get();

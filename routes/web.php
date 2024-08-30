@@ -10,6 +10,7 @@ use App\Http\Controllers\equipamientoController;
 use App\Http\Controllers\inspeccionController;
 
 use App\Http\Controllers\lista_accesorioController;
+use App\Http\Controllers\logincontroller;
 use App\Http\Controllers\UserController;
 use Illuminate\Routing\Router;
 // use App\Http\Controllers\logincontroller;
@@ -28,7 +29,6 @@ use App\Models\datos_luminaria_retirada;
 |
 */
 
-Route::get('/urbanizaciones', [distritoController::class, 'iindex'])->name('urbanizacion.iindex');
 
 Route::get('/', function () {
     return view('auth.login');
@@ -61,8 +61,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/usuario/desbloquear/{id}', [UserController::class, 'desbloquear'])->name('usuario.bloquear'); */
     Route::get('/usuario/perfil/{id}', [UserController::class, 'perfil'])->name('usuario.perfil');
     Route::get('/eliminar/usuario{id}', [UserController::class, 'destroy'])->name('eliminar.usuario')->middleware('can:user.delete');
+
     // cambiar contraseña
-    Route::get('/cambiar/contrasena{id}', [UserController::class, 'cambiarContrasena'])->name('cambiar.contrasena');
+    Route::get('/cambiar/password{id}', [logincontroller::class, 'showcambiarPassword'])->name('cambiar.password');
+    route::post('/cambiar/contrasena/{id}', [LoginController::class, 'cambiarPassword'])->name('cambiar.contrasena');
 
     //ruta para agregar un nuevo usuario
     Route::post('/registro/usuario', [UserController::class, 'create'])->name('registro.usuario')->middleware('can:user.create');
@@ -124,6 +126,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/modificar/retirados/{id}', [luminaria_retiradasController::class, 'editretirada'])->name('modificar.retirados')->middleware('can:proyecto.Retirado.edit');
     Route::get('/eliminar/retirada{id}', [luminaria_retiradasController::class, 'destroy'])->name('eliminar.retirada')->middleware('can:proyecto.Retirado.delete');
     Route::get('/proyectos/luminariasRetiradas{id}', [luminaria_retiradasController::class, 'editLuminariasRetiradasShow'])->name('proyectoss.luminariasRetiradas')->middleware('can:proyecto.Retirado.edit');
+    Route::get('/retirado/pdf{id}', [luminaria_retiradasController::class, 'generarPDF'])->name('retirado.pdf')->middleware('can:proyecto.Retirado.edit');
 
     //rutas proyectos  ---------------------------------------------------------------------------------------------------------
     // para lo que es almacen
@@ -131,12 +134,9 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/registro/almacen', [proyectoController::class, 'create'])->name('registro.almacen')->middleware('can:proyecto.create');
     Route::get('/showModificar/almacen/{id}', [proyectoController::class, 'editShowEsperaAlmacen'])->name('showmodificar.almacen')->middleware('can:proyecto.edit');
     Route::get('/showModificar/obras/{id}', [proyectoController::class, 'editShowObras'])->name('showmodificar.obras')->middleware('can:proyecto.edit');
-
     Route::post('/modificar/almacen/{id}', [proyectoController::class, 'editEsperaAlmacen'])->name('modificar.almacen')->middleware('can:proyecto.edit');
     Route::post('/modificar/ObrasEjecuatas/{id}', [proyectoController::class, 'editObrasEjecutadas'])->name('modificar.ObrasEjecuatas')->middleware('can:proyecto.edit');
     Route::get('/eliminar/proyecto{id}', [proyectoController::class, 'destroy'])->name('eliminar.proyecto')->middleware('can:proyecto.delete');
-
-
     Route::get('/detallesAccesorios/almacen/{id}', [proyectoController::class, 'reu'])->name('detallesAccesorios.almacen')->middleware('can:proyecto.show');
     // Route::get('/detallesAccesorios/almacen', [proyectoController::class, 'reu'])->name('detallesAccesorios.almacendatos')->middleware('can:· ·');
     Route::get('/datos/ejecutar/{id}', [proyectoController::class, 'ejecutarProyectodatos'])->name('datos.ejecutar')->middleware('can:proyecto.install');

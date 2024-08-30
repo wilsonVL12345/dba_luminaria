@@ -236,7 +236,7 @@
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
 										<div class="menu-item px-5 my-1">
-											<a href="{{url('/cambiar/contrasena'.session('id')) }}"
+											<a href="{{url('/cambiar/password'.session('id')) }}"
 												class="menu-link px-5">Cambiar Contraseña</a>
 										</div>
 										<!--end::Menu item-->	

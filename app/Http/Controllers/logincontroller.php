@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use PharIo\Manifest\Author;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class logincontroller extends Controller
 {
@@ -18,14 +19,6 @@ class logincontroller extends Controller
 
     public function login(Request $request)
     {
-        /* $credentials = $request->only('txtusuario', 'txtcontrase');
-
-        if (Auth::attempt(['Usuario' => $credentials['txtusuario'], 'password' => $credentials['txtcontrase']])) {
-            // Authentication passed...
-            return redirect()->intended('dashboard');
-        } else {
-            return back()->withErrors(['message' => 'Usuario o contraseña incorrectos']);
-        } */
 
 
         if (!empty($request->txtusuario) && !empty($request->txtcontrase)) {
@@ -63,5 +56,65 @@ class logincontroller extends Controller
         $request->session()->regenerate();
 
         return redirect(route('login'));
+    }
+    public function showcambiarPassword(Request $request, $id)
+    {
+        $userold = user::find($id);
+        return view('plantilla.Usuarios.nuevaContrasena', compact('userold'));
+    }
+    /*  public function cambiarPassword(Request $request, $id)
+    {
+        try {
+            $UserNewPass = User::find($id);
+            if ($UserNewPass->password == Hash::make($request->oldpassword)) {
+                if ($request->newpassword == $request->newpasswordConfirm) {
+                    $UserNewPass->password = Hash::make($request->newpassword);
+                    $UserNewPass->save();
+                    Auth::logout();
+                    $request->session()->invalidate();
+                    $request->session()->regenerate();
+                    return redirect(route('login'));
+                } else {
+                    return back()->with("incorrecto", "Error al Modificar Luminarias Retiradas");
+                }
+            } else {
+                $sql = false;
+            }
+            $sql = true;
+        } catch (\Throwable $th) {
+            $sql = false;
+        }
+        if ($sql == true) {
+            return back()->with("correcto", "Contraseña Modificada Correctamente");
+        } else {
+            return back()->with("incorrecto", "Error al Modificar Contraseña");
+        }
+    } */
+    public function cambiarPassword(Request $request, $id)
+    {
+        /* Log::info('Intento de cambio de contraseña', ['user_id' => $id]);
+ */
+        $request->validate([
+            'oldpassword' => 'required',
+            'newpassword' => 'required|min:8|same:newpasswordConfirm',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        if (!Hash::check($request->oldpassword, $user->password)) {
+            // Log::warning('Intento de cambio de contraseña fallido: contraseña actual incorrecta', ['user_id' => $id]);
+            return back()->with("incorrecto", "La contraseña actual es incorrecta");
+        }
+
+        $user->password = Hash::make($request->newpassword);
+        $user->save();
+
+        /* Log::info('Contraseña cambiada exitosamente', ['user_id' => $id]); */
+
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('correcto', 'Contraseña cambiada correctamente. Por favor, inicie sesión nuevamente.');
     }
 }

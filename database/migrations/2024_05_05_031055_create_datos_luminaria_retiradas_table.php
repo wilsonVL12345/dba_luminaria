@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('datos_luminaria_retiradas', function (Blueprint $table) {
             $table->id();
             $table->string('zona');
-            $table->integer('Nro_sisco')->unique();
+            $table->string('Nro_sisco', 20)->unique();
             $table->date('Fecha');
             $table->string('Proyecto');
             $table->string('Direccion');

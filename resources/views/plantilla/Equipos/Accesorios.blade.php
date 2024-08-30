@@ -153,13 +153,8 @@
 												</a>
 											</div>
 											<!--end::Menu item-->
-											<!--begin::Menu item-->
-											<div class="menu-item px-3">
-												<a href="#" class="menu-link px-3" data-kt-export="csv">
-												Export as CSV
-												</a>
-											</div>
-											<!--end::Menu item-->
+											
+											
 											<!--begin::Menu item-->
 											<div class="menu-item px-3">
 												<a href="#" class="menu-link px-3" data-kt-export="pdf">

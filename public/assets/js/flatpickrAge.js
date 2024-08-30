@@ -15,10 +15,7 @@ let fpEjecutartraDet = flatpickr("#txtfechaejecut",
     }
     });
 
- // Función para generar fechas aleatorias en julio
-// fecha agendar 
- // Configurar flatpickr
- // Obtener la fecha actual
+// para la parte de agendar trabajo-----------------------------------------------------
 // Obtener la fecha actual
 let fechaActual = new Date();
 
@@ -41,7 +38,7 @@ let variableFechasString='';
 
 
 $(document).ready(function () {
-    const $distritoSelect = $('#txtdistirto');
+    const $distritoSelect = $('#txtdistirtoAgen');
     let fechasDistrito = [];
     let flatpickrInstance;
 
@@ -102,7 +99,7 @@ $(document).ready(function () {
         }
     });
 });
-//fecha detalles  espera editar--------------------
+//fecha detalles  espera editar-----------------------------------------
  let fps = flatpickr("#txtfechaprogramadaedit", 
     {
         minDate: "2024-08",
@@ -120,7 +117,7 @@ $(document).ready(function () {
         }
     }
  );
-//fecha detalles  realizados editar--------------------
+//fecha detalles  realizados editar-----------------------------------------
 
  let fpdetallRalizado = flatpickr("#dtFechaAtenr", 
     {
@@ -157,7 +154,7 @@ let proyAlmacen = flatpickr("#dtfecha",
         "firstDayOfWeek": 1 // start week on Monday
     }
     });
-    // para la parte de proyecto  modificar-------------------------------
+    // para la parte de proyecto  modificar----------------------------------------------------
     let proyAlmacenedit = flatpickr("#txtfechaEsp", 
         {
             minDate: "2024-08",

@@ -337,6 +337,12 @@
 																			class="menu-link px-3">Editar</a>
 																	</div>
 																	@endcan
+																	@can('proyecto.Retirado.export')
+																	<div class="menu-item px-3">
+																		<a href="{{url('/retirado/pdf'.$item->id)}}" target="_blank"
+																			class="menu-link px-3">Generar Report</a>
+																	</div>
+																	@endcan
 																	<!--end::Menu item-->
 																	<!--begin::Menu item-->
 																	@can('proyecto.Retirado.delete')

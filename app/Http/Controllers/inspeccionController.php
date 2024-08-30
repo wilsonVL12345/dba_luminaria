@@ -18,7 +18,7 @@ class inspeccionController extends Controller
      */
     public function index()
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
             /* $inspeccion = inspeccion::all(); */
             $inspeccion = inspeccion::where('Inspeccion', 'En espera')
                 ->orderBy('created_at', 'desc')
@@ -67,7 +67,7 @@ class inspeccionController extends Controller
             $inspeccion = new inspeccion();
 
             $inspeccion->Nro_Sisco = $request->txtnrosisco;
-            $inspeccion->Distritos_id = $request->txtdistirto;
+            $inspeccion->Distritos_id = $request->txtdistirtoo;
             $inspeccion->ZonaUrbanizacion = $request->txturbs;
             $inspeccion->Fecha_Inspeccion = $request->txtfecha;
             $inspeccion->Foto_Carta = $url;
@@ -186,7 +186,7 @@ class inspeccionController extends Controller
 
     public function realizadas(Request $request)
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
             $inspeccion = inspeccion::where('Inspeccion', 'Finalizado')->get();
             $inspector = user::all();
             $listadistrito = Distrito::where('id', '<>', 15)->get();

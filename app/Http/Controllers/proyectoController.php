@@ -20,7 +20,7 @@ class proyectoController extends Controller
      */
     public function index()
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
             $today = now()->toDateString();
             $proyecto = proyecto::where('Estado', 'En espera')
                 ->orderBy('id', 'desc')->get();
@@ -371,7 +371,7 @@ class proyectoController extends Controller
     //proyecto obras ejecutadas muestra  funciones---------------------------------------------------------------------------------------------------------
     public function datosObras()
     {
-        if (session('cargo') == 'Administrador') {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
             $proyectoObras = proyecto::where('Estado', 'Finalizado')
                 ->orderBy('id', 'desc')
                 ->get();

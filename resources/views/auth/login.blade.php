@@ -30,9 +30,10 @@
 	<body id="kt_body" class="bg-body">
 		<!--begin::Main-->
 		<!--begin::Root-->
-		<div class="d-flex flex-column flex-root">
+		<div  class="d-flex flex-column flex-root" style="background-color: #1A243E">
 			<!--begin::Authentication - Sign-in -->
-			<div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(assets/media/illustrations/sketchy-1/14.png">
+			<div  
+			 class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(assets/media/illustrations/sketchy-1/14.png">
 				<!--begin::Content-->
 				<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 					<!--begin::Logo-->
@@ -41,7 +42,7 @@
 					</a>
 					<!--end::Logo-->
 					<!--begin::Wrapper-->
-					<div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+					<div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto"  >
 						@include('layout.notificacioncrud')
 						<!--begin::Form-->
 						<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form"  action="{{ route('login') }}" method="POST">

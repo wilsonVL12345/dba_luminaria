@@ -41,7 +41,7 @@
 									<div class="from row">
 										<div class="col-md-3 mb-3">
 											<label for="txtdistirto" class="required fs-5 fw-bold mb-2">Distrito</label>
-													<select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="txtdistirto" id="txtdistirto" required >
+													<select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="txtdistirto" id="txtdistirtoAgen" required >
 													<option value="" >Seleccione...</option>
 													@foreach ($listadistrito as $item)
 													<option value="{{$item->id}}">{{$item->Distrito}}</option>
@@ -151,12 +151,7 @@
 					
 				</div>
 			</div>
-			<div class="card mb-5 mb-xl-10">
-				<div class="card-body pt-9 pb-0">
-					{{-- <h1>Agendar Trabajo</h1> --}}
-						
-					</div>
-				</div>
+			
 			</div>
 		
 		</div>
