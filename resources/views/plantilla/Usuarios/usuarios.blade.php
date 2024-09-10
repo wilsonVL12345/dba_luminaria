@@ -384,8 +384,34 @@
 													<!--end::Svg Icon--></a>
 												<!--begin::Menu-->
 												<!--begin::Action=-->
+
 												@if ($itemus->Cargo=='Administrador')
-													
+													@if (session('Estado')=='superUsuario')
+															<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+															data-kt-menu="true">
+															<!--begin::Menu item-->
+															<div class="menu-item px-3">
+																<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarUsuario{{$itemus->id}}"
+																	class="menu-link px-3">Editar</a>
+															</div>
+															<!--end::Menu item-->
+															<!--begin::Menu item-->
+															
+															<div class="menu-item px-3">
+																
+																<a href="{{url('/eliminar/usuario'.$itemus->id)}}" class="menu-link px-3"
+																	data-kt-customer-table-filter="delete_row">Eliminar</a>
+																	
+															</div>
+															<div class="menu-item px-3">
+																<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarUsuario{{$itemus->id}}"
+																	class="menu-link px-3">Restablecer</a>
+															</div>
+															<!--end::Menu item-->
+														</div>
+													@else
+														
+													@endif
 												@else
 												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
 													data-kt-menu="true">
@@ -402,6 +428,10 @@
 														<a href="{{url('/eliminar/usuario'.$itemus->id)}}" class="menu-link px-3"
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
 															
+													</div>
+													<div class="menu-item px-3">
+														<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarUsuario{{$itemus->id}}"
+															class="menu-link px-3">Restablecer</a>
 													</div>
 													<!--end::Menu item-->
 												</div>

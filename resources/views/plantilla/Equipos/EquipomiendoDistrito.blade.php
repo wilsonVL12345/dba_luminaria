@@ -21,118 +21,119 @@
 			<!--begin::Navbar-->
 							<!--begin::Modal - registrar equipamiento - Add-->
 
-                            <div class="post d-flex flex-column-fluid" id="kt_post">
-                                <div id="kt_content_container" class="container-xxl">
+            <div class="post d-flex flex-column-fluid" id="kt_post">
+                 <div id="kt_content_container" class="container-xxl">
                                     <!--begin::Modal - registrar equipamiento - Add-->
-                                <div class="modal fade" id="kt_modal_add_customer" tabindex="-1" aria-hidden="true">
-                                    <!--begin::Modal dialog-->
-                                    <div class="modal-dialog modal-dialog-centered mw-650px">
-                                        <!--begin::Modal content-->
-                                        <div class="modal-content">
-                                            <!--begin::Form-->
-                                            {{-- formulario de registro de equipamiento --}}
-                                            <form class="form" action="{{route("registro.equipamiento")}}" id="forregistrarEquipamiento" data-kt-redirect="assets/dist/apps/customers/list.html" method="POST" >
-                                                @csrf
-                                                <!--begin::Modal header-->
-                                                <div class="modal-header" id="kt_modal_add_customer_header">
-                                                    <!--begin::Modal title-->
-                                                    <h2 class="fw-bolder">Registrar Nuevo Equipamiento</h2>
-                                                    <!--end::Modal title-->
-                                                    <!--begin::Close-->
-                                                    <!--begin::Close-->
-                                            <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                                <span class="svg-icon svg-icon-1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </div>
-                                            <!--end::Close-->
-                                                    <!--end::Close-->
+                                    <div class="modal fade" id="kt_modal_add_customer" tabindex="-1" aria-hidden="true">
+                                        <!--begin::Modal dialog-->
+                                        <div class="modal-dialog modal-dialog-centered mw-650px">
+                                            <!--begin::Modal content-->
+                                            <div class="modal-content">
+                                                <!--begin::Form-->
+                                                {{-- formulario de registro de equipamiento --}}
+                                                <form class="form" action="{{route("registro.equipamiento")}}" id="forregistrarEquipamiento" data-kt-redirect="assets/dist/apps/customers/list.html" method="POST" >
+                                                    @csrf
+                                                    <!--begin::Modal header-->
+                                                    <div class="modal-header" id="kt_modal_add_customer_header">
+                                                        <!--begin::Modal title-->
+                                                        <h2 class="fw-bolder">Registrar Nuevo Equipamiento</h2>
+                                                        <!--end::Modal title-->
+                                                        <!--begin::Close-->
+                                                        <!--begin::Close-->
+                                                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                                    <span class="svg-icon svg-icon-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                                        </svg>
+                                                    </span>
+                                                    <!--end::Svg Icon-->
                                                 </div>
-                                                <!--end::Modal header-->
-                                                <!--begin::Modal body-->
-                                                <div class="modal-body py-10 px-lg-17">
-                                                    <!--begin::Scroll-->
-                                                    <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
-                                                        <!--begin::Input group-->
-                                                        <div class="fv-row mb-7">
-                                                            <!--begin::Label-->
-                                                            <label class="required fs-6 fw-bold mb-2">Nombre Item
-                                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
-
-                                                            </label>
-                                                            <!--end::Label-->
-                                                            <!--begin::Input-->
-                                                            <input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de el Equipamiento" name="txtnombre" id="txtnombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*"  required />
-                                                            <!--end::Input-->
-                                                        </div>
-                                                        <!--end::Input group-->
-                                                        <!--begin::Input group-->
-                                                        <div class="fv-row mb-7">
+                                                <!--end::Close-->
+                                                        <!--end::Close-->
+                                                    </div>
+                                                    <!--end::Modal header-->
+                                                    <!--begin::Modal body-->
+                                                    <div class="modal-body py-10 px-lg-17">
+                                                        <!--begin::Scroll-->
+                                                        <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
                                                             <!--begin::Input group-->
-                                                            <div class="d-flex flex-column mb-8">
-                                                                <label class="fs-6 fw-bold mb-2">Descripcion</label>
-                                                                <textarea class="form-control form-control-solid" rows="3" name="txtdescripcion" id="txtdescripcion" placeholder="Ingrese una Breve Descripcion" ></textarea>
+                                                            <div class="fv-row mb-7">
+                                                                <!--begin::Label-->
+                                                                <label class="required fs-6 fw-bold mb-2">Nombre Item
+                                                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
+
+                                                                </label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Input-->
+                                                                <input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de el Equipamiento" name="txtnombre" id="txtnombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*"  required />
+                                                                <!--end::Input-->
                                                             </div>
                                                             <!--end::Input group-->
-                                                            
+                                                            <!--begin::Input group-->
+                                                            <div class="fv-row mb-7">
+                                                                <!--begin::Input group-->
+                                                                <div class="d-flex flex-column mb-8">
+                                                                    <label class="fs-6 fw-bold mb-2">Descripcion</label>
+                                                                    <textarea class="form-control form-control-solid" rows="3" name="txtdescripcion" id="txtdescripcion" placeholder="Ingrese una Breve Descripcion" ></textarea>
+                                                                </div>
+                                                                <!--end::Input group-->
+                                                                
+                                                            </div>
+                                                            <div class="row g-9 mb-8">
+                                                                <!--begin::Col-->
+                                                                <div class="col-md-6 fv-row">
+                                                                    <label class="required fs-6 fw-bold mb-2">Estado</label>
+                                                                    <select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtestado" required >
+
+                                                                        <option value="">Seleccione...</option>
+                                                                        <option value="Bueno">Bueno </option>
+                                                                        <option value="Regular">Regular </option>
+                                                                        <option value="Bueno ">Bueno </option>
+                                                                        <option value="En Mantenimiento">En Mantenimiento</option>
+                                                                    </select>
+                                                                </div>
+                                                                <!--end::Col-->
+                                                                <!--begin::Col-->
+                                                                <div class="col-md-6 fv-row">
+                                                                    <label class="required fs-6 fw-bold mb-2">Distrito</label>
+                                                                    <select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtdistrito" required >
+
+                                                                        <option value="">Seleccione...</option>
+                                                                        @foreach ($lista as $ite)
+                                                                        <option value="{{$ite->id}}">{{$ite->Distrito}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <!--end::Col-->
+                                                            </div>
+                                                        
                                                         </div>
-                                                        <div class="row g-9 mb-8">
-                                                            <!--begin::Col-->
-                                                            <div class="col-md-6 fv-row">
-                                                                <label class="required fs-6 fw-bold mb-2">Estado</label>
-                                                                <select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtestado" required >
-
-                                                                    <option value="">Seleccione...</option>
-                                                                    <option value="Bueno">Bueno </option>
-                                                                    <option value="Regular">Regular </option>
-                                                                    <option value="Bueno ">Bueno </option>
-                                                                    <option value="En Mantenimiento">En Mantenimiento</option>
-                                                                </select>
-                                                            </div>
-                                                            <!--end::Col-->
-                                                            <!--begin::Col-->
-                                                            <div class="col-md-6 fv-row">
-                                                                <label class="required fs-6 fw-bold mb-2">Distrito</label>
-                                                                <select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtdistrito" required >
-
-                                                                    <option value="">Seleccione...</option>
-                                                                    @foreach ($lista as $ite)
-                                                                    <option value="{{$ite->id}}">{{$ite->Distrito}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <!--end::Col-->
+                                                        <!--end::Scroll-->
+                                                    </div>
+                                                    <!--end::Modal body-->
+                                                    <!--begin::Modal footer-->
+                                                    <div class="modal-footer flex-center">
+                                                        <div class="text-center">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" id="submitButtons" class="btn btn-primary">Registrar</button>
+                                                            
                                                         </div>
                                                     
                                                     </div>
-                                                    <!--end::Scroll-->
-                                                </div>
-                                                <!--end::Modal body-->
-                                                <!--begin::Modal footer-->
-                                                <div class="modal-footer flex-center">
-                                                    <div class="text-center">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                        <button type="submit" id="submitButtons" class="btn btn-primary">Registrar</button>
-                                                        
-                                                    </div>
-                                                
-                                                </div>
-                                                <!--end::Modal footer-->
-                                            </form>
-                                            <!--end::Form-->
+                                                    <!--end::Modal footer-->
+                                                </form>
+                                                <!--end::Form-->
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-							<!--endbegin::Modal - registrar equipamiento - Add-->
-                            <div>
-                                @include('layout.notificacioncrud')
-                            </div>
-                            @can('equipamiento.create')
+							        <!--endbegin::Modal - registrar equipamiento - Add-->
+                                    <div>
+                                        @include('layout.notificacioncrud')
+                                    </div>
+                                               
+                                @can('equipamiento.create')
                                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Agregar Nuevo</button>
                                     </div>
@@ -818,8 +819,8 @@
                                         </a>
                                         </div>
                                     </div>
-                                </div>
-                           </div>
+                 </div>
+            </div>
                            
                        
 		</div>

@@ -16,6 +16,7 @@ use Illuminate\Routing\Router;
 // use App\Http\Controllers\logincontroller;
 use App\Http\Controllers\luminaria_retiradasController;
 use App\Http\Controllers\proyectoController;
+use App\Http\Controllers\ReelevamientoController;
 use App\Models\datos_luminaria_retirada;
 
 /*
@@ -79,12 +80,28 @@ Route::middleware('auth', 'verified')->group(function () {
         ->middleware('guest')
         ->name('password.store');
 
-    //ruta para ver  distritos----------------------------------------------------------------------
-    Route::get('/detallesDistritos', [distritoController::class, 'index'])->name('detalles.Distritos')->middleware('can:Distritos.show');
-    Route::post('/registro/distrito', [distritoController::class, 'create'])->name('registro.distrito')->middleware('can:Distritos.create');
-    Route::post('/editar/distrito/{id}', [distritoController::class, 'edit'])->name('editar.distrito')->middleware('can:Distritos.edit');
-    Route::get('/editar/urbanizacion/{id}', [distritoController::class, 'datosEdit'])->name('editar.urbanizacion')->middleware('can:Distritos.edit');
-    Route::get('/eliminar/urbanizacion{id}', [distritoController::class, 'destroy'])->name('eliminar.urbanizacion')->middleware('can:Distritos.delete');
+    //rutar para agendar trabajos---------------------------------------------------------------------------------------------------------
+    Route::get('/agendar', [detalleController::class, 'agendar'])->name('agendar')->middleware('can:agendar.show');
+    // crea el trabajo para que posteriormente lo ejecute el tecnico
+    Route::post('/agendar/trabajo', [detalleController::class, 'create'])->name('agendar.trabajo')->middleware('can:agendar.show');
+
+    //ruta para ver los detalles generales de los trabajos------------------------------------------------------------------------------------------
+    Route::get('/detalles/espera', [detalleController::class, 'index'])->name('detalles.espera')->middleware('can:detallesGen.show');
+    Route::get('/detalles/realizados', [detalleController::class, 'realizados'])->name('detalles.realizados')->middleware('can:detallesGen.show');
+    Route::get('/detalles/realizados/edit{id}', [detalleController::class, 'editRealizadosShow'])->name('detalles.realizadosEdit')->middleware('can:detallesGen.edit');
+
+    Route::get('detalle/realizados/informacion/{id}', [detalleController::class, 'DetallesRealizado'])->name('detalle.realizados.informacion')->middleware('can:detallesGen.show');
+    Route::get('/eliminar/detallegen{id}', [detalleController::class, 'destroy'])->name('eliminar.detallegen')->middleware('can:detallesGen.delete');
+    //rutas  para  detalles en espera,realizar trabajo------------------------------------------------------------------------------------------
+    Route::get('/ejecutar/trabajo/{id}', [detalleController::class, 'ejecutar'])->name('ejecutar.trabajo')->middleware('can:realizar.show');
+    Route::get('/pendiente/trabajo', [detalleController::class, 'pendiente'])->name('pendiente.trabajo')->middleware('can:realizar.show');
+    Route::post('/store/trabajo/{id}', [detalleController::class, 'storeTrabajo'])->name('store.trabajo')->middleware('can:realizar.show');
+
+    Route::post('/edit/espera/{id}', [detalleController::class, 'edit'])->name('edit.espera')->middleware('can:detallesGen.edit');
+    Route::post('/edit/realizado/{id}', [detalleController::class, 'editRealizado'])->name('edit.realizado')->middleware('can:detallesGen.edit');
+
+
+
 
 
 
@@ -147,31 +164,19 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/dashproyectos', [proyectoController::class, 'dashproy'])->name('dashproyectos')->middleware('can:dashboard.show');
     Route::get('/dashdetalles', [proyectoController::class, 'dashdetall'])->name('dashdetalles')->middleware('can:dashboard.show');
 
+    //rutar para reelevamiento---------------------------------------------------------------------------------------
+    Route::get('/reelevamientos', [ReelevamientoController::class, 'showDist'])->name('reelevamientos');
+
+
+    //ruta para ver  distritos----------------------------------------------------------------------
+    Route::get('/detallesDistritos', [distritoController::class, 'index'])->name('detalles.Distritos')->middleware('can:Distritos.show');
+    Route::post('/registro/distrito', [distritoController::class, 'create'])->name('registro.distrito')->middleware('can:Distritos.create');
+    Route::post('/editar/distrito/{id}', [distritoController::class, 'edit'])->name('editar.distrito')->middleware('can:Distritos.edit');
+    Route::get('/editar/urbanizacion/{id}', [distritoController::class, 'datosEdit'])->name('editar.urbanizacion')->middleware('can:Distritos.edit');
+    Route::get('/eliminar/urbanizacion{id}', [distritoController::class, 'destroy'])->name('eliminar.urbanizacion')->middleware('can:Distritos.delete');
 
 
 
-
-    //rutar para agendar trabajos---------------------------------------------------------------------------------------------------------
-    Route::get('/agendar', [detalleController::class, 'agendar'])->name('agendar')->middleware('can:agendar.show');
-    // crea el trabajo para que posteriormente lo ejecute el tecnico
-    Route::post('/agendar/trabajo', [detalleController::class, 'create'])->name('agendar.trabajo')->middleware('can:agendar.show');
-
-    //ruta para ver los detalles generales de los trabajos------------------------------------------------------------------------------------------
-    Route::get('/detalles/espera', [detalleController::class, 'index'])->name('detalles.espera')->middleware('can:detallesGen.show');
-    Route::get('/detalles/realizados', [detalleController::class, 'realizados'])->name('detalles.realizados')->middleware('can:detallesGen.show');
-    Route::get('/detalles/realizados/edit{id}', [detalleController::class, 'editRealizadosShow'])->name('detalles.realizadosEdit')->middleware('can:detallesGen.edit');
-
-    Route::get('detalle/realizados/informacion/{id}', [detalleController::class, 'DetallesRealizado'])->name('detalle.realizados.informacion')->middleware('can:detallesGen.show');
-    Route::get('/eliminar/detallegen{id}', [detalleController::class, 'destroy'])->name('eliminar.detallegen')->middleware('can:detallesGen.delete');
-
-
-    //rutas  para  detalles en espera,realizar trabajo------------------------------------------------------------------------------------------
-    Route::get('/ejecutar/trabajo/{id}', [detalleController::class, 'ejecutar'])->name('ejecutar.trabajo')->middleware('can:realizar.show');
-    Route::get('/pendiente/trabajo', [detalleController::class, 'pendiente'])->name('pendiente.trabajo')->middleware('can:realizar.show');
-    Route::post('/store/trabajo/{id}', [detalleController::class, 'storeTrabajo'])->name('store.trabajo')->middleware('can:realizar.show');
-
-    Route::post('/edit/espera/{id}', [detalleController::class, 'edit'])->name('edit.espera')->middleware('can:detallesGen.edit');
-    Route::post('/edit/realizado/{id}', [detalleController::class, 'editRealizado'])->name('edit.realizado')->middleware('can:detallesGen.edit');
 
 
     /* Auth::routes(); */

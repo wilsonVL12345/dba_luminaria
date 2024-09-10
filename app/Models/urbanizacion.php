@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class urbanizacion extends Model
 {
@@ -19,4 +21,8 @@ class urbanizacion extends Model
         'lat'
     ];
     protected $primaryKey = 'id';
+    public function reelevamiento(): HasMany
+    {
+        return $this->hasMany(reelevamiento::class);
+    }
 }

@@ -27,7 +27,7 @@ class userseeder extends Seeder
       $user->Cargo = "Administrador";
       $user->Lugar_Designado = "Alcaldia";
       $user->perfil = "/storage/perfiles/perfilmas.jpg";
-      $user->Estado = "Activo";
+      $user->Estado = "Usuario";
       $user->email = "administrador@gob.bo";
       // $user->Password = Hash::make('adminadmin');
       $user->Password = Hash::make('adminadmin');

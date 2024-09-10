@@ -307,7 +307,7 @@
             </div>
             @endcan
             <div class="menu-item">
-                <a class="menu-link" href="/reelevamiento">
+                <a class="menu-link" href="/reelevamientos">
                     <span class="menu-icon">
                         <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                         <span class="svg-icon svg-icon-2">

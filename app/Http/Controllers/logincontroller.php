@@ -62,34 +62,7 @@ class logincontroller extends Controller
         $userold = user::find($id);
         return view('plantilla.Usuarios.nuevaContrasena', compact('userold'));
     }
-    /*  public function cambiarPassword(Request $request, $id)
-    {
-        try {
-            $UserNewPass = User::find($id);
-            if ($UserNewPass->password == Hash::make($request->oldpassword)) {
-                if ($request->newpassword == $request->newpasswordConfirm) {
-                    $UserNewPass->password = Hash::make($request->newpassword);
-                    $UserNewPass->save();
-                    Auth::logout();
-                    $request->session()->invalidate();
-                    $request->session()->regenerate();
-                    return redirect(route('login'));
-                } else {
-                    return back()->with("incorrecto", "Error al Modificar Luminarias Retiradas");
-                }
-            } else {
-                $sql = false;
-            }
-            $sql = true;
-        } catch (\Throwable $th) {
-            $sql = false;
-        }
-        if ($sql == true) {
-            return back()->with("correcto", "Contraseña Modificada Correctamente");
-        } else {
-            return back()->with("incorrecto", "Error al Modificar Contraseña");
-        }
-    } */
+
     public function cambiarPassword(Request $request, $id)
     {
         /* Log::info('Intento de cambio de contraseña', ['user_id' => $id]);

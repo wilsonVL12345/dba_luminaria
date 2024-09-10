@@ -106,7 +106,8 @@
 <script src="{{ asset('assets/js/dashboards/inspeccionAnual.js') }}" defer></script>
 <script src="{{ asset('assets/js/dashboards/detallesAnual.js') }}" defer></script>
 
-
+<script src="{{ asset('assets/js/reelevamientos/dropzone.js') }}" defer></script>
+<script src="{{ asset('assets/js/reelevamientos/filtUrba.js') }}" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
     $(document).ready(function() {
