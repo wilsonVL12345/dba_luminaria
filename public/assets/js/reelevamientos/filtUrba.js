@@ -14,7 +14,7 @@ $(document).ready(function () {
                 const zonasUrbanizaciones = data.filter(item => item.Nrodistrito == distritoSeleccionado);
 
                 $.each(zonasUrbanizaciones, function (index, item) {
-                    $zonaUrbanizacionSelect.append(`<option value="${item.nombre_urbanizacion}">${item.nombre_urbanizacion}</option>`);
+                    $zonaUrbanizacionSelect.append(`<option value="${item.id}">${item.nombre_urbanizacion}</option>`);
                 });
 
                 // Actualizar select2 después de modificar las opciones

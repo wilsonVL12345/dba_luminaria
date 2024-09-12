@@ -1,34 +1,7 @@
-
-// este es el js para que muestre los equipamientos de los diferentes distritos
-$(document).ready(function() {
-    let lugarDesignado = $('#app').data('lugarDesignado');
-    console.log('está funcionando');
-    
-    // Ocultar todos los divs inicialmente
-    $('div[id^="d-"]').hide();
-    
-    if (lugarDesignado === 'Alcaldia') {
-        // Si es 'Alcaldia', mostrar todos los divs
-        $('div[id^="d-"]').show();
-    } else {
-        // Convertir a número si no es 'Alcaldia'
-        lugarDesignado = parseInt(lugarDesignado);
-        
-        // Mostrar el div específico basado en Lugar_Designado
-        if (lugarDesignado >= 1 && lugarDesignado <= 14) {
-            $('#d-' + lugarDesignado).show();
-        }
-    }
-}); 
-
-
-
-
-
 "use strict";
 
 // Class definition
-let tablaequipamientos = function () {
+let reeleLum = function () {
     // Shared variables
     let tableDist;
     let datatable;
@@ -64,33 +37,29 @@ let tablaequipamientos = function () {
                         extend: 'copyHtml5',
                         title: documentTitle,
                         exportOptions: {
-                            columns: ':not(:last-child)'
+                            columns: [0, 1, 2, 3 ,4 ] 
                         }
                     },
                     {
                         extend: 'excelHtml5',
                         title: documentTitle,
                         exportOptions: {
-                            columns: ':not(:last-child)'
+                            columns: [0, 1, 2, 3 ,4 ] 
                         }
                     },
-                   /*  {
-                        extend: 'csvHtml5',
-                        title: documentTitle,
-                        exportOptions: {
-                            columns: ':not(:last-child)'
-                        }
-                    }, */
+                  
                     {
                         extend: 'pdfHtml5',
                         title: documentTitle,
                         exportOptions: {
-                            columns: ':not(:last-child)'
+                            columns: [0, 1, 2, 3 ,4 ] 
                         },
                         customize: function(doc) {
+                            // Establecer la orientación de la página en horizontal
+                            doc.pageOrientation = 'landscape';
                            
                            // Ajustar el ancho de las columnas (50% para "Distrito", 50% para "Urbanización")
-                              doc.content[1].table.widths = ['20%', '60%', '10%', '10%']; // Reducimos el ancho de la primera columna
+                              doc.content[1].table.widths = ['20%', '30%', '10%', '10%', '30%']; // Reducimos el ancho de la primera columna
 
                                // Centrar el contenido de la primera columna
                                 doc.content[1].table.body.forEach(function(row) {
@@ -172,7 +141,7 @@ let tablaequipamientos = function () {
                     // Public methods
                     return {
                         init: function () {
-                            tableDist = document.querySelector('#equipamientotabla');
+                            tableDist = document.querySelector('#reelevamientoLuminaria');
                             console.log('table:', tableDist); // Debugging statement
 
                             if (!tableDist) {
@@ -190,7 +159,5 @@ let tablaequipamientos = function () {
 
                 // On document ready
                 KTUtil.onDOMContentLoaded(function () {
-                    tablaequipamientos.init();
+                    reeleLum.init();
                 }); 
-
-

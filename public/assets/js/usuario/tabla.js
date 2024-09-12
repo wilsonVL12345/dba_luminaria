@@ -60,7 +60,7 @@ let tablausuartios = function () {
                         extend: 'pdfHtml5',
                         title: documentTitle,
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4,5, 6,7]  // Excluye la columna 6 (índice 6)
+                            columns: [ 1, 2, 3, 4,5, 6,7,8]  // Excluye la columna 6 (índice 6)
                         },
                         customize: function(doc) {
                             // Establecer la orientación de la página en horizontal
@@ -71,7 +71,6 @@ let tablausuartios = function () {
                     
                             // Centrar el contenido de las columnas especificadas
                             doc.content[1].table.body.forEach(function(row) {
-                                row[0].alignment = 'center'; // Columna 1
                                 row[3].alignment = 'center'; // Columna 4
                                 row[4].alignment = 'center'; // Columna 5
                                 row[5].alignment = 'center'; // Columna 5

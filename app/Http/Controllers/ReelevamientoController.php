@@ -6,6 +6,7 @@ use App\Models\reelevamiento;
 use Illuminate\Http\Request;
 use App\Models\distrito;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ReelevamientoController extends Controller
 {
@@ -38,22 +39,92 @@ class ReelevamientoController extends Controller
         return view('plantilla.Reelevamiento.reeLuminaria', compact('lista', 'reelevamientosPorDistrito'));
     }
 
-    public function index() {}
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function index($id)
     {
-        //
+        $showReele = reelevamiento::where('Distritos_id', $id)->get();
+        $lista = Distrito::where('id', '<>', 15)->get();
+
+        return view('plantilla.Reelevamiento.reeLuminariaShow', compact('showReele', 'lista'));
+    }
+
+
+    public function create(Request $request)
+    {
+        if ($request->flrar) {
+            $dir = $request->file('flrar')->store('public/rarReelevamiento');
+            $url = Storage::url($dir);
+        }
+        try {
+            $request->validate([
+                'flrar' => 'file|mimes:rar,zip|max:4096' // 4096 es el tamaño en kilobytes (4 MB)
+            ]);
+
+            $reeleLumNew = new reelevamiento();
+            $reeleLumNew->Av_calles = $request->reeAvCalle;
+            $reeleLumNew->Descripcion = $request->reeDescripRegis;
+            $reeleLumNew->Distritos_id = $request->reeDistritoRegis;
+            $reeleLumNew->Fecha = $request->reeFechaRegis;
+            $reeleLumNew->Urbanizacion_id = $request->reeUrbanizacionRegis;
+            $reeleLumNew->Archivos = $url;
+            $reeleLumNew->save();
+            $sql = true;
+        } catch (\Throwable $th) {
+            $sql = false;
+        }
+        if ($sql == true) {
+            return back()->with("correcto", "Datos Registrado Correctamente");
+        } else {
+            return back()->with("incorrecto", "Error al registrar");
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function modificar(Request $request, $id)
     {
-        //
+        if ($request->flrarMod) {
+            $dirr = $request->file('flrarMod')->store('public/rarReelevamiento');
+            $urll = Storage::url($dirr);
+        }
+        try {
+
+            $reeleMod = reelevamiento::find($id);
+            if ($request->flrarMod) {
+                $filePath = $reeleMod->Archivos;
+
+                // Verificar si el archivo existe
+                if (Storage::exists($filePath)) {
+                    // Eliminar el archivo
+                    Storage::delete($filePath);
+                }
+                $reeleMod->Av_calles = $request->reeAvCalleMod;
+                $reeleMod->Descripcion = $request->reeDescripRegisMod;
+                $reeleMod->Distritos_id = $request->reeDistritoRegisMod;
+                $reeleMod->Fecha = $request->reeFechaRegisMod;
+                $reeleMod->Urbanizacion_id = $request->reeUrbanizacionRegisMod;
+                $reeleMod->Archivos = $urll;
+                $reeleMod->save();
+                $sql = true;
+            } else {
+
+                $reeleMod->Av_calles = $request->reeAvCalleMod;
+                $reeleMod->Descripcion = $request->reeDescripRegisMod;
+                $reeleMod->Distritos_id = $request->reeDistritoRegisMod;
+                $reeleMod->Fecha = $request->reeFechaRegisMod;
+                $reeleMod->Urbanizacion_id = $request->reeUrbanizacionRegisMod;
+
+                $reeleMod->save();
+                $sql = true;
+            }
+        } catch (\Throwable $th) {
+            $sql = false;
+        }
+        if ($sql == true) {
+            return back()->with("correcto", "Datos Modificados Correctamente");
+        } else {
+            return back()->with("incorrecto", "Error al Modificar");
+        }
     }
 
     /**
@@ -83,8 +154,9 @@ class ReelevamientoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(reelevamiento $reelevamiento)
+    public function destroy(reelevamiento $id)
     {
-        //
+        $id->delete();
+        return back()->with("correcto", "Datos Eliminados Correctamente");
     }
 }

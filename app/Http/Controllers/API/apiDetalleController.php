@@ -27,7 +27,7 @@ class apiDetalleController extends Controller
      */
     public function listUbanizacion()
     {
-        $listaUrb = urbanizacion::select('Nrodistrito', 'nombre_urbanizacion')->get();
+        $listaUrb = urbanizacion::select('id', 'Nrodistrito', 'nombre_urbanizacion')->get();
         return response()->json($listaUrb);
     }
     function detallesEspera()

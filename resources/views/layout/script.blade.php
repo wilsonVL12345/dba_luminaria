@@ -108,6 +108,8 @@
 
 <script src="{{ asset('assets/js/reelevamientos/dropzone.js') }}" defer></script>
 <script src="{{ asset('assets/js/reelevamientos/filtUrba.js') }}" defer></script>
+<script src="{{ asset('assets/js/reelevamientos/tablaReele.js') }}" defer></script>
+<script src="{{ asset('assets/js/reelevamientos/filtUrbMod.js') }}" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
     $(document).ready(function() {

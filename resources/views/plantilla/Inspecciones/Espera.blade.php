@@ -387,7 +387,7 @@
 																	<!--begin::Actions-->
 																	<div class="text-center">
 																		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-																		<button type="submit" class="btn btn-primary">Registrar</button>
+																		<button type="submit" class="btn btn-primary">Modificar</button>
 																	</div>
 																	<!--end::Actions-->
 																</form>

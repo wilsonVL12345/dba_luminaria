@@ -151,6 +151,22 @@ class UserController extends Controller
  */
         return view('plantilla.Usuarios.perfil', compact('perfiluser', 'manteDetalleCount', 'manteProyectoCount', 'manteInspeccionCount', 'porTotal'));
     }
+    public function restablecer($id)
+    {
+        try {
+            $restablecerUser = User::find($id);
+            $restablecerUser->password = Hash::make($restablecerUser->Ci);
+            $restablecerUser->save();
+            $sql = true;
+        } catch (\Throwable $th) {
+            $sql = false;
+        }
+        if ($sql == true) {
+            return back()->with("correcto", "Contraseña Reestablecido con exit");
+        } else {
+            return back()->with("incorrecto", "Error al Restablecer");
+        }
+    }
 
     /**
      * Remove the specified resource from storage.

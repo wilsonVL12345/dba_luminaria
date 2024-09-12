@@ -327,6 +327,7 @@
 								<table class="table align-middle border rounded table-row-dashed fs-6 g-5" id="tableDeUsuarios">
 									<thead>
 										<tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
+											<th class="min-w-100px">Usuario</th>
 											<th class="min-w-100px">Nombre</th>
 											<th class="min-w-100px">Paterno</th>
 											<th class="min-w-100px">Materno</th>
@@ -345,6 +346,9 @@
 										@foreach ($user as $itemus)
 											
 										<tr class="text-start text-gray-500 fw-bold fs-7 {{-- text-uppercase --}}">
+											<td>
+												<a href="#" class="text-gray-600 text-hover-primary mb-1"><img src="{{$itemus->perfil}}"  width="40" height="40" alt=""></a>
+											</td>
 											<td>
 												<a href="#" class="text-gray-600 text-hover-primary mb-1">{{$itemus->name}}</a>
 											</td>
@@ -404,7 +408,7 @@
 																	
 															</div>
 															<div class="menu-item px-3">
-																<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarUsuario{{$itemus->id}}"
+																<a href="{{url('/restablecer/usuario'.$itemus->id)}}"  
 																	class="menu-link px-3">Restablecer</a>
 															</div>
 															<!--end::Menu item-->
@@ -430,7 +434,7 @@
 															
 													</div>
 													<div class="menu-item px-3">
-														<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarUsuario{{$itemus->id}}"
+														<a href="{{url('/restablecer/usuario'.$itemus->id)}}"  
 															class="menu-link px-3">Restablecer</a>
 													</div>
 													<!--end::Menu item-->

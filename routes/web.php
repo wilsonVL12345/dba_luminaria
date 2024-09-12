@@ -62,6 +62,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/usuario/desbloquear/{id}', [UserController::class, 'desbloquear'])->name('usuario.bloquear'); */
     Route::get('/usuario/perfil/{id}', [UserController::class, 'perfil'])->name('usuario.perfil');
     Route::get('/eliminar/usuario{id}', [UserController::class, 'destroy'])->name('eliminar.usuario')->middleware('can:user.delete');
+    Route::get('/restablecer/usuario{id}', [UserController::class, 'restablecer'])->name('restablecer.usuario');
 
     // cambiar contraseña
     Route::get('/cambiar/password{id}', [logincontroller::class, 'showcambiarPassword'])->name('cambiar.password');
@@ -158,6 +159,7 @@ Route::middleware('auth', 'verified')->group(function () {
     // Route::get('/detallesAccesorios/almacen', [proyectoController::class, 'reu'])->name('detallesAccesorios.almacendatos')->middleware('can:· ·');
     Route::get('/datos/ejecutar/{id}', [proyectoController::class, 'ejecutarProyectodatos'])->name('datos.ejecutar')->middleware('can:proyecto.install');
     Route::post('/registrar/trabajoEjecutado/{id}', [proyectoController::class, 'registrarTrabajo'])->name('registrar.trabajoejecutado')->middleware('can:proyecto.create');
+    Route::get('/Almacen/detalles/pdf{id}', [proyectoController::class, 'generarPdf'])->name('Almacen.pdf');
 
     Route::get('/proyectos/ObrasEjecutadas', [proyectoController::class, 'datosObras'])->name('proyectos.ObrasEjecutadas')->middleware('can:proyecto.show');
 
@@ -166,7 +168,10 @@ Route::middleware('auth', 'verified')->group(function () {
 
     //rutar para reelevamiento---------------------------------------------------------------------------------------
     Route::get('/reelevamientos', [ReelevamientoController::class, 'showDist'])->name('reelevamientos');
-
+    Route::get('/reelevamientos/dis/{id}', [ReelevamientoController::class, 'index'])->name('reelevamientos.dis');
+    Route::post('/reelevamiento/create', [ReelevamientoController::class, 'create'])->name('reelevamiento.create');
+    Route::post('/reelevamiento/modificar{id}', [ReelevamientoController::class, 'modificar'])->name('reelevamiento.modificar');
+    Route::get('/eliminar/reelevamiento{id}', [ReelevamientoController::class, 'destroy'])->name('eliminar.reelevamiento');
 
     //ruta para ver  distritos----------------------------------------------------------------------
     Route::get('/detallesDistritos', [distritoController::class, 'index'])->name('detalles.Distritos')->middleware('can:Distritos.show');

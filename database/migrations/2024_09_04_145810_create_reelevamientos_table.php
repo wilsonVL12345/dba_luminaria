@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('Av_calles')->nullable();
             $table->date('Fecha')->nullable();
             $table->text('Descripcion')->nullable();
-            $table->string('Archivos')->unique();
+            $table->string('Archivos')->unique()->nullable();
 
             $table->unsignedBigInteger(column: 'Urbanizacion_id');
             $table->foreign(columns: 'Urbanizacion_id')->references(columns: 'id')

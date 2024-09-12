@@ -26,10 +26,10 @@ class reelevamiento extends Model
 
     public function distrito(): BelongsTo
     {
-        return $this->belongsTo(distrito::class, 'Urbanizacion_id');
+        return $this->belongsTo(distrito::class, 'Distritos_id');
     }
     public function urbanizacion(): BelongsTo
     {
-        return $this->belongsTo(urbanizacion::class, 'Distritos_id');
+        return $this->belongsTo(urbanizacion::class, 'Urbanizacion_id');
     }
 }

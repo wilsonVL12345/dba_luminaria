@@ -420,6 +420,12 @@
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
 														
 													</div>
+													<div class="menu-item px-3">
+														
+														<a href="{{url('/Almacen/detalles/pdf'.$item->id) }}" class="menu-link px-3" target="_blank"
+															data-kt-customer-table-filter="delete_row">Generar Report</a>
+														
+													</div>
 													@endcan
 											<!--end::Menu item-->
 												</div>

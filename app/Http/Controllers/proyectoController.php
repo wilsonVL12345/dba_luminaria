@@ -12,6 +12,8 @@ use App\Models\luminaria;
 use App\Models\urbanizacion;
 use Illuminate\Foundation\Console\ViewMakeCommand;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class proyectoController extends Controller
 {
@@ -288,6 +290,19 @@ class proyectoController extends Controller
 
         return view('plantilla.Proyectos.proyectoDetalles', compact('luminaria', 'accesorios', 'reutilizada', 'proyec', 'ejecutador'));
     }
+    public function generarPdf($id)
+    {
+        $proyec = proyecto::find($id);
+        $reutilizada = luminarias_reutilizada::where('Proyectos_id', $id)->get();
+        $accesorios = accesorio::where('Proyectos_id', $id)->get();
+        $luminaria = luminaria::where('Proyectos_id', $id)->get();
+        $ejecutador = user::find($proyec->Realizado_Por);
+
+        $pdf = Pdf::loadView('plantilla.Proyectos.pdfProyAlmacenDetalles', compact('luminaria', 'accesorios', 'reutilizada', 'proyec', 'ejecutador'));
+
+        return $pdf->stream('reporte_Proyecto.pdf');
+    }
+
 
     /**
      * Update the specified resource in storage.
