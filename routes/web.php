@@ -90,6 +90,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/detalles/espera', [detalleController::class, 'index'])->name('detalles.espera')->middleware('can:detallesGen.show');
     Route::get('/detalles/realizados', [detalleController::class, 'realizados'])->name('detalles.realizados')->middleware('can:detallesGen.show');
     Route::get('/detalles/realizados/edit{id}', [detalleController::class, 'editRealizadosShow'])->name('detalles.realizadosEdit')->middleware('can:detallesGen.edit');
+    Route::get('/detalles/mantenimiento/pdf{id}', [detalleController::class, 'generarpdf'])->name('detalles.pdf');
 
     Route::get('detalle/realizados/informacion/{id}', [detalleController::class, 'DetallesRealizado'])->name('detalle.realizados.informacion')->middleware('can:detallesGen.show');
     Route::get('/eliminar/detallegen{id}', [detalleController::class, 'destroy'])->name('eliminar.detallegen')->middleware('can:detallesGen.delete');
@@ -97,7 +98,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/ejecutar/trabajo/{id}', [detalleController::class, 'ejecutar'])->name('ejecutar.trabajo')->middleware('can:realizar.show');
     Route::get('/pendiente/trabajo', [detalleController::class, 'pendiente'])->name('pendiente.trabajo')->middleware('can:realizar.show');
     Route::post('/store/trabajo/{id}', [detalleController::class, 'storeTrabajo'])->name('store.trabajo')->middleware('can:realizar.show');
-
     Route::post('/edit/espera/{id}', [detalleController::class, 'edit'])->name('edit.espera')->middleware('can:detallesGen.edit');
     Route::post('/edit/realizado/{id}', [detalleController::class, 'editRealizado'])->name('edit.realizado')->middleware('can:detallesGen.edit');
 

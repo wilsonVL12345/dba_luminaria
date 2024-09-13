@@ -11,7 +11,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Almacen</h1>
+				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">DETALLES GENERALES DE TRABAJO DE MANTENIMIENTOS REALIZADOS</h1>
 				<!--end::Title-->
 				<!--begin::Separator-->
 				<span class="h-20px border-gray-300 border-start mx-4"></span>
@@ -103,6 +103,14 @@
                                         </div>
                        
 								</div>
+								<div class="from row">
+									<div class="col-md-8 mb-4">
+										<label for="txtmodalidad" class=" fs-5 fw-bold mb-2">Detalles</label>
+										<textarea class="form-control form-control-solid" rows="3" name="reeDescripRegis" id="reeDescripRegis" placeholder="Ingrese una Breve Descripcion" >{{$trabajo->Detalles}}</textarea>
+
+									</div>
+								</div>
+
 								
 							</form>
 								
@@ -137,6 +145,10 @@
 										
 									</tbody>
 								</table>
+								<div class="modal-footer flex-end">
+
+									<a href="/detalles/realizados" type="button" i class="btn btn-danger me-3">Cerrar</a>
+								</div>
 							</div>
                          
                       
@@ -145,12 +157,7 @@
 					</div>
 				</div>
 			</div>
-				<div class="card mb-5 mb-xl-10">
-					<div class="card-body pt-9 pb-0">
-						{{-- <h1>Agendar Trabajo</h1> --}}
-						
-					</div>
-				</div>
+				
 		</div>
 		
 		

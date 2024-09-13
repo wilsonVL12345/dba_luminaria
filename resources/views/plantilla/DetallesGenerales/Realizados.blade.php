@@ -204,8 +204,17 @@
 											@can('detallesGen.delete')
 											<div class="menu-item px-3">
 														
-														<a href="{{url('/eliminar/detallegen'.$itemtrab->id) }}" class="menu-link px-3"
+														<a href="{{url('/eliminar/detallegen'.$itemtrab->id) }}" class="menu-link px-3" 
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
+														
+													</div>
+													@endcan
+													@can('detallesGen.report')
+
+													<div class="menu-item px-3">
+														
+														<a href="{{url('/detalles/mantenimiento/pdf'.$itemtrab->id) }}" class="menu-link px-3"  target="_blank"
+															data-kt-customer-table-filter="delete_row">Reporte</a>
 														
 													</div>
 													@endcan

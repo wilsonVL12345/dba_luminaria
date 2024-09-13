@@ -101,7 +101,7 @@ $(document).ready(function () {
 });
 //fecha detalles  espera rango tabla-----------------------------------------
 
-$(document).ready(function() {
+/* $(document).ready(function() {
     // Verificar si la tabla ya ha sido inicializada como DataTable
     let datatable;
     if ($.fn.DataTable.isDataTable('#tablaespera')) {
@@ -159,7 +159,7 @@ $(document).ready(function() {
     $('#aplicarFiltro').on('click', function() {
         aplicarFiltroFechas();
     });
-});
+}); */
 /* let rangoespera = flatpickr("#rangoFechaDetallEspera", 
     {
         
@@ -188,7 +188,7 @@ $(document).ready(function() {
  );
 // para la parte de rango de fechas en tabla realizado--------------------------------------------------------
 // Función para inicializar el filtro de fechas para una tabla específica
-$(document).ready(function() {
+/* $(document).ready(function() {
     // Verificar si la tabla ya ha sido inicializada como DataTable
     let datatable;
     if ($.fn.DataTable.isDataTable('#detalleRealizado')) {
@@ -246,7 +246,7 @@ $(document).ready(function() {
     $('#aplicarFiltro').on('click', function() {
         aplicarFiltroFechas();
     });
-});
+}); */
  
 //fecha detalles  realizados editar-----------------------------------------
 

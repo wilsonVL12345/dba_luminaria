@@ -219,6 +219,16 @@
 														
 													</div>
 											@endcan
+											@can('proyecto.report')
+
+
+													<div class="menu-item px-3">
+														
+														<a href="{{url('/Almacen/detalles/pdf'.$items->id) }}" class="menu-link px-3" target="_blank"
+															data-kt-customer-table-filter="delete_row">Reporte</a>
+														
+													</div>
+											@endcan
 													<!--end::Menu item-->
 												</div>
 												<!--end::Menu-->

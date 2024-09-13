@@ -282,12 +282,14 @@
 									<!--end::Export buttons-->
 								</div>
 								<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+								@can('user.export')
 									
 									<!--begin::Export dropdown-->
 								<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 									<i class="ki-duotone ki-exit-down fs-2"><span class="path1"></span><span class="path2"></span></i>
 									Export Report
 								</button>
+								@endcan
 								<!--begin::Menu-->
 								<div id="kt_datatable_example_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">
 									<!--begin::Menu item-->
@@ -317,11 +319,12 @@
 								<!--end::Export dropdown-->
 
 								<!--begin::Hide default export buttons-->
+								@can('user.create')
 								<div id="kt_datatable_example_buttons" class="d-none"></div>
 									<!--end::Hide default export buttons-->
 									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modadRegistraUsuarios">Agregar Nuevo</button>
 								</div>
-								
+								@endcan
 							</div>
 							<div class="card-body">
 								<table class="table align-middle border rounded table-row-dashed fs-6 g-5" id="tableDeUsuarios">
@@ -420,23 +423,32 @@
 												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
 													data-kt-menu="true">
 													<!--begin::Menu item-->
+													@can('user.edit')
+														
 													<div class="menu-item px-3">
 														<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarUsuario{{$itemus->id}}"
 															class="menu-link px-3">Editar</a>
-													</div>
+														</div>
+														@endcan
 													<!--end::Menu item-->
 													<!--begin::Menu item-->
+													@can('user.delete')
 													
 													<div class="menu-item px-3">
 														
 														<a href="{{url('/eliminar/usuario'.$itemus->id)}}" class="menu-link px-3"
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
-															
 													</div>
+													@endcan
+
+													@can('user.restablecer')
+
 													<div class="menu-item px-3">
 														<a href="{{url('/restablecer/usuario'.$itemus->id)}}"  
 															class="menu-link px-3">Restablecer</a>
 													</div>
+													@endcan
+
 													<!--end::Menu item-->
 												</div>
 												<!--end::Menu-->

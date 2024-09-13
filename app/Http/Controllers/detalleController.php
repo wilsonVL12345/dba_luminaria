@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Foundation\Console\ViewMakeCommand;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class detalleController extends Controller
 {
@@ -394,6 +395,16 @@ class detalleController extends Controller
         $listacc = accesorio::where('Detalles_id', $id)->get();
         return view('plantilla.DetallesGenerales.DetalleRealizado', compact('trabajo', 'listacc', 'ejecutador'));
     }
+    public function generarpdf($id)
+    {
+        $trabajo = detalle::find($id);
+        $trab = $trabajo->EjecutadoPor;
+        $ejecutador = User::find($trab);
+        $listacc = accesorio::where('Detalles_id', $id)->get();
+        $pdf = pdf::loadView('plantilla.DetallesGenerales.pdfDetalleRealizado', compact('trabajo', 'listacc', 'ejecutador'));
+        return $pdf->stream('detalles_mantenimiento.pdf');
+    }
+
 
     /**
      * Remove the specified resource from storage.

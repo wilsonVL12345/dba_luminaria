@@ -1,5 +1,5 @@
-@can('equipamiento.show')
-	
+@can('Reelevamiento.show')
+
 @extends('layout.index')
 
 @section('contenido')
@@ -55,7 +55,8 @@
 								<div id="kt_datatable_example_1_export" class="d-none"></div>
 								<!--end::Export buttons-->
 							</div>
-							@can('equipamiento.delete')
+							@can('Reelevamiento.export')
+
 								
 							<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 								<!--begin::Export dropdown-->
@@ -63,6 +64,7 @@
 									<i class="ki-duotone ki-exit-down fs-2"><span class="path1"></span><span class="path2"></span></i>
 									Export Report
 								</button>
+
 								<!--begin::Add customer-->
 								{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Agregar Nuevo</button> --}}
 								<!--end::Add customer-->
@@ -89,14 +91,16 @@
 										Export as PDF
 										</a>
 									</div>
+									
 									<!--end::Menu item-->
 								</div>
 								<!--end::Menu-->
 								<!--end::Export dropdown-->
-					
+								
 								<!--begin::Hide default export buttons-->
 								<div id="kt_datatable_example_buttons" class="d-none"></div>
 								<!--end::Hide default export buttons-->
+								@endcan
 							</div>
 							@endcan
 
@@ -152,16 +156,17 @@
 											<!--begin::Menu-->
 											<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
 												<!--begin::Menu item-->
-												@can('equipamiento.edit')
+												@can('Reelevamiento.edit')
 												
 												<div class="menu-item px-3">
 													<a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarReele{{$reele->id}}" class="menu-link px-3">Editar</a>
 												</div>
 												@endcan
+												
 
 												<!--end::Menu item-->
 												<!--begin::Menu item-->
-												@can('equipamiento.delete')
+												@can('Reelevamiento.delete')
 												<div class="menu-item px-3">
 													<a href="{{url('/eliminar/reelevamiento'.$reele->id) }}" class="menu-link px-3" data-kt-customer-table-filter="delete_row">Eliminar</a>
 												</div>
@@ -171,7 +176,7 @@
 											</div>
 										</td>
 										{{-- modal para modificar --}}
-										@can('equipamiento.edit')
+										@can('Reelevamiento.edit')
 										<div class="modalmodificar">
 											<div class="modal fade" id="modalModificarReele{{$reele->id}}" tabindex="-1" aria-hidden="true">
 												<!--begin::Modal dialog-->

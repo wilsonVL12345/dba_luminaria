@@ -420,6 +420,9 @@
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
 														
 													</div>
+													@endcan
+													@can('proyecto.report')
+
 													<div class="menu-item px-3">
 														
 														<a href="{{url('/Almacen/detalles/pdf'.$item->id) }}" class="menu-link px-3" target="_blank"

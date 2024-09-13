@@ -47,10 +47,12 @@ class roleseeder extends Seeder
         Permission::create(['name' => 'user.edit', 'description' => 'editar user'])->assignRole([$role0, $role1]);
         Permission::create(['name' => 'user.create', 'description' => 'crear user'])->assignRole([$role0, $role1]);
         Permission::create(['name' => 'user.delete', 'description' => 'eliminar user'])->assignRole([$role0, $role1]);
+        Permission::create(['name' => 'user.restablecer', 'description' => 'eliminar user'])->assignRole([$role0, $role1]);
+        Permission::create(['name' => 'user.export', 'description' => 'eliminar user'])->assignRole([$role0, $role1]);
 
 
         // permisos Realiar trabajo
-        Permission::create(['name' => 'realizar.show', 'description' => 'Mostrar realizar'])->assignRole([$role0, $role3, $role3]);
+        Permission::create(['name' => 'realizar.show', 'description' => 'Mostrar realizar'])->assignRole([$role0, $role2, $role3]);
 
 
         // permisos agendar
@@ -61,14 +63,16 @@ class roleseeder extends Seeder
         Permission::create(['name' => 'detallesGen.edit', 'description' => 'editar detallesGen'])->assignRole([$role0, $role1, $role2, $role3]);
         Permission::create(['name' => 'detallesGen.delete', 'description' => 'eliminar detallesGen'])->assignRole([$role0, $role1, $role2]);
         Permission::create(['name' => 'detallesGen.export', 'description' => 'export detallesGen'])->assignRole([$role0, $role1]);
+        Permission::create(['name' => 'detallesGen.report', 'description' => 'report detallesGen'])->assignRole([$role0, $role1]);
 
         // permisos Proyectos almacen  en espera y realizados 
         Permission::create(['name' => 'proyecto.show', 'description' => 'Mostrar proyecto'])->assignRole([$role0, $role1, $role2, $role3, $role4]);
         Permission::create(['name' => 'proyecto.edit', 'description' => 'editar proyecto'])->assignRole([$role0, $role1, $role2]);
         Permission::create(['name' => 'proyecto.install', 'description' => 'instalar proyecto'])->assignRole([$role0, $role1, $role2, $role3]);
         Permission::create(['name' => 'proyecto.create', 'description' => 'crear proyecto'])->assignRole([$role0, $role1, $role2, $role3]);
-        Permission::create(['name' => 'proyecto.delete', 'description' => 'eliminar proyecto'])->assignRole([$role0, $role1, $role2]);
+        Permission::create(['name' => 'proyecto.delete', 'description' => 'eliminar proyecto'])->assignRole([$role0, $role1]);
         Permission::create(['name' => 'proyecto.export', 'description' => 'export proyecto'])->assignRole([$role0, $role1]);
+        Permission::create(['name' => 'proyecto.report', 'description' => 'report proyecto'])->assignRole([$role0, $role1]);
 
         // permisos proyecto luminarias retiradas
         Permission::create(['name' => 'proyecto.Retirado.show', 'description' => 'Mostrar proyecto.Retirado'])->assignRole([$role0, $role1, $role2, $role3, $role4]);
@@ -94,10 +98,17 @@ class roleseeder extends Seeder
 
         // permisos equipos Accesorios
         Permission::create(['name' => 'accesorios.show', 'description' => 'Mostrar accesorios'])->assignRole([$role0, $role1, $role2, $role3, $role4]);
-        Permission::create(['name' => 'accesorios.edit', 'description' => 'editar accesorios'])->assignRole([$role0, $role1, $role2]);
-        Permission::create(['name' => 'accesorios.create', 'description' => 'crear accesorios'])->assignRole([$role0, $role1, $role2]);
-        Permission::create(['name' => 'accesorios.delete', 'description' => 'eliminar accesorios'])->assignRole([$role0, $role1, $role2]);
+        Permission::create(['name' => 'accesorios.edit', 'description' => 'editar accesorios'])->assignRole([$role0, $role1]);
+        Permission::create(['name' => 'accesorios.create', 'description' => 'crear accesorios'])->assignRole([$role0, $role1]);
+        Permission::create(['name' => 'accesorios.delete', 'description' => 'eliminar accesorios'])->assignRole([$role0, $role1]);
         Permission::create(['name' => 'accesorios.export', 'description' => 'export accesorios'])->assignRole([$role0, $role1]);
+
+        // permisos Reelevamiento
+        Permission::create(['name' => 'Reelevamiento.show', 'description' => 'Mostrar Reelevamiento'])->assignRole([$role0, $role1, $role2, $role3, $role4]);
+        Permission::create(['name' => 'Reelevamiento.edit', 'description' => 'editar Reelevamiento'])->assignRole([$role0, $role1]);
+        Permission::create(['name' => 'Reelevamiento.create', 'description' => 'crear Reelevamiento'])->assignRole([$role0, $role1, $role2, $role3]);
+        Permission::create(['name' => 'Reelevamiento.delete', 'description' => 'eliminar Reelevamiento'])->assignRole([$role0, $role1]);
+        Permission::create(['name' => 'Reelevamiento.export', 'description' => 'export Reelevamiento'])->assignRole([$role0, $role1]);
 
         // permisos Distritos Urbanizaciones
         Permission::create(['name' => 'Distritos.show', 'description' => 'Mostrar Distritos'])->assignRole([$role0, $role1, $role2, $role3, $role4]);

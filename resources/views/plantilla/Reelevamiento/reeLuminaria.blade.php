@@ -1,4 +1,5 @@
-@can('Distritos.show')
+@can('Reelevamiento.show')
+
 	
 @extends('layout.index')
 
@@ -102,7 +103,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-4">
-                                                <label class="required fs-5 fw-bold mb-2">Fecha Programada
+                                                <label class="required fs-5 fw-bold mb-2">Fecha
                                                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permite fechas actuales"></i>
     
                                                 </label>
@@ -182,9 +183,12 @@
                 <div>
                     @include('layout.notificacioncrud')
                 </div>
+                @can('Reelevamiento.create')
+                
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registrarReelevamiento">Agregar Nuevo</button>
                 </div>
+                @endcan
                 <br>
                 <!--begin::Container toda la parte de  la lista necesaria-->
                 <div class="row gy-5 g-xl-10" data-lugar-designado="{{ session('Lugar_Designado') }}" id="app">
