@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\distrito;
 use App\Models\urbanizacion;
+use Yajra\DataTables\Facades\DataTables;
 
 class apiDistritoController extends Controller
 {
@@ -15,7 +16,6 @@ class apiDistritoController extends Controller
     public function index()
     {
         $urb = urbanizacion::select('id', 'Nrodistrito', 'nombre_urbanizacion')->get();
-        /* $distritos = distrito::whereBetween('id', [1000, 1013])->get(); */
         return response()->json($urb);
     }
 

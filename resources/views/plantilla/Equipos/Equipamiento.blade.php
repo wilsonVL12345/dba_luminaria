@@ -242,7 +242,7 @@
 												<!--begin::Menu item-->
 												@can('equipamiento.delete')
 												<div class="menu-item px-3">
-													<a href="{{url('/eliminar/equipamiento'.$itememp->id) }}" class="menu-link px-3" data-kt-customer-table-filter="delete_row">Eliminar</a>
+													<a href="{{url('/eliminar/equipamiento'.$itememp->id) }}" class="menu-link px-3 delete-link" data-kt-customer-table-filter="delete_row">Eliminar</a>
 												</div>
 												@endcan
 

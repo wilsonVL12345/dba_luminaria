@@ -169,13 +169,8 @@
         };
     }();
 
-    // On document ready
     KTUtil.onDOMContentLoaded(function () {
         urbanizacions.init();
     }); 
-
- 
-
-   
 
  

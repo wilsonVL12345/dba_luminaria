@@ -52,7 +52,7 @@
 {{-- <script src="{{ asset('assets/js/detallesGenerales/ejecutarApoyo.js') }}" defer></script> --}}
 
 <script src="{{ asset('assets/js/usuario/tabla.js') }}" defer></script>
-<script src="{{ asset('assets/js/usuario/estado.js') }}" defer></script>
+<script src="{{ asset('assets/js/usuario/confirmarDeleteRestablecer.js') }}" defer></script>
 
 <script src="{{ asset('assets/js/flatpickrAge.js') }}" defer></script>
 <script src="{{ asset('assets/js/agendar/filtraUrb.js') }}" defer></script>
@@ -116,6 +116,7 @@
     $('.select-team-member').select2();    
     });
 </script> 
+
 <script>
 
     $(document).ready(function() {

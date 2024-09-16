@@ -40,8 +40,17 @@ class AuthenticatedSessionController extends Controller
             'perfil' => $user->perfil,
 
         ]);
+        if (session('cargo') == 'Admin' || session('cargo') == 'Administrador' || session('cargo') == 'Veedor') {
+            return redirect()->intended(RouteServiceProvider::ADMIN);
+        }
+        if (session('cargo') == 'Coordinador') {
+            return redirect()->intended(RouteServiceProvider::COOR);
+        }
+        if (session('cargo') == 'Tecnico') {
+            return redirect()->intended(RouteServiceProvider::TEC);
+        }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

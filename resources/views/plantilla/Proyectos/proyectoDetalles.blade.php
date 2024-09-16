@@ -261,10 +261,17 @@
 								@endif
 							
 						</div>
+						@if ($proyec->Estado=='En espera')
 						<div class="modal-footer flex-end">
 
 							<a href="/proyectos/almacen" type="button" i class="btn btn-danger me-3">Cerrar</a>
 						</div>
+						@else
+						<div class="modal-footer flex-end">
+
+							<a href="/proyectos/ObrasEjecutadas" type="button" i class="btn btn-danger me-3">Cerrar</a>
+						</div>
+						@endif
 
 					</div>
 				</div>

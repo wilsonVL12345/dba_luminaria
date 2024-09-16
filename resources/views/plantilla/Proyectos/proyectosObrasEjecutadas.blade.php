@@ -188,19 +188,19 @@
 																@endif
 															@endif
 													@endforeach
+													@can('proyecto.install')
 													<?php
 													$total=$totalcant+$totallum+$totalreu
 													?>
 													@if ($cant>0 || $cantreu>0 || $cantlum>0 )
-											@can('proyecto.install')
 
 													<div class="menu-item px-3">
 														
 														<a href="{{url('/datos/ejecutar/'.$items->id)}}" 
 															class="menu-link px-3">Terminar Inst </a>
 													</div>
-											@endcan
 													@endif
+													@endcan
 											@can('proyecto.edit')
 
 													<div class="menu-item px-3">
@@ -214,7 +214,7 @@
 													
 													<div class="menu-item px-3">
 														
-														<a href="{{url('/eliminar/proyecto'.$items->id) }}" class="menu-link px-3"
+														<a href="{{url('/eliminar/proyecto'.$items->id) }}" class="menu-link px-3 delete-link"
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
 														
 													</div>

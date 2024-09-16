@@ -89,6 +89,8 @@
 									<div class="from row">
 										<div class="col-md-6 mb-3">
 											<label for="imgcarta" class=" fs-5 fw-bold mb-2">Carta</label>
+											<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Tamaño Max: 8MB"></i>
+
 											<input type="file" id="imgcarta"  name="imgcarta" accept="image/png, image/jpeg" class="form-control">
 												@error('imgcarta')
 													<small class="text-danger">{{$message}}</small>

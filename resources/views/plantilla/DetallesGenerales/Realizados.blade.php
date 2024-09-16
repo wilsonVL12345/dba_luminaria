@@ -204,7 +204,7 @@
 											@can('detallesGen.delete')
 											<div class="menu-item px-3">
 														
-														<a href="{{url('/eliminar/detallegen'.$itemtrab->id) }}" class="menu-link px-3" 
+														<a href="{{url('/eliminar/detallegen'.$itemtrab->id) }}" class="menu-link px-3 delete-link" 
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
 														
 													</div>

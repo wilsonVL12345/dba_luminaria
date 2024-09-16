@@ -41,7 +41,7 @@ class detalle extends Model
     }
     public function user(): BelongsTo
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class, 'Users_id');
     }
     public function distrito(): BelongsTo
     {

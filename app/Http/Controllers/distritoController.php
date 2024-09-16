@@ -14,20 +14,20 @@ use App\DataTables\UrbanizacionDataTable;
 
 class distritoController extends Controller
 {
-    public function iindex(UrbanizacionDataTable $dataTable)
+    /* public function iindex(UrbanizacionDataTable $dataTable)
     {
         return $dataTable->render('urbanizacion.iindex');
     }
-
+ */
     /* public function __construct()
     {
         $this->middleware('can:Distritos.edit')->only('edit');
     }  */
 
+
     public function index(Request $request)
     {
         if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
-            // Verifica si la solicitud es Ajax
 
 
             // Consultas para las vistas
@@ -62,6 +62,8 @@ class distritoController extends Controller
             ]);
         }
     }
+
+
 
 
     /**

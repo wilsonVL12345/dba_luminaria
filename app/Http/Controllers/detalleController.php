@@ -391,16 +391,17 @@ class detalleController extends Controller
     {
         $trabajo = detalle::find($id);
         $trab = $trabajo->EjecutadoPor;
-        $ejecutador = User::find($trab);
-        $listacc = accesorio::where('Detalles_id', $id)->get();
+        $ejecutador = User::withTrashed()->find($trab);
+        $listacc = accesorio::withTrashed()->where('Detalles_id', $id)->get();
         return view('plantilla.DetallesGenerales.DetalleRealizado', compact('trabajo', 'listacc', 'ejecutador'));
     }
     public function generarpdf($id)
     {
         $trabajo = detalle::find($id);
         $trab = $trabajo->EjecutadoPor;
-        $ejecutador = User::find($trab);
-        $listacc = accesorio::where('Detalles_id', $id)->get();
+        $ejecutador = User::withTrashed()->find($trab);
+
+        $listacc = accesorio::withTrashed()->where('Detalles_id', $id)->get();
         $pdf = pdf::loadView('plantilla.DetallesGenerales.pdfDetalleRealizado', compact('trabajo', 'listacc', 'ejecutador'));
         return $pdf->stream('detalles_mantenimiento.pdf');
     }

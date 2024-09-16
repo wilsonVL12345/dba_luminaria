@@ -196,7 +196,7 @@
 													<!--end::Menu item-->
 													<!--begin::Menu item-->
 													<div class="menu-item px-3">
-														<a href="{{url('/eliminar/inspeccion'.$item->id) }}" class="menu-link px-3"
+														<a href="{{url('/eliminar/inspeccion'.$item->id) }}" class="menu-link px-3 delete-link"
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
 													</div>
 													@endcan

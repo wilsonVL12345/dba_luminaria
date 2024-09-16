@@ -25,7 +25,7 @@
 										<div class="card-header flex-nowrap pt-5">
 											<!--begin::Title-->
 											<h3 class="card-title align-items-start flex-column">
-												<span class="card-label fw-bolder text-dark">Datos totales Anuales</span>
+												<span class="card-label fw-bolder text-dark">Datos de Mantenimiento Anuales</span>
 												<span class="text-gray-400 pt-2 fw-bold fs-6">14  Distritos</span>
 											</h3>
 										</div>
@@ -81,7 +81,7 @@
 									<div class="card-header flex-nowrap pt-5">
 										<!--begin::Title-->
 										<h3 class="card-title align-items-start flex-column">
-											<span class="card-label fw-bolder text-dark">Datos totales Anuales</span>
+											<span class="card-label fw-bolder text-dark">Datos de Proyectos Anuales</span>
 											<span class="text-gray-400 pt-2 fw-bold fs-6">14  Distritos</span>
 										</h3>
 									</div>
@@ -154,7 +154,7 @@
 								<div class="card-header flex-nowrap pt-5">
 									<!--begin::Title-->
 									<h3 class="card-title align-items-start flex-column">
-										<span class="card-label fw-bolder text-dark">Datos totales Anuales</span>
+										<span class="card-label fw-bolder text-dark">Datos de Inspecciones Anuales</span>
 										<span class="text-gray-400 pt-2 fw-bold fs-6">14  Distritos</span>
 									</h3>
 								</div>

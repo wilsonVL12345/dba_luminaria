@@ -157,7 +157,7 @@
 																				<!--begin::Menu item-->
 																				<div class="menu-item px-3">
 																					
-																					<a href="{{url('/eliminar/urbanizacion'.$itemurb->id) }}" class="menu-link px-3"
+																					<a href="{{url('/eliminar/urbanizacion'.$itemurb->id) }}" class="menu-link px-3 delete-link"
 																						data-kt-customer-table-filter="delete_row">Eliminar</a>
 																					
 																				</div>
@@ -173,6 +173,7 @@
 																	@endforeach
 																</tbody>
 															</table>
+															
 																	@can('Distritos.edit')
 																
 															
@@ -367,7 +368,6 @@
 		</div>
 							
 </div>
-
 
 
 @endsection

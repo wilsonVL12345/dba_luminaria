@@ -71,7 +71,7 @@
         </tr>
         <tr>
             <td><span class="label">FECHA DE MANTENIMIENTO:</span> {{ $datosLum->Fecha }}</td>
-            <td><span class="label">SISCO:</span> {{ $datosLum->Nro_sisco }}</td>
+            <td><span class="label">NRO. SISCO:</span> {{ $datosLum->Nro_sisco }}</td>
         </tr>
     </table>
 

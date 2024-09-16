@@ -406,13 +406,16 @@
 															
 															<div class="menu-item px-3">
 																
-																<a href="{{url('/eliminar/usuario'.$itemus->id)}}" class="menu-link px-3"
-																	data-kt-customer-table-filter="delete_row">Eliminar</a>
+																{{-- <a href="{{url('/eliminar/usuario'.$itemus->id)}}" class="menu-link px-3"
+																	data-kt-customer-table-filter="delete_row">Eliminar</a> --}}
+																	<a href="{{url('/eliminar/usuario'.$itemus->id)}}" 
+																		class="menu-link px-3 delete-link" 
+																		data-kt-customer-table-filter="delete_row">Eliminar</a>
 																	
 															</div>
 															<div class="menu-item px-3">
 																<a href="{{url('/restablecer/usuario'.$itemus->id)}}"  
-																	class="menu-link px-3">Restablecer</a>
+																	class="menu-link px-3 reset-password-link">Restablecer</a>
 															</div>
 															<!--end::Menu item-->
 														</div>
@@ -436,8 +439,10 @@
 													
 													<div class="menu-item px-3">
 														
-														<a href="{{url('/eliminar/usuario'.$itemus->id)}}" class="menu-link px-3"
-															data-kt-customer-table-filter="delete_row">Eliminar</a>
+														
+															<a href="{{url('/eliminar/usuario'.$itemus->id)}}" 
+																class="menu-link px-3 delete-link" 
+																data-kt-customer-table-filter="delete_row">Eliminar</a>
 													</div>
 													@endcan
 
@@ -445,7 +450,7 @@
 
 													<div class="menu-item px-3">
 														<a href="{{url('/restablecer/usuario'.$itemus->id)}}"  
-															class="menu-link px-3">Restablecer</a>
+															class="menu-link px-3 reset-password-link">Restablecer</a>
 													</div>
 													@endcan
 

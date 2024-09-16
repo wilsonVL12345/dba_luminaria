@@ -416,7 +416,7 @@
 													@can('proyecto.delete')
 													<div class="menu-item px-3">
 														
-														<a href="{{url('/eliminar/proyecto'.$item->id) }}" class="menu-link px-3"
+														<a href="{{url('/eliminar/proyecto'.$item->id) }}" class="menu-link px-3 delete-link"
 															data-kt-customer-table-filter="delete_row">Eliminar</a>
 														
 													</div>

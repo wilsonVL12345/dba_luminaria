@@ -164,6 +164,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/proyectos/ObrasEjecutadas', [proyectoController::class, 'datosObras'])->name('proyectos.ObrasEjecutadas')->middleware('can:proyecto.show');
 
     Route::get('/dashproyectos', [proyectoController::class, 'dashproy'])->name('dashproyectos')->middleware('can:dashboard.show');
+
     Route::get('/dashdetalles', [proyectoController::class, 'dashdetall'])->name('dashdetalles')->middleware('can:dashboard.show');
 
     //rutar para reelevamiento---------------------------------------------------------------------------------------

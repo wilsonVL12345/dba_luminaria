@@ -54,7 +54,7 @@
                                     @if ($ejecProyecto->Ejecutado_Por)
                                     <div class="col-md-3 mb-3">
                                         <label for="txtejec" class=" fs-5 fw-bold mb-2">Ejecutado Por</label>
-                                        <input type="text" class="form-control form-control-solid " value="{{$ejecProyecto->Ejecutado_Por}}">
+                                        <input type="text" class="form-control form-control-solid " name="txtejec" id="txtejec" value="{{$ejecProyecto->Ejecutado_Por}}" readonly>
                                     </div>
                                         @else   
                                     <div class="col-md-3 mb-3">
