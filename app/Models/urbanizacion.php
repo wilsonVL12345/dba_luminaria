@@ -16,9 +16,8 @@ class urbanizacion extends Model
     protected $fillable = [
         'id',
         'Nrodistrito',
-        'nombre_urbanizacion',
-        'lng',
-        'lat'
+        'nombre_urbanizacion'
+
     ];
     protected $primaryKey = 'id';
     public function reelevamiento(): HasMany

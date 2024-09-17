@@ -100,7 +100,6 @@
 								<!--begin::Hide default export buttons-->
 								<div id="kt_datatable_example_buttons" class="d-none"></div>
 								<!--end::Hide default export buttons-->
-								@endcan
 							</div>
 							@endcan
 

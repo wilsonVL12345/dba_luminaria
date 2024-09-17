@@ -139,8 +139,8 @@
 						</div>
 						<!--end::Aside mobile toggle-->
 						<!--begin::Mobile logo-->
-						<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-							<a href="{{-- ../../demo1/dist/index.html --}}" class="d-lg-none">
+						{{-- <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+							<a href="" class="d-lg-none">
 								<img alt="Logo gamea" src="{{asset('assets/media/logos/gamea.svg')}}" class="h-40px" />
 							</a>
 							<style>
@@ -158,10 +158,99 @@
 								  <div class="card-body" style="font-family: 'Times New Roman', Times, serif;">
 									<h1><strong>DIRECCION DE ALUMBRADO PUBLICO</strong></h1>
 									<h1><strong> UNIDAD OPERATIVA DE ALUMBRADO PUBLICO</strong></h1>
+								  </div>
 							</div>
-						</div>
-						</div>
+						</div> --}}
+						<style>
+						.custom-header {
+							font-family: 'Times New Roman', Times, serif;
+							color: #131325;
+							line-height: 1.2;
+						}
+						.custom-header h1 {
+							font-size: 1.5rem;
+							font-weight: bold;
+							margin-bottom: 0.25rem;
+							white-space: nowrap;
+							overflow: hidden;
+							text-overflow: ellipsis;
+						}
+						@media (min-width: 768px) {
+							.custom-header h1 {
+								font-size: 1.75rem;
+							}
+						}
+						@media (min-width: 992px) {
+							.custom-header h1 {
+								font-size: 2rem;
+							}
+						}
+						@media (max-width: 575.98px) {
+							.custom-header .title-full, .custom-header .title-medium, .custom-header .secondary-title {
+								display: none;
+							}
+							.custom-header .title-short {
+								display: inline;
+							}
+						}
+						@media (min-width: 576px) and (max-width: 991.98px) {
+							.custom-header .title-full, .custom-header .title-short, .custom-header .secondary-title {
+								display: none;
+							}
+							.custom-header .title-medium {
+								display: inline;
+							}
+						}
+						@media (min-width: 992px) {
+							.custom-header .title-medium, .custom-header .title-short {
+								display: none;
+							}
+							.custom-header .title-full, .custom-header .secondary-title {
+								display: inline;
+							}
+						}
+						.stats-container {
+							display: flex;
+							justify-content: flex-end;
+							align-items: center;
+							flex-wrap: nowrap;
+							gap: 20px;
+						}
+						.stat-item {
+							text-align: center;
+							white-space: nowrap;
+						}
+						.stat-value {
+							font-size: 1.2rem;
+							font-weight: bold;
+							color: #009ef7;
+						}
+						.stat-label {
+							font-size: 0.9rem;
+							color: #5e6278;
+						}
+						</style>
+						
+									<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+										<a href="#" class="d-lg-none">
+											<img alt="Logo gamea" src="/assets/media/logos/gamea.svg" class="h-40px" />
+										</a>
+										<div class="custom-header ms-3">
+											<h1>
+												<span class="title-full">DIRECCION DE ALUMBRADO PUBLICO</span>
+												<span class="title-medium">DIRECCION DE ALUMBRADO</span>
+												<span class="title-short">DIRECCION</span>
+											</h1>
+											<h1 class="secondary-title">
+												UNIDAD OPERATIVA 
+											</h1>
+										</div>
+									</div>
+								
 						<!--end::Mobile logo-->
+
+						
+
 						<!--begin::Wrapper-->
 						<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
 							<!--begin::Navbar-->
@@ -187,7 +276,72 @@
 							</div>
 							<!--end::Navbar-->
 							<!--begin::Toolbar wrapper-->
-
+							<div class="d-flex flex-wrap ms-auto ">
+								<!--begin::Stat-->
+								<div class="border border-gray-300 border-dashed rounded min-w-100px py-2 px-3 me-6 mb-3">
+									<!--begin::Number-->
+									<div class="d-flex align-items-center">
+										<!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+										<span class="svg-icon svg-icon-3 svg-icon-danger me-2">
+											<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 16 16" {...$$props}>
+												<path fill="currentColor" fill-rule="evenodd" d="M11.25 2.5a2.25 2.25 0 0 0-2.154 2.904l.13.43l-.317.318l-6.254 6.253l-.53-.53l.53.53a.664.664 0 0 0 .94.94L9.848 7.09l.318-.318l.43.13a2.25 2.25 0 0 0 2.685-3.124l-1.5 1.501a.75.75 0 1 1-1.061-1.06l1.5-1.5a2.24 2.24 0 0 0-.97-.22ZM7.5 4.75a3.75 3.75 0 1 1 3.114 3.696L10.061 9l.939.94l.47-.47l.53-.53l.53.53l1.875 1.875a2.164 2.164 0 1 1-3.06 3.06L9.47 12.53L8.94 12l.53-.53l.47-.47l-.94-.94l-4.345 4.345l-.53-.53l.53.53a2.164 2.164 0 1 1-3.06-3.06L5.939 7L3.5 4.56l-.617.617l-.507-.761l-1-1.5l-.341-.512l.435-.434l.5-.5l.434-.435l.512.341l1.5 1l.761.507l-.616.617L7 5.94l.554-.554A4 4 0 0 1 7.5 4.75m4.5 6.31l1.345 1.345a.664.664 0 0 1-.94.94L11.061 12z" clip-rule="evenodd" />
+											</svg>
+										</span>
+										<!--end::Svg Icon-->
+										<div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="{{ $mantenimientoCount }}" >0</div>
+									</div>
+									<!--end::Number-->
+									<!--begin::Label-->
+									<div class="fw-bold fs-6 text-gray-400">Mantenimientos</div>
+									<!--end::Label-->
+								</div>
+								<!--end::Stat-->
+								<!--begin::Stat-->
+								<div class="border border-gray-300 border-dashed rounded min-w-75px py-2 px-3 me-6 mb-3">
+									<!--begin::Number-->
+									<div class="d-flex align-items-center">
+										<!--begin::Svg Icon | path: icons/duotune/arrows/arr065.svg-->
+										<span class="svg-icon svg-icon-3 svg-icon-danger me-2">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+									viewBox="0 0 24 24" fill="none">
+									<path opacity="0.3"
+										d="M4.05424 15.1982C8.34524 7.76818 13.5782 3.26318 20.9282 2.01418C21.0729 1.98837 21.2216 1.99789 21.3618 2.04193C21.502 2.08597 21.6294 2.16323 21.7333 2.26712C21.8372 2.37101 21.9144 2.49846 21.9585 2.63863C22.0025 2.7788 22.012 2.92754 21.9862 3.07218C20.7372 10.4222 16.2322 15.6552 8.80224 19.9462L4.05424 15.1982ZM3.81924 17.3372L2.63324 20.4482C2.58427 20.5765 2.5735 20.7163 2.6022 20.8507C2.63091 20.9851 2.69788 21.1082 2.79503 21.2054C2.89218 21.3025 3.01536 21.3695 3.14972 21.3982C3.28408 21.4269 3.42387 21.4161 3.55224 21.3672L6.66524 20.1802L3.81924 17.3372ZM16.5002 5.99818C16.2036 5.99818 15.9136 6.08615 15.6669 6.25097C15.4202 6.41579 15.228 6.65006 15.1144 6.92415C15.0009 7.19824 14.9712 7.49984 15.0291 7.79081C15.0869 8.08178 15.2298 8.34906 15.4396 8.55884C15.6494 8.76862 15.9166 8.91148 16.2076 8.96935C16.4986 9.02723 16.8002 8.99753 17.0743 8.884C17.3484 8.77046 17.5826 8.5782 17.7474 8.33153C17.9123 8.08486 18.0002 7.79485 18.0002 7.49818C18.0002 7.10035 17.8422 6.71882 17.5609 6.43752C17.2796 6.15621 16.8981 5.99818 16.5002 5.99818Z"
+										fill="currentColor" />
+									<path
+										d="M4.05423 15.1982L2.24723 13.3912C2.15505 13.299 2.08547 13.1867 2.04395 13.0632C2.00243 12.9396 1.9901 12.8081 2.00793 12.679C2.02575 12.5498 2.07325 12.4266 2.14669 12.3189C2.22013 12.2112 2.31752 12.1219 2.43123 12.0582L9.15323 8.28918C7.17353 10.3717 5.4607 12.6926 4.05423 15.1982ZM8.80023 19.9442L10.6072 21.7512C10.6994 21.8434 10.8117 21.9129 10.9352 21.9545C11.0588 21.996 11.1903 22.0083 11.3195 21.9905C11.4486 21.9727 11.5718 21.9252 11.6795 21.8517C11.7872 21.7783 11.8765 21.6809 11.9402 21.5672L15.7092 14.8442C13.6269 16.8245 11.3061 18.5377 8.80023 19.9442ZM7.04023 18.1832L12.5832 12.6402C12.7381 12.4759 12.8228 12.2577 12.8195 12.032C12.8161 11.8063 12.725 11.5907 12.5653 11.4311C12.4057 11.2714 12.1901 11.1803 11.9644 11.1769C11.7387 11.1736 11.5205 11.2583 11.3562 11.4132L5.81323 16.9562L7.04023 18.1832Z"
+										fill="currentColor" />
+								</svg>
+										</span>
+										<!--end::Svg Icon-->
+										<div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="75">0</div>
+									</div>
+									<!--end::Number-->
+									<!--begin::Label-->
+									<div class="fw-bold fs-6 text-gray-400">Proyectos</div>
+									<!--end::Label-->
+								</div>
+								<!--end::Stat-->
+								<!--begin::Stat-->
+								<div class="border border-gray-300 border-dashed rounded min-w-85px py-2 px-3 me-6 mb-3">
+									<!--begin::Number-->
+									<div class="d-flex align-items-center">
+										<!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+										<span class="svg-icon svg-icon-3 svg-icon-danger me-2">
+											<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 32 32" {...$$props}>
+												<path fill="currentColor" d="m29.707 19.293l-3-3a1 1 0 0 0-1.414 0L16 25.586V30h4.414l9.293-9.293a1 1 0 0 0 0-1.414M19.586 28H18v-1.586l5-5L24.586 23zM26 21.586L24.414 20L26 18.414L27.586 20zM20 13v-2h-2.142a4 4 0 0 0-.425-1.019l1.517-1.517l-1.414-1.414l-1.517 1.517A4 4 0 0 0 15 8.142V6h-2v2.142a4 4 0 0 0-1.019.425L10.464 7.05L9.05 8.464l1.517 1.517A4 4 0 0 0 10.142 11H8v2h2.142a4 4 0 0 0 .425 1.019L9.05 15.536l1.414 1.414l1.517-1.517a4 4 0 0 0 1.019.425V18h2v-2.142a4 4 0 0 0 1.019-.425l1.517 1.517l1.414-1.414l-1.517-1.517A4 4 0 0 0 17.858 13zm-6 1a2 2 0 1 1 2-2a2.003 2.003 0 0 1-2 2" />
+												<path fill="currentColor" d="M12 30H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10h-2V4H6v24h6Z" />
+											</svg>
+										</span>
+										<!--end::Svg Icon-->
+										<div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="60" >0</div>
+									</div>
+									<!--end::Number-->
+									<!--begin::Label-->
+									<div class="fw-bold fs-6 text-gray-400">Inspecciones</div>
+									<!--end::Label-->
+								</div>
+								<!--end::Stat-->
+							</div>
 							{{-- la parte de arriba lo que se repite --}}
 							<div class="d-flex align-items-stretch flex-shrink-0">
 								<!--begin::User menu-->

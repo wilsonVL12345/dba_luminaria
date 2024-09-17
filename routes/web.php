@@ -15,6 +15,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Routing\Router;
 // use App\Http\Controllers\logincontroller;
 use App\Http\Controllers\luminaria_retiradasController;
+use App\Http\Controllers\menuController;
 use App\Http\Controllers\proyectoController;
 use App\Http\Controllers\ReelevamientoController;
 use App\Models\datos_luminaria_retirada;
@@ -34,6 +35,7 @@ use App\Models\datos_luminaria_retirada;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/index', [menuController::class, 'datos'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -50,7 +52,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/logout', [logincontroller::class, 'logout'])->name('logout'); */
 
 
-    Route::view('/index', 'layout.index')->name('index');
+    // Route::view('/index', 'layout.index')->name('index');
     /* Route::get('/usuario/administrador', function () {
         return view('plantilla.Usuarios.Administrador');
     }); */
@@ -114,7 +116,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/inspecciones/realizadas', [inspeccionController::class, 'realizadas'])->name('inspecciones.espera')->middleware('can:inspecciones.show');
     Route::post('/inspecciones/editrealizadas/{id}', [inspeccionController::class, 'editRealizada'])->name('inspecciones.editrealizadas')->middleware('can:inspecciones.edit');
     Route::get('/eliminar/inspeccion{id}', [inspeccionController::class, 'destroy'])->name('eliminar.inspeccion')->middleware('can:inspecciones.delete');
-
+    route::get('/check-new-inspecciones', [inspeccionController::class, 'checkNewInspecciones'])->middleware('auth');
+    Route::post('/mark-inspecciones-seen', [inspeccionController::class, 'markInspeccionesAsSeen'])->middleware('auth');
 
 
     //rutas para equipamiento y accesorios--------------------------------------------------------------------------------

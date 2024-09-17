@@ -120,13 +120,7 @@ class UserController extends Controller
     public function perfil(Request $request,  $id)
     {
 
-        /* $manteDetalleCount = 0;
-        $manteProyectoCount = 0;
-        $manteInspeccionCount = 0;
-        $manteDetalleCountEs = 0;
-        $manteProyectoCountEs = 0;
-        $manteInspeccionCountEs = 0;
-        $total = 0; */
+
         $porTotal = 0;
 
         $perfiluser = User::find($id);
@@ -134,21 +128,7 @@ class UserController extends Controller
         /* dd($manteDetalleCount); */
         $manteProyectoCount = proyecto::where('Realizado_Por', $id)->where('Estado', 'Finalizado')->count();
         $manteInspeccionCount = inspeccion::where('Inspector', $id)->where('Inspeccion', 'Finalizado')->count();
-        /* $manteDetalleCountEs = detalle::where('EjecutadoPor', $id)->where('Estado', 'En Espera')->count();
-        $manteProyectoCountEs = proyecto::where('Realizado_Por', $id)->where('Estado', 'En Espera')->count();
-        $manteInspeccionCountEs = inspeccion::where('Inspector', $id)->where('Estado', 'En Espera')->count();
 
-        $total = $manteDetalleCount + $manteInspeccionCount + $manteProyectoCount + $manteDetalleCountEs + $manteInspeccionCountEs + $manteProyectoCountEs;
-
-        $totalrealizados = $manteDetalleCount + $manteInspeccionCount + $manteProyectoCount;
-        if ($total >= 1) {
-            # code...
-
-            $porTotal = ($totalrealizados * 100) / $total;
-        } else {
-            $porTotal = 100;
-        }
- */
         return view('plantilla.Usuarios.perfil', compact('perfiluser', 'manteDetalleCount', 'manteProyectoCount', 'manteInspeccionCount', 'porTotal'));
     }
     public function restablecer($id)

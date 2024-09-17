@@ -86,6 +86,8 @@
                         <!--end::Svg Icon-->
                     </span>
                     <span class="menu-title">Realizar Trabajo</span>
+                    
+
                 </a>
             </div>
             @endcan
@@ -177,6 +179,8 @@
                         <!--end::Svg Icon-->
                     </span>
                     <span class="menu-title">Proyectos</span>
+                    
+
                     <span class="menu-arrow"></span>
                 </span>
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -233,6 +237,12 @@
                         <!--end::Svg Icon-->
                     </span>
                     <span class="menu-title">Inspecciones</span>
+                    <div id="notificacion" >
+
+                        
+                    </div>
+                        
+
                     <span class="menu-arrow"></span>
                 </span>
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -257,6 +267,7 @@
             
                 </div>
             </div>
+          
             @endcan
             
             @can('menu.equipamiento')
@@ -285,6 +296,7 @@
                     </span>
                     <span class="menu-title">Equipos</span>
                     <span class="menu-arrow"></span>
+
                 </span>
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                     <div class="menu-item">

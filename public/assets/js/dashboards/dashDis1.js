@@ -1,4 +1,4 @@
-
+/* 
 
 // Cargar la librería de Google Charts
 google.charts.load('current', {'packages':['corechart']});
@@ -50,3 +50,4 @@ function drawChart(distritoDatos, distritoNumero) {
   let chart = new google.visualization.PieChart(document.getElementById(`dis${distritoNumero}`));
   chart.draw(data, options);
 }
+ */

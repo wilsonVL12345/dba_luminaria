@@ -168,9 +168,7 @@ let inspeccionEspera = function () {
                     };
                 }();
 
-                // On document ready
-                KTUtil.onDOMContentLoaded(function () {
-                    inspeccionEspera.init();
-                }); 
 
 
+
+                

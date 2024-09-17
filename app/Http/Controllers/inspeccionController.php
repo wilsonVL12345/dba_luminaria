@@ -8,7 +8,7 @@ use App\Models\distrito;
 use App\Models\urbanizacion;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class inspeccionController extends Controller
