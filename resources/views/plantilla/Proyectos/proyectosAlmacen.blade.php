@@ -215,9 +215,10 @@
 																<br>
 																<!--end::Scroll-->
 																<div class="mb-3">
-																<button  type="button" class="btn btn-dark" id="btnAccesorio"   style="display: none;">Accesorios</button>
-																<button type="button"  class="btn btn-dark" id="btnLuminaria"  style="display: none;">Luminaria LED</button>
-																<button type="button"  class="btn btn-dark" id="btnReacondicionado"  style="display: none; " >Lum. Reacondicionadas</button>
+																<button  type="button" class="btn"  id="btnAccesorio"   style="display: none; background-color: #45dfb1;">Accesorios</button>
+																<button type="button"  class="btn" id="btnLuminaria"  style="display: none; background-color: #45dfb1;">Luminaria LED</button>
+																<button type="button"  class="btn" id="btnReacondicionado"  style="display: none; background-color: #45dfb1;" >Lum. Reacondicionadas</button>
+																<br>
 																<br>
 																<div id="listaAccesorios">
 																</div>

@@ -178,7 +178,7 @@
 																
 															
 																		<!--begin::Modal -MODIficar urbanizacion-->
-																		<div class="modal fade" id="ModalModificarUrba{{$itemurb->id}}" tabindex="-1" aria-hidden="true">
+																		{{-- <div class="modal fade" id="ModalModificarUrba{{$itemurb->id}}" tabindex="-1" aria-hidden="true">
 																			<!--begin::Modal dialog-->
 																			<div class="modal-dialog modal-dialog-centered mw-650px">
 																				<!--begin::Modal content-->
@@ -256,7 +256,7 @@
 																					<!--end::Form-->
 																				</div>
 																			</div>
-																		</div>
+																		</div> --}}
 																		<!--end::Modal -MODIficar urbanizacion-->
 																		@endcan
 																	</div>

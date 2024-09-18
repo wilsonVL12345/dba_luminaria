@@ -104,7 +104,60 @@
 										</thead>
 										<tbody class="fw-semibold text-gray-600">
 											@foreach ($proyectoObras as $items)
-											<tr class="text-start text-gray-500 fw-bold fs-7">
+																<?php
+																$cant=0;
+																$totalcant=0;
+																$cantlum=0;
+																$totallum=0;
+																$cantreu=0;
+																$totalreu=0;
+																$total=0;
+																$totalgeneral=0;
+																?>									
+																@foreach ($accesorio as $acce)
+																
+																		@if($items->id==$acce->Proyectos_id)
+																			@if ($acce->Disponibles>0)
+																			<?php
+																			$cant=$cant+$acce->Disponibles;
+																			$totalcant=$totalcant+$acce->Cantidad;
+																			?>	
+																			
+																			@endif
+																		@endif
+																@endforeach
+																@foreach ($luminaria as $lum)
+																
+																		@if($items->id==$lum->Proyectos_id)
+																			@if ($lum->Lugar_Instalado=='Si')
+																				
+																			@else
+																			<?php
+																			$cantlum++;
+																			$totallum++;
+																			?>	
+																				
+																			@endif
+																		@endif
+																@endforeach
+																@foreach ($reutilizada as $reu)
+																
+																		@if($items->id==$reu->Proyectos_id)
+																			@if ($reu->Disponibles>0)
+																			<?php
+																			$cantreu=$cantreu+$reu->Disponibles;
+																			$totalreu=$totalreu+$reu->Cantidad;
+																			?>	
+																			@endif
+																		@endif
+																@endforeach
+																<?php
+																$total=$totalcant+$totallum+$totalreu;
+																$totalgeneral=$cant+$cantreu+$cantlum;
+																?>
+											<tr class="text-start text-gray-500 fw-bold fs-7" style="<?php echo ($totalgeneral > 0) ? 'background-color: #45dfb1;' : ''; ?>">
+
+
 												<td>
 													<a href="#" class="text-gray-900 text-hover-primary">{{$items->Cuce_Cod}}</a>
 												</td>
@@ -145,53 +198,9 @@
 												<!--begin::Menu-->
 												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
 													data-kt-menu="true">
-													<!--begin::Menu items-->
-													<?php
-													$cant=0;
-													$totalcant=0;
-													$cantlum=0;
-													$totallum=0;
-													$cantreu=0;
-													$totalreu=0;
-													$total=0;
-													?>									
-													@foreach ($accesorio as $acce)
-													
-															@if($items->id==$acce->Proyectos_id)
-																@if ($acce->Disponibles>0)
-																<?php
-																$cant=$cant+$acce->Disponibles;
-																$totalcant=$totalcant+$acce->Cantidad;
-																?>	
-																
-																@endif
-															@endif
-													@endforeach
-													@foreach ($luminaria as $lum)
-													
-															@if($items->id==$lum->Proyectos_id)
-																
-																<?php
-																$cantlum++;
-																$totallum++;
-																?>	
-															@endif
-													@endforeach
-													@foreach ($reutilizada as $reu)
-													
-															@if($items->id==$reu->Proyectos_id)
-																@if ($reu->Disponibles>0)
-																<?php
-																$cantreu=$cantreu+$reu->Disponibles;
-																$totalreu=$totalreu+$reu->Cantidad;
-																?>	
-																@endif
-															@endif
-													@endforeach
 													@can('proyecto.install')
-													<?php
-													$total=$totalcant+$totallum+$totalreu
-													?>
+													
+													
 													@if ($cant>0 || $cantreu>0 || $cantlum>0 )
 
 													<div class="menu-item px-3">
@@ -200,12 +209,13 @@
 															class="menu-link px-3">Terminar Inst </a>
 													</div>
 													@endif
+													<!--begin::Menu items-->
 													@endcan
 											@can('proyecto.edit')
 
 													<div class="menu-item px-3">
 														<a href="{{url('/showModificar/obras/'.$items->id)}}"  {{-- data-bs-target="#modalModificarObrasEjecutadas{{$items->id}}" --}}
-															class="menu-link px-3">Editar</a>
+															class="menu-link px-3">Editar </a>
 													</div>
 											@endcan
 													<!--end::Menu item-->

@@ -101,73 +101,15 @@ $(document).ready(function () {
 });
 //fecha detalles  espera rango tabla-----------------------------------------
 
-/* $(document).ready(function() {
-    // Verificar si la tabla ya ha sido inicializada como DataTable
-    let datatable;
-    if ($.fn.DataTable.isDataTable('#tablaespera')) {
-        datatable = $('#tablaespera').DataTable();
-    } else {
-        // Inicializar DataTable si aún no se ha hecho
-        datatable = $('#tablaespera').DataTable({
-            // ... tus opciones actuales de DataTable ...
-            "drawCallback": function(settings) {
-                // Reinicializar los menús de KTMenu si es necesario
-                KTMenu.createInstances();
-            }
-        });
-    }
 
-    // Inicializar Flatpickr
-    flatpickr("#rangoFechaDetallEspera", {
-        mode: "range",
-        dateFormat: "Y-m-d",
-        onClose: function(selectedDates, dateStr, instance) {
-            // Cuando se cierra el selector de fechas, aplicamos el filtro
-            aplicarFiltroFechas();
-        }
-    });
-
-    // Función para aplicar el filtro de fechas
-    function aplicarFiltroFechas() {
-        let fechas = $('#rangoFechaDetallEspera').val().split(" to ");
-        let fechaInicio = fechas[0] ? moment(fechas[0]) : null;
-        let fechaFin = fechas[1] ? moment(fechas[1]) : null;
-
-        datatable.draw();
-    }
-
-    // Agregar el filtro personalizado a DataTables
-    $.fn.dataTable.ext.search.push(
-        function(settings, data, dataIndex) {
-            let fechas = $('#rangoFechaDetallEspera').val().split(" to ");
-            let fechaInicio = fechas[0] ? moment(fechas[0]) : null;
-            let fechaFin = fechas[1] ? moment(fechas[1]) : null;
-            let fechaFila = moment(data[4]); // Asumiendo que la fecha está en la tercera columna
-
-            if (fechaInicio && fechaFin) {
-                return fechaFila.isBetween(fechaInicio, fechaFin, null, '[]');
-            } else if (fechaInicio) {
-                return fechaFila.isSameOrAfter(fechaInicio);
-            } else if (fechaFin) {
-                return fechaFila.isSameOrBefore(fechaFin);
-            }
-            return true;
-        }
-    );
-
-    // Evento para aplicar el filtro manualmente si es necesario
-    $('#aplicarFiltro').on('click', function() {
-        aplicarFiltroFechas();
-    });
-}); */
-/* let rangoespera = flatpickr("#rangoFechaDetallEspera", 
+let rangoespera = flatpickr("#rangoFechaDetallEspera", 
     {
         
             mode: "range",
             dateFormat: "Y-m-d",
         
     }
- ); */
+ );
 //fecha detalles  espera editar-----------------------------------------
  let fps = flatpickr("#txtfechaprogramadaedit", 
     {

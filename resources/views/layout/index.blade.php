@@ -229,6 +229,19 @@
 							font-size: 0.9rem;
 							color: #5e6278;
 						}
+
+						@media (max-width: 1300px) {
+						/* Cambiar el ancho mínimo de los contenedores */
+						.min-w-100px, .min-w-75px, .min-w-85px {
+							min-width: 30px !important;
+						}
+
+						/* Ocultar las etiquetas de texto debajo de los números */
+						.fw-bold.fs-6.text-gray-400 {
+							display: none;
+						}
+						}
+
 						</style>
 						
 									<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
@@ -239,7 +252,7 @@
 											<h1>
 												<span class="title-full">DIRECCION DE ALUMBRADO PUBLICO</span>
 												<span class="title-medium">DIRECCION DE ALUMBRADO</span>
-												<span class="title-short">DIRECCION</span>
+												<span class="title-short">DIRECCION </span>
 											</h1>
 											<h1 class="secondary-title">
 												UNIDAD OPERATIVA 
@@ -276,6 +289,8 @@
 							</div>
 							<!--end::Navbar-->
 							<!--begin::Toolbar wrapper-->
+							@if (session('cargo')=='Administrador'||session('cargo')=='Admin'||session('cargo')=='Veedor')
+							@else
 							<div class="d-flex flex-wrap ms-auto ">
 								<!--begin::Stat-->
 								<div class="border border-gray-300 border-dashed rounded min-w-100px py-2 px-3 me-6 mb-3">
@@ -313,7 +328,7 @@
 								</svg>
 										</span>
 										<!--end::Svg Icon-->
-										<div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="75">0</div>
+										<div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="{{$proyectoCount}}">0</div>
 									</div>
 									<!--end::Number-->
 									<!--begin::Label-->
@@ -333,7 +348,7 @@
 											</svg>
 										</span>
 										<!--end::Svg Icon-->
-										<div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="60" >0</div>
+										<div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="{{$inspeccionCount}}" >0</div>
 									</div>
 									<!--end::Number-->
 									<!--begin::Label-->
@@ -342,6 +357,7 @@
 								</div>
 								<!--end::Stat-->
 							</div>
+							@endif
 							{{-- la parte de arriba lo que se repite --}}
 							<div class="d-flex align-items-stretch flex-shrink-0">
 								<!--begin::User menu-->

@@ -111,7 +111,7 @@
                         }
                     }
                 },
-                colors: ['#2358E5', '#0BCE32'],
+                colors: ['#45dfb1', '#80ed99'],
                 grid: {
                     borderColor: borderColor,
                     strokeDashArray: 4,

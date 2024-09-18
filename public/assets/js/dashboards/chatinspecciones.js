@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         },
-        colors: ['#6E9E3E', '#3478C0'] // Azul para finalizados, Verde para en espera
+        colors: ['#0b6477', '#0ad1c8'] // Azul para finalizados, Verde para en espera
 
     };
 

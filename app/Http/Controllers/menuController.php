@@ -12,7 +12,7 @@ class menuController extends Controller
     /**
      * Display a listing of the resource.
      */
-    /*  public function datos()
+    public function datos()
     {
 
 
@@ -21,5 +21,5 @@ class menuController extends Controller
         $proyectoCount = proyecto::where('Distritos_id', session('Lugar_Designado'))->where('Estado', 'En Espera')->count();
 
         return view('layout.index', compact('mantenimientoCount', 'inspeccionCount', 'proyectoCount'));
-    } */
+    }
 }

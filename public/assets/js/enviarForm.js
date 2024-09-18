@@ -184,6 +184,14 @@ $(document).ready(function() {
         $(this).find('button[type="submit"]').text('Enviando...');
     });
 });
-
+// distrito registrar
+$(document).ready(function() {
+    $('#modalRegistroUrbanizacion').on('submit', function(e) {
+        // Deshabilitar el botón de envío para evitar envíos múltiples
+        $(this).find('button[type="submit"]').attr('disabled', true);
+        // Puedes mostrar un mensaje de "Enviando..." si lo deseas
+        $(this).find('button[type="submit"]').text('Enviando...');
+    });
+});
 
 

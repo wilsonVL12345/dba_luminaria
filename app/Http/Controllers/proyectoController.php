@@ -344,6 +344,13 @@ class proyectoController extends Controller
                             $regisrea->Utilizados = $regisrea->Utilizados + $utilizadosreu;
                             $regisrea->Disponibles = $regisrea->Cantidad - $regisrea->Utilizados;
                             $regisrea->save();
+                        } else {
+                            if ($utilizadosreu) {
+                                return back()->with("incorrecto", "Cantidad de luminarias Reacondicionadas no disponible");
+                                # code...
+                            } else {
+                                # code...
+                            }
                         }
                     }
                 }
@@ -357,6 +364,13 @@ class proyectoController extends Controller
                             $regisaccesorio->Utilizados = $regisaccesorio->Utilizados + $utilizadoacc;
                             $regisaccesorio->Disponibles = $regisaccesorio->Cantidad - $regisaccesorio->Utilizados;
                             $regisaccesorio->save();
+                        } else {
+                            if ($utilizadoacc) {
+                                return back()->with("incorrecto", "Cantidad de Accesorios no disponible");
+                                # code...
+                            } else {
+                                # code...
+                            }
                         }
                     }
                 }

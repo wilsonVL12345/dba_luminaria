@@ -255,7 +255,7 @@ function createChart(element, data) {
                         }
                     }
                 },
-                colors: ['#A9A9A9', '#FF0000'],
+                colors: ['#213a57', '#14919b'],
                 grid: {
                     borderColor: borderColor,
                     strokeDashArray: 4,

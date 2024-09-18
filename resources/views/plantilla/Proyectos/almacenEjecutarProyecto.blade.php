@@ -37,6 +37,8 @@
 				<div class="card-body pt-9 pb-0">
 					<div class="card-body pt-9 pb-0">
 						<div class="margin">
+							@include('layout.notificacioncrud')
+
                             <h1>Empezar la Instalacion</h1>
                             
                             <form action="{{route('registrar.trabajoejecutado',$ejecProyecto->id)}}" id="formEjecutarProy" method="POST" >
@@ -150,7 +152,7 @@
                                         </td>
                                         @else
                                         <td>
-                                            <input type="text" value="No hay Disponible" readonly>
+                                            <input type="text" class="form-control form-control-solid " value="No hay Disponible" readonly>
                                             
                                         </td>
                                         @endif
@@ -202,7 +204,7 @@
                                     </td>
                                     @else
                                     <td>
-                                        <input type="text" value="No hay Disponibles" readonly>
+                                        <input type="text" class="form-control form-control-solid " value="No hay Disponibles" readonly>
                                         
                                     </td>
                                     @endif

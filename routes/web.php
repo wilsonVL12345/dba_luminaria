@@ -35,7 +35,7 @@ use App\Models\datos_luminaria_retirada;
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('/index', [menuController::class, 'datos'])->name('index');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

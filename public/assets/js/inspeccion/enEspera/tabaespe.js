@@ -1,8 +1,4 @@
 
-
-
-
-
 "use strict";
 
 // Class definition
@@ -52,13 +48,7 @@ let inspeccionEspera = function () {
                             columns: ':not(:last-child)'
                         }
                     },
-                   /*  {
-                        extend: 'csvHtml5',
-                        title: documentTitle,
-                        exportOptions: {
-                            columns: ':not(:last-child)'
-                        }
-                    }, */
+                   
                     {
                         extend: 'pdfHtml5',
                         title: documentTitle,
@@ -68,7 +58,7 @@ let inspeccionEspera = function () {
                         },
                         customize: function(doc) {
                              // Establecer la orientación de la página en horizontal
-                           /*   doc.pageOrientation = 'landscape'; */
+                          
                            // Ajustar el ancho de las columnas (50% para "Distrito", 50% para "Urbanización")
                               doc.content[1].table.widths = ['20%', '40%', '20%', '20%']; // Reducimos el ancho de la primera columna
 
@@ -168,7 +158,5 @@ let inspeccionEspera = function () {
                     };
                 }();
 
-
-
-
                 
+               

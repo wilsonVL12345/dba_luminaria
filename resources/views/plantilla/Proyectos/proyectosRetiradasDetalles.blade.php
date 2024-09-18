@@ -11,7 +11,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">DETALLES DE LUMINARIAS RETIRADAS</h1>
+				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">LUMINARIAS RETIRADAS</h1>
 				<!--end::Title-->
 				<!--begin::Separator-->
 				<span class="h-20px border-gray-300 border-start mx-4"></span>
@@ -97,7 +97,7 @@
 						
 								<h3>luminarias Reutilizadas</h3>
 									<div class="table-responsive">
-										<table  class="table table-bordered">
+										<table  class="table">
 											<thead>
 												<tr class="fw-bold fs-6 text-gray-800">
 													<th > Nombre Item</th>
@@ -108,7 +108,7 @@
 											</thead>
 											<tbody>
 												@foreach ($listalum as $item)
-												<tr class="fw-bold fs-6 text-gray-800" >
+												<tr  >
 												<td >{{$item->Nombre}}</td>
 												<td >{{$item->Cantidad}}</td>
 												<td >{{$item->Reutilizables}}</td>
