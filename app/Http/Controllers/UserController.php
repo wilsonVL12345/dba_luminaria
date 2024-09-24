@@ -31,6 +31,23 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
+        try {
+            $request->validate([
+                'txtnombre' => ['required', 'regex:/^[A-Za-záéíóúÁÉÍÓÚÑñ]+(?:\s[A-Za-záéíóúÁÉÍÓÚÑñ]+)?$/'],
+
+                'txtpaterno' => ['required', 'regex:/^[A-Za-záéíóúÁÉÍÓÚÑñ]+$/'], // Una palabra, solo letras sin espacio
+                'txtmaterno' => ['nullable', 'regex:/^[A-Za-záéíóúÁÉÍÓÚÑñ]+$/'], // Una palabra, solo letras, no requerido
+                'txtci' => ['required', 'alpha_num', 'min:6', 'max:12'], // Letras y números, entre 6 y 12 caracteres
+                'txtexpedido' => ['required', 'alpha', 'min:2', 'max:3'], // Solo letras, entre 2 y 3 caracteres
+                'txtcelular' => ['required', 'digits:8'], // Exactamente 8 dígitos
+                'txtgenero' => ['required', 'alpha', 'size:1'], // Una letra
+                'txtcargo' => ['required', 'regex:/^[A-Za-záéíóúÁÉÍÓÚÑñ\s]{1,15}$/'], // Palabras hasta 15 letras
+                'txtlugarDesignado' => ['required', 'regex:/^[A-Za-záéíóúÁÉÍÓÚÑñ0-9]{1,10}$/'], // Letras o números hasta 10 caracteres
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
+
         // dd($request->all());
         $rol = Role::where('name', $request->txtcargo)->first();
 
@@ -87,6 +104,23 @@ class UserController extends Controller
 
     public function edit(Request $request)
     {
+        try {
+            $request->validate([
+                'txtnombre' => ['required', 'regex:/^[A-Za-záéíóúÁÉÍÓÚÑñ]+(?:\s[A-Za-záéíóúÁÉÍÓÚÑñ]+)?$/'],
+
+                'txtpaterno' => ['required', 'regex:/^[A-Za-záéíóúÁÉÍÓÚÑñ]+$/'], // Una palabra, solo letras sin espacio
+                'txtmaterno' => ['nullable', 'regex:/^[A-Za-záéíóúÁÉÍÓÚÑñ]+$/'], // Una palabra, solo letras, no requerido
+                'txtci' => ['required', 'alpha_num', 'min:6', 'max:12'], // Letras y números, entre 6 y 12 caracteres
+                'txtexpedido' => ['required', 'alpha', 'min:2', 'max:3'], // Solo letras, entre 2 y 3 caracteres
+                'txtcelular' => ['required', 'digits:8'], // Exactamente 8 dígitos
+                'txtgenero' => ['required', 'alpha', 'size:1'], // Una letra
+                'txtcargo' => ['required', 'regex:/^[A-Za-záéíóúÁÉÍÓÚÑñ\s]{1,15}$/'], // Palabras hasta 15 letras
+                'txtlugarDesignado' => ['required', 'regex:/^[A-Za-záéíóúÁÉÍÓÚÑñ0-9]{1,10}$/'], // Letras o números hasta 10 caracteres
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
+
         $rolee = Role::where('name', $request->txtcargo)->first();
 
         try {

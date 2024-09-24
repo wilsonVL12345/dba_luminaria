@@ -78,7 +78,7 @@
                                         </div>
                                         <!--end::Input-->
                                     </div>
-                                    <div class="col-md-2 mb-1">
+                                   {{--  <div class="col-md-2 mb-1">
                                         <label for="slTrabajom" class="required fs-5 fw-bold mb-2">Trabajo</label>
                                         <select    class="form-control form-select-solid " data-control="select2" name="slTrabajom" data-id="slTrabajom" required>
                                             <option value="Central">Central</option>
@@ -86,7 +86,7 @@
                                             <option value="{{$dis->Distrito}}" {{$proyec->Distritos_id==$dis->id ? 'selected':''}}>{{$dis->Distrito}}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
 
 
                                 </div>

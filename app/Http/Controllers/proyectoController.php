@@ -66,14 +66,42 @@ class proyectoController extends Controller
             ]);
         }
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    // para guardar datos en proyectos almacen 
     public function create(Request $request)
     {
-        // dd($request);
+        // Validaciones
+        // dd($request->all());
+        try {
+            //code...
+            $request->validate([
+                'txtcod' => 'required|string|max:16', // Requerido, máximo 16 dígitos
+                'txtdistrito' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+                'txtzona' => [
+                    'required',
+                ],
+                'txttipo' => 'required|string|max:10',
 
+                'dtfecha' => [
+                    'required',
+                ],
+                'txtmodalidad' => 'required|string|max:5',
+
+                'txtobjeto' => [
+                    'required',
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
+                'txtsubasta' => 'required|string|max:2',
+
+                'txtproveedor' => [
+                    'required',
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
+
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
+        // dd($request);
         $listaTipo = '';
         foreach ($request->selectedStates as $key => $value) {
             $listaTipo .= $value . ' ';
@@ -100,7 +128,7 @@ class proyectoController extends Controller
                 $proy->Tipo_Componentes = $listaTipo;
                 $proy->Proveedor = $request->txtproveedor;
                 $proy->Users_id = session('id');
-                $proy->Trabajo = $request->sltrabajo;
+                // $proy->Trabajo = $request->sltrabajo;
                 $proy->save();
                 $cuceProyecto = proyecto::where('Cuce_Cod', $request->txtcod)->first();
                 $idProyecto = $cuceProyecto->id;
@@ -198,6 +226,36 @@ class proyectoController extends Controller
 
     function editEsperaAlmacen(Request $request, $id)
     {
+        try {
+            // Validaciones
+            $request->validate([
+                'txtcodProyEsp' => 'required|string|max:16', // Requerido, máximo 2 dígitos
+                'sldisProyEsp' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+
+                'slUrbproyEsp' => [
+                    'required',
+                ],
+                'sltipContraProyEsp' => 'required|string|max:10',
+
+                'slsubproEsp' => 'required|string|max:2',
+                'txtmodProyEsp' => 'required|string|max:5', // Requerido, máximo 5 dígitos
+                'txtfechaEsp' => [
+                    'required',
+                ],
+                'txtobjetoEsp' => [
+                    'required',
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
+                'txtprovProyEsp' => [
+                    'required',
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
+
+
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
 
 
         try {
@@ -212,7 +270,7 @@ class proyectoController extends Controller
             $editProy->Fecha_Programada = $request->txtfechaEsp;
             $editProy->Objeto_Contratacion = $request->txtobjetoEsp;
             $editProy->Proveedor = $request->txtprovProyEsp;
-            $editProy->Trabajo = $request->slTrabajom;
+            // $editProy->Trabajo = $request->slTrabajom;
 
             $editProy->save();
 
@@ -318,21 +376,38 @@ class proyectoController extends Controller
         $ejecAccesorios = accesorio::where('Proyectos_id', $id)->get();
         $ejecReutilizados = luminarias_reutilizada::where('Proyectos_id', $id)->get();
         $ejecLuminarias = luminaria::where('Proyectos_id', $id)->get();
+        $listadistrito = distrito::where('id', '<>', '15')->get();
 
         $zonaUrbSelecionada = $ejecProyecto->Zona;
         /*  $calleAv = urbanizacion::where('nombre_urbanizacion', $zonaUrbSelecionada)->get(); */
 
-        return view('plantilla.Proyectos.almacenEjecutarProyecto', compact('ejecProyecto', 'ejecAccesorios', 'ejecReutilizados', 'ejecLuminarias'/* , 'calleAv' */));
+        return view('plantilla.Proyectos.almacenEjecutarProyecto', compact('ejecProyecto', 'ejecAccesorios', 'ejecReutilizados', 'ejecLuminarias', 'listadistrito'/* , 'calleAv' */));
     }
     //en esta parte registra todo el trabajo hecho   en proyecto almacen
     public function registrarTrabajo(Request $request, $idp)
     {
+        try {
+            // Validaciones
+            $request->validate([
+                'txtejec' => 'required|string|max:8',  // Requerido, máximo 16 dígitos
+
+                'txtfechaInst' => [
+                    'required',
+                ],
+                'sltrabajo' => 'required|string|max:8', // Requerido, máximo 10 dígitos
+
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
+
         $fin = 'Finalizado';
         $regisProyectoEjec = proyecto::find($idp);
         $regisProyectoEjec->Ejecutado_Por = $request->txtejec;
         $regisProyectoEjec->Estado = $fin;
         $regisProyectoEjec->Realizado_Por = session('id');
         $regisProyectoEjec->Fecha_Ejecutada = $request->txtfechaInst;
+        $regisProyectoEjec->Trabajo = $request->sltrabajo;
         $regisProyectoEjec->save();
         try {
             if ($request->utilizadosreu) {
@@ -445,6 +520,38 @@ class proyectoController extends Controller
     }
     function editObrasEjecutadas(Request $request, $id)
     {
+        try {
+            // Validaciones
+            $request->validate([
+                'txtcodProyObras' => 'required|string|max:16', // Requerido, máximo 16 dígitos
+                'sldisProyObras' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+                'slUrbproyObras' => [
+                    'required',
+                ],
+                'sltipContraProyObras' => 'required|string|max:10', // Requerido, máximo 10 dígitos
+                'txtmodProyObras' => 'required|string|max:5', // Requerido, máximo 5 dígitos
+                'slEjeproObras' => 'required|string|max:8', // Requerido, máximo 16 dígitos
+                'txtfechaObras' => [
+                    'required',
+                ],
+                'slsubproObras' => 'required|string|max:2',
+
+                'txtobjetoObras' => [
+                    'required',
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
+
+                'txtprovProyObras' => [
+                    'required',
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
+                'slTrabaObras' => 'required|string|max:8', // Requerido, máximo 10 dígitos
+
+
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
         try {
             $editRea = proyecto::find($id);
             $editRea->Cuce_Cod = $request->txtcodProyObras;

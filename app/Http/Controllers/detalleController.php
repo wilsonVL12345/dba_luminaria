@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\detalle;
 use App\Models\distrito;
 use App\Models\lista_accesorio;
-use App\Models\proyecto;
 use App\Models\urbanizacion;
 use App\Models\User;
 use Illuminate\Foundation\Console\ViewMakeCommand;
@@ -63,7 +62,7 @@ class detalleController extends Controller
             return view('plantilla.DetallesGenerales.Realizados', compact('detallesrealizados', 'listurb', 'disApoyo', 'listdistritos'));
         }
     }
-    // en esta parte en donde se llena los datos para ejecutar un trabajo 
+    // en esta parte en donde se llena los datos para ejecutar un trabajo
     public function ejecutar($id)
     {
         if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
@@ -105,26 +104,33 @@ class detalleController extends Controller
         return view('plantilla.RealizarTrabajo.trabajos', compact('detall'));
     }
 
-    // genera toda la tabla de detalles en espera
-    /*  public function detallesEspera()
-    {
-        if (        session('cargo') == 'Administrador' || session('cargo') == 'Admin') {
-
-            $detall = detalle::where('Estado', 'En Espera')->orderBy('id', 'desc')->get();
-            return view('plantilla.RealizarTrabajo.trabajos', compact('detall'));
-        } else {
-            $detall = detalle::where('Estado', 'En Espera')->orderBy('id', 'desc')
-                ->where('Distritos_id', session('Lugar_Designado'))->get();
-            return view('plantilla.RealizarTrabajo.trabajos', compact('detall'));
-        }
-    } */
 
     // para agregar  mantenimiento en espera
     public function create(Request $request)
     {
         /* dd($request->all()); */
         //se a creado un acceso directo para que pueda acceder a esa carpeta
+        try {
+            $request->validate([
+                'txtdistirto' => 'required|digits_between:1,2',
+                'txtzonaurb' => ['required',],
+                'txtnrosisco' => [
+                    'required',
+                    'regex:/^\d{5,6}-\d{4}$/', // Formato: 5 o 6 dígitos, seguido de - y 4 dígitos
+                    function ($attribute, $value, $fail) {
+                        // Verificar que el último número sea mayor a 2022
+                        $year = (int) substr($value, -4);
+                        if ($year <= 2022) {
+                            $fail("El último número debe ser mayor que 2022.");
+                        }
+                    },
+                ],
+                'txtfechaprogramada' => ['required',],
 
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
 
         $espera = 'En Espera';
         $tipTrabajo = '';
@@ -146,7 +152,7 @@ class detalleController extends Controller
             $apoyo = ' ' . 'Asistencia' . ' ' . $request->txtapoyo;
         }
         $request->validate([
-            'imgcarta' => 'image|mimes:png,jpg,jpeg|max:8048' // estas son las reglas que tiene que cumplir para poder subir la imagen required| lo quitamos
+            'imgcarta' => 'image|mimes:png,jpg,jpeg|max:6144' // estas son las reglas que tiene que cumplir para poder subir la imagen required| lo quitamos
         ]);
         try {
 
@@ -173,9 +179,24 @@ class detalleController extends Controller
             return back()->with("incorrecto", "Error al Agendar");
         }
     }
-
+    // para guardar el trabajo realizado
     public function storeTrabajo(Request $request, $id)
     {
+        try {
+            $request->validate([
+                'txtcantidadlum' => 'required|digits_between:1,3',
+                'txtfechaejecut' => [
+                    'required',
+                ],
+                'txtdetalles' => [
+                    'required',
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
+
         $tipoLuminaria = 'Tipo: ';
         $fin = 'Finalizado';
         $tipLum = '';
@@ -238,15 +259,47 @@ class detalleController extends Controller
 
     public function edit(Request $request, $id)
     {
-
         try {
             $request->validate([
-                'imgcarta' => 'image|max:8048'
+                'imgcarta' => 'image|max:8048',
+                'sldistrimodi' => 'required|digits_between:1,2',
+                'txtzonaurb' => [
+                    'required',
+                ],
+                'txtnrosisco' => [
+                    'required',
+                    'regex:/^\d{5,6}-\d{4}$/', // Formato: 5 o 6 dígitos, seguido de - y 4 dígitos
+                    function ($attribute, $value, $fail) {
+                        // Verificar que el último número sea mayor a 2022
+                        $year = (int) substr($value, -4);
+                        if ($year <= 2022) {
+                            $fail("El último número debe ser mayor que 2022.");
+                        }
+                    },
+                ],
+
+
+                'txtfechaprogramada' => [
+                    'required',
+                ],
+
             ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
+        try {
             $editdetall = detalle::find($id);
 
             // Manejo de la imagen
             if ($request->hasFile('imgcarta')) {
+                $filePath = $editdetall->Foto_Carta;
+                $filePath = 'fileagendar/' . basename($editdetall->Foto_Carta); // Construye la ruta relativa
+
+                // Verificar si el archivo existe
+                if (Storage::disk('public')->exists($filePath)) {
+                    // Eliminar el archivo
+                    Storage::disk('public')->delete($filePath);
+                }
                 $dire = $request->file('imgcarta')->store('public/fileagendar');
                 $editdetall->Foto_Carta = Storage::url($dire);
             }
@@ -274,47 +327,7 @@ class detalleController extends Controller
             return back()->with("incorrecto", "Error al Modificar los datos");
         }
     }
-    /* public function editRealizado(Request $request, $id)
-    {
-        $request->validate([
-            'file1' => 'required|file|mimes:jpg,jpeg,png|max:8192'
-        ]);
 
-
-        try {
-            $editdetallRealizado = detalle::find($id);
-
-            // Manejo de la imagen
-            if ($request->hasFile('file1')) {
-                $dire = $request->file('file1')->store('public/fileagendar');
-                $editdetallRealizado->Foto_Carta = Storage::url($dire);
-            }
-
-            // Tipo de trabajo
-            $tiposTrabajo = $request->tetipTrabrrea;
-            $editdetallRealizado->Tipo_Trabajo = implode(', ', $tiposTrabajo);
-
-            // Apoyo a Distrito
-            if (in_array('Apoyo Carro Canasta', $tiposTrabajo) && $request->filled('apoyoDistRealizado')) {
-                $editdetallRealizado->Tipo_Trabajo .= ', Asistencia ' . $request->apoyoDistRealizado;
-            }
-
-            // Otros campos
-            $editdetallRealizado->Distritos_id = $request->slDisR;
-            $editdetallRealizado->Zona = $request->slurbr;
-            $editdetallRealizado->Nro_Sisco = $request->tenror;
-            $editdetallRealizado->Observaciones = $request->rnotificar == 1 ? 'NOTIFICADO!!!' : '';
-            $editdetallRealizado->Puntos = $request->text5;
-            $editdetallRealizado->Fecha_Inicio = $request->dtFechaAtenr;
-
-            $editdetallRealizado->save();
-
-            return back()->with("correcto", "Dato Modificado Correctamente");
-        } catch (\Throwable $th) {
-            return back()->with("incorrecto", "Error al Modificar los datos");
-        }
-    }
- */
     function editRealizadosShow($id)
     {
         $itemtrab = detalle::find($id);
@@ -322,9 +335,8 @@ class detalleController extends Controller
         $listdistritos = Distrito::where('id', '<>', 15)->get();
         $listurb = urbanizacion::all();
         $disApoyo = distrito::where('id', '<>', 15)->get();
-        $listacc = accesorio::where('Detalles_id', $id)->get();
-        $listAccesorios = lista_accesorio::all();
-
+        $listacc = accesorio::withTrashed()->where('Detalles_id', $id)->get();
+        $listAccesorios = lista_accesorio::withTrashed()->select('id', 'Nombre_Item')->get();
 
         return view('plantilla.DetallesGenerales.EditRealizados', compact('detallesrealizados', 'listurb', 'listdistritos', 'disApoyo', 'itemtrab', 'listacc', 'listAccesorios'));
     }
@@ -332,7 +344,28 @@ class detalleController extends Controller
     {
         try {
             $request->validate([
-                'file1' => 'image|max:8048'
+                'file1' => 'image|max:8048',
+                'slDisR' => 'required|digits_between:1,2',
+                'slurbr' => [
+                    'required',
+                ],
+                'tenror' => [
+                    'required',
+                    'regex:/^\d{5,6}-\d{4}$/', // Formato: 5 o 6 dígitos, seguido de - y 4 dígitos
+                    function ($attribute, $value, $fail) {
+                        // Verificar que el último número sea mayor a 2022
+                        $year = (int) substr($value, -4);
+                        if ($year <= 2022) {
+                            $fail("El último número debe ser mayor que 2022.");
+                        }
+                    },
+                ],
+
+
+                'text5' => 'required|digits_between:1,3',
+                'dtFechaAtenr' => [
+                    'required',
+                ],
             ]);
 
 
@@ -341,6 +374,14 @@ class detalleController extends Controller
 
             // Manejo de la imagen
             if ($request->hasFile('file1')) {
+                $filePath = $editdetallRealizado->Foto_Carta;
+                $filePath = 'fileagendar/' . basename($editdetallRealizado->Foto_Carta); // Construye la ruta relativa
+
+                // Verificar si el archivo existe
+                if (Storage::disk('public')->exists($filePath)) {
+                    // Eliminar el archivo
+                    Storage::disk('public')->delete($filePath);
+                }
                 $dire = $request->file('file1')->store('public/fileagendar');
                 $editdetallRealizado->Foto_Carta = Storage::url($dire);
             }
@@ -378,7 +419,7 @@ class detalleController extends Controller
                 }
             }
 
-            return back()->with("correcto", "Dato Modificado Correctamente");
+            return redirect('/detalles/realizados')->with("correcto", "Dato Modificado Correctamente");
         } catch (\Throwable $th) {
             return back()->with("incorrecto", "Error al Modificar los datos: " . $th->getMessage());
         }

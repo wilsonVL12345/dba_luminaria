@@ -71,12 +71,24 @@ class distritoController extends Controller
      */
     public function create(Request $request)
     {
+        try {
+            // Validaciones
+            $request->validate([
+                'txtdistrit' => 'required|digits_between:1,2', // Requerido y máximo 2 dígitos
+                'txtzonaUrba' => [
+                    'required',
+                    'regex:/^[A-Z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Requerido, mayúsculas, números, letras acentuadas, ñ/Ñ, y símbolos
+                ],
+
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
 
         try {
             $newUrb = new urbanizacion();
             $newUrb->Nrodistrito = $request->txtdistrit;
             $newUrb->nombre_urbanizacion = $request->txtzonaUrba;
-            /*  dd($newUrb); */
 
             $newUrb->save();
 
@@ -126,6 +138,21 @@ class distritoController extends Controller
 
     public function edit(Request $request, $id)
     {
+        try {
+            // Validaciones
+            $request->validate([
+                'txtdistritom' => 'required|digits_between:1,2', // Requerido y máximo 2 dígitos
+                'txtzonaUrbanizacionm' => [
+                    'required',
+                    'regex:/^[A-Z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Requerido, mayúsculas, números, letras acentuadas, ñ/Ñ, y símbolos
+                ],
+
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
+
+
         try {
             $urba = urbanizacion::find($id);
 

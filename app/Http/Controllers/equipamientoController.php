@@ -33,6 +33,24 @@ class equipamientoController extends Controller
 
     public function create(Request $request)
     {
+        // Validaciones
+        $request->validate([
+            'txtnombre' => [
+                'required',
+                'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+            ],
+            'txtdescripcion' => [
+                'nullable',
+                'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]*$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
+            ],
+            'txtdistrito' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+            'txtestado' => [
+                'required',
+                'regex:/^[a-zA-Z]{1,20}$/', // Solo letras, hasta 20 caracteres
+            ],
+
+        ]);
+
         try {
             $equipamiento = new equipamiento();
 
@@ -96,6 +114,23 @@ class equipamientoController extends Controller
      */
     public function edit(Request $request)
     {
+        // Validaciones
+        $request->validate([
+            'txtnombre' => [
+                'required',
+                'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+            ],
+            'txtdescripcion' => [
+                'nullable',
+                'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]*$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
+            ],
+            'txtdistrito' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+            'txtestado' => [
+                'required',
+                'regex:/^[a-zA-Z]{1,20}$/', // Solo letras, hasta 20 caracteres
+            ],
+
+        ]);
         try {
             $modif = equipamiento::find($request->txtid);
             $modif->Nombre_Item = $request->txtnombre;

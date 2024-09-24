@@ -88,9 +88,9 @@
                                                                     <select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtestado" required >
 
                                                                         <option value="">Seleccione...</option>
-                                                                        <option value="Bueno">Bueno </option>
-                                                                        <option value="Regular">Regular </option>
-                                                                        <option value="Bueno ">Bueno </option>
+                                                                        <option value="Bueno">Bueno</option>
+                                                                        <option value="Regular">Regular</option>
+                                                                        <option value="Malo ">Malo</option>
                                                                         <option value="En Mantenimiento">En Mantenimiento</option>
                                                                     </select>
                                                                 </div>

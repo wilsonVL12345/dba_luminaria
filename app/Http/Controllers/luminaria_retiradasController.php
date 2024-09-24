@@ -73,12 +73,41 @@ class luminaria_retiradasController extends Controller
 
     public function create(Request $request)
     {
+        // Validaciones
+        $request->validate([
+            'txtzona' => [
+                'required',
+            ],
+            'txtnrosisco' => [
+                'required',
+                'regex:/^\d{5,6}-\d{4}$/', // Formato: 5 o 6 dígitos, seguido de - y 4 dígitos
+                function ($attribute, $value, $fail) {
+                    // Verificar que el último número sea mayor a 2022
+                    $year = (int) substr($value, -4);
+                    if ($year <= 2022) {
+                        $fail("El último número debe ser mayor que 2022.");
+                    }
+                },
+            ],
+            'txtfechamante' => [
+                'required',
+            ],
+            'txtproyecto' => [
+                'required',
+                'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+            ],
+            'txtdireccion' => [
+                'required',
+                'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+            ],
+            'txtdistrito' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+        ]);
         try {
             DB::beginTransaction();
 
             $datosretirados = new datos_luminaria_retirada();
-            $datosretirados->zona = $request->txtzona;
             $datosretirados->Nro_sisco = $request->txtnrosisco;
+            $datosretirados->zona = $request->txtzona;
             $datosretirados->Fecha = $request->txtfechamante;
             $datosretirados->Proyecto = $request->txtproyecto;
             $datosretirados->Direccion = $request->txtdireccion;
@@ -94,6 +123,8 @@ class luminaria_retiradasController extends Controller
 
             if ($nombre_item) {
                 # code...
+                // Validaciones
+                $request->validate([]);
                 for ($i = 1; $i <= count($nombre_item); $i++) {
                     $nombre = $nombre_item[$i]['txtitem'] ?? null;
                     $reutilizable = $reutilizables[$i]['txtreutilizables'] ?? null;
@@ -142,6 +173,35 @@ class luminaria_retiradasController extends Controller
     }
     function editretirada(Request $request, $id)
     {
+        // Validaciones
+        $request->validate([
+            'txtzonaMod' => [
+                'required',
+            ],
+            'txtnrosiscoMod' => [
+                'required',
+                'regex:/^\d{5,6}-\d{4}$/', // Formato: 5 o 6 dígitos, seguido de - y 4 dígitos
+                function ($attribute, $value, $fail) {
+                    // Verificar que el último número sea mayor a 2022
+                    $year = (int) substr($value, -4);
+                    if ($year <= 2022) {
+                        $fail("El último número debe ser mayor que 2022.");
+                    }
+                },
+            ],
+            'txtfechamanteMod' => [
+                'required',
+            ],
+            'txtproyectoMod' => [
+                'required',
+                'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+            ],
+            'txtdireccionMod' => [
+                'required',
+                'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+            ],
+            'txtdistritoMod' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+        ]);
         try {
             $modRetirada = datos_luminaria_retirada::find($id);
 

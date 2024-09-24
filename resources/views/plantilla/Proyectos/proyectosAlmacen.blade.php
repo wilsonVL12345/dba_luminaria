@@ -118,17 +118,7 @@
 																				<!--end::Datepicker-->
 																			</div>
 																		</div>
-																				<div class="col-md-3 mb-2">
-																					<label for="sltrabajo" class="required fs-5 fw-bold mb-2">Trabajo</label>
-																					<select  aria-label="Select a Country" data-dropdown-parent="#modalregistroProyecto" class="form-control form-select-solid " data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="sltrabajo" id="sltrabajo" required >
-																					<option value="" >Seleccione...</option>
-																					<option value="Central" >Central</option>
-																					@foreach ($listadistrito as $item)
-																					<option value="{{$item->Distrito}}">{{$item->Distrito}}</option>
-																					@endforeach
-																					</select>	
-																				</div>
-																				<!--end::Input-->
+																				
 																		</div>
 																		
 																		<!--end::Col-->

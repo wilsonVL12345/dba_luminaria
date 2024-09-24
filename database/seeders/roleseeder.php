@@ -53,7 +53,9 @@ class roleseeder extends Seeder
 
         // permisos Realiar trabajo
         Permission::create(['name' => 'realizar.show', 'description' => 'Mostrar realizar'])->assignRole([$role0, $role2, $role3]);
-
+        Permission::create(['name' => 'realizar.edit', 'description' => 'editar realizar'])->assignRole([$role0, $role1, $role2]);
+        Permission::create(['name' => 'realizar.delete', 'description' => 'eliminar realizar'])->assignRole([$role0, $role1, $role2]);
+        Permission::create(['name' => 'realizar.export', 'description' => 'export realizar'])->assignRole([$role0, $role1]);
 
         // permisos agendar
         Permission::create(['name' => 'agendar.show', 'description' => 'Mostrar agendar'])->assignRole([$role0, $role1, $role2, $role3]);
@@ -61,13 +63,13 @@ class roleseeder extends Seeder
         // permisos detalles generales
         Permission::create(['name' => 'detallesGen.show', 'description' => 'Mostrar detallesGen'])->assignRole([$role0, $role1, $role2, $role3, $role4]);
         Permission::create(['name' => 'detallesGen.edit', 'description' => 'editar detallesGen'])->assignRole([$role0, $role1, $role2, $role3]);
-        Permission::create(['name' => 'detallesGen.delete', 'description' => 'eliminar detallesGen'])->assignRole([$role0, $role1, $role2]);
+        Permission::create(['name' => 'detallesGen.delete', 'description' => 'eliminar detallesGen'])->assignRole([$role0, $role1]);
         Permission::create(['name' => 'detallesGen.export', 'description' => 'export detallesGen'])->assignRole([$role0, $role1]);
         Permission::create(['name' => 'detallesGen.report', 'description' => 'report detallesGen'])->assignRole([$role0, $role1]);
 
         // permisos Proyectos almacen  en espera y realizados 
         Permission::create(['name' => 'proyecto.show', 'description' => 'Mostrar proyecto'])->assignRole([$role0, $role1, $role2, $role3, $role4]);
-        Permission::create(['name' => 'proyecto.edit', 'description' => 'editar proyecto'])->assignRole([$role0, $role1, $role2]);
+        Permission::create(['name' => 'proyecto.edit', 'description' => 'editar proyecto'])->assignRole([$role0, $role1]);
         Permission::create(['name' => 'proyecto.install', 'description' => 'instalar proyecto'])->assignRole([$role0, $role1, $role2, $role3]);
         Permission::create(['name' => 'proyecto.create', 'description' => 'crear proyecto'])->assignRole([$role0, $role1, $role2, $role3]);
         Permission::create(['name' => 'proyecto.delete', 'description' => 'eliminar proyecto'])->assignRole([$role0, $role1]);
@@ -78,7 +80,7 @@ class roleseeder extends Seeder
         Permission::create(['name' => 'proyecto.Retirado.show', 'description' => 'Mostrar proyecto.Retirado'])->assignRole([$role0, $role1, $role2, $role3, $role4]);
         Permission::create(['name' => 'proyecto.Retirado.edit', 'description' => 'editar proyecto.Retirado'])->assignRole([$role0, $role1, $role2]);
         Permission::create(['name' => 'proyecto.Retirado.create', 'description' => 'crear proyecto.Retirado'])->assignRole([$role0, $role1, $role2, $role3]);
-        Permission::create(['name' => 'proyecto.Retirado.delete', 'description' => 'eliminar proyecto.Retirado'])->assignRole([$role0, $role1, $role2]);
+        Permission::create(['name' => 'proyecto.Retirado.delete', 'description' => 'eliminar proyecto.Retirado'])->assignRole([$role0, $role1]);
         Permission::create(['name' => 'proyecto.Retirado.export', 'description' => 'export proyecto.Retirado'])->assignRole([$role0, $role1]);
 
         // permisos inspecciones
@@ -86,14 +88,14 @@ class roleseeder extends Seeder
         Permission::create(['name' => 'inspecciones.edit', 'description' => 'editar inspecciones'])->assignRole([$role0, $role1, $role2]);
         Permission::create(['name' => 'inspecciones.install', 'description' => 'instalar inspecciones'])->assignRole([$role0, $role2, $role3]);
         Permission::create(['name' => 'inspecciones.create', 'description' => 'crear inspecciones'])->assignRole([$role0, $role1, $role2, $role3]);
-        Permission::create(['name' => 'inspecciones.delete', 'description' => 'eliminar inspecciones'])->assignRole([$role0, $role1, $role2]);
+        Permission::create(['name' => 'inspecciones.delete', 'description' => 'eliminar inspecciones'])->assignRole([$role0, $role1]);
         Permission::create(['name' => 'inspecciones.export', 'description' => 'export inspecciones'])->assignRole([$role0, $role1]);
 
         // permisos equipos Equipamientos
         Permission::create(['name' => 'equipamiento.show', 'description' => 'Mostrar equipamiento'])->assignRole([$role0, $role1, $role2, $role3, $role4]);
         Permission::create(['name' => 'equipamiento.edit', 'description' => 'editar equipamiento'])->assignRole([$role0, $role1, $role2]);
         Permission::create(['name' => 'equipamiento.create', 'description' => 'crear equipamiento'])->assignRole([$role0, $role1, $role2, $role3]);
-        Permission::create(['name' => 'equipamiento.delete', 'description' => 'eliminar equipamiento'])->assignRole([$role0, $role1, $role2]);
+        Permission::create(['name' => 'equipamiento.delete', 'description' => 'eliminar equipamiento'])->assignRole([$role0, $role1]);
         Permission::create(['name' => 'equipamiento.export', 'description' => 'export equipamiento'])->assignRole([$role0, $role1]);
 
         // permisos equipos Accesorios

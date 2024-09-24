@@ -92,7 +92,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/detalles/espera', [detalleController::class, 'index'])->name('detalles.espera')->middleware('can:detallesGen.show');
     Route::get('/detalles/realizados', [detalleController::class, 'realizados'])->name('detalles.realizados')->middleware('can:detallesGen.show');
     Route::get('/detalles/realizados/edit{id}', [detalleController::class, 'editRealizadosShow'])->name('detalles.realizadosEdit')->middleware('can:detallesGen.edit');
-    Route::get('/detalles/mantenimiento/pdf{id}', [detalleController::class, 'generarpdf'])->name('detalles.pdf');
+    Route::get('/detalles/mantenimiento/pdf{id}', [detalleController::class, 'generarpdf'])->name('detalles.pdf')->middleware('can:detallesGen.report');
 
     Route::get('detalle/realizados/informacion/{id}', [detalleController::class, 'DetallesRealizado'])->name('detalle.realizados.informacion')->middleware('can:detallesGen.show');
     Route::get('/eliminar/detallegen{id}', [detalleController::class, 'destroy'])->name('eliminar.detallegen')->middleware('can:detallesGen.delete');
@@ -162,7 +162,7 @@ Route::middleware('auth', 'verified')->group(function () {
     // Route::get('/detallesAccesorios/almacen', [proyectoController::class, 'reu'])->name('detallesAccesorios.almacendatos')->middleware('can:· ·');
     Route::get('/datos/ejecutar/{id}', [proyectoController::class, 'ejecutarProyectodatos'])->name('datos.ejecutar')->middleware('can:proyecto.install');
     Route::post('/registrar/trabajoEjecutado/{id}', [proyectoController::class, 'registrarTrabajo'])->name('registrar.trabajoejecutado')->middleware('can:proyecto.create');
-    Route::get('/Almacen/detalles/pdf{id}', [proyectoController::class, 'generarPdf'])->name('Almacen.pdf');
+    Route::get('/Almacen/detalles/pdf{id}', [proyectoController::class, 'generarPdf'])->name('Almacen.pdf')->middleware('can:proyecto.report');
 
     Route::get('/proyectos/ObrasEjecutadas', [proyectoController::class, 'datosObras'])->name('proyectos.ObrasEjecutadas')->middleware('can:proyecto.show');
 
@@ -171,11 +171,11 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/dashdetalles', [proyectoController::class, 'dashdetall'])->name('dashdetalles')->middleware('can:dashboard.show');
 
     //rutar para reelevamiento---------------------------------------------------------------------------------------
-    Route::get('/reelevamientos', [ReelevamientoController::class, 'showDist'])->name('reelevamientos');
-    Route::get('/reelevamientos/dis/{id}', [ReelevamientoController::class, 'index'])->name('reelevamientos.dis');
-    Route::post('/reelevamiento/create', [ReelevamientoController::class, 'create'])->name('reelevamiento.create');
-    Route::post('/reelevamiento/modificar{id}', [ReelevamientoController::class, 'modificar'])->name('reelevamiento.modificar');
-    Route::get('/eliminar/reelevamiento{id}', [ReelevamientoController::class, 'destroy'])->name('eliminar.reelevamiento');
+    Route::get('/reelevamientos', [ReelevamientoController::class, 'showDist'])->name('reelevamientos')->middleware('can:Reelevamiento.show');
+    Route::get('/reelevamientos/dis/{id}', [ReelevamientoController::class, 'index'])->name('reelevamientos.dis')->middleware('can:Reelevamiento.show');
+    Route::post('/reelevamiento/create', [ReelevamientoController::class, 'create'])->name('reelevamiento.create')->middleware('can:Reelevamiento.create');
+    Route::post('/reelevamiento/modificar{id}', [ReelevamientoController::class, 'modificar'])->name('reelevamiento.modificar')->middleware('can:Reelevamiento.edit');
+    Route::get('/eliminar/reelevamiento{id}', [ReelevamientoController::class, 'destroy'])->name('eliminar.reelevamiento')->middleware('can:Reelevamiento.delete');
 
     //ruta para ver  distritos----------------------------------------------------------------------
     Route::get('/detallesDistritos', [distritoController::class, 'index'])->name('detalles.Distritos')->middleware('can:Distritos.show');

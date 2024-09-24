@@ -28,7 +28,14 @@
 <script src="{{ asset('assets/js/ejecutarTrabajo/Empezar.js') }}"></script>
 <script src="{{ asset('assets/js/consultaAtencion/atencion.js') }}"></script>
 
+<script src="{{ asset('assets/js/dashboards/chatdetalles.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/chatinspecciones.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/chartproyectos.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/dashDis1.js') }}" defer></script>
 
+<script src="{{ asset('assets/js/dashboards/detallesAnual.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/inspeccionAnual.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/proyectoAnual.js') }}" defer></script>
 
 
 <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
@@ -97,14 +104,7 @@
 <script src="{{ asset('assets/js/detallesGenerales/realizado/apoyoreal.js') }}" defer></script>
 
 
-<script src="{{ asset('assets/js/dashboards/chartproyectos.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/chatdetalles.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/chatinspecciones.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/dashDis1.js') }}" defer></script>
 
-<script src="{{ asset('assets/js/dashboards/proyectoAnual.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/inspeccionAnual.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/detallesAnual.js') }}" defer></script>
 
 <script src="{{ asset('assets/js/reelevamientos/dropzone.js') }}" defer></script>
 <script src="{{ asset('assets/js/reelevamientos/filtUrba.js') }}" defer></script>

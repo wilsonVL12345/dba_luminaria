@@ -145,7 +145,7 @@
 								<div id="kt_datatable_example_1_export" class="d-none"></div>
 								<!--end::Export buttons-->
 							</div>
-							@can('equipamiento.delete')
+							@can('equipamiento.export')
 								
 							<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 								<!--begin::Export dropdown-->

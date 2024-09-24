@@ -11,7 +11,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Almacen</h1>
+				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Realizados</h1>
 				<!--end::Title-->
 				<!--begin::Separator-->
 				<span class="h-20px border-gray-300 border-start mx-4"></span>
@@ -186,7 +186,10 @@
                                                 <select class="form-control form-select-solid" data-control="select2" data-search="false" data-hide-search="true" data-placeholder="Selecione..." name="itemReal[{{$item->id}}]" id="itemReal[{{$item->id}}]">
                                                     @foreach ($listAccesorios as $items)
                                                         
-                                                    <option value="{{$items->id}}" {{ $items->id == $item->lista_accesorio->id ? 'selected' : '' }}>
+                                                   {{--  <option value="{{$items->id}}" {{ $items->id == $item->lista_accesorio->id ? 'selected' : '' }}>
+                                                        {{$items->Nombre_Item}}
+                                                    </option> --}}
+                                                    <option value="{{$items->id}}" {{ $item->Id_Lista_accesorios == $items->id ? 'selected' : '' }}>
                                                         {{$items->Nombre_Item}}
                                                     </option>
                                                     @endforeach

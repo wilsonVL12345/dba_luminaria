@@ -19,6 +19,12 @@ class lista_accesorioController extends Controller
     }
     public function create(Request $request)
     {
+        $request->validate([
+            'txtnombre' => [
+                'required',
+                'regex:/^[A-Z0-9\/\*\-\.\,\(\)\s]+$/', // Requerido, mayúsculas, números y símbolos permitidos
+            ],
+        ]);
         try {
             $accesorio = new lista_accesorio();
             $accesorio->Nombre_Item = $request->txtnombre;
@@ -34,24 +40,15 @@ class lista_accesorioController extends Controller
         }
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Request $request)
     {
+        $request->validate([
+            'txtnombre' => [
+                'required',
+                'regex:/^[A-Z0-9\/\*\-\.\,\(\)\s]+$/', // Requerido, mayúsculas, números y símbolos permitidos
+            ],
+        ]);
 
         try {
             $lista = lista_accesorio::find($request->txtid);
@@ -75,33 +72,7 @@ class lista_accesorioController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    /* public function destroy($id)
-    {
-       
 
-        try {
-            $accedestroy = lista_accesorio::find($id);
-            if ($accedestroy) {
-
-                lista_accesorio::destroy("$id");
-                $sql = true;
-                return back()->with("correcto", "Datos Eliminados Correctamente");
-            } else {
-                return back()->with("incorrecto", "Registro no encontrado");
-            }
-        } catch (\Throwable $th) {
-            $sql = false;
-        }
-        if ($sql == true) {
-            return back()->with("correcto", "Datos Eliminados Correctamente");
-        } else {
-            return back()->with("incorrecto", "Error al Eliminar");
-        }
-    }
-    */
     public function destroy(lista_accesorio $id)
     {
         $id->delete();

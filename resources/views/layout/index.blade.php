@@ -230,7 +230,7 @@
 							color: #5e6278;
 						}
 
-						@media (max-width: 1300px) {
+						@media (max-width: 1400px) {
 						/* Cambiar el ancho mínimo de los contenedores */
 						.min-w-100px, .min-w-75px, .min-w-85px {
 							min-width: 30px !important;
@@ -252,7 +252,7 @@
 											<h1>
 												<span class="title-full">DIRECCION DE ALUMBRADO PUBLICO</span>
 												<span class="title-medium">DIRECCION DE ALUMBRADO</span>
-												<span class="title-short">DIRECCION </span>
+												<span class="title-short"> </span>
 											</h1>
 											<h1 class="secondary-title">
 												UNIDAD OPERATIVA 

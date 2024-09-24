@@ -104,7 +104,7 @@
 								</div>
 							</div>
 							<div id="listacomponentes">
-								<div class="row mb-5">
+								{{-- <div class="row mb-5">
 									<div class="row" id="formcomMalEstado">
 										<div class="col-md-6 mb-3">
 											<label for="componente" class="required fs-5 fw-bold mb-2">Componente</label>
@@ -126,7 +126,7 @@
 											<button type="button" class="btn btn-danger btn-sm" onclick="eliminarAccesorio(this)">Delete</button>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 							</div>
 
 

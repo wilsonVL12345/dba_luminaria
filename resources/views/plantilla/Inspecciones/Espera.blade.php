@@ -489,6 +489,7 @@
 																					<option value="" >Seleccione...</option>
 																					<option value="Ampliacion de la red">Ampliacion de la red</option>
 																					<option value="Mantenimiento">Mantenimiento</option>
+																					<option value="Instalacion">Instalacion</option>
 																					<option value="Mejora del Sistema">Mejora del Sistema</option>
 																					<option value="Ampliacion de la red y Mantenimiento">Ampliacion de la red y Mantenimiento</option>
 																				

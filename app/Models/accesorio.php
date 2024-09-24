@@ -14,6 +14,8 @@ class accesorio extends Model
     protected $table = 'accesorios';
     protected $fillable =
     [
+        'id',
+
         'Id_Lista_accesorios',
         'Cantidad',
         'Utilizados',
@@ -34,6 +36,6 @@ class accesorio extends Model
     }
     public function lista_accesorio(): BelongsTo
     {
-        return $this->belongsTo(lista_accesorio::class, 'Id_Lista_accesorios');
+        return $this->belongsTo(lista_accesorio::class, 'Id_Lista_accesorios')->withTrashed();
     }
 }

@@ -48,24 +48,38 @@
                                         <label for="txtcod" class=" fs-5 fw-bold mb-2">Cod Proyecto</label>
                                         <input type="text" class="form-control form-control-solid " name="txtcods" id="txtcod" value="{{$ejecProyecto->Cuce_Cod}}" readonly> 
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <label for="txtzona" class=" fs-5 fw-bold mb-2">Urbanizacion</label>
                                         <input type="text" class="form-control form-control-solid " name="txtzona"  value="{{$ejecProyecto->Zona}}" readonly> 
                                     </div>
 
-                                    @if ($ejecProyecto->Ejecutado_Por)
-                                    <div class="col-md-3 mb-3">
+                                    @if ($ejecProyecto->Realizado_Por)
+                                    <div class="col-md-2 mb-2">
                                         <label for="txtejec" class=" fs-5 fw-bold mb-2">Ejecutado Por</label>
-                                        <input type="text" class="form-control form-control-solid " name="txtejec" id="txtejec" value="{{$ejecProyecto->Ejecutado_Por}}" readonly>
+                                        <input type="text" class="form-control form-control-solid " name="txtejec"  value="{{$ejecProyecto->Ejecutado_Por}}" readonly>
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <label for="txtejec" class=" fs-5 fw-bold mb-2">Trabajo</label>
+                                        <input type="text" class="form-control form-control-solid " name="sltrabajo" value="{{$ejecProyecto->Trabajo}}" readonly>
                                     </div>
                                         @else   
-                                    <div class="col-md-3 mb-3">
+                                    <div class="col-md-2 mb-2">
                                         <label for="txtejec" class=" fs-5 fw-bold mb-2">Ejecutado Por</label>
                                         <select name="txtejec" class="form-control form-select-solid" id="txtejec" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." required>
                                             <option value="" disabled selected >Seleccione...</option>
                                             <option value="GAMEA">GAMEA</option>
                                             <option value="Externo">Externo</option>
                                         </select>
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <label for="sltrabajo" class="required fs-5 fw-bold mb-2">Trabajo</label>
+                                        <select  aria-label="Select a Country"  class="form-control form-select-solid " name="sltrabajo" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="sltrabajo" id="sltrabajo" required >
+                                        <option value="" >Seleccione...</option>
+                                        <option value="Central" >Central</option>
+                                        @foreach ($listadistrito as $item)
+                                        <option value="{{$item->Distrito}}">{{$item->Distrito}}</option>
+                                        @endforeach
+                                        </select>	
                                     </div>
                                     @endif
 

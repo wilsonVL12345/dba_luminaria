@@ -47,6 +47,7 @@ class inspeccionController extends Controller
      */
     public function create(Request $request)
     {
+
         $url = '';
         /* dd($request->all()); */
         if ($request->imgcarta) {
@@ -58,6 +59,29 @@ class inspeccionController extends Controller
             ]);
         }
         try {
+
+            // Validaciones
+            $request->validate([
+                'txtnrosisco' => [
+                    'required',
+                    'regex:/^\d{5,6}-\d{4}$/', // Formato: 5 o 6 dígitos, seguido de - y 4 dígitos
+                    function ($attribute, $value, $fail) {
+                        // Verificar que el último número sea mayor a 2022
+                        $year = (int) substr($value, -4);
+                        if ($year <= 2022) {
+                            $fail("El último número debe ser mayor que 2022.");
+                        }
+                    },
+                ],
+                'txturbs' => [
+                    'required',
+                ],
+                'txtfecha' => [
+                    'required',
+                ],
+                'txtdistirtoo' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+            ]);
+
 
             //aqui poner el id del que va a agregar el trabajo
             $fk = session('id');
@@ -99,6 +123,25 @@ class inspeccionController extends Controller
     public function ready(Request $request)
     {
         try {
+            // Validaciones
+            $request->validate([
+                'txttipo' => [
+                    'required',
+                    'regex:/^[a-zA-Z]{1,50}$/', // Solo letras, hasta 20 caracteres
+                ],
+                'txtdescripcion' => [
+                    'nullable',
+                    'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]*$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
+                ],
+
+                'txtfecha' => 'required',
+                'txtestado' => [
+                    'required',
+                    'regex:/^[a-zA-Z]{1,20}$/', // Solo letras, hasta 20 caracteres
+                ],
+
+            ]);
+
             $inspe = 'Finalizado';
             $emp = inspeccion::find($request->txtid);
 
@@ -124,10 +167,33 @@ class inspeccionController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Request $request)
+
+
     {
-
-
         try {
+            // Validaciones
+            $request->validate([
+                'txtsisco' => [
+                    'required',
+                    'regex:/^\d{5,6}-\d{4}$/', // Formato: 5 o 6 dígitos, seguido de - y 4 dígitos
+                    function ($attribute, $value, $fail) {
+                        // Verificar que el último número sea mayor a 2022
+                        $year = (int) substr($value, -4);
+                        if ($year <= 2022) {
+                            $fail("El último número debe ser mayor que 2022.");
+                        }
+                    },
+                ],
+                'slurbInspEsp' => [
+                    'required',
+                ],
+                'txtfecha' => [
+                    'required',
+                ],
+                'sldistInspEsp' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+
+
+            ]);
             if (!$request->imgcartaa) {
                 $inspe = inspeccion::find($request->txtid);
 
@@ -139,9 +205,20 @@ class inspeccionController extends Controller
                 $inspe->save();
                 $sql = true;
             } else {
+                $request->validate([
+                    'imgcartaa' => 'image|max:8048' //required|
+                ]);
                 $dir = $request->file('imgcartaa')->store('public/fileinspecciones');
                 $urll = Storage::url($dir);
                 $inspe = inspeccion::find($request->txtid);
+
+                $filePath = $inspe->Foto_Carta;
+                $filePath = 'fileinspecciones/' . basename($inspe->Foto_Carta); // Construye la ruta relativa
+                // Verificar si el archivo existe
+                if (Storage::disk('public')->exists($filePath)) {
+                    // Eliminar el archivo
+                    Storage::disk('public')->delete($filePath);
+                }
                 $inspe->Distritos_id = $request->sldistInspEsp;
                 $inspe->ZonaUrbanizacion = $request->slurbInspEsp;
                 $inspe->Nro_Sisco = $request->txtsisco;
@@ -164,6 +241,34 @@ class inspeccionController extends Controller
     public function editRealizada(Request $request, $id)
     {
         try {
+            // Validaciones
+            $request->validate([
+                'txttipo' => [
+                    'required',
+                    'regex:/^[a-zA-Z]{1,50}$/', // Solo letras, hasta 20 caracteres
+                ],
+                'txtsisco' => [
+                    'required',
+                    'regex:/^\d{5,6}-\d{4}$/', // Formato: 5 o 6 dígitos, seguido de - y 4 dígitos
+                    function ($attribute, $value, $fail) {
+                        // Verificar que el último número sea mayor a 2022
+                        $year = (int) substr($value, -4);
+                        if ($year <= 2022) {
+                            $fail("El último número debe ser mayor que 2022.");
+                        }
+                    },
+                ],
+                'slurbInspRea' => [
+                    'required',
+                ],
+                'sldistInspRea' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+                'txtestado' => [
+                    'required',
+                    'regex:/^[a-zA-Z]{1,20}$/', // Solo letras, hasta 20 caracteres
+                ],
+
+
+            ]);
             $editInspec = inspeccion::find($id);
 
             $editInspec->Tipo_Inspeccion = $request->txttipo;

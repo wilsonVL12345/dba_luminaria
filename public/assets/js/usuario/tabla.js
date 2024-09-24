@@ -39,14 +39,16 @@ let tablausuartios = function () {
                         extend: 'copyHtml5',
                         title: documentTitle,
                         exportOptions: {
-                            columns: ':not(:last-child)'
+                            columns: [ 1, 2, 3, 4,5, 6,7,8]  // Excluye la columna 6 (índice 6)
+
                         }
                     },
                     {
                         extend: 'excelHtml5',
                         title: documentTitle,
                         exportOptions: {
-                            columns: ':not(:last-child)'
+                            columns: [ 1, 2, 3, 4,5, 6,7,8]  // Excluye la columna 6 (índice 6)
+
                         }
                     },
                     {

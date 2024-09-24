@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         tooltip: {
             y: {
                 formatter: function (val) {
-                    return val + " proyectos"
+                    return val + " Inspecciones"
                 }
             }
         },

@@ -172,7 +172,9 @@ $(document).ready(function() {
                 <div class="row" id="formcomMalEstado">
                         <div class="col-md-2 mb-3">
                             <label for="txtcod" class="required fs-5 fw-bold mb-2">Codigo Led</label>
-                            <input type="number" class="form-control form-control-solid" id="txtcod" name="campocod[${lumCount}][txtcod]" placeholder="Ingresar Cantidad" required>
+                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
+
+                            <input type="text" class="form-control form-control-solid" id="txtcod" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\.]*" name="campocod[${lumCount}][txtcod]" placeholder="Ingresar Cantidad" required>
                         </div>
                         <div class="col-md-2 mb-3">
                                  <label for="txtpotencia" class="required fs-5 fw-bold mb-2">Potencia</label>

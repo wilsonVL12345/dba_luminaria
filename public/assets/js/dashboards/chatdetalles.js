@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         tooltip: {
             y: {
                 formatter: function (val) {
-                    return "+ " + val + " total "
+                    return  + val + "  Mantenimientos"
                 }
             }
         },

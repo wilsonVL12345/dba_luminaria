@@ -50,14 +50,27 @@ class ReelevamientoController extends Controller
 
     public function create(Request $request)
     {
+        // Validaciones
+        $request->validate([
+            'flrar' => 'file|mimes:rar,zip|max:40960', // Archivo opcional de máximo 40 MB
+            'reeAvCalle' => [
+                'required',
+                'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - +
+            ],
+            'reeDescripRegis' => [
+                'nullable',
+                'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]*$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
+            ],
+            'reeDistritoRegis' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+            'reeFechaRegis' => 'required|date', // Requerido, debe ser una fecha válida
+            'reeUrbanizacionRegis' => 'required|digits_between:1,4', // Requerido, máximo 4 dígitos
+        ]);
         if ($request->flrar) {
             $dir = $request->file('flrar')->store('public/rarReelevamiento');
             $url = Storage::url($dir);
         }
         try {
-            $request->validate([
-                'flrar' => 'file|mimes:rar,zip|max:4096' // 4096 es el tamaño en kilobytes (4 MB)
-            ]);
+
 
             $reeleLumNew = new reelevamiento();
             $reeleLumNew->Av_calles = $request->reeAvCalle;
@@ -83,20 +96,34 @@ class ReelevamientoController extends Controller
      */
     public function modificar(Request $request, $id)
     {
+        $request->validate([
+            'flrarMod' => 'file|mimes:rar,zip|max:40960', // Archivo opcional de máximo 40 MB
+            'reeAvCalleMod' => [
+                'required',
+                'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - +
+            ],
+            'reeDescripRegisMod' => [
+                'nullable',
+                'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]*$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
+            ],
+            'reeDistritoRegisMod' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+            'reeFechaRegisMod' => 'required|date', // Requerido, debe ser una fecha válida
+            'reeUrbanizacionRegisMod' => 'required|digits_between:1,4', // Requerido, máximo 4 dígitos
+        ]);
         if ($request->flrarMod) {
             $dirr = $request->file('flrarMod')->store('public/rarReelevamiento');
             $urll = Storage::url($dirr);
         }
         try {
-
             $reeleMod = reelevamiento::find($id);
             if ($request->flrarMod) {
-                $filePath = $reeleMod->Archivos;
+                // $filePath = $reeleMod->Archivos;
+                $filePath = 'rarReelevamiento/' . basename($reeleMod->Archivos); // Construye la ruta relativa
 
                 // Verificar si el archivo existe
-                if (Storage::exists($filePath)) {
-                    // Eliminar el archivo
-                    Storage::delete($filePath);
+
+                if (Storage::disk('public')->exists($filePath)) {
+                    Storage::disk('public')->delete($filePath);
                 }
                 $reeleMod->Av_calles = $request->reeAvCalleMod;
                 $reeleMod->Descripcion = $request->reeDescripRegisMod;

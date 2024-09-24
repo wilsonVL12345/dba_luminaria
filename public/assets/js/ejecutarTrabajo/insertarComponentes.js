@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let componenteCount = 1;
+    let componenteCount = 0;
 
     // Cargar opciones del selector al inicio
     cargarOpcionesSelector();

@@ -54,6 +54,8 @@
 									<!--end::Export buttons-->
 								</div>
 								<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+									@can('realizar.export')
+										
 									<!--begin::Export dropdown-->
 									<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 										<i class="ki-duotone ki-exit-down fs-2"><span class="path1"></span><span class="path2"></span></i>
@@ -85,6 +87,7 @@
 											</a>
 										</div>
 										<!--end::Menu item-->
+
 									</div>
 									<!--end::Menu-->
 									<!--end::Export dropdown-->
@@ -92,6 +95,8 @@
 									<!--begin::Hide default export buttons-->
 									<div id="kt_datatable_example_buttons" class="d-none"></div>
 									<!--end::Hide default export buttons-->
+									@endcan
+
 								</div>
 							</div>
 							<div class="card-body">
@@ -171,14 +176,13 @@
 													</div> --}}
 													<!--end::Menu item-->
 													<!--begin::Menu item-->
-													<div class="menu-item px-3">
-														
-														<a href="#" class="menu-link px-3 delete-link"
-															data-kt-customer-table-filter="delete_row">Eliminar</a>
-															{{-- <a href="{{url('/usuario/bloquear/'.$item->id) }}" class="menu-link px-3"
-																data-kt-customer-table-filter="delete_row">Eliminar</a> --}}
-														
-													</div>
+													@can('realizar.delete')
+														<div class="menu-item px-3">
+															<a href="#" class="menu-link px-3 delete-link"
+																data-kt-customer-table-filter="delete_row">Eliminar</a>
+														</div>
+													@endcan
+
 													<!--end::Menu item-->
 												</div>
 												<!--end::Menu-->

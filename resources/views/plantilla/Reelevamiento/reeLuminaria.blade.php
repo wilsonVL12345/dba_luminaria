@@ -112,13 +112,13 @@
                                         <div class="fv-row mb-7">
                                             <!--begin::Label-->
                                             <label class="required fs-5 fw-bold mb-2">AV o Calles
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas  - ()"></i>
 
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de el Equipamiento" name="reeAvCalle" id="reeAvCalle" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\., ]*"
-                                            required />
+                                            required   oninput="this.value = this.value.toLowerCase();" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
