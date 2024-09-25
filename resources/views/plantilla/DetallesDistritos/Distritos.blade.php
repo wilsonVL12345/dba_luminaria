@@ -113,8 +113,8 @@
 																<?php
 																	$div="D-";
 																?>
-																<tbody class="fw-semibold text-gray-600">
-																	@foreach ($todoUrban as $itemurb)
+																<tbody class="text-gray-600">
+																	{{-- @foreach ($todoUrban as $itemurb)
 																	<tr class="text-start text-gray-500 fw-bold fs-7">
 																		<td>
 																			<a href="#" class="text-gray-900 text-hover-primary">		<?php
@@ -168,14 +168,12 @@
 																			<!--end::Menu-->
 																		</td>
 																		<!--end::Action=-->
-																		
 																	</tr>
-																	@endforeach
+																	@endforeach --}}
 																</tbody>
 															</table>
 															
 																	@can('Distritos.edit')
-																
 															
 																		<!--begin::Modal -MODIficar urbanizacion-->
 																		{{-- <div class="modal fade" id="ModalModificarUrba{{$itemurb->id}}" tabindex="-1" aria-hidden="true">

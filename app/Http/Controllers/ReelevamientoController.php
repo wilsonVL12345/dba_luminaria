@@ -50,21 +50,25 @@ class ReelevamientoController extends Controller
 
     public function create(Request $request)
     {
-        // Validaciones
-        $request->validate([
-            'flrar' => 'file|mimes:rar,zip|max:40960', // Archivo opcional de máximo 40 MB
-            'reeAvCalle' => [
-                'required',
-                'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - +
-            ],
-            'reeDescripRegis' => [
-                'nullable',
-                'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]*$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
-            ],
-            'reeDistritoRegis' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
-            'reeFechaRegis' => 'required|date', // Requerido, debe ser una fecha válida
-            'reeUrbanizacionRegis' => 'required|digits_between:1,4', // Requerido, máximo 4 dígitos
-        ]);
+        try {
+            // Validaciones
+            $request->validate([
+                'flrar' => 'file|mimes:rar,zip|max:40960', // Archivo opcional de máximo 40 MB
+                'reeAvCalle' => [
+                    'required',
+                    'regex:/^[A-Z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
+                'reeDescripRegis' => [
+                    'required',
+                    'regex:/^[A-Z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
+                ],
+                'reeDistritoRegis' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+                'reeFechaRegis' => 'required|date', // Requerido, debe ser una fecha válida
+                'reeUrbanizacionRegis' => 'required|digits_between:1,4', // Requerido, máximo 4 dígitos
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
         if ($request->flrar) {
             $dir = $request->file('flrar')->store('public/rarReelevamiento');
             $url = Storage::url($dir);
@@ -96,20 +100,24 @@ class ReelevamientoController extends Controller
      */
     public function modificar(Request $request, $id)
     {
-        $request->validate([
-            'flrarMod' => 'file|mimes:rar,zip|max:40960', // Archivo opcional de máximo 40 MB
-            'reeAvCalleMod' => [
-                'required',
-                'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - +
-            ],
-            'reeDescripRegisMod' => [
-                'nullable',
-                'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]*$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
-            ],
-            'reeDistritoRegisMod' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
-            'reeFechaRegisMod' => 'required|date', // Requerido, debe ser una fecha válida
-            'reeUrbanizacionRegisMod' => 'required|digits_between:1,4', // Requerido, máximo 4 dígitos
-        ]);
+        try {
+            $request->validate([
+                'flrarMod' => 'file|mimes:rar,zip|max:40960', // Archivo opcional de máximo 40 MB
+                'reeAvCalleMod' => [
+                    'required',
+                    'regex:/^[A-Z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
+                'reeDescripRegisMod' => [
+                    'required',
+                    'regex:/^[A-Z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
+                ],
+                'reeDistritoRegisMod' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+                'reeFechaRegisMod' => 'required|date', // Requerido, debe ser una fecha válida
+                'reeUrbanizacionRegisMod' => 'required|digits_between:1,4', // Requerido, máximo 4 dígitos
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
+        }
         if ($request->flrarMod) {
             $dirr = $request->file('flrarMod')->store('public/rarReelevamiento');
             $urll = Storage::url($dirr);

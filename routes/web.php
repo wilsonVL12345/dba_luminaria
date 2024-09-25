@@ -128,10 +128,10 @@ Route::middleware('auth', 'verified')->group(function () {
     //ruta para lista de accesorios
     Route::get('/equipos/accesorios', [lista_accesorioController::class, 'index'])->name('equipos.accesorios')->middleware('can:accesorios.show');
     Route::get('/eliminar/accesorios{id}', [lista_accesorioController::class, 'destroy'])->name('eliminar.accesorios')->middleware('can:accesorios.delete');
-
-    //ruta para registrar ala lista de accesorios
     Route::post('/registro/accesorios', [lista_accesorioController::class, 'create'])->name('registro.accesorios')->middleware('can:accesorios.create');
     Route::post('/editar/accesorios', [lista_accesorioController::class, 'edit'])->name('editar.accesorios')->middleware('can:accesorios.edit');
+    Route::get('/listaAccesorios/data', [lista_accesorioController::class, 'listaAccesoriosdata']);
+
     // Route::get('/eliminar/accesorios/{id}', [lista_accesorioController::class, 'destroy'])->name('eliminar.accesorios');
 
     Route::get('/equipamiento/distrito', [equipamientoController::class, 'showEquipDistrito'])->name('equipamiento.distrito')->middleware('can:equipamiento.show');
@@ -183,7 +183,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/editar/distrito/{id}', [distritoController::class, 'edit'])->name('editar.distrito')->middleware('can:Distritos.edit');
     Route::get('/editar/urbanizacion/{id}', [distritoController::class, 'datosEdit'])->name('editar.urbanizacion')->middleware('can:Distritos.edit');
     Route::get('/eliminar/urbanizacion{id}', [distritoController::class, 'destroy'])->name('eliminar.urbanizacion')->middleware('can:Distritos.delete');
-
+    Route::get('/urbanizaciones/data', [distritoController::class, 'getUrbanizacionesData']);
 
 
 
