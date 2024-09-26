@@ -17,6 +17,7 @@ class equipamiento extends Model
     protected $table = 'equipamientos';
     protected $fillables =
     [
+        'id',
         'Nombre_Item',
         'Descripcion',
         'estado',

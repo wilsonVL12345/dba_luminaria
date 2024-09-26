@@ -14,6 +14,7 @@ class inspeccion extends Model
     protected $table = 'inspecciones';
     protected $fillable =
     [
+        'id',
         'Nro_Sisco',
         'ZonaUrbanizacion',
         'Tipo_Inspeccion',

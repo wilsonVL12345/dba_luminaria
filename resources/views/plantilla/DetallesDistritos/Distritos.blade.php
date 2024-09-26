@@ -322,8 +322,10 @@
 																				<div class="d-flex flex-column mb-5 fv-row">
 																					<!--begin::Label-->
 																					<label class="required fs-5 fw-bold mb-2">Urbanizacion</label>
+																			<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten letras mayúsculas, números y los caracteres: * - . , ( )"></i>
+																					
 																					<!--end::Label-->
-																					<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de la Urbanizacion" name="txtzonaUrba" id="txtzonaUrba" required oninput="this.value = this.value.toUpperCase();" />
+																					<input type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre de la Urbanizacion"  pattern="^[A-Z0-9ÁÉÍÓÚÑñáéíóú*\-.,() ]+$"  name="txtzonaUrba" id="txtzonaUrba" required oninput="this.value = this.value.toUpperCase();" />
 
 																				</div>
 																				<!--end::Input group-->

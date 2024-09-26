@@ -3,7 +3,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<!--begin::Head-->
 	<head><base href="../../../">
-		<title>Unidad de Luminaria Publica</title>
+		<title>Direccion de Luminaria Publica</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
 		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
@@ -109,9 +109,9 @@
 				<div class="d-flex flex-center flex-column-auto p-10">
 					<!--begin::Links-->
 					<div class="d-flex align-items-center fw-bold fs-6">
-						<a href="https://keenthemes.com" class="text-muted text-hover-primary px-2">About</a>
-						<a href="mailto:support@keenthemes.com" class="text-muted text-hover-primary px-2">Contact</a>
-						<a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2">Contact Us</a>
+						<a href="#" class="text-muted text-hover-primary px-2">Dev</a>
+						<a href="#" class="text-muted text-hover-primary px-2">Wilson</a>
+						<a href="#" class="text-muted text-hover-primary px-2">V.L.</a>
 					</div>
 					<!--end::Links-->
 				</div>

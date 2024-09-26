@@ -36,6 +36,7 @@ class lista_accesorioController extends Controller
                 }
             })
 
+
             /* ->addColumn('action', function ($row) {
                 $actions = '<a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                     Actions
@@ -48,16 +49,17 @@ class lista_accesorioController extends Controller
                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                 data-kt-menu="true">';
 
+                // Botón de Editar
                 if (auth()->user()->can('accesorios.edit')) {
                     $actions .= '<div class="menu-item px-3">
-                        <a href=""   data-bs-toggle="modal"
-                             data-bs-target="#modalModificarAccesorios' . $row->id . '" class="menu-link px-3">Editar</a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarAccesorios' . $row->id . '" class="menu-link px-3">Editar</a>
                     </div>';
                 }
 
+                // Botón de Eliminar
                 if (auth()->user()->can('accesorios.delete')) {
                     $actions .= '<div class="menu-item px-3">
-                        <a href="' . url('/eliminar/accesorios' . $row->id) . '" class="menu-link px-3 delete-link"
+                        <a href="' . url('/eliminar/accesorios/' . $row->id) . '" class="menu-link px-3 delete-link"
                             data-kt-customer-table-filter="delete_row">Eliminar</a>
                     </div>';
                 }
@@ -80,10 +82,10 @@ class lista_accesorioController extends Controller
                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                 data-kt-menu="true">';
 
-                // Botón de Editar
+                // Botón de Editar con el ID del registro
                 if (auth()->user()->can('accesorios.edit')) {
                     $actions .= '<div class="menu-item px-3">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarAccesorios' . $row->id . '" class="menu-link px-3">Editar</a>
+                        <a href="#" data-id="' . $row->id . '" class="menu-link px-3 edit-buttonaccmod" data-bs-toggle="modal" >Editar</a>
                     </div>';
                 }
 
@@ -125,15 +127,25 @@ class lista_accesorioController extends Controller
         }
     }
 
+    public function editdatos($id)
+    {
+        $atosAcc = lista_accesorio::find($id);
+        return response()->json($atosAcc);
+    }
 
     public function edit(Request $request)
     {
-        $request->validate([
-            'txtnombre' => [
-                'required',
-                'regex:/^[A-Z0-9\/\*\-\.\,\(\)\s]+$/', // Requerido, mayúsculas, números y símbolos permitidos
-            ],
-        ]);
+        // dd($request->all());
+        try {
+            $request->validate([
+                'txtnombre' => [
+                    'required',
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error al Modificar");
+        }
 
         try {
             $lista = lista_accesorio::find($request->txtid);

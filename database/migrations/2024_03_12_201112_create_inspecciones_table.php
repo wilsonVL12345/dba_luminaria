@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('Nro_Sisco', 20)->unique();
             $table->string('ZonaUrbanizacion');
-            $table->string('Tipo_Inspeccion', 20)->nullable();
+            $table->string('Tipo_Inspeccion', 50)->nullable();
             $table->string('Estado', 20)->nullable();
             $table->date('Fecha_Inspeccion')->nullable();
             $table->text('Foto_Carta')->nullable();

@@ -339,7 +339,7 @@
 										<!--end::Table row-->
 									</thead>
 									<tbody class="fw-semibold text-gray-600">
-										@foreach ($proyecto as $item)
+										{{-- @foreach ($proyecto as $item)
 											
 										<tr class="text-start text-gray-500 fw-bold fs-7">
 											<td>
@@ -363,10 +363,8 @@
 											<td>
 												<a href="#" class="text-gray-600 text-hover-primary mb-1">{{$item->Proveedor}}</a>
 											</td>
-											{{-- <td class="text-gray-800 text-hover-primary mb-1">{{$item->Estado}}</td> --}}
 											<td>
 												<a href="{{url('/detallesAccesorios/almacen/'.$item->id) }}" class="text-gray-600 text-hover-primary mb-1"><i class="fa-regular fa-eye"></i>
-												{{-- <a href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalMostrarImagen{{$item->id}}"><i class="fa-solid fa-image"></i></a> --}}
 
 											</td>
 											
@@ -429,7 +427,6 @@
 
 											<!--begin::Modal - modificar proyectoAlmacen-->
 											@can('proyecto.edit')
-											{{-- se esta eliminando --}}
 											<div class="modal fade" id="modalModificarProyAlmacen{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 												<!--begin::Modal dialog-->
 												<div class="modal-dialog mw-1000px">
@@ -587,7 +584,7 @@
 																	</button>
 																	<!--end::Button-->
 																</div>
-														</form> --}}
+														</form> 
 														<!--end::Form-->
 													</div>
 																<!--end::Form-->
@@ -603,7 +600,7 @@
 											@endcan
 											<!--end::Modal - modificar proyectoAlmacen-->	
 										</tr>
-										@endforeach
+										@endforeach --}}
 
 									</tbody>
 								</table>

@@ -9,6 +9,7 @@ use App\Models\urbanizacion;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 
 class inspeccionController extends Controller
@@ -41,6 +42,75 @@ class inspeccionController extends Controller
             return view('plantilla.Inspecciones.Espera', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */]);
         }
     }
+    public function listaInspeccionEspeData(Request $request)
+    {
+        // Determinamos el query base dependiendo del cargo del usuario
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
+            $listraRealizado = inspeccion::select('id', 'Nro_Sisco', 'ZonaUrbanizacion', 'Fecha_Inspeccion', 'Foto_Carta',  'Distritos_id')
+                ->where('Inspeccion', 'En Espera')
+                ->orderBy('created_at', 'desc');
+        } else {
+            $listraRealizado = inspeccion::select('id', 'Nro_Sisco', 'ZonaUrbanizacion',  'Fecha_Inspeccion', 'Foto_Carta',  'Distritos_id')
+                ->where('Distritos_id', session('Lugar_Designado'))->where('Inspeccion', 'En Espera');
+        }
+        // Procesamos los datos con DataTables, manejando la paginación, búsqueda y longitud
+        return DataTables::of($listraRealizado)
+            ->filter(function ($query) use ($request) {
+                // Agrega un filtro adicional aquí si es necesario
+                if ($request->has('search.value')) {
+                    $search = $request->input('search.value');
+                    $query->where(function ($query) use ($search) {
+                        $query->where('Nro_Sisco', 'like', "%{$search}%")
+                            ->orWhere('ZonaUrbanizacion', 'like', "%{$search}%")
+                            ->orWhere('Distritos_id', 'like', "%{$search}%")
+                            ->orWhere('Fecha_Inspeccion', 'like', "%{$search}%");
+                    });
+                }
+            })
+
+
+
+            ->addColumn('action', function ($row) {
+                $actions = '<a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                    Actions
+                    <span class="svg-icon svg-icon-5 m-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                </a>
+                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                data-kt-menu="true">';
+
+                // Botón de Editar con el ID del instalar
+                if (auth()->user()->can('inspecciones.install')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="#" data-id="' . $row->id . '" class="menu-link px-3 edit-buttoninsperealmod" data-bs-toggle="modal" >Empezar</a>
+                    </div>';
+                }
+                // Botón de Editar con el ID del editar
+                if (auth()->user()->can('inspecciones.edit')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="#" data-id="' . $row->id . '" class="menu-link px-3 edit-buttoninspeespemod" data-bs-toggle="modal" >Editar</a>
+                    </div>';
+                }
+
+                // Botón de Eliminar
+                if (auth()->user()->can('inspecciones.delete')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/eliminar/inspeccion' . $row->id) . '" class="menu-link px-3 delete-link"
+                            data-kt-customer-table-filter="delete_row">Eliminar</a>
+                    </div>';
+                }
+
+                $actions .= '</div>';
+
+                return $actions;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -127,17 +197,18 @@ class inspeccionController extends Controller
             $request->validate([
                 'txttipo' => [
                     'required',
-                    'regex:/^[a-zA-Z]{1,50}$/', // Solo letras, hasta 20 caracteres
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Solo letras, hasta 20 caracteres
                 ],
                 'txtdescripcion' => [
                     'nullable',
-                    'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]*$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
                 ],
 
                 'txtfecha' => 'required',
                 'txtestado' => [
                     'required',
-                    'regex:/^[a-zA-Z]{1,20}$/', // Solo letras, hasta 20 caracteres
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
+
                 ],
 
             ]);
@@ -166,6 +237,11 @@ class inspeccionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    public function editInspeccionespeData($id)
+    {
+        $editinspeEspera = inspeccion::find($id);
+        return response()->json($editinspeEspera);
+    }
     public function edit(Request $request)
 
 
@@ -238,14 +314,106 @@ class inspeccionController extends Controller
             return back()->with("incorrecto", "Error al Modificar");
         }
     }
-    public function editRealizada(Request $request, $id)
+
+
+    public function realizadas(Request $request)
+    {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
+            $inspeccion = inspeccion::where('Inspeccion', 'Finalizado')->get();
+            $inspector = user::all();
+            $listadistrito = Distrito::where('id', '<>', 15)->get();
+            /*  $listazonaurb = urbanizacion::all(); */
+            return view('plantilla.Inspecciones.Realizadas', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */, 'inspector' => $inspector]);
+        } else {
+            $inspeccion = inspeccion::where('Inspeccion', 'Finalizado')
+                ->where('Distritos_id', session('Lugar_Designado'))->get();
+            $inspector = user::all();
+            $listadistrito = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+
+            /*  $listazonaurb = urbanizacion::all(); */
+            return view('plantilla.Inspecciones.Realizadas', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */, 'inspector' => $inspector]);
+        }
+    }
+    public function listaInspeccionRealData(Request $request)
+    {
+
+
+        // Determinamos el query base dependiendo del cargo del usuario
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
+            $listraRealizado = inspeccion::select('id', 'Nro_Sisco', 'ZonaUrbanizacion', 'Tipo_Inspeccion', 'Detalles', 'Fecha_Inspeccion', 'Estado', 'Foto_Carta', 'Inspeccion', 'Distritos_id')
+                ->where('Inspeccion', 'Finalizado')
+                ->orderBy('created_at', 'desc');
+        } else {
+            $listraRealizado = inspeccion::select('id', 'Nro_Sisco', 'ZonaUrbanizacion', 'Tipo_Inspeccion', 'Detalles', 'Fecha_Inspeccion', 'Estado', 'Foto_Carta', 'Inspeccion', 'Distritos_id')
+                ->where('Distritos_id', session('Lugar_Designado'))->where('Inspeccion', 'Finalizado');
+        }
+        // Procesamos los datos con DataTables, manejando la paginación, búsqueda y longitud
+        return DataTables::of($listraRealizado)
+            ->filter(function ($query) use ($request) {
+                // Agrega un filtro adicional aquí si es necesario
+                if ($request->has('search.value')) {
+                    $search = $request->input('search.value');
+                    $query->where(function ($query) use ($search) {
+                        $query->where('Nro_Sisco', 'like', "%{$search}%")
+                            ->orWhere('ZonaUrbanizacion', 'like', "%{$search}%")
+                            ->orWhere('Tipo_Inspeccion', 'like', "%{$search}%")
+                            ->orWhere('Detalles', 'like', "%{$search}%")
+                            ->orWhere('Fecha_Inspeccion', 'like', "%{$search}%")
+                            ->orWhere('Estado', 'like', "%{$search}%");
+                    });
+                }
+            })
+
+
+
+            ->addColumn('action', function ($row) {
+                $actions = '<a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                    Actions
+                    <span class="svg-icon svg-icon-5 m-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                </a>
+                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                data-kt-menu="true">';
+
+                // Botón de Editar con el ID del registro
+                if (auth()->user()->can('inspecciones.edit')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="#" data-id="' . $row->id . '" class="menu-link px-3 edit-buttoninsperealmod" data-bs-toggle="modal" >Editar</a>
+                    </div>';
+                }
+
+                // Botón de Eliminar
+                if (auth()->user()->can('inspecciones.delete')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/eliminar/inspeccion' . $row->id) . '" class="menu-link px-3 delete-link"
+                            data-kt-customer-table-filter="delete_row">Eliminar</a>
+                    </div>';
+                }
+
+                $actions .= '</div>';
+
+                return $actions;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+    public function editInspeccionRealData($id)
+    {
+        $editinspeRealizado = inspeccion::find($id);
+        return response()->json($editinspeRealizado);
+    }
+    public function editRealizada(Request $request)
     {
         try {
             // Validaciones
             $request->validate([
                 'txttipo' => [
                     'required',
-                    'regex:/^[a-zA-Z]{1,50}$/', // Solo letras, hasta 20 caracteres
+                    'regex:/^[a-zA-ZÑñ\s]{1,50}$/', // Solo letras, incluyendo Ñ/ñ y espacios, hasta 50 caracteres
                 ],
                 'txtsisco' => [
                     'required',
@@ -269,7 +437,7 @@ class inspeccionController extends Controller
 
 
             ]);
-            $editInspec = inspeccion::find($id);
+            $editInspec = inspeccion::find($request->textid);
 
             $editInspec->Tipo_Inspeccion = $request->txttipo;
             $editInspec->Nro_Sisco = $request->txtsisco;
@@ -286,26 +454,6 @@ class inspeccionController extends Controller
             return back()->with("correcto", "Datos Modificado Correctamente");
         } else {
             return back()->with("incorrecto", "Error al Modificar");
-        }
-    }
-
-    public function realizadas(Request $request)
-    {
-        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
-            $inspeccion = inspeccion::where('Inspeccion', 'Finalizado')->get();
-            $inspector = user::all();
-            $listadistrito = Distrito::where('id', '<>', 15)->get();
-            /*  $listazonaurb = urbanizacion::all(); */
-            return view('plantilla.Inspecciones.Realizadas', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */, 'inspector' => $inspector]);
-        } else {
-            $inspeccion = inspeccion::where('Inspeccion', 'Finalizado')
-                ->where('Distritos_id', session('Lugar_Designado'))->get();
-            $inspector = user::all();
-            $listadistrito = Distrito::where('id', '<>', 15)
-                ->where('id', session('Lugar_Designado'))->get();
-
-            /*  $listazonaurb = urbanizacion::all(); */
-            return view('plantilla.Inspecciones.Realizadas', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */, 'inspector' => $inspector]);
         }
     }
 

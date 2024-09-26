@@ -405,10 +405,13 @@
 										
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
+										@if (session('cargo')=='Admin')
+										@else
 										<div class="menu-item px-5 my-1">
 											<a href="{{url('/cambiar/password'.session('id')) }}"
 												class="menu-link px-5">Cambiar Contraseña</a>
 										</div>
+										@endif
 										<!--end::Menu item-->	
 										<div class="separator my-2"></div>
 
