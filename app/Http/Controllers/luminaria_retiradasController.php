@@ -11,6 +11,8 @@ use App\Models\luminarias_reutilizada;
 use App\Models\urbanizacion;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
+
 // use Barryvdh\Snappy\Facades\SnappyPdf;
 
 class luminaria_retiradasController extends Controller
@@ -61,6 +63,82 @@ class luminaria_retiradasController extends Controller
         } else {
             return back()->with("incorrecto", "Error al Modificar Luminarias Retiradas");
         }
+    }
+    public function getProyLumRetiradaData(Request $request)
+    {
+        // Determinamos el query base dependiendo del cargo del usuario
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
+            $proyAlmacen = datos_luminaria_retirada::select(
+                'id',
+                'Nro_sisco',
+                'zona',
+                'Distritos_id',
+                'Fecha'
+            );
+        } else {
+            $proyAlmacen = datos_luminaria_retirada::select(
+                'id',
+                'Nro_sisco',
+                'zona',
+                'Distritos_id',
+                'Fecha'
+            )
+                ->where('Distritos_id', session('Lugar_Designado'));
+        }
+
+        // Procesamos los datos con DataTables, manejando la paginación, búsqueda y longitud
+        return DataTables::of($proyAlmacen)
+            ->filter(function ($query) use ($request) {
+                // Agrega un filtro adicional aquí si es necesario
+                if ($request->has('search.value')) {
+                    $search = $request->input('search.value');
+                    $query->where(function ($query) use ($search) {
+                        $query->where('Nro_sisco', 'like', "%{$search}%")
+                            ->orWhere('Distritos_id', 'like', "%{$search}%")
+                            ->orWhere('Zona', 'like', "%{$search}%")
+                            ->orWhere('Fecha', 'like', "%{$search}%");
+                    });
+                }
+            })
+
+            ->addColumn('action', function ($row) {
+                $actions = '<a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                    Actions
+                    <span class="svg-icon svg-icon-5 m-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                </a>
+                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                data-kt-menu="true">';
+
+                if (auth()->user()->can('proyecto.Retirado.edit')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/proyectos/luminariasRetiradas' . $row->id) . '" 
+                            class="menu-link px-3">Editar</a>
+                    </div>';
+                }
+                if (auth()->user()->can('proyecto.Retirado.export')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/retirado/pdf' . $row->id) . '" 
+                            class="menu-link px-3 " target="_blank">Reporte</a>
+                    </div>';
+                }
+
+                if (auth()->user()->can('proyecto.Retirado.delete')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/eliminar/retirada' . $row->id) . '" class="menu-link px-3 delete-link" 
+                            data-kt-customer-table-filter="delete_row">Eliminar</a>
+                    </div>';
+                }
+
+                $actions .= '</div>';
+
+                return $actions;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
     public function retiradaDetalle(String $id)
     {
@@ -235,7 +313,7 @@ class luminaria_retiradasController extends Controller
             $sql = false;
         }
         if ($sql == true) {
-            return back()->with("correcto", "Luminarias Retiradas  Modificado Correctamente");
+            return redirect('/proyectos/luminariasRetiradas')->with("correcto", "Luminarias Retiradas Modificado Correctamente");
         } else {
             return back()->with("incorrecto", "Error al Modificar Luminarias Retiradas");
         }

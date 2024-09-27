@@ -288,7 +288,8 @@
 						</div>
                         <div class="modal-footer justify-content-end">
                             <!--begin::Button-->
-                            <a href="/proyectos/almacen" type="button" i class="btn btn-secundary me-3">Cerrar</a>
+                            <a href="/proyectos/ObrasEjecutadas" type="button" i class="btn btn-danger me-3">Cerrar</a>   
+                           
 
                             <!--end::Button-->
                             <!--begin::Button-->

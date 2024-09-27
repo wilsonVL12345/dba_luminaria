@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\distrito;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 
 class ReelevamientoController extends Controller
 {
@@ -46,6 +47,83 @@ class ReelevamientoController extends Controller
 
         return view('plantilla.Reelevamiento.reeLuminariaShow', compact('showReele', 'lista'));
     }
+    public function getReelevamientosData(Request $request)
+    {
+        // Determinamos el query base dependiendo del cargo del usuario
+        // Determinamos el query base dependiendo del cargo del usuario
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
+            $datosReelev = reelevamiento::select(
+                'id',
+                'Av_calles',
+                'Urbanizacion_id',
+                'Distritos_id',
+                'Fecha',
+                'Descripcion',
+                'Archivos'
+            );
+        } else {
+            $datosReelev = reelevamiento::select(
+                'id',
+                'Av_calles',
+                'Urbanizacion_id',
+                'Distritos_id',
+                'Fecha',
+                'Descripcion',
+                'Archivos'
+            )
+                ->where('Distritos_id', session('Lugar_Designado'));
+        }
+        // Procesamos los datos con DataTables, manejando la paginación, búsqueda y longitud
+        return DataTables::of($datosReelev)
+            ->filter(function ($query) use ($request) {
+                // Agrega un filtro adicional aquí si es necesario
+                if ($request->has('search.value')) {
+                    $search = $request->input('search.value');
+                    $query->where(function ($query) use ($search) {
+                        $query->where('Av_calles', 'like', "%{$search}%")
+                            ->orWhere('Urbanizacion_id', 'like', "%{$search}%")
+                            ->orWhere('Distritos_id', 'like', "%{$search}%")
+                            ->orWhere('Fecha', 'like', "%{$search}%")
+                            ->orWhere('Descripcion', 'like', "%{$search}%")
+                            ->orWhere('Archivos', 'like', "%{$search}%");
+                    });
+                }
+            })
+
+            ->addColumn('action', function ($row) {
+                $actions = '<a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                    Actions
+                    <span class="svg-icon svg-icon-5 m-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                </a>
+                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                data-kt-menu="true">';
+
+                if (auth()->user()->can('Reelevamiento.edit')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/editardatos/reelevamiento' . $row->id) . '"  data-id="' . $row->id . '"
+                            class="menu-link px-3 edit-buttonUserEdit" >Editar</a>
+                    </div>';
+                }
+
+
+                if (auth()->user()->can('Reelevamiento.delete')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/eliminar/reelevamiento' . $row->id) . '" class="menu-link px-3 delete-link" 
+                            data-kt-customer-table-filter="delete_row">Eliminar</a>
+                    </div>';
+                }
+
+                $actions .= '</div>';
+
+                return $actions;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
 
 
     public function create(Request $request)
@@ -56,15 +134,18 @@ class ReelevamientoController extends Controller
                 'flrar' => 'file|mimes:rar,zip|max:40960', // Archivo opcional de máximo 40 MB
                 'reeAvCalle' => [
                     'required',
-                    'regex:/^[A-Z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - +
+                    'regex:/^[A-Za-z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - +
                 ],
                 'reeDescripRegis' => [
-                    'required',
+                    'nullable',
                     'regex:/^[A-Z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
                 ],
                 'reeDistritoRegis' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
                 'reeFechaRegis' => 'required|date', // Requerido, debe ser una fecha válida
-                'reeUrbanizacionRegis' => 'required|digits_between:1,4', // Requerido, máximo 4 dígitos
+                'reeUrbanizacionRegis' => [
+                    'required',
+                    'regex:/^[A-Za-z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Letras mayúsculas y minúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
             ]);
         } catch (\Throwable $th) {
             return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
@@ -98,6 +179,13 @@ class ReelevamientoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    function editardatosRelev(Request $request, $id)
+    {
+        $reele = reelevamiento::find($id);
+        $lista = distrito::where('id', '<>', '15')->get();
+        return view('plantilla.Reelevamiento.editReeLuminaria', compact('reele', 'lista'));
+    }
+
     public function modificar(Request $request, $id)
     {
         try {
@@ -105,11 +193,11 @@ class ReelevamientoController extends Controller
                 'flrarMod' => 'file|mimes:rar,zip|max:40960', // Archivo opcional de máximo 40 MB
                 'reeAvCalleMod' => [
                     'required',
-                    'regex:/^[A-Z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - +
+                    'regex:/^[A-Za-z0-9ÁÉÍÓÚÑñáéíóú\s\.\,\(\)]+$/', // Acepta letras mayúsculas, minúsculas, números, espacio y los símbolos . , ( )
                 ],
                 'reeDescripRegisMod' => [
                     'required',
-                    'regex:/^[A-Z0-9ÁÉÍÓÚÑñáéíóú\/\*\-\.\,\(\)\s]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
+                    'regex:/^[A-Za-z0-9ÁÉÍÓÚÑñáéíóú\s\.\,\(\)]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
                 ],
                 'reeDistritoRegisMod' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
                 'reeFechaRegisMod' => 'required|date', // Requerido, debe ser una fecha válida
@@ -156,7 +244,7 @@ class ReelevamientoController extends Controller
             $sql = false;
         }
         if ($sql == true) {
-            return back()->with("correcto", "Datos Modificados Correctamente");
+            return redirect("/reelevamientos/dis/{$reeleMod->Distritos_id}")->with("correcto", "Datos Modificados Correctamente");
         } else {
             return back()->with("incorrecto", "Error al Modificar");
         }

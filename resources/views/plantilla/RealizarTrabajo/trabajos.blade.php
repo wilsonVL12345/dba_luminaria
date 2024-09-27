@@ -117,7 +117,7 @@
 										<!--end::Table row-->
 									</thead>
 									<tbody class="fw-semibold text-gray-600">
-										@foreach ($detall as $itemtrab)
+										{{-- @foreach ($detall as $itemtrab)
 										<tr class="text-start text-gray-500 fw-bold fs-7">
 											<td>
 												<a href="#" class="text-gray-900 text-hover-primary">{{$itemtrab->distrito->Distrito}}</a>
@@ -170,10 +170,7 @@
 														<a href="/ejecutar/trabajo/{{$itemtrab->id}}"
 															class="menu-link px-3">Empezar</a>
 													</div>
-													{{-- <div class="menu-item px-3">
-														<a href="#" data-bs-toggle="modal" data-bs-target="#moraModificarUsuario{{$itemtrab->id}}"
-															class="menu-link px-3">Editar</a>
-													</div> --}}
+													
 													<!--end::Menu item-->
 													<!--begin::Menu item-->
 													@can('realizar.delete')
@@ -238,11 +235,57 @@
 											<!--end::Modal - imagen carta-->
 											
 										</tr>
-										
-											
-										@endforeach
+										@endforeach --}}
 									</tbody>
 								</table>
+								<!--begin::Modal -imagen carta-->
+								<div class="modal fade" id="modalMostrarImagenTrabajos" tabindex="-1" aria-hidden="true">
+									<!--begin::Modal dialog-->
+									<div class="modal-dialog modal-xl">
+										<!--begin::Modal content-->
+										<div class="modal-content">
+											<!--begin::Modal header-->
+											<div class="modal-header pb-0 border-0 d-flex justify-content-end">
+												<!--begin::Close-->
+												<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+													<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+													<span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+															<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+															<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Close-->
+											</div>
+											<!--end::Modal header-->
+											<!--begin::Modal body-->
+											<div class="modal-body scroll-y mx-5 mx-xl-10 pt-0 pb-15">
+												<!--begin::Heading-->
+												<div class="text-center mb-13">
+													<!--begin::Title-->
+													<h1 class="d-flex justify-content-center align-items-center mb-3">Visualizacion de la Carta Emviada
+													</h1>
+													<!--end::Title-->
+													<!--begin::Description-->
+													
+													<!--end::Description-->
+												</div>
+												<!--end::Heading-->
+												<!--begin::Users-->
+												<div class="mh-475px scroll-y me-n7 pe-7">
+													<img src="" class="img-fluid" alt="Descripción de la Carta Emviada">
+												</div>
+												<!--end::Users-->
+											</div>
+											<!--end::Modal Body-->
+										</div>
+										<!--end::Modal content-->
+									</div>
+									<!--end::Modal dialog-->
+								</div>
+								<!--end::Modal - imagen carta-->
 							</div>
 						</div>
 

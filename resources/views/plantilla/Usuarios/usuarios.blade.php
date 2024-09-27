@@ -334,9 +334,8 @@
 											<th class="min-w-100px">Nombre</th>
 											<th class="min-w-100px">Paterno</th>
 											<th class="min-w-100px">Materno</th>
-											<th class="min-w-100px">Estado</th>
 											<th class="min-w-100px">C.I.</th>
-											<th class="text-end min-w-75px">Expedido</th>
+											<th class="text-end min-w-75px">Nro Celular</th>
 											<th class="min-w-100px">Cargo</th>
 											
 											<th class="text-end min-w-75px">Responsable</th>
@@ -346,9 +345,9 @@
 										<!--end::Table row-->
 									</thead>
 									<tbody class="fw-semibold text-gray-600">
-										@foreach ($user as $itemus)
+										{{-- @foreach ($user as $itemus)
 											
-										<tr class="text-start text-gray-500 fw-bold fs-7 {{-- text-uppercase --}}">
+										<tr class="text-start text-gray-500 fw-bold fs-7 ">
 											<td>
 												<a href="#" class="text-gray-600 text-hover-primary mb-1"><img src="{{$itemus->perfil}}"  width="40" height="40" alt=""></a>
 											</td>
@@ -406,8 +405,7 @@
 															
 															<div class="menu-item px-3">
 																
-																{{-- <a href="{{url('/eliminar/usuario'.$itemus->id)}}" class="menu-link px-3"
-																	data-kt-customer-table-filter="delete_row">Eliminar</a> --}}
+																
 																	<a href="{{url('/eliminar/usuario'.$itemus->id)}}" 
 																		class="menu-link px-3 delete-link" 
 																		data-kt-customer-table-filter="delete_row">Eliminar</a>
@@ -660,10 +658,207 @@
 												</div>
 												<!--end::Modal - modificar usuarios-->	
 										</tr>
-										@endforeach
+										@endforeach --}}
 
 									</tbody>
 								</table>
+								<!--begin::Modal - modificar usuarios-->
+								<div class="modal fade" id="modalModificarUsuario" tabindex="-1" aria-hidden="true">
+									<!--begin::Modal dialog-->
+									<div class="modal-dialog modal-dialog-centered mw-650px">
+										<!--begin::Modal content-->
+										<div class="modal-content">
+											<!--begin::Form-->
+											<form class="form" action="{{route('editar.usuario')}}" id="modadModificarUsuarios_form" method="POST">
+												@csrf
+												<!--begin::Modal header-->
+												<div class="modal-header" id="modadModificarUsuarios_header">
+													<!--begin::Modal title-->
+													<h2>Modificar Usuario</h2>
+													<!--end::Modal title-->
+													<!--begin::Close-->
+													<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+														<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+														<span class="svg-icon svg-icon-1">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+																<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+															</svg>
+														</span>
+														<!--end::Svg Icon-->
+													</div>
+													<!--end::Close-->
+												</div>
+												<!--end::Modal header-->
+												<!--begin::Modal body-->
+												<div class="modal-body py-10 px-lg-17">
+													<!--begin::Scroll-->
+												
+													<div class="scroll-y me-n7 pe-7" id="modadModificarUsuarios_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#modadRegistraUsuarios_header" data-kt-scroll-wrappers="#modadRegistraUsuarios_scroll" data-kt-scroll-offset="300px">
+														<!--begin::Notice-->
+														<!--begin::Notice-->
+														
+														<!--end::Notice-->
+														<!--end::Notice-->
+														<!--begin::Input group-->
+														<div class="d-flex flex-column mb-5 fv-row">
+															<!--begin::Label-->
+															<input type="" name="txtid" id="txtiduser"   style="display: none;">
+															<label class="required fs-5 fw-bold mb-2">Nombre
+															<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Solo se permiten letras y espacios"></i>
+
+															</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input  type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre" name="txtnombre" id="txtnombre" pattern="[A-Za-z\s]+" required  />
+															<!--end::Input-->
+														</div> 
+														<div class="row mb-5">
+															<!--begin::Col-->
+															<div class="col-md-6 fv-row">
+																<!--begin::Label-->
+																<label class="required fs-5 fw-bold mb-2">Paterno
+																<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten letras, sin espacios"></i>
+
+																</label>
+																<!--end::Label-->
+																<!--begin::Input-->
+																<input type="text" class="form-control form-control-solid" placeholder="" name="txtpaterno" id="txtpaterno"  pattern="^[A-Za-záéíóúüñÁÉÍÓÚÜ]+$" required  />
+																<!--end::Input-->
+															</div> 
+															<!--end::Col-->
+															<!--begin::Col-->
+															<div class="col-md-6 fv-row">
+																<!--end::Label-->
+																<label class="required fs-5 fw-bold mb-2">Materno
+																<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten letras, sin espacios"></i>
+
+																</label>
+																<!--end::Label-->
+																<!--end::Input-->
+																<input type="text" class="form-control form-control-solid" placeholder="" name="txtmaterno" id="txtmaterno"  pattern="^[A-Za-záéíóúüñÁÉÍÓÚÜ]+$" required  />
+																<!--end::Input-->
+															</div> 
+															<!--end::Col-->
+														</div>
+														<!--end::Input group-->
+														<!--begin::Input group-->
+														
+														<div class="row mb-5">
+															<!--begin::Col-->
+															<div class="col-md-6 fv-row">
+																<!--begin::Label-->
+																<label class="required fs-5 fw-bold mb-2">C.I.
+											<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Solo se permiten números de 7 a 8 digitos"></i>
+
+																</label>
+																<!--end::Label-->
+																<!--begin::Input-->
+																<input type="text" class="form-control form-control-solid" placeholder="" name="txtci" id="txtci"  pattern="^[0-9]{7,9}$" required  />
+																<!--end::Input-->
+															</div> 
+															<!--end::Col-->
+															<!--begin::Col-->
+															
+																<div class="col-md-6 fv-row">
+																	<label class="required fs-6 fw-bold mb-2">Expedido</label>
+																	<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtexpedido" id="txtexpedido" required >
+																		<option value="" >Seleccione...</option>
+																		<option value="LP">La paz</option>
+																		<option value="SCZ">Santa Cruz</option>
+																		<option value="CO">Cochabamba</option>
+																		<option value="OR">Oruro</option>
+																		<option value="PO">Potosí</option>
+																		<option value="TJ">Tarija</option>
+																		<option value="CH">Chuquisaca</option>
+																		<option value="BE">Beni</option>
+																		<option value="PA">Pando</option>
+																	</select>
+																</div>
+															<!--end::Col-->
+														</div>
+														<div class="d-flex flex-column mb-5 fv-row">
+															<!--begin::Label-->
+															<label class="required fs-5 fw-bold mb-2">Celular
+															<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números"></i>
+
+															</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input  type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre" name="txtcelular"   id="txtcelularu"  pattern="^[0-9]{7,9}$" required />
+															<!--end::I requirednput-->
+														</div>
+														<div class="d-flex flex-column mb-5 fv-row">
+															<label class="required fs-6 fw-bold mb-2">Genero</label>
+															<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtgenero" id="txtgenero" required >
+																<option value="" >Seleccione...</option>
+																<option value="F" >Femenino</option>
+																<option value="M">Masculino</option>
+															</select>
+														</div>
+														<!--end::Input group-->
+														<div class="row mb-5">
+																<div class="col-md-6 fv-row">
+																	<label class="required fs-6 fw-bold mb-2">Cargo</label>
+																	<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtcargo" id="txtcargouser" required >
+																		<option value="" >Seleccione...</option>
+																		@foreach ($role as $itemss)
+																			
+																		<option value="{{$itemss->name}}" >{{$itemss->name}}</option>
+																		@endforeach
+																
+																	</select>
+																</div>
+																	<!--begin::Input group-->
+																<div class="col-md-6 fv-row">
+																	<label class="required fs-6 fw-bold mb-2">Responsable de</label>
+																			<select class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." name="txtlugarDesignado" id="lugarresponsable" required >
+																				<option value="" >Seleccione...</option>
+																				<option value="1" >D-1</option> 
+																				<option value="2" >D-2</option> 
+																				<option value="3" >D-3</option> 
+																				<option value="4" >D-4</option> 
+																				<option value="5" >D-5</option> 
+																				<option value="6" >D-6</option> 
+																				<option value="7" >D-7</option> 
+																				<option value="8" >D-8</option> 
+																				<option value="9" >D-9</option> 
+																				<option value="10" >D-10</option> 
+																				<option value="11" >D-11</option> 
+																				<option value="12" >D-12</option> 
+																				<option value="13" >D-13</option> 
+																				<option value="14" >D-14</option> 
+																				<option value="Alcaldia" >Alcaldia</option> 
+																			</select>
+																</div>
+																<!--end::Input group-->
+																
+														
+														</div>
+														<!--end::Scroll-->
+													</div>
+												</div>
+												<!--end::Modal body-->
+												<!--begin::Modal footer-->
+												<div class="modal-footer flex-center">
+													<!--begin::Button-->
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+													<!--end::Button-->
+													<!--begin::Button-->
+													<button type="submit" id="modadModificarUsuarios_submit" class="btn btn-primary">
+														<span class="indicator-label">Modificar</span>
+														<span class="indicator-progress">Please wait...
+														<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+													</button>
+													<!--end::Button-->
+												</div>
+												<!--end::Modal footer-->
+											</form>
+											<!--end::Form-->
+										</div>
+									</div>
+								</div>
+								<!--end::Modal - modificar usuarios-->	
 							</div>
 						</div>
 					</div>

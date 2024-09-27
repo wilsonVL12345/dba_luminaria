@@ -15,8 +15,8 @@ class datos_luminaria_retirada extends Model
     protected $table = 'datos_luminaria_retiradas';
     protected $fillable = [
 
-        'zona',
         'Nro_sisco',
+        'zona',
         'Fecha',
         'Proyecto',
         'Direccion',

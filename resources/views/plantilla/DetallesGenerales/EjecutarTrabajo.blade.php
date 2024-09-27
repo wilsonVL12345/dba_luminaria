@@ -37,6 +37,8 @@
                     <div class="margin">
                         <h2>Realizando Trabajo</h2>
                         <br>
+						@include('layout.notificacioncrud')
+
 						
 						<form action="{{route('store.trabajo',$trabajo->id)}}" id="formEjecutar" method="POST" >
 							@csrf
@@ -75,7 +77,7 @@
 								</div>
 								<div class="col-md-3 mb-3">
 									<label class="required fs-6 fw-bold mb-2">Fecha Ejecutada
-										<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten actuales no anteriores"></i>
+										<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten  fechas actuales no anteriores"></i>
 
 									</label>
 									<!--begin::Input-->
@@ -92,7 +94,7 @@
 										<!--end::Svg Icon-->
 										<!--end::Icon-->
 										<!--begin::Datepicker-->
-										<input type="date" class="form-control form-control-solid ps-12" placeholder="Select a date" name="txtfechaejecut" id="txtfechaejecut"   required />
+										<input  class="form-control form-control-solid ps-12" placeholder="Select a date" name="txtfechaejecut" id="txtfechaejecut" required />
 									</div>
 									<!--end::Input-->
 							</div>
@@ -136,7 +138,7 @@
 												<label class="fs-6 fw-bold mb-2">Detalles de Trabajo
 
 												</label>
-												<textarea class="form-control form-control-solid" rows="3" name="txtdetalles" placeholder="Ingrese una breve descripcion del Trabajo" ></textarea >
+												<textarea class="form-control form-control-solid" rows="3" name="txtdetalles" placeholder="Ingrese una breve descripcion del Trabajo"  ></textarea >
 										</div>
 							</div>
 							

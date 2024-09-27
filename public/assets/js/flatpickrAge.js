@@ -1,4 +1,4 @@
-// para la parte de realizar trabajo de  la parte de mantenimiento
+// para la parte de realizar trabajo(ejecutar trabajo) de  la parte de mantenimiento
 let fpEjecutartraDet = flatpickr("#txtfechaejecut", 
     {
         minDate: new Date().setDate(new Date().getDate() - 7),

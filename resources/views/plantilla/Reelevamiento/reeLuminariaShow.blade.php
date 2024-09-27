@@ -120,7 +120,7 @@
 									<!--end::Table row-->
 								</thead>
 								<tbody class="fw-semibold text-gray-600">
-									@foreach ($showReele as $reele)
+									{{-- @foreach ($showReele as $reele)
 									<tr class="text-start text-gray-500 fw-bold fs-7">
 										<td>
 											<a href="#" class="text-gray-900 text-hover-primary">{{$reele->Av_calles}}</a>
@@ -174,7 +174,6 @@
 												<!--end::Menu item-->
 											</div>
 										</td>
-										{{-- modal para modificar --}}
 										@can('Reelevamiento.edit')
 										<div class="modalmodificar">
 											<div class="modal fade" id="modalModificarReele{{$reele->id}}" tabindex="-1" aria-hidden="true">
@@ -182,7 +181,6 @@
 												<div class="modal-dialog modal-dialog-centered mw-650px">
 													<!--begin::Modal content-->
 													<div class="modal-content">
-														 {{-- formulario de modificacion de reelevamiento --}}
 														 <form class="form" action="{{route('reelevamiento.modificar',$reele->id)}}" id="reelevamientoCreate" data-kt-redirect="assets/dist/apps/customers/list.html" enctype="multipart/form-data" method="POST" >
 															@csrf
 															<!--begin::Modal header-->
@@ -332,10 +330,9 @@
 
 										</div>
 										@endcan
-										{{-- endmodal para modificar --}}
 
 									</tr>
-									@endforeach
+									@endforeach --}}
 								</tbody>
 							</table>
 						</div>

@@ -14,6 +14,7 @@ class reelevamiento extends Model
     protected $table = 'reelevamientos';
     protected $fillable =
     [
+        'id',
         'Av_calles',
         'Fecha',
         'Descripcion',

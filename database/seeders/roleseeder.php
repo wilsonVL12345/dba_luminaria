@@ -51,11 +51,12 @@ class roleseeder extends Seeder
         Permission::create(['name' => 'user.export', 'description' => 'eliminar user'])->assignRole([$role0, $role1]);
 
 
-        // permisos Realiar trabajo
+        // permisos Realiar trabajo ejecutar trabajo tecnicos
         Permission::create(['name' => 'realizar.show', 'description' => 'Mostrar realizar'])->assignRole([$role0, $role2, $role3]);
         Permission::create(['name' => 'realizar.edit', 'description' => 'editar realizar'])->assignRole([$role0, $role1, $role2]);
         Permission::create(['name' => 'realizar.delete', 'description' => 'eliminar realizar'])->assignRole([$role0, $role1, $role2]);
         Permission::create(['name' => 'realizar.export', 'description' => 'export realizar'])->assignRole([$role0, $role1]);
+        Permission::create(['name' => 'realizar.install', 'description' => 'empezar mantenimientos'])->assignRole([$role0, $role1, $role3]);
 
         // permisos agendar
         Permission::create(['name' => 'agendar.show', 'description' => 'Mostrar agendar'])->assignRole([$role0, $role1, $role2, $role3]);

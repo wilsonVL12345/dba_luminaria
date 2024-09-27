@@ -65,6 +65,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/usuario/perfil/{id}', [UserController::class, 'perfil'])->name('usuario.perfil');
     Route::get('/eliminar/usuario{id}', [UserController::class, 'destroy'])->name('eliminar.usuario')->middleware('can:user.delete');
     Route::get('/restablecer/usuario{id}', [UserController::class, 'restablecer'])->name('restablecer.usuario');
+    Route::get('/listaUsers', [UserController::class, 'getUserData'])->name('listaUsers.usuario');
+    Route::get('/datosUser{id}', [UserController::class, 'editDatosUser'])->name('datosUser.usuario');
 
     // cambiar contraseña
     Route::get('/cambiar/password{id}', [logincontroller::class, 'showcambiarPassword'])->name('cambiar.password');
@@ -102,6 +104,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/store/trabajo/{id}', [detalleController::class, 'storeTrabajo'])->name('store.trabajo')->middleware('can:realizar.show');
     Route::post('/edit/espera/{id}', [detalleController::class, 'edit'])->name('edit.espera')->middleware('can:detallesGen.edit');
     Route::post('/edit/realizado/{id}', [detalleController::class, 'editRealizado'])->name('edit.realizado')->middleware('can:detallesGen.edit');
+    Route::get('/lista/Pendiente', [detalleController::class, 'getTrabPendientesData'])->name('lista.Pendiente');
 
 
 
@@ -153,6 +156,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/eliminar/retirada{id}', [luminaria_retiradasController::class, 'destroy'])->name('eliminar.retirada')->middleware('can:proyecto.Retirado.delete');
     Route::get('/proyectos/luminariasRetiradas{id}', [luminaria_retiradasController::class, 'editLuminariasRetiradasShow'])->name('proyectoss.luminariasRetiradas')->middleware('can:proyecto.Retirado.edit');
     Route::get('/retirado/pdf{id}', [luminaria_retiradasController::class, 'generarPDF'])->name('retirado.pdf')->middleware('can:proyecto.Retirado.edit');
+    Route::get('/listaLumRetiradas', [luminaria_retiradasController::class, 'getProyLumRetiradaData'])->name('listaLumRetiradas');
 
     //rutas proyectos  ---------------------------------------------------------------------------------------------------------
     // para lo que es almacen
@@ -165,6 +169,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/eliminar/proyecto{id}', [proyectoController::class, 'destroy'])->name('eliminar.proyecto')->middleware('can:proyecto.delete');
     Route::get('/detallesAccesorios/almacen/{id}', [proyectoController::class, 'reu'])->name('detallesAccesorios.almacen')->middleware('can:proyecto.show');
     Route::get('/listaProy/almacen', [proyectoController::class, 'getProyectoData'])->name('listaProy.almacen');
+    Route::get('/listaProyObras/almacen', [proyectoController::class, 'getProyectoObrasData'])->name('listaProyObras.almacen');
 
     // Route::get('/detallesAccesorios/almacen', [proyectoController::class, 'reu'])->name('detallesAccesorios.almacendatos')->middleware('can:· ·');
     Route::get('/datos/ejecutar/{id}', [proyectoController::class, 'ejecutarProyectodatos'])->name('datos.ejecutar')->middleware('can:proyecto.install');
@@ -183,6 +188,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/reelevamiento/create', [ReelevamientoController::class, 'create'])->name('reelevamiento.create')->middleware('can:Reelevamiento.create');
     Route::post('/reelevamiento/modificar{id}', [ReelevamientoController::class, 'modificar'])->name('reelevamiento.modificar')->middleware('can:Reelevamiento.edit');
     Route::get('/eliminar/reelevamiento{id}', [ReelevamientoController::class, 'destroy'])->name('eliminar.reelevamiento')->middleware('can:Reelevamiento.delete');
+    Route::get('/lista/reelevamiento', [ReelevamientoController::class, 'getReelevamientosData'])->name('lista.reelevamiento');
+    Route::get('/editardatos/reelevamiento{id}', [ReelevamientoController::class, 'editardatosRelev'])->name('editardatos.reelevamiento');
 
     //ruta para ver  distritos----------------------------------------------------------------------
     Route::get('/detallesDistritos', [distritoController::class, 'index'])->name('detalles.Distritos')->middleware('can:Distritos.show');

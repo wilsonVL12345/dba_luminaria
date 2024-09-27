@@ -28,7 +28,7 @@
 	{{-- todo el lugar que te interesa --}}
 	<div class="post d-flex flex-column-fluid" id="kt_post">
 		<!--begin::Container-->
-		<div id="kt_content_container" class="container ">
+		<div id="kt_content_container" class="container-lg mx-auto" style="max-width: 660px;">
 										<div class="card mb-5 mb-xl-10">
 											<div class="card-body pt-9 pb-0">
 												<div class="margin ">
@@ -57,9 +57,9 @@
                                                                             <!--end::Col-->
                                                                         </div>
                                                                         <!--end::Input group-->
-                                                                        <div class="row mb-5">
+                                                                        <div class="row mb-9">
                                                                             <!--begin::Col-->
-                                                                            <div class="col-md-6 fv-row">
+                                                                            <div class="col-md-12 fv-row">
                                                                                 <label class="required fs-5 fw-bold mb-2">Urbanizacion
                                                                                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
 

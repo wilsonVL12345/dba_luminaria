@@ -91,9 +91,16 @@
             <td colspan="4"><span class="label">URBANIZACION:</span> {{ $proyec->Zona }}</td>
         </tr>
         <tr>
+            @if ($proyec->Estado=='Finalizado')
             <td colspan="1"><span class="label">SUBASTA:</span> {{ $proyec->Subasta }}</td>
             <td colspan="2"><span class="label">MODALIDAD:</span> {{ $proyec->Modalidad }}</td>
             <td colspan="1"><span class="label">TRABAJO:</span> {{ $proyec->Trabajo }}</td>
+                
+            @else
+            <td colspan="2"><span class="label">SUBASTA:</span> {{ $proyec->Subasta }}</td>
+            <td colspan="2"><span class="label">MODALIDAD:</span> {{ $proyec->Modalidad }}</td>
+            @endif
+
         </tr>
 		<tr>
             <td colspan="1"><span class="label">TIPO DE CONTRATACION:</span> {{ $proyec->Tipo_Contratacion }}</td>
