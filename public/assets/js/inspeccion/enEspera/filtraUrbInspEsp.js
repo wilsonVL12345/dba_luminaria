@@ -1,4 +1,4 @@
-/* $(document).ready(function () {
+ $(document).ready(function () {
     const $distritoSelect = $('[data-id="txtdistirtoo"]');
     const $zonaUrbanizacionSelect = $('[data-id="txturbs"]');
      $.ajax({
@@ -27,7 +27,7 @@
             console.error('Error al obtener los datos de los distritos:', error);
         }
     });
-    }); 
+    });  
 
 
 
@@ -61,9 +61,9 @@ $(document).ready(function () {
             console.error('Error al obtener los datos de los distritos:', error);
         }
     });
-    });  */
+    });  
 
-    $(document).ready(function () {
+   /*  $(document).ready(function () {
         let urbanizacionesData = [];
         const $distritoSelect = $('[data-id="sldistInspEsp"]');
         const $zonaUrbanizacionSelect = $('[data-id="slurbInspEsp"]');
@@ -138,3 +138,4 @@ $(document).ready(function () {
     });
 
 
+ */

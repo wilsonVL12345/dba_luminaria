@@ -106,7 +106,7 @@
 								<div class="from row">
 									<div class="col-md-8 mb-4">
 										<label for="txtmodalidad" class=" fs-5 fw-bold mb-2">Detalles</label>
-										<textarea class="form-control form-control-solid" rows="3" name="reeDescripRegis" id="reeDescripRegis" placeholder="Ingrese una Breve Descripcion" >{{$trabajo->Detalles}}</textarea>
+										<textarea class="form-control form-control-solid" rows="3" name="reeDescripRegis" id="reeDescripRegis" placeholder="Ingrese una Breve Descripcion" readonly >{{$trabajo->Detalles}}</textarea>
 
 									</div>
 								</div>

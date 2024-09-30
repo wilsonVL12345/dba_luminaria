@@ -21,7 +21,7 @@ class detalleController extends Controller
     // se encarga de mostrar todo de proyecto almacen en espera
     public function index()
     {
-        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
+        /*  if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
             $detalles = detalle::where('Estado', 'En Espera')
                 ->get();
             $listadistrito = Distrito::where('id', '<>', 15)->get();
@@ -29,7 +29,7 @@ class detalleController extends Controller
             $disApoyo = distrito::where('id', '<>', 15)->get();
 
 
-            return view('plantilla.DetallesGenerales.Espera', compact('detalles', 'listadistrito', 'disApoyo'/* , 'listazonaurb' */));
+            return view('plantilla.DetallesGenerales.Espera', compact('detalles', 'listadistrito', 'disApoyo'));
         } else {
 
             $detalles = detalle::where('Estado', 'En Espera')
@@ -38,11 +38,114 @@ class detalleController extends Controller
                 ->where('id', session('Lugar_Designado'))->get();
 
             $disApoyo = distrito::where('id', '<>', 15)->get();
-            // $listazonaurb = urbanizacion::all();
+            // $listazonaurb = urbanizacion::all(); */
+        return view('plantilla.DetallesGenerales.Espera');
+    }
+    public function editDatosEspera($id)
+    {
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
+            $detallesEdit = detalle::find($id);
+            $listadistritoEdit = Distrito::where('id', '<>', 15)
+                ->get();
+            $disApoyo = distrito::where('id', '<>', 15)->get();
+            $listazonaurb = urbanizacion::all();
 
-            return view('plantilla.DetallesGenerales.Espera', compact('detalles', 'listadistrito', 'disApoyo'/* , 'listazonaurb' */));
+            return view('plantilla.DetallesGenerales.editEspera', compact('detallesEdit', 'listadistritoEdit', 'listazonaurb', 'disApoyo'));
+        } else {
+
+            $detallesEdit = detalle::find($id);
+            $listadistritoEdit = Distrito::where('id', '<>', 15)
+                ->where('id', session('Lugar_Designado'))->get();
+            $listazonaurb = urbanizacion::all();
+            $disApoyo = distrito::where('id', '<>', 15)->get();
+
+            return view('plantilla.DetallesGenerales.editEspera', compact('detallesEdit', 'listadistritoEdit', 'listazonaurb', 'disApoyo'));
         }
     }
+    public function getTrabEsperaData(Request $request)
+    {
+        // Determinamos el query base dependiendo del cargo del usuario
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
+            # code...
+            $trabPendiente = detalle::select(
+                'id',
+                'Distritos_id',
+                'Zona',
+                'Nro_Sisco',
+                'Foto_Carta',
+                'Tipo_Trabajo',
+                'Fecha_Programado',
+                'Observaciones'
+            )
+                ->where('Estado', 'En Espera');
+        } else {
+            # code...
+            $trabPendiente = detalle::select(
+                'id',
+                'Distritos_id',
+                'Zona',
+                'Nro_Sisco',
+                'Foto_Carta',
+                'Tipo_Trabajo',
+                'Fecha_Programado',
+                'Observaciones'
+            )
+                ->where('Estado', 'En Espera')->where('Distritos_id', session('Lugar_Designado'));
+        }
+
+
+        // Procesamos los datos con DataTables, manejando la paginación, búsqueda y longitud
+        return DataTables::of($trabPendiente)
+            ->filter(function ($query) use ($request) {
+                // Agrega un filtro adicional aquí si es necesario
+                if ($request->has('search.value')) {
+                    $search = $request->input('search.value');
+                    $query->where(function ($query) use ($search) {
+                        $query->where('Distritos_id', 'like', "%{$search}%")
+                            ->orWhere('Zona', 'like', "%{$search}%")
+                            ->orWhere('Nro_Sisco', 'like', "%{$search}%")
+                            ->orWhere('Tipo_Trabajo', 'like', "%{$search}%")
+                            ->orWhere('Fecha_Inicio', 'like', "%{$search}%")
+                            ->orWhere('Observaciones', 'like', "%{$search}%");
+                    });
+                }
+            })
+
+            ->addColumn('action', function ($row) {
+                $actions = '<a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                    Actions
+                    <span class="svg-icon svg-icon-5 m-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                </a>
+                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                data-kt-menu="true">';
+                if (auth()->user()->can('detallesGen.edit')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/editdatos/esperaa' . $row->id) . '" 
+                            class="menu-link px-3">Editar</a>
+                    </div>';
+                }
+
+
+                if (auth()->user()->can('detallesGen.delete')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/eliminar/detallegen' . $row->id) . '" class="menu-link px-3 delete-link" 
+                            data-kt-customer-table-filter="delete_row">Eliminar</a>
+                    </div>';
+                }
+
+                $actions .= '</div>';
+
+                return $actions;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+
     // muestra la tabla de detalles de trabajos realizados
     public function realizados()
     {
@@ -63,6 +166,97 @@ class detalleController extends Controller
             $listurb = urbanizacion::all();
             return view('plantilla.DetallesGenerales.Realizados', compact('detallesrealizados', 'listurb', 'disApoyo', 'listdistritos'));
         }
+    }
+    public function getTrabajoRealizadoData(Request $request)
+    {
+        // Determinamos el query base dependiendo del cargo del usuario
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
+            # code...
+            $trabPendiente = detalle::select(
+                'id',
+                'Distritos_id',
+                'Zona',
+                'Nro_Sisco',
+                'Tipo_Trabajo',
+                'Puntos',
+                'Fecha_Inicio',
+                'Foto_Carta',
+                'Observaciones'
+            )
+                ->where('Estado', 'Finalizado');
+        } else {
+            # code...
+            $trabPendiente = detalle::select(
+                'id',
+                'Distritos_id',
+                'Zona',
+                'Nro_Sisco',
+                'Tipo_Trabajo',
+                'Puntos',
+                'Fecha_Inicio',
+                'Foto_Carta',
+                'Observaciones'
+            )
+                ->where('Estado', 'Finalizado')->where('Distritos_id', session('Lugar_Designado'));
+        }
+
+
+        // Procesamos los datos con DataTables, manejando la paginación, búsqueda y longitud
+        return DataTables::of($trabPendiente)
+            ->filter(function ($query) use ($request) {
+                // Agrega un filtro adicional aquí si es necesario
+                if ($request->has('search.value')) {
+                    $search = $request->input('search.value');
+                    $query->where(function ($query) use ($search) {
+                        $query->where('Distritos_id', 'like', "%{$search}%")
+                            ->orWhere('Zona', 'like', "%{$search}%")
+                            ->orWhere('Nro_Sisco', 'like', "%{$search}%")
+                            ->orWhere('Tipo_Trabajo', 'like', "%{$search}%")
+                            ->orWhere('Puntos', 'like', "%{$search}%")
+                            ->orWhere('Fecha_Inicio', 'like', "%{$search}%")
+                            ->orWhere('Observaciones', 'like', "%{$search}%");
+                    });
+                }
+            })
+
+            ->addColumn('action', function ($row) {
+                $actions = '<a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                    Actions
+                    <span class="svg-icon svg-icon-5 m-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                </a>
+                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                data-kt-menu="true">';
+                if (auth()->user()->can('detallesGen.edit')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/detalles/realizados/edit' . $row->id) . '" 
+                            class="menu-link px-3">Editar</a>
+                    </div>';
+                }
+                if (auth()->user()->can('detallesGen.report')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/detalles/mantenimiento/pdf' . $row->id) . '" 
+                            class="menu-link px-3 " target="_blank">Reporte</a>
+                    </div>';
+                }
+
+
+                if (auth()->user()->can('detallesGen.delete')) {
+                    $actions .= '<div class="menu-item px-3">
+                        <a href="' . url('/eliminar/detallegen' . $row->id) . '" class="menu-link px-3 delete-link" 
+                            data-kt-customer-table-filter="delete_row">Eliminar</a>
+                    </div>';
+                }
+
+                $actions .= '</div>';
+
+                return $actions;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
     // en esta parte en donde se llena los datos para ejecutar un trabajo
     public function ejecutar($id)
@@ -247,68 +441,7 @@ class detalleController extends Controller
             return back()->with("incorrecto", "Error al Agendar");
         }
     }
-    // para guardar el trabajo realizado
-    /* public function storeTrabajo(Request $request, $id)
-    {
-        try {
-            $request->validate([
-                'txtcantidadlum' => 'required|digits_between:1,3',
-                'txtfechaejecut' => [
-                    'required',
-                ],
-                'txtdetalles' => [
-                    'nullable',
-                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
-                ],
-            ]);
-        } catch (\Throwable $th) {
-            return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
-        }
 
-        $tipoLuminaria = 'Tipo: ';
-        $fin = 'Finalizado';
-        $tipLum = '';
-        if ($request->tipolum) {
-            foreach ($request->tipolum as $valor) {
-                $tipLum = $tipLum . ' ' . $valor;
-            }
-        }
-
-
-        $proy = 1;
-        try {
-
-            $storetrabajo = detalle::find($id);
-            $storetrabajo->Puntos = $request->txtcantidadlum;
-            $storetrabajo->Fecha_Inicio = $request->txtfechaejecut;
-            $storetrabajo->Detalles = $tipoLuminaria . $tipLum . '. ' . $request->txtdetalles;
-            $storetrabajo->Estado = $fin;
-            $storetrabajo->EjecutadoPor = session('id');
-            $storetrabajo->save();
-
-            $acccampoitem = $request->campoitem;
-            $Cantidad = $request->campocantidad;
-
-            if (!empty($acccampoitem) && count($acccampoitem) === count($Cantidad)) {
-                foreach ($acccampoitem as $index => $item) {
-                    $accesoriosmal = new accesorio();
-                    $accesoriosmal->Id_Lista_accesorios = $item;
-                    $accesoriosmal->Cantidad = $Cantidad[$index];
-                    $accesoriosmal->Proyectos_id = $proy;
-                    $accesoriosmal->Detalles_id = $id;
-                    $accesoriosmal->save();
-                }
-            }
-            $sql = true;
-        } catch (\Throwable $th) {
-            $sql = false;
-        }
-        if ($sql == true) {
-            return redirect()->route('pendiente.trabajo')->with("correcto", "Trabajo Ejecutado Correctamente");
-        } else {
-            return redirect()->route('pendiente.trabajo')->with("incorrecto", "Error nose guardaron los datos");
-        }
-    } */
     public function storeTrabajo(Request $request, $id)
     {
         try {
@@ -389,7 +522,7 @@ class detalleController extends Controller
         //
     }
 
-
+    // editar trabajoa en espera
     public function edit(Request $request, $id)
     {
         try {
@@ -455,7 +588,7 @@ class detalleController extends Controller
 
             $editdetall->save();
 
-            return back()->with("correcto", "Dato Modificado Correctamente");
+            return redirect('/detalles/espera')->with("correcto", "Dato Modificado Correctamente");
         } catch (\Throwable $th) {
             return back()->with("incorrecto", "Error al Modificar los datos");
         }

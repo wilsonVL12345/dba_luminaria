@@ -16,6 +16,7 @@ class detalle extends Model
     protected $table = 'detalles';
     protected $fillable =
     [
+        'id',
         'Nro_Sisco',
         'Zona',
         'Tipo_Trabajo',

@@ -1,10 +1,6 @@
-@can('Distritos.edit')
-    
+@can('Reelevamiento.edit')   
 @extends('layout.index')
-
 @section('contenido')
-
-
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 	<div class="toolbar" id="kt_toolbar">
 		<div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">

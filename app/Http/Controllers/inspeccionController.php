@@ -9,6 +9,7 @@ use App\Models\urbanizacion;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Debug\VirtualRequestStack;
 use Yajra\DataTables\Facades\DataTables;
 
 
@@ -19,42 +20,53 @@ class inspeccionController extends Controller
      */
     public function index()
     {
-        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
-            /* $inspeccion = inspeccion::all(); */
-            $inspeccion = inspeccion::where('Inspeccion', 'En espera')
-                ->orderBy('created_at', 'desc')
-                ->get();
-            $listadistrito = Distrito::where('id', '<>', 15)->get();
-            /* $listazonaurb = urbanizacion::all(); */
+        $listadistrito = distrito::where('id', '<>', '15')->get();
 
-            return view('plantilla.Inspecciones.Espera', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */]);
-        } else {
-            $inspeccion = inspeccion::where('Inspeccion', 'En espera')
-                ->where('Distritos_id', session('Lugar_Designado'))
-
-                ->orderBy('created_at', 'desc')
-                ->get();
-            $listadistrito = Distrito::where('id', '<>', 15)
-                ->where('id', session('Lugar_Designado'))->get();
-
-            /* $listazonaurb = urbanizacion::all(); */
-
-            return view('plantilla.Inspecciones.Espera', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */]);
-        }
+        return view('plantilla.Inspecciones.Espera', compact('listadistrito'));
     }
-    public function listaInspeccionEspeData(Request $request)
+    function editInspeccionespe($id)
+    {
+        $item = inspeccion::find($id);
+        $listadistrito = distrito::where('id', '<>', '15')->get();
+        return view('plantilla.Inspecciones.editEspera', compact('item', 'listadistrito'));
+    }
+    function EmpezarInspeccion($id)
+    {
+        $item = inspeccion::find($id);
+        return view('plantilla.Inspecciones.inspeccionEspera', compact('item'));
+    }
+    public function getInspeccioEsperaData(Request $request)
     {
         // Determinamos el query base dependiendo del cargo del usuario
         if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
-            $listraRealizado = inspeccion::select('id', 'Nro_Sisco', 'ZonaUrbanizacion', 'Fecha_Inspeccion', 'Foto_Carta',  'Distritos_id')
-                ->where('Inspeccion', 'En Espera')
-                ->orderBy('created_at', 'desc');
+            # code...
+            $InspeccionEspera = inspeccion::select(
+                'id',
+                'Nro_Sisco',
+                'ZonaUrbanizacion',
+                'Distritos_id',
+                'Fecha_Inspeccion',
+                'Foto_Carta',
+
+
+            )
+                ->where('Inspeccion', 'En Espera');
         } else {
-            $listraRealizado = inspeccion::select('id', 'Nro_Sisco', 'ZonaUrbanizacion',  'Fecha_Inspeccion', 'Foto_Carta',  'Distritos_id')
-                ->where('Distritos_id', session('Lugar_Designado'))->where('Inspeccion', 'En Espera');
+            # code...
+            $InspeccionEspera = inspeccion::select(
+                'id',
+                'Nro_Sisco',
+                'ZonaUrbanizacion',
+                'Distritos_id',
+                'Fecha_Inspeccion',
+                'Foto_Carta',
+            )
+                ->where('Inspeccion', 'En Espera')->where('Distritos_id', session('Lugar_Designado'));
         }
+
+
         // Procesamos los datos con DataTables, manejando la paginación, búsqueda y longitud
-        return DataTables::of($listraRealizado)
+        return DataTables::of($InspeccionEspera)
             ->filter(function ($query) use ($request) {
                 // Agrega un filtro adicional aquí si es necesario
                 if ($request->has('search.value')) {
@@ -68,8 +80,6 @@ class inspeccionController extends Controller
                 }
             })
 
-
-
             ->addColumn('action', function ($row) {
                 $actions = '<a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                     Actions
@@ -81,24 +91,22 @@ class inspeccionController extends Controller
                 </a>
                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                 data-kt-menu="true">';
-
-                // Botón de Editar con el ID del instalar
                 if (auth()->user()->can('inspecciones.install')) {
                     $actions .= '<div class="menu-item px-3">
-                        <a href="#" data-id="' . $row->id . '" class="menu-link px-3 edit-buttoninsperealmod" data-bs-toggle="modal" >Empezar</a>
+                        <a href="' . url('/Empezar/inspeccion' . $row->id) . '" 
+                            class="menu-link px-3">Empezar</a>
                     </div>';
                 }
-                // Botón de Editar con el ID del editar
                 if (auth()->user()->can('inspecciones.edit')) {
                     $actions .= '<div class="menu-item px-3">
-                        <a href="#" data-id="' . $row->id . '" class="menu-link px-3 edit-buttoninspeespemod" data-bs-toggle="modal" >Editar</a>
+                        <a href="' . url('/editDatos/inspeccionEspe/' . $row->id) . '" 
+                            class="menu-link px-3">Editar</a>
                     </div>';
                 }
 
-                // Botón de Eliminar
                 if (auth()->user()->can('inspecciones.delete')) {
                     $actions .= '<div class="menu-item px-3">
-                        <a href="' . url('/eliminar/inspeccion' . $row->id) . '" class="menu-link px-3 delete-link"
+                        <a href="' . url('/eliminar/inspeccion' . $row->id) . '" class="menu-link px-3 delete-link" 
                             data-kt-customer-table-filter="delete_row">Eliminar</a>
                     </div>';
                 }
@@ -190,7 +198,7 @@ class inspeccionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function ready(Request $request)
+    public function ready(Request $request, $id)
     {
         try {
             // Validaciones
@@ -214,7 +222,7 @@ class inspeccionController extends Controller
             ]);
 
             $inspe = 'Finalizado';
-            $emp = inspeccion::find($request->txtid);
+            $emp = inspeccion::find($id);
 
             $emp->Tipo_Inspeccion = $request->txttipo;
             $emp->Detalles = $request->txtdescripcion;
@@ -228,7 +236,7 @@ class inspeccionController extends Controller
             $sql = false;
         }
         if ($sql == true) {
-            return back()->with("correcto", "Inspeccion realizada con exito");
+            return redirect('/inspecciones/espera')->with("correcto", "Inspeccion realizada con exito");
         } else {
             return back()->with("incorrecto", "Error al Inspeccionar");
         }
@@ -237,12 +245,8 @@ class inspeccionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function editInspeccionespeData($id)
-    {
-        $editinspeEspera = inspeccion::find($id);
-        return response()->json($editinspeEspera);
-    }
-    public function edit(Request $request)
+    // para la parte de  editar en espera
+    public function edit(Request $request, $id)
 
 
     {
@@ -271,7 +275,7 @@ class inspeccionController extends Controller
 
             ]);
             if (!$request->imgcartaa) {
-                $inspe = inspeccion::find($request->txtid);
+                $inspe = inspeccion::find($id);
 
                 $inspe->Distritos_id = $request->sldistInspEsp;
                 $inspe->ZonaUrbanizacion = $request->slurbInspEsp;
@@ -286,7 +290,7 @@ class inspeccionController extends Controller
                 ]);
                 $dir = $request->file('imgcartaa')->store('public/fileinspecciones');
                 $urll = Storage::url($dir);
-                $inspe = inspeccion::find($request->txtid);
+                $inspe = inspeccion::find($id);
 
                 $filePath = $inspe->Foto_Carta;
                 $filePath = 'fileinspecciones/' . basename($inspe->Foto_Carta); // Construye la ruta relativa
@@ -309,7 +313,7 @@ class inspeccionController extends Controller
             $sql = false;
         }
         if ($sql == true) {
-            return back()->with("correcto", "Datos Modificado Correctamente");
+            return redirect('/inspecciones/espera')->with("correcto", "Datos Modificado Correctamente");
         } else {
             return back()->with("incorrecto", "Error al Modificar");
         }

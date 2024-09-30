@@ -161,37 +161,8 @@ let inspeccionEspera = function () {
 
 
 
-                $(document).on('click', '.edit-buttoninspeespemod', function () {
-                    let inspecionEspId = $(this).data('id');
-                  
-                    // Hacer la solicitud AJAX al servidor
-                    $.ajax({
-                        url: '/editDatos/inspeccionespera' + inspecionEspId,
-                        method: 'GET',
-                        success: function (data) {
-                            // Rellenar los campos del formulario en el modal con los datos recibidos
-                            $('#textidEsp').val(data.id);
-                            $('#txtsiscoEspeM').val(data.Nro_Sisco);
-                            $('#txtfechaEspMod').val(data.Fecha_Inspeccion);
-                            
-                            //  Guardar la urbanización que queremos seleccionar
-                             window.zonaUrbanizacionToSelect = data.ZonaUrbanizacion;
-                            
-                            // Primero actualizamos el distrito, lo que desencadenará la actualización de las urbanizaciones
-                            $('#sldistInspEsp').val(data.Distritos_id).trigger('change');
-                            
-                          
-                            // Mostrar el modal 
-                            $('#modalModificarInspeccion').modal('show');
-                        },
-                        error: function (xhr, status, error) {
-                            console.error('Error al obtener los datos del equipamiento:', error);
-                        }
-                    });
-                });
-                
-                 "use strict";
-                
+              "use strict";
+
                 let inspeccionEspera = function () {
                     // Shared variables
                     let tableDist;
@@ -212,28 +183,28 @@ let inspeccionEspera = function () {
                             processing: true,
                             serverSide: true,
                             ajax: {
-                                url: "/listaDatos/inspeccionespera",
+                                url: "/listaDatos/inspeccion",
                                 type: "GET"
                             },
                             columns: [
-                                
                                 { data: "Nro_Sisco", name: "Nro_Sisco" },
                                 { data: "ZonaUrbanizacion", name: "ZonaUrbanizacion" },
                                 { data: "Distritos_id", name: "Distritos_id" },
+                               
                                 {
                                     data: "Foto_Carta",
                                     name: "Foto_Carta",
                                     render: function(data, type, row) {
                                         if (data && data.trim() !== '') {
-                                            return '<a href="#" class="btn btn-sm btn-icon btn-light view-imageespera" data-bs-toggle="modal" data-bs-target="#modalMostrarImagen" data-image-url="' + data + '"><i class="fas fa-image text-primary"></i></a>';
+                                            return '<a href="#" class="btn btn-sm btn-icon btn-light view-imageInspeEspera" data-bs-toggle="modal" data-bs-target="#modalMostrarImagenInspeccion" data-image-url="' + data + '"><i class="fas fa-image text-primary"></i></a>';
                                         } else {
                                             return '';
-
+                
                                         }
                                     }
                                 },
-
                                 { data: "Fecha_Inspeccion", name: "Fecha_Inspeccion" },
+
                                 {
                                     data: "action",
                                     name: "action",
@@ -241,7 +212,6 @@ let inspeccionEspera = function () {
                                     searchable: false
                                 }
                             ],
-                            
                             pageLength: 10,
                             lengthMenu: [
                                 [10, 25, 50, 100, 500],
@@ -264,7 +234,7 @@ let inspeccionEspera = function () {
                 
                     // Hook export buttons
                     let exportButtons = () => {
-                        const documentTitle = 'Lista de Inspecciones Realizadas';
+                        const documentTitle = 'Lista de Inspecciones en espera';
                         let buttons = new $.fn.dataTable.Buttons(tableDist, {
                             buttons: [
                                 {
@@ -285,33 +255,24 @@ let inspeccionEspera = function () {
                                     extend: 'pdfHtml5',
                                     title: documentTitle,
                                     exportOptions: {
-                                        columns: [0, 1, 2, 4]  // Excluye la columna 6 (índice 6)
-            
+                                        columns: [0, 1, 2, 3, 4, 5, 7]  // Excluye la columna 6 (índice 6)
                                     },
                                     customize: function(doc) {
-                                         // Establecer la orientación de la página en horizontal
-                                      
-                                       // Ajustar el ancho de las columnas (50% para "Distrito", 50% para "Urbanización")
-                                          doc.content[1].table.widths = ['20%', '40%', '20%', '20%']; // Reducimos el ancho de la primera columna
-            
-                                           // Centrar el contenido de la primera columna
-                                            doc.content[1].table.body.forEach(function(row) {
-                                                row[0].alignment = 'left'; // Columna "Distrito" (índice 0)
-                                            });
-            
-                                             // Centrar el contenido de la 4 columna
-                                             doc.content[1].table.body.forEach(function(row) {
-                                                row[2].alignment = 'center'; // Columna "Distrito" (índice 0)
-                                            });
-                                            // Centrar el contenido de la ultima columna
-                                            doc.content[1].table.body.forEach(function(row) {
-                                                row[3].alignment = 'center'; // Columna "Distrito" (índice 0)
-                                            });
-                                        // Centrar el contenido del PDF de las columnas el texto
-                                        // doc.content[1].table.widths = Array(doc.content[1].table.body[0].length).fill('*');
-                                        doc.styles.tableBodyEven.alignment = 'left';
-                                        doc.styles.tableBodyOdd.alignment = 'left';
-                                        
+                                        // Establecer la orientación de la página en horizontal
+                                        doc.pageOrientation = 'landscape';
+                                
+                                        // Ajustar el ancho de las columnas; nota que ahora sólo tenemos 7 columnas en lugar de 8
+                                        doc.content[1].table.widths = ['10%', '15%', '15%', '20%', '10%', '15%', '15%'];
+                                
+                                        // Centrar el contenido de las columnas especificadas
+                                        doc.content[1].table.body.forEach(function(row) {
+                                            row[0].alignment = 'center'; // Columna 1
+                                            row[1].alignment = 'center'; // Columna 2
+                                            row[3].alignment = 'center'; // Columna 4
+                                            row[4].alignment = 'center'; // Columna 5
+                                            row[5].alignment = 'center'; // Columna 6 (que en realidad es la 7ma columna visible)
+                                        });
+                                
                                         // Alinear el título al centro
                                         doc.styles.title = {
                                             alignment: 'center',
@@ -381,18 +342,16 @@ let inspeccionEspera = function () {
                 }();
                 
                 KTUtil.onDOMContentLoaded(function () {
-                   inspeccionEspera.init();
+                    inspeccionEspera.init();
+                });
+                $(document).on('click', '.view-imageInspeEspera', function() {
+                    // Obtener la URL de la imagen desde el atributo 'data-image-url'
+                    let imageUrl = $(this).data('image-url');
+                    
+                    // Establecer la URL en el atributo 'src' de la imagen en el modal
+                    $('#modalMostrarImagenInspeccion img').attr('src', imageUrl);
+                    
+                    // Alternativamente, puedes establecer un texto alternativo si lo deseas
+                    $('#modalMostrarImagenInspeccion img').attr('alt', 'Carta Enviada');
                 });
                 
-              // Escuchar el evento de clic en los botones de vista de imagen
-$(document).on('click', '.view-imageespera', function() {
-    // Obtener la URL de la imagen desde el atributo 'data-image-url'
-    let imageUrl = $(this).data('image-url');
-    
-    // Establecer la URL en el atributo 'src' de la imagen en el modal
-    $('#modalMostrarImagen img').attr('src', imageUrl);
-    
-    // Alternativamente, puedes establecer un texto alternativo si lo deseas
-    $('#modalMostrarImagen img').attr('alt', 'Carta Enviada');
-});
-             
