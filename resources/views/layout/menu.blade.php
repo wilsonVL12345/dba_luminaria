@@ -374,8 +374,18 @@
                     <span class="menu-title">Cerrar Sesion</span>
                 </a>
             </div>
-
+          
+            <br>
+            <br>
+            <br>
+            <br>
             
+            
+            <div class="menu-item">
+                <div class="menu-content pt-8 pb-2">
+                    <span class="menu-section text-muted  fs-8 ls-1">Dev. Wilson V. L.</span>
+                </div>
+            </div>
         </div>
         <!--end::Menu-->
     </div>

@@ -114,7 +114,7 @@
 									</tr>
 									<!--end::Table row-->
 								</thead>
-								<tbody class="fw-semibold text-gray-600">
+								<tbody class="text-gray-600">
 									{{-- @foreach ($equipos as $itememp)
 									<tr class="text-start text-gray-500 fw-bold fs-7">
 										<td>

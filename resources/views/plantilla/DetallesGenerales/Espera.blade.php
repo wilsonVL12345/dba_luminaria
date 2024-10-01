@@ -121,18 +121,18 @@
 										<!--begin::Table row-->
 										<tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
 											<th class="min-w-100px">Distrito</th>
-												<th class="min-w-100px">Urbanizacion</th>
-												<th class="min-w-100px">Nro Sisco</th>
-												<th class="min-w-100px" style="min-width: 150px;">Tipo de Trabajo</th>
+												<th class="min-w-150px">Urbanizacion</th>
+												<th class="min-w-150px">Nro Sisco</th>
+												<th class="min-w-150px" style="min-width: 150px;">Tipo de Trabajo</th>
 												<th class="min-w-100px">Fecha Programada</th>
-												<th class="text-end min-w-75px">Carta</th>
+												<th class="text-end min-w-60px">Carta</th>
 												<th class="text-end min-w-100px pe-5">Observacion</th>
 												<th class="min-w-100px">Actividades</th>
 
 										</tr>
 										<!--end::Table row-->
 									</thead>
-									<tbody class="fw-semibold text-gray-600">
+									<tbody class="text-gray-600">
 										{{-- @foreach ($detalles as $itemEspera)
 										<tr class="text-start text-gray-500 fw-bold fs-7">
 											<td>

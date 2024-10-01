@@ -339,21 +339,48 @@ class inspeccionController extends Controller
             return view('plantilla.Inspecciones.Realizadas', ['inspeccion' => $inspeccion, 'listadistrito' => $listadistrito/* , 'listazonaurb' => $listazonaurb */, 'inspector' => $inspector]);
         }
     }
-    public function listaInspeccionRealData(Request $request)
+    function editInspeccionRealizados($id)
     {
-
-
+        $item = inspeccion::find($id);
+        $listadistrito = distrito::where('id', '<>', '15')->get();
+        return view('plantilla.Inspecciones.editRealizado', compact('item', 'listadistrito'));
+    }
+    public function getInspeccioRealizadoData(Request $request)
+    {
         // Determinamos el query base dependiendo del cargo del usuario
         if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
-            $listraRealizado = inspeccion::select('id', 'Nro_Sisco', 'ZonaUrbanizacion', 'Tipo_Inspeccion', 'Detalles', 'Fecha_Inspeccion', 'Estado', 'Foto_Carta', 'Inspeccion', 'Distritos_id')
-                ->where('Inspeccion', 'Finalizado')
-                ->orderBy('created_at', 'desc');
+            # code...
+            $InspeccionReali = inspeccion::select(
+                'id',
+                'Nro_Sisco',
+                'ZonaUrbanizacion',
+                'Distritos_id',
+                'Foto_Carta',
+                'Tipo_Inspeccion',
+                'Estado',
+                'Detalles',
+                'Fecha_Inspeccion',
+            )
+                ->where('Inspeccion', 'Finalizado');
         } else {
-            $listraRealizado = inspeccion::select('id', 'Nro_Sisco', 'ZonaUrbanizacion', 'Tipo_Inspeccion', 'Detalles', 'Fecha_Inspeccion', 'Estado', 'Foto_Carta', 'Inspeccion', 'Distritos_id')
-                ->where('Distritos_id', session('Lugar_Designado'))->where('Inspeccion', 'Finalizado');
+            # code...
+            $InspeccionReali = inspeccion::select(
+                'id',
+                'Nro_Sisco',
+                'ZonaUrbanizacion',
+                'Distritos_id',
+                'Foto_Carta',
+                'Tipo_Inspeccion',
+                'Estado',
+                'Detalles',
+                'Fecha_Inspeccion',
+            )
+                ->where('Inspeccion', 'Finalizado')->where('Distritos_id', session('Lugar_Designado'));
         }
+
+
         // Procesamos los datos con DataTables, manejando la paginación, búsqueda y longitud
-        return DataTables::of($listraRealizado)
+        return DataTables::of($InspeccionReali)
             ->filter(function ($query) use ($request) {
                 // Agrega un filtro adicional aquí si es necesario
                 if ($request->has('search.value')) {
@@ -361,15 +388,14 @@ class inspeccionController extends Controller
                     $query->where(function ($query) use ($search) {
                         $query->where('Nro_Sisco', 'like', "%{$search}%")
                             ->orWhere('ZonaUrbanizacion', 'like', "%{$search}%")
+                            ->orWhere('Distritos_id', 'like', "%{$search}%")
                             ->orWhere('Tipo_Inspeccion', 'like', "%{$search}%")
+                            ->orWhere('Estado', 'like', "%{$search}%")
                             ->orWhere('Detalles', 'like', "%{$search}%")
-                            ->orWhere('Fecha_Inspeccion', 'like', "%{$search}%")
-                            ->orWhere('Estado', 'like', "%{$search}%");
+                            ->orWhere('Fecha_Inspeccion', 'like', "%{$search}%");
                     });
                 }
             })
-
-
 
             ->addColumn('action', function ($row) {
                 $actions = '<a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -383,17 +409,16 @@ class inspeccionController extends Controller
                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                 data-kt-menu="true">';
 
-                // Botón de Editar con el ID del registro
                 if (auth()->user()->can('inspecciones.edit')) {
                     $actions .= '<div class="menu-item px-3">
-                        <a href="#" data-id="' . $row->id . '" class="menu-link px-3 edit-buttoninsperealmod" data-bs-toggle="modal" >Editar</a>
+                        <a href="' . url('/editDatos/inspeccion/' . $row->id) . '" 
+                            class="menu-link px-3">Editar</a>
                     </div>';
                 }
 
-                // Botón de Eliminar
                 if (auth()->user()->can('inspecciones.delete')) {
                     $actions .= '<div class="menu-item px-3">
-                        <a href="' . url('/eliminar/inspeccion' . $row->id) . '" class="menu-link px-3 delete-link"
+                        <a href="' . url('/eliminar/inspeccion' . $row->id) . '" class="menu-link px-3 delete-link" 
                             data-kt-customer-table-filter="delete_row">Eliminar</a>
                     </div>';
                 }
@@ -405,12 +430,10 @@ class inspeccionController extends Controller
             ->rawColumns(['action'])
             ->make(true);
     }
-    public function editInspeccionRealData($id)
-    {
-        $editinspeRealizado = inspeccion::find($id);
-        return response()->json($editinspeRealizado);
-    }
-    public function editRealizada(Request $request)
+
+
+
+    public function editRealizada(Request $request, $id)
     {
         try {
             // Validaciones
@@ -441,7 +464,7 @@ class inspeccionController extends Controller
 
 
             ]);
-            $editInspec = inspeccion::find($request->textid);
+            $editInspec = inspeccion::find($id);
 
             $editInspec->Tipo_Inspeccion = $request->txttipo;
             $editInspec->Nro_Sisco = $request->txtsisco;
@@ -455,7 +478,7 @@ class inspeccionController extends Controller
             $sql = false;
         }
         if ($sql == true) {
-            return back()->with("correcto", "Datos Modificado Correctamente");
+            return redirect('/inspecciones/realizadas')->with("correcto", "Datos Modificado Correctamente");
         } else {
             return back()->with("incorrecto", "Error al Modificar");
         }

@@ -125,14 +125,17 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/Empezar/inspeccion{id}', [inspeccionController::class, 'EmpezarInspeccion'])->name('Empezar.inspeccion');
     Route::post('/empezar/inspeccionespera{id}', [inspeccionController::class, 'ready'])->name('empezar.inspeccionespera')->middleware('can:inspecciones.install');
     Route::get('/inspecciones/realizadas', [inspeccionController::class, 'realizadas'])->name('inspecciones.espera')->middleware('can:inspecciones.show');
-    Route::post('/inspecciones/editrealizadas/', [inspeccionController::class, 'editRealizada'])->name('inspecciones.editrealizadas')->middleware('can:inspecciones.edit');
+    Route::post('/inspecciones/editrealizadas/{id}', [inspeccionController::class, 'editRealizada'])->name('inspecciones.editrealizadas')->middleware('can:inspecciones.edit');
     Route::get('/eliminar/inspeccion{id}', [inspeccionController::class, 'destroy'])->name('eliminar.inspeccion')->middleware('can:inspecciones.delete');
-    route::get('/check-new-inspecciones', [inspeccionController::class, 'checkNewInspecciones'])->middleware('auth');
-    Route::post('/mark-inspecciones-seen', [inspeccionController::class, 'markInspeccionesAsSeen'])->middleware('auth');
+    Route::get('/listarDatos/inspeccion', [inspeccionController::class, 'getInspeccioRealizadoData'])->name('listarDatos.inspeccion');
+    Route::get('/editDatos/inspeccion/{id}', [inspeccionController::class, 'editInspeccionRealizados'])->name('editDatos.inspeccion');
+
+    // route::get('/check-new-inspecciones', [inspeccionController::class, 'checkNewInspecciones'])->middleware('auth');
+    // Route::post('/mark-inspecciones-seen', [inspeccionController::class, 'markInspeccionesAsSeen'])->middleware('auth');
 
     Route::get('/listaDatos/inspeccion', [inspeccionController::class, 'getInspeccioEsperaData'])->name('listadatos.inspeccion');
 
-    Route::get('/editDatos/inspeccion{id}', [inspeccionController::class, 'editInspeccionRealData'])->name('editDatos.inspeccion');
+    // Route::get('/editDatos/inspeccion{id}', [inspeccionController::class, 'editInspeccionRealData'])->name('editDatos.inspeccion');
     Route::get('/editDatos/inspeccionEspe/{id}', [inspeccionController::class, 'editInspeccionespe'])->name('editDatos.inspeccionespera');
 
 

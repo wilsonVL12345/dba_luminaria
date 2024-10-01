@@ -51,15 +51,15 @@ class ReelevamientoController extends Controller
     {
         // Determinamos el query base dependiendo del cargo del usuario
         // Determinamos el query base dependiendo del cargo del usuario
-        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
-            $datosReelev = reelevamiento::select(
-                'id',
-                'Av_calles',
-                'Urbanizacion_id',
-                'Distritos_id',
-                'Fecha',
-                'Descripcion',
-                'Archivos'
+        /*  if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
+            $datosReelev = reelevamiento::with('urbanizacion:id,nombre_urbanizacion')->select(
+                'reelevamientos.id',
+                'reelevamientos.Av_calles',
+                'reelevamientos.Urbanizacion_id',
+                'reelevamientos.Distritos_id',
+                'reelevamientos.Fecha',
+                'reelevamientos.Descripcion',
+                'reelevamientos.Archivos'
             );
         } else {
             $datosReelev = reelevamiento::select(
@@ -120,6 +120,56 @@ class ReelevamientoController extends Controller
                 $actions .= '</div>';
 
                 return $actions;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    } */
+        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
+            $datosReelev = reelevamiento::with('urbanizacion:id,nombre_urbanizacion')
+                ->select(
+                    'id',
+                    'Av_calles',
+                    'Urbanizacion_id',
+                    'Distritos_id',
+                    'Fecha',
+                    'Descripcion',
+                    'Archivos'
+                );
+        } else {
+            $datosReelev = reelevamiento::with('urbanizacion:id,nombre_urbanizacion')
+                ->select(
+                    'id',
+                    'Av_calles',
+                    'Urbanizacion_id',
+                    'Distritos_id',
+                    'Fecha',
+                    'Descripcion',
+                    'Archivos'
+                )
+                ->where('Distritos_id', session('Lugar_Designado'));
+        }
+
+        return DataTables::of($datosReelev)
+            ->filter(function ($query) use ($request) {
+                if ($request->has('search.value')) {
+                    $search = $request->input('search.value');
+                    $query->where(function ($query) use ($search) {
+                        $query->where('Av_calles', 'like', "%{$search}%")
+                            ->orWhereHas('urbanizacion', function ($q) use ($search) {
+                                $q->where('nombre_urbanizacion', 'like', "%{$search}%");
+                            })
+                            ->orWhere('Distritos_id', 'like', "%{$search}%")
+                            ->orWhere('Fecha', 'like', "%{$search}%")
+                            ->orWhere('Descripcion', 'like', "%{$search}%")
+                            ->orWhere('Archivos', 'like', "%{$search}%");
+                    });
+                }
+            })
+            ->addColumn('nombre_urbanizacion', function ($row) {
+                return $row->urbanizacion ? $row->urbanizacion->nombre_urbanizacion : '';
+            })
+            ->addColumn('action', function ($row) {
+                // ... (mantén el código existente para la columna de acciones)
             })
             ->rawColumns(['action'])
             ->make(true);

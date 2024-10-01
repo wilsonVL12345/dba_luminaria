@@ -1,3 +1,4 @@
+//  para las urbanizaciones de agregar nueva inspeccion
  $(document).ready(function () {
     const $distritoSelect = $('[data-id="txtdistirtoo"]');
     const $zonaUrbanizacionSelect = $('[data-id="txturbs"]');
@@ -29,9 +30,7 @@
     });
     });  
 
-
-
-
+// para la parte de urb de modificar inspeccion
 $(document).ready(function () {
     const $distritoSelect = $('[data-id="sldistInspEsp"]');
     const $zonaUrbanizacionSelect = $('[data-id="slurbInspEsp"]');

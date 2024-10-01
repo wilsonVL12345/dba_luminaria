@@ -9,6 +9,14 @@
 
 
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> --}}
+<script src="{{ asset('assets/js/dashboards/chatdetalles.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/chatinspecciones.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/chartproyectos.js') }}" defer></script>
+{{-- <script src="{{ asset('assets/js/dashboards/dashDis1.js') }}" defer></script> --}}
+
+<script src="{{ asset('assets/js/dashboards/detallesAnual.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/inspeccionAnual.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/proyectoAnual.js') }}" defer></script>
 
 
 <script>var hostUrl = "{{ asset('assets/') }}";</script>
@@ -28,14 +36,6 @@
 <script src="{{ asset('assets/js/ejecutarTrabajo/Empezar.js') }}"></script>
 <script src="{{ asset('assets/js/consultaAtencion/atencion.js') }}"></script>
 
-<script src="{{ asset('assets/js/dashboards/chatdetalles.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/chatinspecciones.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/chartproyectos.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/dashDis1.js') }}" defer></script>
-
-<script src="{{ asset('assets/js/dashboards/detallesAnual.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/inspeccionAnual.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/proyectoAnual.js') }}" defer></script>
 
 
 <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>

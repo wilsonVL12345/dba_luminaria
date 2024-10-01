@@ -190,7 +190,7 @@ let reeleLum = function () {
                             },
                             columns: [
                                 { data: "Av_calles", name: "Av_calles" },
-                                { data: "Urbanizacion_id", name: "Urbanizacion_id" },
+                                { data: "nombre_urbanizacion", name: "urbanizacion.nombre_urbanizacion" },
                                 { data: "Distritos_id", name: "Distritos_id" },
                                 { data: "Fecha", name: "Fecha" },
                                 { data: "Descripcion", name: "Descripcion" },

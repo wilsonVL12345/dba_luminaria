@@ -161,39 +161,8 @@ let inspeccionreal = function () {
                 }); 
  */
 
-                $(document).on('click', '.edit-buttoninsperealmod', function () {
-                    let equipamientoId = $(this).data('id');
-                    
-                    // Hacer la solicitud AJAX al servidor
-                    $.ajax({
-                        url: '/editDatos/inspeccion' + equipamientoId,
-                        method: 'GET',
-                        success: function (data) {
-                            // Rellenar los campos del formulario en el modal con los datos recibidos
-                            $('#textid').val(data.id);
-                            $('#txtsisco').val(data.Nro_Sisco);
-                            $('#daterealiModificar').val(data.Fecha_Inspeccion).trigger('change');
-                            $('#txttipo').val(data.Tipo_Inspeccion).trigger('change');
-                            $('#txtestado').val(data.Estado).trigger('change');
-                            
-                            // Guardar la urbanización que queremos seleccionar
-                            window.zonaUrbanizacionToSelect = data.ZonaUrbanizacion;
-                            
-                            // Primero actualizamos el distrito, lo que desencadenará la actualización de las urbanizaciones
-                            $('#sldistInspRea').val(data.Distritos_id).trigger('change');
-                            
-                            console.log('ID de equipamiento:', equipamientoId);
-                            // Mostrar el modal
-                            $('#modalModificarInspeccionRea').modal('show');
-                        },
-                        error: function (xhr, status, error) {
-                            console.error('Error al obtener los datos del equipamiento:', error);
-                        }
-                    });
-                });
-                
-                 "use strict";
-                
+               "use strict";
+
                 let inspeccionreal = function () {
                     // Shared variables
                     let tableDist;
@@ -214,31 +183,31 @@ let inspeccionreal = function () {
                             processing: true,
                             serverSide: true,
                             ajax: {
-                                url: "/listaDatos/inspeccion",
+                                url: "/listarDatos/inspeccion",
                                 type: "GET"
                             },
                             columns: [
-                               
                                 { data: "Nro_Sisco", name: "Nro_Sisco" },
                                 { data: "ZonaUrbanizacion", name: "ZonaUrbanizacion" },
                                 { data: "Distritos_id", name: "Distritos_id" },
+                               
                                 {
                                     data: "Foto_Carta",
                                     name: "Foto_Carta",
                                     render: function(data, type, row) {
                                         if (data && data.trim() !== '') {
-                                            return '<a href="#" class="btn btn-sm btn-icon btn-light view-image" data-bs-toggle="modal" data-bs-target="#modalMostrarImagenr" data-image-url="' + data + '"><i class="fas fa-image text-primary"></i></a>';
+                                            return '<a href="#" class="btn btn-sm btn-icon btn-light view-imageInspeRealizado" data-bs-toggle="modal" data-bs-target="#modalMostrarImagenreali" data-image-url="' + data + '"><i class="fas fa-image text-primary"></i></a>';
                                         } else {
                                             return '';
-
+                
                                         }
                                     }
                                 },
-
                                 { data: "Tipo_Inspeccion", name: "Tipo_Inspeccion" },
                                 { data: "Estado", name: "Estado" },
                                 { data: "Detalles", name: "Detalles" },
                                 { data: "Fecha_Inspeccion", name: "Fecha_Inspeccion" },
+
                                 {
                                     data: "action",
                                     name: "action",
@@ -246,7 +215,6 @@ let inspeccionreal = function () {
                                     searchable: false
                                 }
                             ],
-                            
                             pageLength: 10,
                             lengthMenu: [
                                 [10, 25, 50, 100, 500],
@@ -269,7 +237,7 @@ let inspeccionreal = function () {
                 
                     // Hook export buttons
                     let exportButtons = () => {
-                        const documentTitle = 'Lista de Inspecciones Realizadas';
+                        const documentTitle = 'Lista de Inspecciones en espera';
                         let buttons = new $.fn.dataTable.Buttons(tableDist, {
                             buttons: [
                                 {
@@ -386,15 +354,14 @@ let inspeccionreal = function () {
                 KTUtil.onDOMContentLoaded(function () {
                     inspeccionreal.init();
                 });
+                $(document).on('click', '.view-imageInspeRealizado', function() {
+                    // Obtener la URL de la imagen desde el atributo 'data-image-url'
+                    let imageUrl = $(this).data('image-url');
+                    
+                    // Establecer la URL en el atributo 'src' de la imagen en el modal
+                    $('#modalMostrarImagenreali img').attr('src', imageUrl);
+                    
+                    // Alternativamente, puedes establecer un texto alternativo si lo deseas
+                    $('#modalMostrarImagenreali img').attr('alt', 'Carta Enviada');
+                });
                 
-                // Escuchar el evento de clic en los botones de vista de imagen
-$(document).on('click', '.view-image', function() {
-    // Obtener la URL de la imagen desde el atributo 'data-image-url'
-    let imageUrl = $(this).data('image-url');
-    
-    // Establecer la URL en el atributo 'src' de la imagen en el modal
-    $('#modalMostrarImagenr img').attr('src', imageUrl);
-    
-    // Alternativamente, puedes establecer un texto alternativo si lo deseas
-    $('#modalMostrarImagenr img').attr('alt', 'Carta Enviada');
-});

@@ -101,7 +101,7 @@
 											</tr>
 											<!--end::Table row-->
 										</thead>
-										<tbody class="fw-semibold text-gray-600">
+										<tbody class="text-gray-600">
 											{{-- @foreach ($proyectoObras as $items)
 																<?php
 																$cant=0;

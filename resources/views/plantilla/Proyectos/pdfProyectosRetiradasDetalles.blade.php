@@ -7,7 +7,10 @@
     <title>FORMULARIO UAP-R-001</title>
     <style>
         @page {
-            margin: 20px;
+            margin-top: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        margin-left: 70px;
         }
         body {
             font-family: Arial, sans-serif;
