@@ -193,24 +193,20 @@ let tablaequipamientos = function () {
                     tablaequipamientos.init();
                 });  */
 
-                $(document).on('click', '.edit-buttonequimod', function () {
-                    let equipamientoId = $(this).data('id'); // Obtener el ID del accesorio
                 
-                    // Hacer la solicitud AJAX al servidor
+
+                $(document).on('click', '.edit-buttonequimod', function () {
+                    let equipamientoId = $(this).data('id');
                     $.ajax({
-                        url: '/editardatos/equipamiento'+equipamientoId, // Cambia esta URL por la ruta que devuelve los datos del accesorio
+                        url: '/editardatos/equipamiento' + equipamientoId,
                         method: 'GET',
                         success: function (data) {
-                            // Rellenar los campos del formulario en el modal con los datos recibidos
                             $('#txtnombre').val(data.Nombre_Item); 
                             $('#txtdescripcion').val(data.Descripcion); 
                             $('#txtestado').val(data.estado).trigger('change'); 
                             $('#txtdistrito').val(data.Distritos_id).trigger('change'); 
                             $('#txtid').val(data.id); 
-                            // Puedes agregar más campos aquí
-                            // $('#otro_campo').val(data.otro_campo);
                             console.log(equipamientoId);
-                            // Mostrar el modal
                             $('#modalModificar').modal('show');
                         },
                         error: function (xhr, status, error) {
@@ -225,6 +221,7 @@ let tablaequipamientos = function () {
                     // Shared variables
                     let tableDist;
                     let datatable;
+                    let valortraigo = null;
                 
                     // Private functions
                     let initDatatable = function () {
@@ -242,19 +239,14 @@ let tablaequipamientos = function () {
                             serverSide: true,
                             ajax: {
                                 url: "/listaDatos/equipamiento",
-                                type: "GET"
+                                type: "GET",
+                                data: function (d) {
+                                    d.columns[3].search.value = valortraigo; // Aquí puedes cambiar el valor dinámicamente
+                                }
+
                             },
                             columns: [
-                                // { data: "Nrodistrito", name: "Nrodistrito" },
-                                /* { 
-                                    data: null, // La columna del contador no tiene datos
-                                    name: "index", // Solo es un nombre de referencia
-                                    orderable: false, 
-                                    searchable: false,
-                                    render: function (data, type, row, meta) {
-                                        return meta.row + 1; // Devuelve el número de fila (inicia desde 1)
-                                    }
-                                }, */
+                              
                                 { data: "Nombre_Item", name: "Nombre_Item" },
                                 { data: "Descripcion", name: "Descripcion" },
                                 { data: "estado", name: "estado" },
@@ -285,6 +277,11 @@ let tablaequipamientos = function () {
                             handleActions();
                         });
                     }
+                    let reloadTable = function() {
+                        if (datatable) {
+                            datatable.ajax.reload(null, false);
+                        }
+                    }
                 
                     // Hook export buttons
                     let exportButtons = () => {
@@ -314,7 +311,7 @@ let tablaequipamientos = function () {
                                     customize: function(doc) {
                                        
                                        // Ajustar el ancho de las columnas (50% para "Distrito", 50% para "Urbanización")
-                                          doc.content[1].table.widths = ['20%', '60%', '10%', '10%']; // Reducimos el ancho de la primera columna
+                                          doc.content[1].table.widths = ['30%', '50%', '10%', '10%']; // Reducimos el ancho de la primera columna
             
                                            // Centrar el contenido de la primera columna
                                             doc.content[1].table.body.forEach(function(row) {
@@ -342,7 +339,7 @@ let tablaequipamientos = function () {
                                         };
                                 
                                         // Ajustar márgenes
-                                        doc.pageMargins = [40, 60, 40, 60]; // Izquierda, Arriba, Derecha, Abajo
+                                        doc.pageMargins = [60, 30, 30, 30]; // Izquierda, Arriba, Derecha, Abajo
                                     }
                                 }
             
@@ -376,7 +373,7 @@ let tablaequipamientos = function () {
                     }
                 
                     // Handle actions
-                    let handleActions = function() {
+                    /* let handleActions = function() {
                         $(document).on('click', '[data-kt-action]', function(e) {
                             e.preventDefault();
                             let action = $(this).data('kt-action');
@@ -390,16 +387,62 @@ let tablaequipamientos = function () {
                                 console.log('Eliminando registro con ID:', id);
                             }
                         });
+                    }; */
+                    let handleActions = function() {
+                        $(document).on('click', '[data-kt-action]', function(e) {
+                            e.preventDefault();
+                            let action = $(this).data('kt-action');
+                            let id = $(this).closest('tr').find('td:first').text();
+                            
+                            if (action === 'edit') {
+                                // Lógica para editar
+                                console.log('Editando registro con ID:', id);
+                            } else if (action === 'delete') {
+                                // Lógica para eliminar
+                                console.log('Eliminando registro con ID:', id);
+                                // Aquí deberías implementar la lógica de eliminación
+                                // Después de eliminar, recargar la tabla:
+                                reloadTable();
+                            }
+                        });
                     };
-                
+
+                            let handleDistrictClick = function() {
+                    $('[id^="d-"]').on('click', function(e) {
+                        e.preventDefault();
+                        let districtId = $(this).attr('id').split('-')[1];
+                        valortraigo = districtId;
+                        
+                        if (datatable) {
+                            datatable.ajax.reload();
+                        } else {
+                            sessionStorage.setItem('selectedDistrict', districtId);
+                            window.location.href = $(this).find('a').attr('href');
+                        }
+                    });
+                }
                     // Public methods
-                    return {
+                    /* return {
                         init: function () {
                             initDatatable();
                             exportButtons();
                             handleSearchDatatable();
                             handleActions();
                         }
+                    }; */
+                    return {
+                        init: function () {
+                            if ($('#equipamientotabla').length > 0) {
+                                valortraigo = sessionStorage.getItem('selectedDistrict') || localStorage.getItem('selectedDistrict');
+                                sessionStorage.removeItem('selectedDistrict');
+                                initDatatable();
+                                exportButtons();
+                                handleSearchDatatable();
+                                handleActions();
+                            }
+                            handleDistrictClick();
+                        },
+                        reloadTable: reloadTable
                     };
                 }();
                 
@@ -407,3 +450,17 @@ let tablaequipamientos = function () {
                     tablaequipamientos.init();
                 });
                 
+
+// Agregar evento para guardar cambios en el modal
+$('#btnGuardarCambios').on('click', function() {
+    // Aquí va tu lógica para guardar los cambios
+    // Después de guardar, cerrar el modal y recargar la tabla
+    $('#modalModificar').modal('hide');
+    tablaequipamientos.reloadTable();
+});
+
+// Guardar el distrito seleccionado en localStorage cuando se cambia
+$(document).on('click', '[id^="d-"]', function() {
+    let districtId = $(this).attr('id').split('-')[1];
+    localStorage.setItem('selectedDistrict', districtId);
+});           

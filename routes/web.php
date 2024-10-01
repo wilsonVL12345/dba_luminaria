@@ -150,7 +150,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/listaAccesorios/data', [lista_accesorioController::class, 'listaAccesoriosdata']);
 
     //ruta para ver detalles equipamientos
-    Route::get('/equipos/equipamiento/{dist}', [equipamientoController::class, 'index'])->name('equipos.equipamientos')->middleware('can:equipamiento.show');
+    Route::get('/equipos/equipamiento', [equipamientoController::class, 'index'])->name('equipos.equipamientos')->middleware('can:equipamiento.show');
     Route::get('/eliminar/equipamiento/{id}', [equipamientoController::class, 'destroy'])->name('eliminar.equipamiento');
     Route::get('/equipamiento/distrito', [equipamientoController::class, 'showEquipDistrito'])->name('equipamiento.distrito')->middleware('can:equipamiento.show');
     //rutar para la parte de equipos equipamientos

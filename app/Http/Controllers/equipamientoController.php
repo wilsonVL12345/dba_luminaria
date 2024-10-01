@@ -13,26 +13,19 @@ class equipamientoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($dist)
+    public function index()
     {
-        if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
-            $equipamiento = equipamiento::where('Distritos_id', $dist)->get();
-            $lista = Distrito::where('id', '<>', 15)->get();
+        // Verifica si el parámetro se está recibiendo
 
-            return view('plantilla.Equipos.Equipamiento', ['equipos' => $equipamiento], ['lista' => $lista]);
-        } else {
-            $equipamiento = equipamiento::where('Distritos_id', $dist)
-                ->get();
-
-            $lista = Distrito::where('id', '<>', 15)
-                ->get();
+        $lista = Distrito::where('id', '<>', 15)
+            ->get();
 
 
-            return view('plantilla.Equipos.Equipamiento', ['equipos' => $equipamiento], ['lista' => $lista]);
-        }
+        return view('plantilla.Equipos.Equipamiento', ['lista' => $lista]);
     }
     public function listaEquipamientoData(Request $request)
     {
+
 
 
         // Determinamos el query base dependiendo del cargo del usuario
@@ -108,7 +101,7 @@ class equipamientoController extends Controller
             'txtdistrito' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
             'txtestado' => [
                 'required',
-                'regex:/^[a-zA-Z]{1,20}$/', // Solo letras, hasta 20 caracteres
+                'regex:/^[a-zA-Z\s]{1,40}$/', // Acepta letras y espacios, hasta 40 caracteres
             ],
 
         ]);
