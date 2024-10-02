@@ -34,7 +34,7 @@ function agrega() {
                 option.textContent = accesorio.Nombre_Item;
                 select.appendChild(option);
             });
-            console.log(data);
+            
         })
         .catch(error => {
             console.error('Error al obtener los datos de los accesorios:', error);

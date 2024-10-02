@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM cargado, iniciando script del gráfico");
+    
 
     let element = document.getElementById('graficosinspecciones');
     
     if (!element) {
-        console.log("Elemento 'graficosproyectos' no encontrado");
+        
         return;
     }
 
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('/api/dashboardGenerales')
             .then(response => response.json())
             .then(data => {
-                console.log('Datos recibidos:', data);
+                
 
                 let inspeccionesFinalizados = [];
                 let inspeccionesEnEspera = [];

@@ -74,10 +74,10 @@
 										<label for="txtmodalidad" class=" fs-5 fw-bold mb-2">Modalidad</label>
 										<input type="text" class="form-control form-control-solid " id="txtmodalidad" name="txtmodalidad" value="{{$proyec->Modalidad}}" readonly>
 									</div>
-									<div class="col-md-3 mb-2">
+									{{-- <div class="col-md-3 mb-2">
 										<label for="txtmodalidad" class=" fs-5 fw-bold mb-2">Trabajo</label>
 										<input type="text" class="form-control form-control-solid " id="" name="" value="{{$proyec->Trabajo}}" readonly>
-									</div>
+									</div> --}}
 								@if ($proyec->Estado=='En espera')
 										
 									<div class="col-md-3 mb-3">
@@ -86,7 +86,7 @@
 									</div>
 									
 									<div class="col-md-3 mb-3">
-											<label class="required fs-6 fw-bold mb-2">Fecha de Adquisicion</label>
+											<label class="required  fs-5 fw-bold mb-2">Fecha de Adquisicion</label>
 											<!--begin::Input-->
 											<div class="position-relative d-flex align-items-center">
 												<!--begin::Icon-->
@@ -108,6 +108,10 @@
 									</div>
 										
 								@else
+								<div class="col-md-3 mb-2">
+									<label for="txtmodalidad" class=" fs-5 fw-bold mb-2">Trabajo</label>
+									<input type="text" class="form-control form-control-solid " id="" name="" value="{{$proyec->Trabajo}}" readonly>
+								</div>
 									<div class="col-md-3 mb-3">
 										<label for="txtestado" class=" fs-5 fw-bold mb-2">Ejecutado Por</label>
 										<input type="text" class="form-control form-control-solid " id="txtestado" name="txtestado" value="{{$proyec->Ejecutado_Por}}" readonly>

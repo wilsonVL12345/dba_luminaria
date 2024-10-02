@@ -128,10 +128,10 @@ let inspeccionreal = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                             }
                         });
                     };
@@ -140,7 +140,7 @@ let inspeccionreal = function () {
                     return {
                         init: function () {
                             tableDist = document.querySelector('#inspeccionrealizado');
-                            console.log('table:', tableDist); // Debugging statement
+                             // Debugging statement
 
                             if (!tableDist) {
                                 console.warn('Table not found!');
@@ -221,7 +221,7 @@ let inspeccionreal = function () {
                                 [10, 25, 50, 100, 500]
                             ],
                             searchDelay: 500,
-                            order: [[0, "asc"]],
+                            order: [[7, "desc"]],
                 
                             'drawCallback': function(settings) {
                         // Reinicializar los menús de KTMenu si es necesario
@@ -237,35 +237,35 @@ let inspeccionreal = function () {
                 
                     // Hook export buttons
                     let exportButtons = () => {
-                        const documentTitle = 'Lista de Inspecciones en espera';
+                        const documentTitle = 'Lista de Inspecciones Realizadas';
                         let buttons = new $.fn.dataTable.Buttons(tableDist, {
                             buttons: [
                                 {
                                     extend: 'copyHtml5',
                                     title: documentTitle,
                                     exportOptions: {
-                                        columns: ':not(:last-child)'
+                                        columns: [0, 1, 2, 4, 5 ,6 ,7]  // Excluye la columna 6 (índice 6)
                                     }
                                 },
                                 {
                                     extend: 'excelHtml5',
                                     title: documentTitle,
                                     exportOptions: {
-                                        columns: ':not(:last-child)'
+                                        columns: [0, 1, 2, 4, 5 ,6 ,7]  // Excluye la columna 6 (índice 6)
                                     }
                                 },
                                 {
                                     extend: 'pdfHtml5',
                                     title: documentTitle,
                                     exportOptions: {
-                                        columns: [0, 1, 2, 4, 5 ,6 ]  // Excluye la columna 6 (índice 6)
+                                        columns: [0, 1, 2, 4, 5 ,6 ,7]  // Excluye la columna 6 (índice 6)
             
                                     },
                                     customize: function(doc) {
                                          // Establecer la orientación de la página en horizontal
                                          doc.pageOrientation = 'landscape';
                                        // Ajustar el ancho de las columnas (50% para "Distrito", 50% para "Urbanización")
-                                          doc.content[1].table.widths = ['10%', '20%', '8%', '24%', '8%', '30%']; // Reducimos el ancho de la primera columna
+                                          doc.content[1].table.widths = ['10%', '20%', '8%', '20%', '8%', '25%', '9%']; // Reducimos el ancho de la primera columna
             
                                            // Centrar el contenido de la primera columna
                                             doc.content[1].table.body.forEach(function(row) {
@@ -332,10 +332,10 @@ let inspeccionreal = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                             }
                         });
                     };

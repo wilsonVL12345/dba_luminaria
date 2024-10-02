@@ -88,23 +88,29 @@ class equipamientoController extends Controller
 
     public function create(Request $request)
     {
-        // Validaciones
-        $request->validate([
-            'txtnombre' => [
-                'required',
-                'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
-            ],
-            'txtdescripcion' => [
-                'nullable',
-                'regex:/^[a-z0-9\s\.\,\(\)\/\-\+]*$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
-            ],
-            'txtdistrito' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
-            'txtestado' => [
-                'required',
-                'regex:/^[a-zA-Z\s]{1,40}$/', // Acepta letras y espacios, hasta 40 caracteres
-            ],
+        try {
+            //code...
+            // Validaciones
+            $request->validate([
+                'txtnombre' => [
+                    'required',
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+                ],
+                'txtdescripcion' => [
+                    'nullable',
+                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas, números, espacio y los símbolos . , ( ) / - + (opcional)
+                ],
+                'txtdistrito' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
+                'txtestado' => [
+                    'required',
+                    'regex:/^[a-zA-Z\s]{1,40}$/', // Acepta letras y espacios, hasta 40 caracteres
+                ],
 
-        ]);
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Error Datos Invalidos");
+        }
+
 
         try {
             $equipamiento = new equipamiento();

@@ -279,10 +279,10 @@ let tablaRealizarTrabajo = function () {
             
             if (action === 'edit') {
                 // Lógica para editar
-                console.log('Editando registro con ID:', id);
+                
             } else if (action === 'delete') {
                 // Lógica para eliminar
-                console.log('Eliminando registro con ID:', id);
+                
             }
         });
     };

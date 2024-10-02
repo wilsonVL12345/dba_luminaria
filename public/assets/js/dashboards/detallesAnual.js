@@ -128,12 +128,12 @@
         }
     
         function init() {
-            console.log("DOM cargado, iniciando script del gráfico de detalles anual");
+            
             let element = document.getElementById('detallesAnual');
-            console.log("Elemento encontrado:", element);
+            
             
             if (!element) {
-                console.log("Elemento 'detallesAnual' no encontrado. Abortando inicialización del gráfico.");
+                
                 return;
             }
     
@@ -141,7 +141,7 @@
             fetch('/api/dashboardGenerales3')
                 .then(response => response.json())
                 .then(data => {
-                    console.log("Datos recibidos de la API:", data);
+                    
                     createChart(element, data);
                 })
                 .catch(error => console.error('Error al obtener datos de la API:', error));

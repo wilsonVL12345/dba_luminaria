@@ -75,7 +75,7 @@ $(document).ready(function () {
                 dataType: 'json'
             }).then(function (data) {
                 urbanizacionesData = data;
-                console.log('Urbanizaciones cargadas:', data);
+                
             }).fail(function (error) {
                 console.error('Error al cargar urbanizaciones:', error);
             });

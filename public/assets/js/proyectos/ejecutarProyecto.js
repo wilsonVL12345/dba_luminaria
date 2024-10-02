@@ -1,6 +1,6 @@
 let countTrabajo = 1;
 function utilizaraccesorio() {
-    console.log('creamos la funcion');
+    
     const contenedor = document.createElement('div');
     contenedor.innerHTML = ` <div class="mb-3">
     <label for="txtitem" class="form-label">Nombre Item</label>
@@ -33,7 +33,7 @@ function utilizaraccesorio() {
                 option.textContent = accesorio.Nombre_Item;
                 select.appendChild(option);
             });
-            console.log(data);
+            
         })
         .catch(error => {
             console.error('Error al obtener los datos de los accesorios:', error);

@@ -131,10 +131,10 @@ let tablaesperas = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                             }
                         });
                     };
@@ -143,7 +143,7 @@ let tablaesperas = function () {
                     return {
                         init: function () {
                             tableDist = document.querySelector('#tablaespera');
-                            console.log('table:', tableDist); // Debugging statement
+                             // Debugging statement
 
                             if (!tableDist) {
                                 console.warn('Table not found!');
@@ -224,7 +224,7 @@ let tablaesperas = function () {
                                 [10, 25, 50, 100, 500]
                             ],
                             searchDelay: 500,
-                            order: [[0, "asc"]],
+                            order: [[4, "desc"]],
                 
                             'drawCallback': function(settings) {
                         // Reinicializar los menús de KTMenu si es necesario
@@ -328,10 +328,10 @@ let tablaesperas = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                             }
                         });
                     };

@@ -140,7 +140,7 @@ class lista_accesorioController extends Controller
             $request->validate([
                 'txtnombre' => [
                     'required',
-                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
+                    'regex:/^[A-Z0-9\/\*\-\.\,\(\)\s]+$/', // Letras minúsculas y mayúsculas, números, espacio y los símbolos . , ( ) / - +
                 ],
             ]);
         } catch (\Throwable $th) {

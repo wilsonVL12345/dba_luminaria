@@ -39,7 +39,7 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data, 'se encontró modifi aaa');
+                
     
                 function actualizarZonasUrbanizaciones() {
                     const distritoSeleccionado = $distritoSelect.val();

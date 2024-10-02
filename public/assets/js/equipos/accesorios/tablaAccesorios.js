@@ -120,10 +120,10 @@ let accesorioslist = function () {
             
             if (action === 'edit') {
                 // Lógica para editar
-                console.log('Editando registro con ID:', id);
+                
             } else if (action === 'delete') {
                 // Lógica para eliminar
-                console.log('Eliminando registro con ID:', id);
+                
             }
         });
     };
@@ -132,7 +132,7 @@ let accesorioslist = function () {
     return {
         init: function () {
             tableDist = document.querySelector('#tableacc');
-            console.log('table:', tableDist); // Debugging statement
+             // Debugging statement
 
             if (!tableDist) {
                 console.warn('Table not found!');
@@ -307,10 +307,10 @@ let accesorioslist = function () {
             
             if (action === 'edit') {
                 // Lógica para editar
-                console.log('Editando registro con ID:', id);
+                
             } else if (action === 'delete') {
                 // Lógica para eliminar
-                console.log('Eliminando registro con ID:', id);
+                
             }
         });
     };
@@ -344,7 +344,7 @@ $(document).on('click', '.edit-buttonaccmod', function () {
             $('#txtid').val(data.id); 
             // Puedes agregar más campos aquí
             // $('#otro_campo').val(data.otro_campo);
-            console.log(accesorioId);
+            
             // Mostrar el modal
             $('#modalModificarAccesorios').modal('show');
         },
@@ -506,10 +506,10 @@ let accesorioslist = function () {
             
             if (action === 'edit') {
                 // Lógica para editar
-                console.log('Editando registro con ID:', id);
+                
             } else if (action === 'delete') {
                 // Lógica para eliminar
-                console.log('Eliminando registro con ID:', id);
+                
             }
         });
     };

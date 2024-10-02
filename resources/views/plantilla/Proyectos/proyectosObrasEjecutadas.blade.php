@@ -90,10 +90,10 @@
 											<!--begin::Table row-->
 											<tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
 												
-												<th class="min-w-100px">Cuce</th>
+												<th class="min-w-150px">Cuce</th>
 												<th class="min-w-100px">Distrito</th>
-												<th class="min-w-100px">Urbanizacion </th>
-												<th class="min-w-100px">Fecha</th>
+												<th class="min-w-150px">Urbanizacion </th>
+												<th class="min-w-150px">Fecha</th>
 												<th class="min-w-100px">Tipo de Componentes</th>
 												<th class="min-w-100px">Ejecutado Por </th>
 												<th class="min-w-100px">Detalles</th>

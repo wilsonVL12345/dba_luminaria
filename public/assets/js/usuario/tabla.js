@@ -131,10 +131,10 @@ let tablausuartios = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                             }
                         });
                     };
@@ -143,7 +143,7 @@ let tablausuartios = function () {
                     return {
                         init: function () {
                             tableDist = document.querySelector('#tableDeUsuarios');
-                            console.log('table:', tableDist); // Debugging statement
+                             // Debugging statement
 
                             if (!tableDist) {
                                 console.warn('Table not found!');
@@ -187,7 +187,7 @@ let tablausuartios = function () {
                             
                            
                             
-                            // console.log('ID de equipamiento:', equipamientoId,data.Celular);
+                            // 
                             // Mostrar el modal
                             $('#modalModificarUsuario').modal('show');
                         },
@@ -354,10 +354,10 @@ let tablausuartios = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                             }
                         });
                     };

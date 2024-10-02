@@ -122,11 +122,11 @@
             
                                         <!-- Tercera fila -->
                                         <div class="form row">
-                                            <div class="col-md-3 mb-3">
+                                            <div class="col-md-4 mb-3">
                                                 <label for="file1" class=" fs-5 fw-bold mb-2">Subir Carta</label>
                                                 <input type="file" class="form-control form-control-solid" id="file1" name="file1"  accept="image/png, image/jpeg" >
                                             </div>
-                                            <div class="col-md-3 mb-3">
+                                            <div class="col-md-2 mb-1">
                                                     <label for="rnotificar" class="fs-5 fw-bold mb-2">Notificar?</label>
                                                     @if ($itemtrab->Observaciones)
                                                         <label class="form-check form-switch form-check-custom form-check-solid">

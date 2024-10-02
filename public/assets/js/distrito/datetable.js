@@ -142,10 +142,10 @@
                 
                 if (action === 'edit') {
                     // Lógica para editar
-                    console.log('Editando registro con ID:', id);
+                    
                 } else if (action === 'delete') {
                     // Lógica para eliminar
-                    console.log('Eliminando registro con ID:', id);
+                    
                 }
             });
         };
@@ -154,7 +154,7 @@
         return {
             init: function () {
                 tableDist = document.querySelector('#distritotables');
-                console.log('table:', tableDist); // Debugging statement
+                 // Debugging statement
 
                 if (!tableDist) {
                     console.warn('Table not found!');
@@ -351,10 +351,10 @@ let urbanizacions = function () {
             
             if (action === 'edit') {
                 // Lógica para editar
-                console.log('Editando registro con ID:', id);
+                
             } else if (action === 'delete') {
                 // Lógica para eliminar
-                console.log('Eliminando registro con ID:', id);
+                
             }
         });
     };

@@ -137,7 +137,6 @@ class inspeccionController extends Controller
             ]);
         }
         try {
-
             // Validaciones
             $request->validate([
                 'txtnrosisco' => [
@@ -159,6 +158,11 @@ class inspeccionController extends Controller
                 ],
                 'txtdistirtoo' => 'required|digits_between:1,2', // Requerido, máximo 2 dígitos
             ]);
+        } catch (\Throwable $th) {
+            return back()->with("incorrecto", "Datos invalidos o Nro Sisco Existente");
+        }
+        try {
+
 
 
             //aqui poner el id del que va a agregar el trabajo

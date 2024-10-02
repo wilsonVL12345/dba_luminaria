@@ -2,7 +2,7 @@
 // este es el js para que muestre los equipamientos de los diferentes distritos
 $(document).ready(function() {
     let lugarDesignado = $('#app').data('lugarDesignado');
-    console.log('está funcionando');
+    
     
     // Ocultar todos los divs inicialmente
     $('div[id^="d-"]').hide();
@@ -161,10 +161,10 @@ let tablaequipamientos = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                             }
                         });
                     };
@@ -173,7 +173,7 @@ let tablaequipamientos = function () {
                     return {
                         init: function () {
                             tableDist = document.querySelector('#equipamientotabla');
-                            console.log('table:', tableDist); // Debugging statement
+                             // Debugging statement
 
                             if (!tableDist) {
                                 console.warn('Table not found!');
@@ -206,7 +206,7 @@ let tablaequipamientos = function () {
                             $('#txtestado').val(data.estado).trigger('change'); 
                             $('#txtdistrito').val(data.Distritos_id).trigger('change'); 
                             $('#txtid').val(data.id); 
-                            console.log(equipamientoId);
+                            
                             $('#modalModificar').modal('show');
                         },
                         error: function (xhr, status, error) {
@@ -381,10 +381,10 @@ let tablaequipamientos = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                             }
                         });
                     }; */
@@ -396,10 +396,10 @@ let tablaequipamientos = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                                 // Aquí deberías implementar la lógica de eliminación
                                 // Después de eliminar, recargar la tabla:
                                 reloadTable();

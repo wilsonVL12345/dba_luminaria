@@ -279,7 +279,7 @@
 								<!--begin::Modal -imagen carta-->
 								<div class="modal fade" id="modalMostrarImagen" tabindex="-1" aria-hidden="true">
 									<!--begin::Modal dialog-->
-									<div class="modal-dialog mw-700px">
+									<div class="modal-dialog modal-xl">
 										<!--begin::Modal content-->
 										<div class="modal-content">
 											<!--begin::Modal header-->

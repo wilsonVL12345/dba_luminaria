@@ -32,7 +32,7 @@ modalButtons.forEach(button => {
 
         // Realizar solicitudes a la API para obtener los datos relacionados con el proyecto
         obtenerLuminariasReutilizadas(proyectoId);
-        console.log(proyectoId);
+        
     });
 });
 
@@ -42,7 +42,7 @@ function obtenerLuminariasReutilizadas(proyectoId) {
     fetch('/datosreutilizados/proyecto/${proyectoId}')
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            
             // Crear la tabla con los datos de las luminarias reutilizadas
             crearTablaLuminariasReutilizadas(data, ['Nombre_Item', 'Cantidad', 'Disponibles', 'Observaciones'], 'luminariasReutilizadasContainer');
         })
@@ -65,7 +65,7 @@ function obtenerLuminariasReutilizadas(proyectoId) {
 /* fetch('/api/datosreutilizados/proyecto')
     .then(Response => Response.json())
     .then(data => {
-        console.log(data);
+        
         // Función para crear una tabla
         function crearTabla(datos, encabezados, contenedorId) {
             let table = document.createElement('table');

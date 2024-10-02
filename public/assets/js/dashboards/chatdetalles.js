@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM cargado, iniciando script del gráfico");
+    
 
     let element = document.getElementById('graficosdetalles');
     
@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch('/api/finalizado/detalles').then(response => response.json()),
             fetch('/api/espera/detalles').then(response => response.json())
         ]).then(([finalizados, enEspera]) => {
-            console.log('Datos finalizados:', finalizados);
-            console.log('Datos en espera:', enEspera);
+            
+            
 
             let dataFinalizados = [];
             let dataEnEspera = [];

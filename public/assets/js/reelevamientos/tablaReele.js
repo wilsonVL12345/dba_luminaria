@@ -130,10 +130,10 @@ let reeleLum = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                             }
                         });
                     };
@@ -142,7 +142,7 @@ let reeleLum = function () {
                     return {
                         init: function () {
                             tableDist = document.querySelector('#reelevamientoLuminaria');
-                            console.log('table:', tableDist); // Debugging statement
+                             // Debugging statement
 
                             if (!tableDist) {
                                 console.warn('Table not found!');
@@ -226,7 +226,7 @@ let reeleLum = function () {
                                 [10, 25, 50, 100, 500]
                             ],
                             searchDelay: 500,
-                            order: [[0, "asc"]],
+                            order: [[3, "desc"]],
                 
                             'drawCallback': function(settings) {
                         // Reinicializar los menús de KTMenu si es necesario
@@ -347,10 +347,10 @@ let reeleLum = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                             }
                         });
                     }; */
@@ -362,10 +362,10 @@ let reeleLum = function () {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                                 // Aquí deberías implementar la lógica de eliminación
                                 // Después de eliminar, recargar la tabla:
                                 reloadTable();
@@ -598,10 +598,10 @@ $(document).on('click', '[id^="d-"]', function() {
                             
                             if (action === 'edit') {
                                 // Lógica para editar
-                                console.log('Editando registro con ID:', id);
+                                
                             } else if (action === 'delete') {
                                 // Lógica para eliminar
-                                console.log('Eliminando registro con ID:', id);
+                                
                             }
                         });
                     };

@@ -1,8 +1,8 @@
 /* document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM cargado, iniciando script del gráfico del nuevo");
+    
 
     let element = document.getElementById('proyectoAnual');
-    console.log("Elemento encontrado:", element);
+    
 
     if (!element) {
         return;
@@ -272,12 +272,12 @@ function createChart(element, data) {
         }
     
         function init() {
-            console.log("DOM cargado, iniciando script del gráfico de proyecto anual");
+            
             let element = document.getElementById('proyectoAnual');
-            console.log("Elemento encontrado:", element);
+            
             
             if (!element) {
-                console.log("Elemento 'proyectoAnual' no encontrado. Abortando inicialización del gráfico.");
+                
                 return;
             }
     
@@ -285,7 +285,7 @@ function createChart(element, data) {
             fetch('/api/dashboardGenerales2')
                 .then(response => response.json())
                 .then(data => {
-                    console.log("Datos recibidos de la API:", data);
+                    
                     createChart(element, data);
                 })
                 .catch(error => console.error('Error al obtener datos de la API:', error));

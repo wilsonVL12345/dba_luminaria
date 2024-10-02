@@ -43,6 +43,16 @@
 					</div> --}}
 					@include('layout.notificacioncrud')
 					<div class="card card-p-0 card-flush" >
+						<div style="display: flex; justify-content: flex-end;">
+							<a href="/equipamiento/distrito"  >
+								<span class="svg-icon svg-icon-5 m-0">
+									<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 256 256" {...$$props}>
+										<path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H69l51.52 51.51a12 12 0 0 1-17 17l-72-72a12 12 0 0 1 0-17l72-72a12 12 0 0 1 17 17L69 116h147a12 12 0 0 1 12 12" />
+									</svg>
+								</span>
+							</a>
+							
+						</div>
 						<div class="card-header align-items-center py-5 gap-2 gap-md-5">
 							<div class="card-title">
 								<!--begin::Search-->
