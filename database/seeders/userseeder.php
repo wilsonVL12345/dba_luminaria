@@ -49,7 +49,7 @@ class userseeder extends Seeder
       $user->Estado = "superUsuario";
       $user->email = "admin@gob.bo";
       // $user->Password = Hash::make('adminadmin');
-      $user->Password = Hash::make('franchesco');
+      $user->Password = Hash::make('fr4nch3sco');
       $user->assignRole('Admin');
       $user->save();
    }

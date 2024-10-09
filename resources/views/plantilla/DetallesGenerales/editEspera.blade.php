@@ -164,7 +164,7 @@
                                                     <div class="modal-footer">
                                                         <a href="/detalles/espera" type="button" i class="btn btn-danger me-3">Cerrar</a>
 
-                                                        <button type="submit" class="btn btn-primary">Modificar</button>
+                                                        <button type="submit" class="btn btn-primary registers-link">Modificar</button>
 
                                                     </div>
                                                 </form>

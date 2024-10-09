@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://keenthemes.com/metronic" />
     <meta property="og:site_name" content="Keenthemes | Metronic" />
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="{{asset('assets/media/logos/gamea.svg')}}" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -73,10 +73,21 @@
             </div>
             <!--end::Aside-->
             <!--begin::Body-->
+            
             <div class="d-flex flex-column flex-lg-row-fluid py-10">
                 <!--begin::Content-->
                 <div class="d-flex flex-center flex-column flex-column-fluid">
                     <!--begin::Wrapper-->
+                    <div style="display: flex; justify-content: flex-end;">
+                        <a href="/usuario/perfil/{{session('id')}}"  >
+                            <span class="svg-icon svg-icon-5 m-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 256 256" {...$$props}>
+                                    <path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H69l51.52 51.51a12 12 0 0 1-17 17l-72-72a12 12 0 0 1 0-17l72-72a12 12 0 0 1 17 17L69 116h147a12 12 0 0 1 12 12" />
+                                </svg>
+                            </span>
+                        </a>
+                        
+                    </div>
                     @include('layout.notificacioncrud')
                     <div class="w-lg-550px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->

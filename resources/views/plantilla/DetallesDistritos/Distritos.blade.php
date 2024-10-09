@@ -343,7 +343,7 @@
 																			<button type="button" i class="btn btn-light me-3" data-bs-dismiss="modal" >Cerrar</button>
 																			<!--end::Button-->
 																			<!--begin::Button-->
-																			<button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary">
+																			<button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary registers-link">
 																				<span class="indicator-label">Registrar</span>
 																				<span class="indicator-progress">Please wait...
 																				<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

@@ -273,36 +273,35 @@ let tablausuartios = function () {
                                     extend: 'copyHtml5',
                                     title: documentTitle,
                                     exportOptions: {
-                                        columns: ':not(:last-child)'
+                                        columns: [ 1, 2, 3, 4,5, 6,7]  // Excluye la columna 6 (índice 6)
                                     }
                                 },
                                 {
                                     extend: 'excelHtml5',
                                     title: documentTitle,
                                     exportOptions: {
-                                        columns: ':not(:last-child)'
+                                        columns: [ 1, 2, 3, 4,5, 6,7]  // Excluye la columna 6 (índice 6)
                                     }
                                 },
                                 {
                                     extend: 'pdfHtml5',
                                     title: documentTitle,
                                     exportOptions: {
-                                        columns: [ 1, 2, 3, 4,5, 6,7,8]  // Excluye la columna 6 (índice 6)
+                                        columns: [ 1, 2, 3, 4,5, 6,7]  // Excluye la columna 6 (índice 6)
                                     },
                                     customize: function(doc) {
                                         // Establecer la orientación de la página en horizontal
                                         doc.pageOrientation = 'landscape';
                                 
                                         // Ajustar el ancho de las columnas; nota que ahora sólo tenemos 7 columnas en lugar de 8
-                                        doc.content[1].table.widths = ['20%', '10%', '10%', '10%', '15%', '10%', '15%', '10%'];
+                                        doc.content[1].table.widths = ['20%', '15%', '15%', '10%', '15%', '10%', '15%'];
                                 
                                         // Centrar el contenido de las columnas especificadas
                                         doc.content[1].table.body.forEach(function(row) {
                                             row[3].alignment = 'center'; // Columna 4
                                             row[4].alignment = 'center'; // Columna 5
                                             row[5].alignment = 'center'; // Columna 5
-                                            row[6].alignment = 'left'; // Columna 6 
-                                            row[7].alignment = 'center'; // Columna 7 
+                                            row[6].alignment = 'center'; // Columna 6 
                                         });
                                 
                                         // Alinear el título al centro

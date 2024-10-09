@@ -210,7 +210,7 @@
                         <div class="modal-footer justify-content-end">
                                 <a href="/detalles/realizados" type="button" i class="btn btn-danger me-3">Cerrar</a>
                             <button type="submit" id="modadRegistraUsuarios_submit" class="btn btn-primary">
-                                <span class="indicator-label">Modificar</span>
+                                <span class="indicator-label registers-link" >Modificar</span>
                                 <span class="indicator-progress">Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>

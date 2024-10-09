@@ -293,7 +293,7 @@
 
                             <!--end::Button-->
                             <!--begin::Button-->
-                            <button type="submit" id="modadRegistraUsuarios_submit" class="btn btn-primary">
+                            <button type="submit" id="modadRegistraUsuarios_submit" class="btn btn-primary registers-link">
                                 <span class="indicator-label">Registrar</span>
                                 <span class="indicator-progress">Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

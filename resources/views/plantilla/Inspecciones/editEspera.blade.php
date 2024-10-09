@@ -136,7 +136,7 @@
                                                     <!--begin::Actions-->
                                                     <div class="text-center">
                                                         <a href="/inspecciones/espera" type="button" i class="btn btn-danger me-3">Cerrar</a>
-                                                        <button type="submit" class="btn btn-primary">Modificar</button>
+                                                        <button type="submit" class="btn btn-primary registers-link">Modificar</button>
                                                     </div>
                                                     <!--end::Actions-->
                                                 </form>

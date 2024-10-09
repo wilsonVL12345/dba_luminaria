@@ -154,7 +154,7 @@
                                                         <a href="/inspecciones/espera" type="button" i class="btn btn-danger me-3">Cerrar</a>
 
 
-                                                        <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                                                        <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary registers-link">
                                                             <span class="indicator-label">Finalizar</span>
                                                             <span class="indicator-progress">Please wait...
                                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

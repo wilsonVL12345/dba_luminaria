@@ -202,6 +202,7 @@ class inspeccionController extends Controller
     /**
      * Display the specified resource.
      */
+    // empezar inspeccion guardar los datos 
     public function ready(Request $request, $id)
     {
         try {

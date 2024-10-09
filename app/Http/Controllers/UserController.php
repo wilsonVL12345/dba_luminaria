@@ -69,27 +69,52 @@ class UserController extends Controller
                 </a>
                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                 data-kt-menu="true">';
+                if (session('cargo') == 'Admin') {
+                    # code...
+                    if (auth()->user()->can('user.edit')) {
+                        $actions .= '<div class="menu-item px-3">
+                            <a href="#"  data-id="' . $row->id . '"
+                                class="menu-link px-3 edit-buttonUserEdit" data-bs-toggle="modal" >Editar</a>
+                        </div>';
+                    }
 
-                if (auth()->user()->can('user.edit')) {
-                    $actions .= '<div class="menu-item px-3">
-                        <a href="#"  data-id="' . $row->id . '"
-                            class="menu-link px-3 edit-buttonUserEdit" data-bs-toggle="modal" >Editar</a>
-                    </div>';
+                    if (auth()->user()->can('user.restablecer')) {
+                        $actions .= '<div class="menu-item px-3">
+                            <a href="' . url('/restablecer/usuario' . $row->id) . '" 
+                                class="menu-link px-3 reset-password-link " target="_blank">Restablecer</a>
+                        </div>';
+                    }
+
+                    if (auth()->user()->can('user.delete')) {
+                        $actions .= '<div class="menu-item px-3">
+                            <a href="' . url('/eliminar/usuario' . $row->id) . '" class="menu-link px-3 delete-link" 
+                                data-kt-customer-table-filter="delete_row">Eliminar</a>
+                        </div>';
+                    }
+                } elseif (session('cargo') != $row->Cargo) {
+                    if (auth()->user()->can('user.edit')) {
+                        $actions .= '<div class="menu-item px-3">
+                            <a href="#"  data-id="' . $row->id . '"
+                                class="menu-link px-3 edit-buttonUserEdit" data-bs-toggle="modal" >Editar</a>
+                        </div>';
+                    }
+
+                    if (auth()->user()->can('user.restablecer')) {
+                        $actions .= '<div class="menu-item px-3">
+                            <a href="' . url('/restablecer/usuario' . $row->id) . '" 
+                                class="menu-link px-3 reset-password-link " target="_blank">Restablecer</a>
+                        </div>';
+                    }
+
+                    if (auth()->user()->can('user.delete')) {
+                        $actions .= '<div class="menu-item px-3">
+                            <a href="' . url('/eliminar/usuario' . $row->id) . '" class="menu-link px-3 delete-link" 
+                                data-kt-customer-table-filter="delete_row">Eliminar</a>
+                        </div>';
+                    }
                 }
 
-                if (auth()->user()->can('user.restablecer')) {
-                    $actions .= '<div class="menu-item px-3">
-                        <a href="' . url('/restablecer/usuario' . $row->id) . '" 
-                            class="menu-link px-3 reset-password-link " target="_blank">Restablecer</a>
-                    </div>';
-                }
 
-                if (auth()->user()->can('user.delete')) {
-                    $actions .= '<div class="menu-item px-3">
-                        <a href="' . url('/eliminar/usuario' . $row->id) . '" class="menu-link px-3 delete-link" 
-                            data-kt-customer-table-filter="delete_row">Eliminar</a>
-                    </div>';
-                }
 
                 $actions .= '</div>';
 

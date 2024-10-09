@@ -146,7 +146,7 @@
 								<!--begin::Button-->
 								<!--end::Button-->
 								<!--begin::Button-->
-								<button type="submit" id="agendar-trabajo" class="btn btn-primary">
+								<button type="submit" id="agendar-trabajo" class="btn btn-primary registers-link">
 									<span class="indicator-label">Finalizar Trabajo</span>
 									<span class="indicator-progress">Please wait...
 									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

@@ -99,7 +99,7 @@
 
 												<!--end::Button-->
 												<!--begin::Button-->
-												<button type="submit" class="btn btn-primary">Registrar</button>
+												<button type="submit" class="btn btn-primary registers-link">Registrar</button>
 
 												<!--end::Button-->
 											</div>
@@ -383,7 +383,7 @@
 		
 														<!--end::Button-->
 														<!--begin::Button-->
-														<button type="submit" id="kt_modal_create_api_key_submit" class="btn btn-primary">
+														<button type="submit" id="kt_modal_create_api_key_submit" class="btn btn-primary registers-link">
 															<span class="indicator-label">Modificar</span>
 															<span class="indicator-progress">Please wait...
 															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
