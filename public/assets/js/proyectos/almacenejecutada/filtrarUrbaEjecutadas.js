@@ -6,7 +6,6 @@ $(document).ready(function () {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            console.log(data)
             function actualizarZonasUrbanizaciones() {
                 const distritoSeleccionado = $distritoSelect.val();
                 // $zonaUrbanizacionSelect.empty().append('<option value="" disabled selected>Seleccione...</option>');

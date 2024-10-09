@@ -354,7 +354,7 @@
                         </span>
                         <!--end::Svg Icon-->
                     </span>
-                    <span class="menu-title">Detalles Distritos</span>
+                    <span class="menu-title">Urbanizaciones</span>
                 </a>
             </div>
             @endcan

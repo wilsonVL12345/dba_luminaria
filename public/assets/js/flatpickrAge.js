@@ -31,7 +31,6 @@ let anio = fechaActual.getFullYear();
 let fechaFormateada = `${anio}-${mes}-${dia}`;
 
 // Mostrar la fecha resultante
-console.log(fechaFormateada);
 
 let variableFechasString='';
 
