@@ -237,34 +237,65 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
         }
-
-        $rolee = Role::where('name', $request->txtcargo)->first();
-
         try {
-            $userd = User::find($request->txtid);
-            $userd->name = $request->txtnombre;
-            $userd->Paterno = $request->txtpaterno;
-            $userd->Materno = $request->txtmaterno;
-            $userd->Ci = $request->txtci;
-            $userd->Expedido = $request->txtexpedido;
-            $userd->Celular = $request->txtcelular;
-            $userd->Genero = $request->txtgenero;
-            $userd->Cargo = $request->txtcargo;
-            $userd->Lugar_Designado = $request->txtlugarDesignado;
-            // Eliminar todos los roles actuales del usuario
-            $userd->syncRoles([]);
+            if (
+                ($request->txtcargo == 'Administrador' && $request->txtlugarDesignado == 'Alcaldia') ||
+                ($request->txtcargo == 'Veedor' && $request->txtlugarDesignado == 'Alcaldia') ||
+                ($request->txtcargo == 'Tecnico' && $request->txtlugarDesignado != 'Alcaldia') ||
+                ($request->txtcargo == 'Coordinador' && $request->txtlugarDesignado != 'Alcaldia')
+            ) {
+                $CantLugar = User::where('Lugar_Designado', $request->txtlugarDesignado)->count();
+                if ($CantLugar < 3) {
+                    $rolee = Role::where('name', $request->txtcargo)->first();
 
-            // Asignar el nuevo rol
-            $userd->assignRole($rolee->name);
-            $userd->save();
-            $sql = true;
+                    try {
+                        if ($request->txtgenero == 'M') {
+                            $perf = '/storage/perfiles/perfilmas.jpg';
+                        } else {
+                            $perf = '/storage/perfiles/perfilfem.jpg';
+                        }
+
+
+                        $userd = User::find($request->txtid);
+                        $userd->name = $request->txtnombre;
+                        $userd->Paterno = $request->txtpaterno;
+                        $userd->Materno = $request->txtmaterno;
+                        $userd->Ci = $request->txtci;
+                        $userd->Expedido = $request->txtexpedido;
+                        $userd->Celular = $request->txtcelular;
+                        $userd->Genero = $request->txtgenero;
+                        $userd->Cargo = $request->txtcargo;
+                        $userd->perfil = $perf;
+                        $userd->Lugar_Designado = $request->txtlugarDesignado;
+                        // Eliminar todos los roles actuales del usuario
+                        $userd->syncRoles([]);
+
+                        // Asignar el nuevo rol
+                        $userd->assignRole($rolee->name);
+                        $userd->save();
+                        $sql = true;
+                    } catch (\Throwable $th) {
+                        $sql = false;
+                    }
+                    if ($sql == true) {
+                        return back()->with("correcto", "Usuario Modificado Correctamente");
+                    } else {
+                        return back()->with("incorrecto", "Error al Modificar");
+                    }
+                } else {
+                    if ($request->txtlugarDesignado == 'Alcaldia') {
+                        return back()->with("incorrecto", "Alcanzaste el Limite de Usuarios para El lugar de Alcaldia");
+                        # code...
+                    }
+
+                    return back()->with("incorrecto", "Alcanzaste el Limite de Usuarios para El Distrito {$request->txtlugarDesignado}");
+                }
+            } else {
+                throw new \Exception("Error en el Cargo o en Lugar Designado");
+            }
         } catch (\Throwable $th) {
-            $sql = false;
-        }
-        if ($sql == true) {
-            return back()->with("correcto", "Usuario Modificado Correctamente");
-        } else {
-            return back()->with("incorrecto", "Error al Modificar");
+            // Se captura la excepción lanzada
+            return back()->with("incorrecto", $th->getMessage());
         }
     }
 
