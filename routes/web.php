@@ -168,8 +168,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/eliminar/retirada{id}', [luminaria_retiradasController::class, 'destroy'])->name('eliminar.retirada')->middleware('can:proyecto.Retirado.delete');
     Route::get('/proyectos/luminariasRetiradas{id}', [luminaria_retiradasController::class, 'editLuminariasRetiradasShow'])->name('proyectoss.luminariasRetiradas')->middleware('can:proyecto.Retirado.edit');
     Route::get('/retirado/pdf{id}', [luminaria_retiradasController::class, 'generarPDF'])->name('retirado.pdf')->middleware('can:proyecto.Retirado.edit');
-    Route::get('/listaLumRetiradas', [luminaria_retiradasController::class, 'getProyLumRetiradaData'])->name('listaLumRetiradas')->middleware('can::proyecto.Retirado.show');
-
+    Route::get('/listaLumRetiradas', [luminaria_retiradasController::class, 'getProyLumRetiradaData'])->name('listaLumRetiradas');
+    // ->middleware('can::proyecto.Retirado.show')
     //rutas proyectos  ---------------------------------------------------------------------------------------------------------
     // para lo que es almacen
     Route::get('/proyectos/almacen', [proyectoController::class, 'index'])->name('proyectos.almacen')->middleware('can:proyecto.show');

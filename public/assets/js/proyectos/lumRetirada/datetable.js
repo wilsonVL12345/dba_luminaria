@@ -167,7 +167,8 @@ let tablaLumRetirada = function () {
  */
                 "use strict";
 
-                let tablaLumRetirada = function () {
+
+                let tablaLumRetiradas = function () {
                     // Shared variables
                     let tableDist;
                     let datatable;
@@ -209,6 +210,7 @@ let tablaLumRetirada = function () {
                                     searchable: false
                                 }
                             ],
+                            
                             pageLength: 10,
                             lengthMenu: [
                                 [10, 25, 50, 100, 500],
@@ -348,5 +350,5 @@ let tablaLumRetirada = function () {
                 }();
                 
                 KTUtil.onDOMContentLoaded(function () {
-                    tablaLumRetirada.init();
+                    tablaLumRetiradas.init();
                 });

@@ -14,7 +14,7 @@ class datos_luminaria_retirada extends Model
     use SoftDeletes;
     protected $table = 'datos_luminaria_retiradas';
     protected $fillable = [
-
+        'id',
         'Nro_sisco',
         'zona',
         'Fecha',

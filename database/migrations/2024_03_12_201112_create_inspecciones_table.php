@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('inspecciones', function (Blueprint $table) {
             $table->id();
-            $table->string('Nro_Sisco', 20)->unique();
+            $table->string('Nro_Sisco', 12)->unique();
             $table->string('ZonaUrbanizacion');
             $table->string('Tipo_Inspeccion', 50)->nullable();
             $table->string('Estado', 20)->nullable();
-            $table->date('Fecha_Inspeccion')->nullable();
+            $table->date('Fecha_Inspeccion', 14)->nullable();
             $table->text('Foto_Carta')->nullable();
             $table->string('Inspeccion', 50)->nullable();
             $table->string('Detalles', 200)->nullable();

@@ -28,7 +28,7 @@
 	{{-- todo el lugar que te interesa --}}
 	<div class="post d-flex flex-column-fluid" id="kt_post">
 		<!--begin::Container-->
-		<div id="kt_content_container" class="container-xxl">
+		<div id="kt_content_container" class="container-xl" style="max-width: 1000px;">
 			<!--begin::Navbar-->
 			<div class="card mb-5 mb-xl-10">
 				<div class="card-body pt-9 pb-0">

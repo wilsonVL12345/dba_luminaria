@@ -38,30 +38,20 @@ class luminaria_retiradasController extends Controller
                     'datosluminaria' => $datosluminaria
                 ]);
             } else {
+                $datosluminaria = datos_luminaria_retirada::where('Distritos_id', session('Lugar_Designado'))->get();
+
+                $listadistrito = Distrito::where('id', session('Lugar_Designado'))->get();
+
+                /*  $listazona = distrito::select('Zona_Urbanizacion')->distinct()->get(); */
+                $listazona = urbanizacion::all();
+                $listaaccesorios = lista_accesorio::all();
+                return view('plantilla.Proyectos.proyectosLumRetiradas', [
+                    'listadistritos' => $listadistrito,
+                    'accesorios' => $listaaccesorios,
+                    'datosluminaria' => $datosluminaria
+                ]);
             }
-            $datosluminaria = datos_luminaria_retirada::where('Distritos_id', session('Lugar_Designado'))->get();
-
-            $listadistrito = Distrito::where('id', '<>', 15)
-                ->where('id', session('Lugar_Designado'))->get();
-
-            /*  $listazona = distrito::select('Zona_Urbanizacion')->distinct()->get(); */
-            $listazona = urbanizacion::all();
-            $listaaccesorios = lista_accesorio::all();
-            return view('plantilla.Proyectos.proyectosLumRetiradas', [
-                'listazona' => $listazona,
-                'listadistritos' => $listadistrito,
-                'accesorios' => $listaaccesorios,
-                'datosluminaria' => $datosluminaria
-            ]);
-
-            $sql = true;
         } catch (\Throwable $th) {
-            $sql = false;
-        }
-        if ($sql == true) {
-            return back()->with("correcto", "Luminarias Retiradas  Modificado Correctamente");
-        } else {
-            return back()->with("incorrecto", "Error al Modificar Luminarias Retiradas");
         }
     }
     public function getProyLumRetiradaData(Request $request)
@@ -69,19 +59,19 @@ class luminaria_retiradasController extends Controller
         // Determinamos el query base dependiendo del cargo del usuario
         if (session('cargo') == 'Administrador' || session('cargo') == 'Admin' || session('cargo') == 'Veedor') {
             $proyAlmacen = datos_luminaria_retirada::select(
-                'id',
                 'Nro_sisco',
                 'zona',
                 'Distritos_id',
-                'Fecha'
+                'Fecha',
+                'id'
             );
         } else {
             $proyAlmacen = datos_luminaria_retirada::select(
-                'id',
                 'Nro_sisco',
                 'zona',
                 'Distritos_id',
-                'Fecha'
+                'Fecha',
+                'id'
             )
                 ->where('Distritos_id', session('Lugar_Designado'));
         }
@@ -94,8 +84,8 @@ class luminaria_retiradasController extends Controller
                     $search = $request->input('search.value');
                     $query->where(function ($query) use ($search) {
                         $query->where('Nro_sisco', 'like', "%{$search}%")
-                            ->orWhere('Distritos_id', 'like', "%{$search}%")
                             ->orWhere('Zona', 'like', "%{$search}%")
+                            ->orWhere('Distritos_id', 'like', "%{$search}%")
                             ->orWhere('Fecha', 'like', "%{$search}%");
                     });
                 }

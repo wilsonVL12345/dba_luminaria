@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('equipamientos', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre_Item');
+            $table->string('Nombre_Item', 150);
             $table->text('Descripcion');
-            $table->string('estado');
+            $table->string('estado', 50);
 
             $table->unsignedBigInteger(column: 'Distritos_id');
             $table->foreign(columns: 'Distritos_id')->references(columns: 'id')

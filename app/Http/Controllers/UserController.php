@@ -124,11 +124,6 @@ class UserController extends Controller
             ->make(true);
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(Request $request)
     {
         try {
@@ -148,58 +143,75 @@ class UserController extends Controller
             return back()->with("incorrecto", "Error Datos invalidos, ingrese datos validos ");
         }
 
-        // dd($request->all());
-        $rol = Role::where('name', $request->txtcargo)->first();
-
-
-        if ($request->txtgenero == 'M') {
-            $perf = '/storage/perfiles/perfilmas.jpg';
-        } else {
-            $perf = '/storage/perfiles/perfilfem.jpg';
-        }
-        $lash = '@gob.bo';
-        $estado = 'Activo';
         try {
-            $user = new User();
-            $primera = strtolower(substr($request->txtnombre, 0, 1));
-            $apellido = strtolower($request->txtpaterno);
-            $usuario = $primera . $apellido;
-            $contrase =  $request->txtci;
-            // $apellido .
 
-            $user->name = $request->txtnombre;
-            $user->Paterno = $request->txtpaterno;
-            $user->Materno = $request->txtmaterno;
-            $user->Ci = $request->txtci;
-            $user->Expedido = $request->txtexpedido;
-            $user->Celular = $request->txtcelular;
-            $user->Genero = $request->txtgenero;
-            $user->Cargo = $request->txtcargo;
-            $user->Lugar_Designado = $request->txtlugarDesignado;
-            $user->Estado = $estado;
-            $user->perfil = $perf;
-            $user->email = $usuario . $lash;
-            $user->Password =  Hash::make($contrase);
-            $user->assignRole($rol->name);
-            $user->save();
+            if (
+                ($request->txtcargo == 'Administrador' && $request->txtlugarDesignado == 'Alcaldia') ||
+                ($request->txtcargo == 'Veedor' && $request->txtlugarDesignado == 'Alcaldia') ||
+                ($request->txtcargo == 'Tecnico' && $request->txtlugarDesignado != 'Alcaldia') ||
+                ($request->txtcargo == 'Coordinador' && $request->txtlugarDesignado != 'Alcaldia')
+            ) {
+                $CantLugar = User::where('Lugar_Designado', $request->txtlugarDesignado)->count();
+                if ($CantLugar < 3) {
+                    // dd($request->all());
+                    $rol = Role::where('name', $request->txtcargo)->first();
 
-            $sql = true;
+                    if ($request->txtgenero == 'M') {
+                        $perf = '/storage/perfiles/perfilmas.jpg';
+                    } else {
+                        $perf = '/storage/perfiles/perfilfem.jpg';
+                    }
+                    $lash = '@gob.bo';
+                    $estado = 'Activo';
+                    try {
+                        $user = new User();
+                        $primera = strtolower(substr($request->txtnombre, 0, 1));
+                        $apellido = strtolower($request->txtpaterno);
+                        $usuario = $primera . $apellido;
+                        $contrase =  $request->txtci;
+                        // $apellido .
+
+                        $user->name = $request->txtnombre;
+                        $user->Paterno = $request->txtpaterno;
+                        $user->Materno = $request->txtmaterno;
+                        $user->Ci = $request->txtci;
+                        $user->Expedido = $request->txtexpedido;
+                        $user->Celular = $request->txtcelular;
+                        $user->Genero = $request->txtgenero;
+                        $user->Cargo = $request->txtcargo;
+                        $user->Lugar_Designado = $request->txtlugarDesignado;
+                        $user->Estado = $estado;
+                        $user->perfil = $perf;
+                        $user->email = $usuario . $lash;
+                        $user->Password =  Hash::make($contrase);
+                        $user->assignRole($rol->name);
+                        $user->save();
+
+                        $sql = true;
+                    } catch (\Throwable $th) {
+                        $sql = false;
+                    }
+                    if ($sql == true) {
+                        return back()->with("correcto", "Usuario Registrado Correctamente");
+                    } else {
+                        return back()->with("incorrecto", "Error al Registrar");
+                    }
+                } else {
+                    if ($request->txtlugarDesignado == 'Alcaldia') {
+                        return back()->with("incorrecto", "Alcanzaste el Limite de Usuarios para El lugar de Alcaldia");
+                        # code...
+                    }
+
+                    return back()->with("incorrecto", "Alcanzaste el Limite de Usuarios para El Distrito {$request->txtlugarDesignado}");
+                }
+            } else {
+                throw new \Exception("Error en el Cargo o en Lugar Designado");
+            }
         } catch (\Throwable $th) {
-            $sql = false;
-        }
-        if ($sql == true) {
-            return back()->with("correcto", "Usuario Registrado Correctamente");
-        } else {
-            return back()->with("incorrecto", "Error al Registrar");
+            // Se captura la excepción lanzada
+            return back()->with("incorrecto", $th->getMessage());
         }
     }
-
-
-    /* public function cambiarContrasena(Request $request)
-    {
-
-        return view('auth.reset-password', compact('request'));
-    } */
 
 
     public function editDatosUser(Request $request, $id)

@@ -76,7 +76,7 @@
 																				</div>
 																				<div class="col-md-3 mb-3">
 																					<label for="txtdistrito" class="required fs-5 fw-bold mb-2">Distrito</label>
-																					<select type="text" id="txtdistrito" name="txtdistrito" class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." required>
+																							<select type="text" id="txtdistrito" name="txtdistrito"  class="form-control form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Selecione..." required>
 																						<option value="" disabled selected >Seleccione</option>
 																						@foreach ($listadistritos as $item)
 																							<option value="{{$item->id}}">{{$item->Distrito}}</option>		
@@ -86,7 +86,7 @@
 																				<div class="col-md-6 mb-3">
 																					
 																					
-																						<label class="fs-6 fw-bold mb-2">
+																						<label  class="fs-6 fw-bold mb-2">
 																							<span class="required">Urbanizacion</span>
 																							<i class="fas fa-exclamation-circle ms-1 fs-7"
 																								data-bs-toggle="tooltip"
@@ -283,77 +283,7 @@
 												<!--end::Table row-->
 											</thead>
 											<tbody class="text-gray-600">
-												{{-- @foreach ($datosluminaria as $item)
-													<tr class="text-start text-gray-500 fw-bold fs-7">
-														<td>
-															<a href="#" class="text-gray-900 text-hover-primary">{{$item->Nro_sisco}}</a>
-														</td>
-														<td>
-															<a href="#" class="text-gray-900 text-hover-primary">{{$item->zona}}</a>
-														</td>
-														<td>
-															<a href="#" class="text-gray-900 text-hover-primary">{{$item->distrito->Distrito}}</a>
-														</td>
-														<td class="text-gray-900 text-hover-primary">{{$item->Fecha}}</td>
-														<td >
-														<a href="{{url('/detalles/luminarias/retiradas/'.$item->id)}}" class="text-gray-600 text-hover-primary mb-1"><i class="fa-regular fa-eye"></i>
-
-														</td>
-														<!--begin::Action=-->
-															<td class="text-end">
-																<a href="#" class="btn btn-sm btn-light btn-active-light-primary"
-																	data-kt-menu-trigger="click"
-																	data-kt-menu-placement="bottom-end">Actions
-																	<!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-																	<span class="svg-icon svg-icon-5 m-0">
-																		<svg xmlns="http://www.w3.org/2000/svg" width="24"
-																			height="24" viewBox="0 0 24 24" fill="none">
-																			<path
-																				d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-																				fill="currentColor" />
-																		</svg>
-																	</span>
-																	<!--end::Svg Icon--></a>
-																<!--begin::Menu-->
-																<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-																	data-kt-menu="true">
-																	<!--begin::Menu item-->
-																	@can('proyecto.Retirado.edit')
-																	<div class="menu-item px-3">
-																		<a href="{{url('/proyectos/luminariasRetiradas'.$item->id)}}"
-																			class="menu-link px-3">Editar</a>
-																	</div>
-																	@endcan
-																	@can('proyecto.Retirado.export')
-																	<div class="menu-item px-3">
-																		<a href="{{url('/retirado/pdf'.$item->id)}}" target="_blank"
-																			class="menu-link px-3">Generar Report</a>
-																	</div>
-																	@endcan
-																	<!--end::Menu item-->
-																	<!--begin::Menu item-->
-																	@can('proyecto.Retirado.delete')
-																	<div class="menu-item px-3">
-																		
-																		<a href="{{url('/eliminar/retirada'.$item->id) }}" class="menu-link px-3 delete-link"
-																			data-kt-customer-table-filter="delete_row">Eliminar</a>
-																		
-																	</div>
-																	@endcan
-																	<!--end::Menu item-->
-																</div>
-																<!--end::Menu-->
-															</td>
-															<!--end::Action=-->
-															@can('proyecto.Retirado.edit')
-
-														<!--begin::Modal - Modificar Almacen-->
-														
-														@endcan
-
-															<!--end::Modal - Modificar Almacen-->
-													</tr>
-												@endforeach --}}
+												
 											</tbody>
 										</table>
 									</div>

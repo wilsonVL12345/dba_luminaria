@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('distritos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Distrito')->nullable();
+            $table->string('Distrito', 4)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('Modelo', 40);
             $table->string('Marca', 40);
-            $table->string('Potencia', 40);
-            $table->string('Cod_Luminaria', 50)->nullable()->unique();
+            $table->string('Potencia', 10);
+            $table->string('Cod_Luminaria', 12)->nullable()->unique();
             $table->string('Lugar_Instalado', 40)->nullable();
             $table->string('latitud')->nullable();
             $table->string('longitud')->nullable();
