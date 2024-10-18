@@ -113,7 +113,8 @@
 																			<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números letras mayusculas y minusculas - ()"></i>
 
 																			</label>
-																			<input type="text" class="form-control form-control-solid" id="txtproyecto" name="txtproyecto" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" >
+																			<input type="text" class="form-control form-control-solid" id="txtproyecto" name="txtproyecto" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\., ]*"
+ >
 
 																		</div>
 																		<!--begin::Col-->
@@ -153,7 +154,8 @@
 																		</label>
 																		<!--end::Label-->
 																		<!--begin::Input-->
-																		<input  type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre del Proveedor" name="txtdireccion" id="txtdireccion" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\. ]*" required  />
+																		<input  type="text" class="form-control form-control-solid" placeholder="Ingrese el Nombre del Proveedor" name="txtdireccion" id="txtdireccion" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\-\(\)\., ]*"
+ required  />
 																		<!--end::Input-->
 																	</div>
 																		<!--begin::Modal footer-->
