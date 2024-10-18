@@ -169,7 +169,7 @@
                                 <div class="modal-footer flex-center">
                                     <div class="text-center">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                        <button type="submit" id="submitButtons" class="btn btn-primary registers-link">Registrar</button>
+                                        <button type="submit" id="submitButtons" class="btn btn-primary ">Registrar</button>
                                         
                                     </div>
                                 

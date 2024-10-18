@@ -255,24 +255,33 @@ let inspeccionEspera = function () {
                                     extend: 'pdfHtml5',
                                     title: documentTitle,
                                     exportOptions: {
-                                        columns: [0, 1, 2, 3, 4, 5, 7]  // Excluye la columna 6 (índice 6)
+                                        columns: [0, 1, 2, 4]  // Excluye la columna 6 (índice 6)
+            
                                     },
                                     customize: function(doc) {
-                                        // Establecer la orientación de la página en horizontal
-                                        doc.pageOrientation = 'landscape';
-                                
-                                        // Ajustar el ancho de las columnas; nota que ahora sólo tenemos 7 columnas en lugar de 8
-                                        doc.content[1].table.widths = ['10%', '15%', '15%', '20%', '10%', '15%', '15%'];
-                                
-                                        // Centrar el contenido de las columnas especificadas
-                                        doc.content[1].table.body.forEach(function(row) {
-                                            row[0].alignment = 'center'; // Columna 1
-                                            row[1].alignment = 'center'; // Columna 2
-                                            row[3].alignment = 'center'; // Columna 4
-                                            row[4].alignment = 'center'; // Columna 5
-                                            row[5].alignment = 'center'; // Columna 6 (que en realidad es la 7ma columna visible)
-                                        });
-                                
+                                         // Establecer la orientación de la página en horizontal
+                                      
+                                       // Ajustar el ancho de las columnas (50% para "Distrito", 50% para "Urbanización")
+                                          doc.content[1].table.widths = ['20%', '40%', '20%', '20%']; // Reducimos el ancho de la primera columna
+            
+                                           // Centrar el contenido de la primera columna
+                                            doc.content[1].table.body.forEach(function(row) {
+                                                row[0].alignment = 'left'; // Columna "Distrito" (índice 0)
+                                            });
+            
+                                             // Centrar el contenido de la 4 columna
+                                             doc.content[1].table.body.forEach(function(row) {
+                                                row[2].alignment = 'center'; // Columna "Distrito" (índice 0)
+                                            });
+                                            // Centrar el contenido de la ultima columna
+                                            doc.content[1].table.body.forEach(function(row) {
+                                                row[3].alignment = 'center'; // Columna "Distrito" (índice 0)
+                                            });
+                                        // Centrar el contenido del PDF de las columnas el texto
+                                        // doc.content[1].table.widths = Array(doc.content[1].table.body[0].length).fill('*');
+                                        doc.styles.tableBodyEven.alignment = 'left';
+                                        doc.styles.tableBodyOdd.alignment = 'left';
+                                        
                                         // Alinear el título al centro
                                         doc.styles.title = {
                                             alignment: 'center',

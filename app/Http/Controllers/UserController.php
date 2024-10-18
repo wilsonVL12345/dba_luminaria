@@ -151,7 +151,7 @@ class UserController extends Controller
                 ($request->txtcargo == 'Tecnico' && $request->txtlugarDesignado != 'Alcaldia') ||
                 ($request->txtcargo == 'Coordinador' && $request->txtlugarDesignado != 'Alcaldia')
             ) {
-                $CantLugar = User::where('Lugar_Designado', $request->txtlugarDesignado)->count();
+                $CantLugar = User::where('Lugar_Designado', $request->txtlugarDesignado)->where('Estado', 'Activo')->count();
                 if ($CantLugar < 3) {
                     // dd($request->all());
                     $rol = Role::where('name', $request->txtcargo)->first();
@@ -244,8 +244,8 @@ class UserController extends Controller
                 ($request->txtcargo == 'Tecnico' && $request->txtlugarDesignado != 'Alcaldia') ||
                 ($request->txtcargo == 'Coordinador' && $request->txtlugarDesignado != 'Alcaldia')
             ) {
-                $CantLugar = User::where('Lugar_Designado', $request->txtlugarDesignado)->count();
-                if ($CantLugar < 3) {
+                $CantLugar = User::where('Lugar_Designado', $request->txtlugarDesignado)->where('Estado', 'Activo')->count();
+                if ($CantLugar <= 3) {
                     $rolee = Role::where('name', $request->txtcargo)->first();
 
                     try {

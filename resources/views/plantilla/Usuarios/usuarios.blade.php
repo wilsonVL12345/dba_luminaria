@@ -327,7 +327,7 @@
 								@endcan
 							</div>
 							<div class="card-body">
-								<table class="table align-middle border rounded table-row-dashed fs-6 g-5" id="tableDeUsuarios">
+								<table class="table  align-middle border rounded table-row-dashed fs-6 g-5" id="tableDeUsuarios">
 									<thead>
 										<tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
 											<th class="min-w-100px">Usuario</th>

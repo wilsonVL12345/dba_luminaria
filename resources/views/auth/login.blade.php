@@ -50,7 +50,7 @@
 							<!--begin::Heading-->
 							<div class="text-center mb-10">
 						
-								<h1 class="text-dark mb-3">Unidad de Luminarias</h1>
+								<h1 class="text-dark mb-3">Direccion de Alumbrado Publico</h1>
 								
 							</div>
 						
@@ -92,7 +92,7 @@
 							<div class="text-center">
 								
 								<button type="submit" name="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
-									<span class="indicator-label">Continue</span>
+									<span class="indicator-label">Iniciar Sesión</span>
 									
 								</button>
 								

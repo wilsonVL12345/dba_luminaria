@@ -11,10 +11,9 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Agendar Trabajo</h1>
+				<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Programar Tarea</h1>
 				<!--end::Title-->
 				<!--begin::Separator-->
-				<span class="h-20px border-gray-300 border-start mx-4"></span>
 				
 			</div>
 			<!--end::Page title-->
@@ -28,9 +27,9 @@
 	{{-- todo el lugar que te interesa --}}
 	<div class="post d-flex flex-column-fluid" id="kt_post">
 		<!--begin::Container-->
-		<div id="kt_content_container" class="container-xl" style="max-width: 1000px;">
+		<div id="kt_content_container" class="container-xl" style="max-width: 1000px; ">
 			<!--begin::Navbar-->
-			<div class="card mb-5 mb-xl-10">
+			<div class="card mb-5 mb-xl-10" >
 				<div class="card-body pt-9 pb-0">
 					
 					<div class="margin">
@@ -141,7 +140,7 @@
 									
 									<div class="modal-footer flex-end">
 										
-										<button type="submit" id="agendar-trabajo" class="btn btn-primary registers-link">
+										<button type="submit" id="agendar-trabajo" class="btn btn-primary ">
 											<span class="indicator-label">Registrar</span>
 											<span class="indicator-progress">Please wait...
 											<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

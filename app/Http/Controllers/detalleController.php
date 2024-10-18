@@ -450,10 +450,7 @@ class detalleController extends Controller
                 'txtfechaejecut' => [
                     'required',
                 ],
-                'txtdetalles' => [
-                    'nullable',
-                    'regex:/^[a-zA-Z0-9\s\.\,\(\)\/\-\+]+$/', // Letras minúsculas, mayúsculas, números, espacio y los símbolos . , ( ) / - +
-                ],
+
             ]);
         } catch (\Throwable $th) {
             return back()->with("incorrecto", "Error: Datos inválidos, ingrese datos válidos");
