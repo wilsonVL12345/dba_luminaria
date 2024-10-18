@@ -23,7 +23,7 @@ $(document).ready(function() {
                         <input type="text" class="form-control form-control-solid" id="campocantidad${componenteCount}" name="campocantidad[${componenteCount}]" pattern="^([1-9][0-9]{0,2}|500)$" placeholder="Ingresar Cantidad" required>
                     </div>
                     <div class="col-md-3 mb-3 d-flex justify-content-center align-items-center">
-                        <button type="button" class="btn btn-danger btn-sm" onclick="eliminarAccesorio(this)">Delete</button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="eliminarAccesorio(this)">Eliminar</button>
                     </div>
                 </div>
             </div>

@@ -42,7 +42,7 @@
 									<!--begin::Search-->
 									<div class="d-flex align-items-center position-relative my-1">
 										<span class="svg-icon fs-1 position-absolute ms-4">...</span>
-										<input type="text" data-kt-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Report" />
+										<input type="text" data-kt-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Buscar..." />
 									</div>
 									<!--end::Search-->
 									<!--begin::Export buttons-->
@@ -71,7 +71,7 @@
 									</div><!--begin::Export dropdown-->
 									<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 										<i class="ki-duotone ki-exit-down fs-2"><span class="path1"></span><span class="path2"></span></i>
-										Export Report
+										Generar Reporte
 									</button>
 									<!--begin::Menu-->
 									<div id="kt_datatable_example_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">

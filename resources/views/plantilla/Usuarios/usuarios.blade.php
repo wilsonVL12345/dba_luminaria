@@ -287,7 +287,7 @@
 									<!--begin::Export dropdown-->
 								<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 									<i class="ki-duotone ki-exit-down fs-2"><span class="path1"></span><span class="path2"></span></i>
-									Export Report
+									Generar Reporte
 								</button>
 								@endcan
 								<!--begin::Menu-->
