@@ -10,6 +10,8 @@
 	<title>Unidad de luminarias publicas GAMEA</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+
 @include('layout.head')
 </head>
 <body id="kt_body"
