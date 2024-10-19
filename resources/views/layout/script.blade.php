@@ -1,26 +1,19 @@
-{{-- estaba comentado  --}}
- <!-- jQuery -->
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-    
+   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!-- Select2 JS -->        
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 
-{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> --}}
 <script src="{{ asset('assets/js/dashboards/chatdetalles.js') }}" defer></script>
 <script src="{{ asset('assets/js/dashboards/chatinspecciones.js') }}" defer></script>
 <script src="{{ asset('assets/js/dashboards/chartproyectos.js') }}" defer></script>
-{{-- <script src="{{ asset('assets/js/dashboards/dashDis1.js') }}" defer></script> --}}
 
 <script src="{{ asset('assets/js/dashboards/detallesAnual.js') }}" defer></script>
 <script src="{{ asset('assets/js/dashboards/inspeccionAnual.js') }}" defer></script>
 <script src="{{ asset('assets/js/dashboards/proyectoAnual.js') }}" defer></script>
 
-
 <script>var hostUrl = "{{ asset('assets/') }}";</script>
-<!-- Global Javascript Bundle(used by all pages) -->
 
 <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
@@ -35,8 +28,6 @@
 <!-- scrip   -->
 <script src="{{ asset('assets/js/ejecutarTrabajo/Empezar.js') }}"></script>
 <script src="{{ asset('assets/js/consultaAtencion/atencion.js') }}"></script>
-
-
 
 <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
@@ -56,16 +47,12 @@
 <script src="{{ asset('assets/js/enviarForm.js') }}" defer></script>
 <script src="{{ asset('assets/js/distrito/actualizacionzona.js') }}" defer></script>
 
-{{-- <script src="{{ asset('assets/js/detallesGenerales/ejecutarApoyo.js') }}" defer></script> --}}
-
 <script src="{{ asset('assets/js/usuario/tabla.js') }}" defer></script>
 <script src="{{ asset('assets/js/usuario/confirmarDeleteRestablecer.js') }}" defer></script>
 
 <script src="{{ asset('assets/js/flatpickrAge.js') }}" defer></script>
 <script src="{{ asset('assets/js/agendar/filtraUrb.js') }}" defer></script>
 <script src="{{ asset('assets/js/agendar/apoyocarro.js') }}" defer></script>
-
-
 
 <script src="{{ asset('assets/js/inspeccion/enEspera/tabaespe.js') }}" defer></script>
 <script src="{{ asset('assets/js/inspeccion/enEspera/filtraUrbInspEsp.js') }}" defer></script>
@@ -81,9 +68,6 @@
 <script src="{{ asset('assets/js/detallesGenerales/espera/filtraUrbmodif.js') }}" defer></script>
 <script src="{{ asset('assets/js/detallesGenerales/espera/datetableEspera.js') }}" defer></script>
 
-{{-- <script src="{{ asset('assets/js/usuario/tabla.js') }}" defer></script> --}}
-{{-- <script src="{{ asset('assets/js/usuario/estado.js') }}" defer></script> --}}
-
 <script src="{{ asset('assets/js/proyectos/almacen/tablaalmacen.js') }}" defer></script>
 <script src="{{ asset('assets/js/proyectos/almacen/filtraUrbanizacion.js') }}" defer></script>
 <script src="{{ asset('assets/js/proyectos/almacen/filtUrbaEdit.js') }}" defer></script>
@@ -93,18 +77,12 @@
 <script src="{{ asset('assets/js/proyectos/lumRetirada/datetable.js') }}" defer></script>
 <script src="{{ asset('assets/js/proyectos/almacenejecutada/datetablefinal.js') }}" defer></script>
 
-
-
 <script src="{{ asset('assets/js/distrito/datetable.js') }}" defer></script>
-
 <script src="{{ asset('assets/js/distrito/loading.js') }}" defer></script>
 <script src="{{ asset('assets/js/equipos/equipamiento/tablaequipos.js') }}" defer></script>
 <script src="{{ asset('assets/js/equipos/accesorios/tablaAccesorios.js') }}" defer></script>
 <script src="{{ asset('assets/js/detallesGenerales/realizado/filtraurbreal.js') }}" defer></script>
 <script src="{{ asset('assets/js/detallesGenerales/realizado/apoyoreal.js') }}" defer></script>
-
-
-
 
 <script src="{{ asset('assets/js/reelevamientos/dropzone.js') }}" defer></script>
 <script src="{{ asset('assets/js/reelevamientos/filtUrba.js') }}" defer></script>
