@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>flatpickr quick start</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+  <script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>
+
+</head>
+<body>
+  <div style="padding:15vw">
+    <div>
+      <label>
+        <div>Date 1</div>
+        <div class="flatpickr"></div>
+        <input placeholder="Select Date..." class="date"/>
+        <a class="input-button" title="toggle" data-toggle>
+          <i class="icon-calendar"></i>
+        </a>
+        <a class="input-button" title="clear" data-clear>
+          <i class="icon-close"></i>
+        </a>
+        </div>
+      </label>
+
+    </div>
+  </div>
+
+
+  <script>
+
+    var fp = flatpickr(".date", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        locate: "ru"
+    })
+
+  </script>
+</body>
+</html>

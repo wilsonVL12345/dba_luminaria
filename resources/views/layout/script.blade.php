@@ -4,17 +4,14 @@
 <!-- Select2 JS -->        
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-
-<script src="{{ asset('assets/js/dashboards/chatdetalles.js') }}" defer></script>
+{{-- <script src="{{ asset('assets/js/dashboards/chatdetalles.js') }}" defer></script> --}}
 <script src="{{ asset('assets/js/dashboards/chatinspecciones.js') }}" defer></script>
 <script src="{{ asset('assets/js/dashboards/chartproyectos.js') }}" defer></script>
-
 <script src="{{ asset('assets/js/dashboards/detallesAnual.js') }}" defer></script>
 <script src="{{ asset('assets/js/dashboards/inspeccionAnual.js') }}" defer></script>
 <script src="{{ asset('assets/js/dashboards/proyectoAnual.js') }}" defer></script>
 
 <script>var hostUrl = "{{ asset('assets/') }}";</script>
-
 <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 <!-- Page Vendors Javascript(used by this page) -->

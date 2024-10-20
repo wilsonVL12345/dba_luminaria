@@ -1,0 +1,53 @@
+/*
+
+TIENE RUTA PERO NO LO ESTOY MANEJANDO
+
+.custom-select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    width: 200px;
+}
+
+.selected-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.selected-option {
+    background-color: #007bff;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.remove-option {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.options-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 100px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    display: none;
+}
+
+.options-list li {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.options-list li:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+ */

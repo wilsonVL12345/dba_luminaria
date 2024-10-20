@@ -1,23 +1,18 @@
 
-  <link rel="shortcut icon" href="{{asset('assets/media/logos/gamea.svg')}}"  />
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700">
+ {{--  <link rel="shortcut icon" href="{{asset('assets/media/logos/gamea.svg')}}"  />
   <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
-    
-    
-    <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
-    <script src="https://kit.fontawesome.com/79e95e464b.js" crossorigin="anonymous"></script>
-	
+  <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
   
   <link rel="stylesheet" href="{{ asset('assets/css/selectMultiple.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/index/principal.css') }}">
+  
+ --}}
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://kit.fontawesome.com/79e95e464b.js" crossorigin="anonymous"></script>
+	

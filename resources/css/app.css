@@ -1,7 +1,9 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities;
- */
- @import 'variables';
- @
- @
+
+/*  @import 'variables'; */
+ 
+@import '../assets/plugins/custom/datatables/datatables.bundle.css';
+ @import '../assets/plugins/global/plugins.bundle.css';
+ @import '../assets/css/style.bundle.css';
+ @import '../assets/plugins/custom/fullcalendar/fullcalendar.bundle.css';
+ @import '../assets/css/selectMultiple.css';
+ @import '../assets/css/index/principal.css';
