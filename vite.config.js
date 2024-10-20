@@ -6,21 +6,26 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
-                'resources/js/app.js',
                 
-                'recources/assets/plugins/custom/datatables/datatables.bundle.css ',
-                'recources/assets/plugins/global/plugins.bundle.css ',
-                'recources/assets/css/style.bundle.css',
-                'recources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css',
-                'recources/assets/css/selectMultiple.css',
-                'recources/assets/css/index/principal.css',
+                'resources/assets/plugins/custom/datatables/datatables.bundle.css ',
+                'resources/assets/plugins/global/plugins.bundle.css ',
+                'resources/assets/css/style.bundle.css',
+                'resources/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css',
+                'resources/assets/css/selectMultiple.css',
+                'resources/assets/css/index/principal.css',
+                'resources/js/app.js',
 
-                'recources/js/dashboards/chatdetalles.js',
+                'resources/js/dashboards/chatdetalles.js',
 
 
             ],
             refresh: true,
         }),
     ],
+     resolve: {
+        alias: {
+            '$': 'jquery',
+        },
+    }, 
     
 });

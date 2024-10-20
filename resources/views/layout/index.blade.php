@@ -10,11 +10,14 @@
 	<title>Unidad de luminarias publicas GAMEA</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-<script src="{{ asset('../../js/jquery-3.6.0.min.js') }}"></script>
+{{-- <script src="{{ asset('../../js/jquery-3.6.0.min.js') }}"></script> --}}
+
+{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script> --}}
 
 @vite(['resources/css/app.css','resources/js/app.js'])
-
 @include('layout.head')
+
 </head>
 <body id="kt_body"
 	class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
