@@ -40,7 +40,7 @@
 							<div class="logo-container">
 								<a href="#" class="d-flex align-items-center">
 									<img alt="Logo" src="{{ asset('assets/media/logos/trace.svg') }}" class="h-50px logo loguito  " />
-									<span class="logo-text logo loguito"> LUMINARIA</span>
+									<span class="logo-text logo loguito"> D.A.P</span>
 
 								</a>
 
@@ -119,7 +119,7 @@
 						</div>
 						
 						<style>
-						.custom-header {
+						/* .custom-header {
 							font-family: 'Times New Roman', Times, serif;
 							color: #131325;
 							line-height: 1.2;
@@ -165,7 +165,7 @@
 							.custom-header .title-full, .custom-header .secondary-title {
 								display: inline;
 							}
-						}
+						} */
 						.stats-container {
 							display: flex;
 							justify-content: flex-end;
@@ -187,7 +187,7 @@
 							color: #5e6278;
 						}
 
-						@media (max-width: 1400px) {
+						@media (max-width: 600px) {
 						/* Cambiar el ancho mínimo de los contenedores */
 						.min-w-100px, .min-w-75px, .min-w-85px {
 							min-width: 30px !important;
@@ -199,9 +199,9 @@
 						}
 						}
 
-						</style>
+						</style> 
 						
-									<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+									{{-- <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
 										<a href="#" class="d-lg-none">
 											<img alt="Logo gamea" src="/assets/media/logos/gamea.svg" class="h-40px" />
 										</a>
@@ -215,7 +215,7 @@
 												UNIDAD OPERATIVA 
 											</h1>
 										</div>
-									</div>
+									</div> --}}
 								
 						<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
 							<div class="d-flex align-items-stretch" id="kt_header_nav">

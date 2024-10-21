@@ -19,3 +19,9 @@ $(document).ready(function() {
         }
     }
 }); 
+
+$(document).on('click', '[id^="d-"]', function() {
+    let districtId = $(this).attr('id').split('-')[1];
+    localStorage.setItem('selectedDistrict', districtId);
+});   
+
