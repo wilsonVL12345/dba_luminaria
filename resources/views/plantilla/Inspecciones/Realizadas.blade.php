@@ -465,8 +465,13 @@
 </div> 
 	
 
-
 @endsection
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/inspeccion/realizado/tablareali.js') }}" defer></script>
+	
+
+
+@endpush
 @endcan
 
 

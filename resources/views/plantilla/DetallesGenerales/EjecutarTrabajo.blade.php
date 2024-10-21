@@ -67,6 +67,7 @@
 										<option value="Luminarias de Sodio">Luminarias de Sodio</option>
 									</select>										
 								</div>
+								
 								<div class="col-md-3 mb-3">
 									<label for="txtcantidadlum" class="required fs-5 fw-bold mb-2">Cantidad de Puntos
 										<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"  title="Solo se permiten números positivos asta max 500"></i>
@@ -175,4 +176,10 @@
 	
 </div> 
 @endsection
+
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/ejecutarTrabajo/insertarComponentes.js') }}" defer></script>
+
+
+	@endpush
 @endcan

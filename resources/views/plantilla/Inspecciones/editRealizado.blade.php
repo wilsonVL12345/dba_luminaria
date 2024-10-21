@@ -157,4 +157,9 @@
     </div>
 
 @endsection
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/inspeccion/realizado/filtraUrbInspRea.js') }}" defer></script>
+
+@endpush
+
 @endcan

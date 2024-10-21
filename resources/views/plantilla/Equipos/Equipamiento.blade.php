@@ -414,4 +414,8 @@
 		<!--end::Container-->
 </div> 
 @endsection
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/equipos/equipamiento/tablaequipos.js') }}" defer></script>
+		
+	@endpush
 @endcan

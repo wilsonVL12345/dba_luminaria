@@ -4,87 +4,59 @@
 <!-- Select2 JS -->        
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script> --}}
 
-{{-- <script src="{{ asset('assets/js/dashboards/chatdetalles.js') }}" defer></script> --}}
-<script src="{{ asset('assets/js/dashboards/chatinspecciones.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/chartproyectos.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/detallesAnual.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/inspeccionAnual.js') }}" defer></script>
-<script src="{{ asset('assets/js/dashboards/proyectoAnual.js') }}" defer></script>
+{{-- <script>var hostUrl = "{{ asset('assets/') }}";</script>
 
-<script>var hostUrl = "{{ asset('assets/') }}";</script>
-<script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
-<script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
+
+
 <!-- Page Vendors Javascript(used by this page) -->
-<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-<script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script> --}}
+{{-- <script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script> --}}
 
-<script src="{{ asset('assets/js/custom/apps/customers/list/export.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/custom/apps/customers/list/export.js') }}"></script>
 <script src="{{ asset('assets/js/custom/apps/customers/list/list.js') }}"></script>
-<script src="{{ asset('assets/js/custom/apps/customers/add.js') }}"></script>
+<script src="{{ asset('assets/js/custom/apps/customers/add.js') }}"></script> --}}
 
 <!-- scrip   -->
-<script src="{{ asset('assets/js/ejecutarTrabajo/Empezar.js') }}"></script>
 <script src="{{ asset('assets/js/consultaAtencion/atencion.js') }}"></script>
-
-<script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
+ 
+{{-- <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
 <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
 <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
 <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
 <script src="{{ asset('assets/js/custom/utilities/modals/new-target.js') }}"></script>
-<script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
+<script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script> --}}
 
-<script src="{{ asset('assets/js/distrito/app.js') }}" defer></script>
+{{-- 
 <script src="{{ asset('assets/js/equipos/app.js') }}" defer></script>
 <script src="{{ asset('assets/js/inspeccion/realizado.js') }}" defer></script>
-<script src="{{ asset('assets/js/proyectos/proyecto.js') }}" defer></script>
-<script src="{{ asset('assets/js/proyectos/detallesProy.js') }}" defer></script>
-<script src="{{ asset('assets/js/proyectos/ejecutarProyecto.js') }}" defer></script>
-<script src="{{ asset('assets/js/proyectos/selecMultiplebotones.js') }}" defer></script>
+--}}
 <script src="{{ asset('assets/js/enviarForm.js') }}" defer></script>
-<script src="{{ asset('assets/js/distrito/actualizacionzona.js') }}" defer></script>
+<script src="{{ asset('assets/js/confirmaRegistrar.js') }}" defer></script>
 
-<script src="{{ asset('assets/js/usuario/tabla.js') }}" defer></script>
-<script src="{{ asset('assets/js/usuario/confirmarDeleteRestablecer.js') }}" defer></script>
+ <script src="{{ asset('assets/js/flatpickrAge.js') }}" defer></script>
+{{-- 
 
-<script src="{{ asset('assets/js/flatpickrAge.js') }}" defer></script>
-<script src="{{ asset('assets/js/agendar/filtraUrb.js') }}" defer></script>
-<script src="{{ asset('assets/js/agendar/apoyocarro.js') }}" defer></script>
-
-<script src="{{ asset('assets/js/inspeccion/enEspera/tabaespe.js') }}" defer></script>
-<script src="{{ asset('assets/js/inspeccion/enEspera/filtraUrbInspEsp.js') }}" defer></script>
-<script src="{{ asset('assets/js/inspeccion/realizado/tablareali.js') }}" defer></script>
-<script src="{{ asset('assets/js/inspeccion/realizado/filtraUrbInspRea.js') }}" defer></script>
-
-<script src="{{ asset('assets/js/realizarTrabajo/datetableRealizar.js') }}" defer></script>
-<script src="{{ asset('assets/js/ejecutarTrabajo/insertarComponentes.js') }}" defer></script>
+{{-- 
 
 
-<script src="{{ asset('assets/js/detallesGenerales/realizado/tablarealizado.js') }}" defer></script>
-<script src="{{ asset('assets/js/detallesGenerales/espera/carroapoyo.js') }}" defer></script>
-<script src="{{ asset('assets/js/detallesGenerales/espera/filtraUrbmodif.js') }}" defer></script>
-<script src="{{ asset('assets/js/detallesGenerales/espera/datetableEspera.js') }}" defer></script>
 
-<script src="{{ asset('assets/js/proyectos/almacen/tablaalmacen.js') }}" defer></script>
-<script src="{{ asset('assets/js/proyectos/almacen/filtraUrbanizacion.js') }}" defer></script>
-<script src="{{ asset('assets/js/proyectos/almacen/filtUrbaEdit.js') }}" defer></script>
-<script src="{{ asset('assets/js/proyectos/lumRetirada/filtraurb.js') }}" defer></script>
-<script src="{{ asset('assets/js/proyectos/lumRetirada/filtraurbEdit.js') }}" defer></script>
-<script src="{{ asset('assets/js/proyectos/almacenejecutada/filtrarUrbaEjecutadas.js') }}" defer></script>
-<script src="{{ asset('assets/js/proyectos/lumRetirada/datetable.js') }}" defer></script>
-<script src="{{ asset('assets/js/proyectos/almacenejecutada/datetablefinal.js') }}" defer></script>
 
-<script src="{{ asset('assets/js/distrito/datetable.js') }}" defer></script>
-<script src="{{ asset('assets/js/distrito/loading.js') }}" defer></script>
-<script src="{{ asset('assets/js/equipos/equipamiento/tablaequipos.js') }}" defer></script>
-<script src="{{ asset('assets/js/equipos/accesorios/tablaAccesorios.js') }}" defer></script>
-<script src="{{ asset('assets/js/detallesGenerales/realizado/filtraurbreal.js') }}" defer></script>
-<script src="{{ asset('assets/js/detallesGenerales/realizado/apoyoreal.js') }}" defer></script>
+--}}
 
-<script src="{{ asset('assets/js/reelevamientos/dropzone.js') }}" defer></script>
-<script src="{{ asset('assets/js/reelevamientos/filtUrba.js') }}" defer></script>
-<script src="{{ asset('assets/js/reelevamientos/tablaReele.js') }}" defer></script>
-<script src="{{ asset('assets/js/reelevamientos/filtUrbMod.js') }}" defer></script>
+
+<script src="{{ asset('assets/js/confirmaEliminar.js') }}" defer></script> 
+
+
+{{-- 
+
+
+
+ 
+
+{{-- <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
+<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
     $(document).ready(function() {

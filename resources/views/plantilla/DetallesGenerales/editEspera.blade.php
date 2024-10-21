@@ -177,4 +177,10 @@
 </div>
 
 @endsection
+@push('scriptsvistas')
+		
+<script src="{{ asset('assets/js/detallesGenerales/espera/carroapoyo.js') }}" defer></script>
+<script src="{{ asset('assets/js/detallesGenerales/espera/filtraUrbmodif.js') }}" defer></script>
+
+	@endpush
 @endcan

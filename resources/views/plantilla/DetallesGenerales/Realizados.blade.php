@@ -343,4 +343,12 @@
 	
 
 @endsection
+	@push('scriptsvistas')
+<script src="{{ asset('assets/js/detallesGenerales/realizado/tablarealizado.js') }}" defer></script>
+		
+
+<script src="{{ asset('assets/js/detallesGenerales/realizado/filtraurbreal.js') }}" defer></script>
+<script src="{{ asset('assets/js/detallesGenerales/realizado/apoyoreal.js') }}" defer></script>
+
+	@endpush
 @endcan

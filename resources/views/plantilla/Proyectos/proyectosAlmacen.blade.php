@@ -626,4 +626,18 @@
 </div> 
 
 @endsection
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/proyectos/almacen/tablaalmacen.js') }}" defer></script>
+		
+
+<script src="{{ asset('assets/js/proyectos/almacen/filtraUrbanizacion.js') }}" defer></script>
+<script src="{{ asset('assets/js/proyectos/almacen/filtUrbaEdit.js') }}" defer></script>
+
+
+<script src="{{ asset('assets/js/proyectos/proyecto.js') }}" defer></script>
+{{-- <script src="{{ asset('assets/js/proyectos/detallesProy.js') }}" deer></script> --}}
+<script src="{{ asset('assets/js/proyectos/ejecutarProyecto.js') }}" defer></script>
+<script src="{{ asset('assets/js/proyectos/selecMultiplebotones.js') }}" defer></script>
+
+	@endpush
 @endcan

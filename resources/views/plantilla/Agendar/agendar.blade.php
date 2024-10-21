@@ -203,4 +203,11 @@
 		</style>
 		
 @endsection
+
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/agendar/filtraUrb.js') }}" defer></script>
+<script src="{{ asset('assets/js/agendar/apoyocarro.js') }}" defer></script> --}}
+
+
+	@endpush
 @endcan

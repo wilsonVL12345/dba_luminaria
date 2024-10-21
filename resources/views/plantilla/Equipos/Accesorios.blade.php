@@ -429,4 +429,8 @@
 	
 </div> 
 @endsection
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/equipos/accesorios/tablaAccesorios.js') }}" defer></script>
+		
+	@endpush
 @endcan

@@ -878,6 +878,10 @@
 	</div>
 		<!--end::Container-->
 </div> 
-	
 
 @endsection
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/usuario/tabla.js') }}" defer></script>
+<script src="{{ asset('assets/js/usuario/confirmarDeleteRestablecer.js') }}" defer></script>
+	
+@endpush

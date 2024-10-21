@@ -203,4 +203,15 @@
 
 
 @endsection
+
+@push('scriptsvistas')
+
+ <script src="{{ asset('assets/js/dashboards/chatdetalles.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/chatinspecciones.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/chartproyectos.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/detallesAnual.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/inspeccionAnual.js') }}" defer></script>
+<script src="{{ asset('assets/js/dashboards/proyectoAnual.js') }}" defer></script>
+	
+	@endpush
 @endcan

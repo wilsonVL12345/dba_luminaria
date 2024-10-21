@@ -372,5 +372,13 @@
 
 @endsection
 
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/distrito/datetable.js') }}" defer></script>
+		
 
+<script src="{{ asset('assets/js/distrito/app.js') }}" defer></script>
+<script src="{{ asset('assets/js/distrito/actualizacionzona.js') }}" defer></script>
+<script src="{{ asset('assets/js/distrito/loading.js') }}" defer></script>
+
+	@endpush
 @endcan

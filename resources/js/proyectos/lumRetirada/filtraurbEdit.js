@@ -1,7 +1,6 @@
 $(document).ready(function () {
     const $distritoSelect = $('[data-id="txtdistritoMod"]');
     const $zonaUrbanizacionSelect = $('[data-id="txtzonaMod"]');
-
     $.ajax({
         url: '/api/apidistritos',
         type: 'GET',

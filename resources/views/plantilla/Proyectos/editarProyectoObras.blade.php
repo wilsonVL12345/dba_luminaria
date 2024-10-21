@@ -324,4 +324,10 @@
 	
 </div> 
 @endsection
+
+@push('scriptsvistas')
+
+<script src="{{ asset('assets/js/proyectos/almacen/filtUrbaEdit.js') }}" defer></script>
+
+	@endpush
 @endcan

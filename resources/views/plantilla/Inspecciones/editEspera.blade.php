@@ -149,4 +149,9 @@
     </div>
 
 @endsection
+@push('scriptsvistas')
+	
+<script src="{{ asset('assets/js/inspeccion/enEspera/filtraUrbInspEsp.js') }}" defer></script>
+
+@endpush
 @endcan

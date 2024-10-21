@@ -357,4 +357,12 @@
 		<!--end::Container-->
 </div> 
 @endsection
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/reelevamientos/tablaReele.js') }}" defer></script>
+		
+
+<script src="{{ asset('assets/js/reelevamientos/dropzone.js') }}" defer></script>
+<script src="{{ asset('assets/js/reelevamientos/filtUrbMod.js') }}" defer></script> 
+
+	@endpush
 @endcan

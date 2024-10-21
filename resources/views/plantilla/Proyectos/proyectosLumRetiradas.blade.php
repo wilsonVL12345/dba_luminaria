@@ -307,4 +307,13 @@
 	
 </div> 
 @endsection
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/proyectos/lumRetirada/datetable.js') }}" defer></script>
+<script src="{{ asset('assets/js/proyectos/lumRetirada/agregarCompSelec.js') }}" defer></script>
+		
+
+<script src="{{ asset('assets/js/proyectos/lumRetirada/filtraurb.js') }}" defer></script> 
+ <script src="{{ asset('assets/js/proyectos/lumRetirada/filtraurbEdit.js') }}" defer></script>
+
+	@endpush
 @endcan

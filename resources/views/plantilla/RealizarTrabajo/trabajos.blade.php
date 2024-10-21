@@ -306,4 +306,11 @@
 	</div> 
 	
 </div> 
+
 @endsection
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/realizarTrabajo/datetableRealizar.js') }}" defer></script>
+		
+ {{-- <script src="{{ asset('assets/js/ejecutarTrabajo/Empezar.js') }}"></script> --}}
+
+	@endpush

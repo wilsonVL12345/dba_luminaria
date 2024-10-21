@@ -231,4 +231,10 @@
 	
 </div> 
 @endsection
+@push('scriptsvistas')
+		
+
+ <script src="{{ asset('assets/js/proyectos/lumRetirada/filtraurbEdit.js') }}" defer></script>
+
+	@endpush
 @endcan

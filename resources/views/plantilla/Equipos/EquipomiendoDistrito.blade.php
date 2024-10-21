@@ -811,4 +811,7 @@
        
 </div> 
 @endsection
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/equipos/equipamiento/equipDistritos.js') }}" defer></script>
+	@endpushs
 @endcan

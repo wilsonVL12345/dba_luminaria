@@ -922,6 +922,9 @@
 
 
 @endsection
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/reelevamientos/filtUrba.js') }}" defer></script>
 
+	@endpush
 
 @endcan

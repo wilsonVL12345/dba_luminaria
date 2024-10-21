@@ -267,4 +267,9 @@
 	
 
 @endsection
+
+@push('scriptsvistas')
+<script src="{{ asset('assets/js/proyectos/almacenejecutada/datetablefinal.js') }}" defer></script>
+		
+	@endpush
 @endcan
