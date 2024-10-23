@@ -4,21 +4,19 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\inspeccion;
+use App\Models\Equipamiento;
 
-class apiinspeccionController extends Controller
+class ApiEquipamientoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $equipamiento = equipamiento::all();
+        return response()->json($equipamiento);
     }
-    public function realizado()
-    {
-        $inspeccion = inspeccion::where('Inspeccion', 'Realizado')->get();
-        return response()->json($inspeccion);
-    }
+
     /**
      * Store a newly created resource in storage.
      */

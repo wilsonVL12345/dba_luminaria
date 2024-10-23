@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\datos_luminaria_retirada;
 use Illuminate\Http\Request;
-use App\Models\distrito;
-use App\Models\lista_accesorio;
-use App\Models\lista_luminarias_retirada;
-use App\Models\luminarias_reutilizada;
-use App\Models\urbanizacion;
+use App\Models\Distrito;
+use App\Models\Lista_accesorio;
+use App\Models\Lista_luminarias_retirada;
+use App\Models\Luminarias_reutilizada;
+use App\Models\Urbanizacion;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;

@@ -11,7 +11,8 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	@vite(['resources/css/app.css','resources/js/app.js'])
+	{{-- @vite(['resources/css/app.css','resources/js/app.js']) --}}
+	@vite(['resources/js/app.js'])
 	
 	<script src="{{ asset('assets/plugins/global/plugins.bundle.js') }} " ></script>
 	<script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
@@ -119,7 +120,7 @@
 						</div>
 						
 						<style>
-						/* .custom-header {
+						.custom-header {
 							font-family: 'Times New Roman', Times, serif;
 							color: #131325;
 							line-height: 1.2;
@@ -165,7 +166,7 @@
 							.custom-header .title-full, .custom-header .secondary-title {
 								display: inline;
 							}
-						} */
+						}
 						.stats-container {
 							display: flex;
 							justify-content: flex-end;
@@ -201,7 +202,7 @@
 
 						</style> 
 						
-									{{-- <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+									<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
 										<a href="#" class="d-lg-none">
 											<img alt="Logo gamea" src="/assets/media/logos/gamea.svg" class="h-40px" />
 										</a>
@@ -215,7 +216,7 @@
 												UNIDAD OPERATIVA 
 											</h1>
 										</div>
-									</div> --}}
+									</div>
 								
 						<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
 							<div class="d-flex align-items-stretch" id="kt_header_nav">

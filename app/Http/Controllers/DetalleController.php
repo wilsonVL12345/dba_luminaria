@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\accesorio;
+use App\Models\Accesorio;
 use Illuminate\Http\Request;
-use App\Models\detalle;
-use App\Models\distrito;
-use App\Models\lista_accesorio;
-use App\Models\urbanizacion;
+use App\Models\Detalle;
+use App\Models\Distrito;
+use App\Models\Lista_accesorio;
+use App\Models\Urbanizacion;
 use App\Models\User;
 use Illuminate\Foundation\Console\ViewMakeCommand;
 use Illuminate\Support\Facades\Storage;

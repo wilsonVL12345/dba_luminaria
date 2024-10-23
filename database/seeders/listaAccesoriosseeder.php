@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\lista_accesorio;
+use App\Models\Lista_accesorio;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

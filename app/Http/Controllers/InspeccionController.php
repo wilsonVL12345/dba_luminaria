@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\inspeccion;
-use App\Models\distrito;
-use App\Models\urbanizacion;
+use App\Models\Inspeccion;
+use App\Models\Distrito;
+use App\Models\Urbanizacion;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;

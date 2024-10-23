@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\inspeccion;
-use App\Models\detalle;
-use App\Models\proyecto;
+use App\Models\Inspeccion;
+use App\Models\Detalle;
+use App\Models\Proyecto;
 
 class MenuController extends Controller
 {

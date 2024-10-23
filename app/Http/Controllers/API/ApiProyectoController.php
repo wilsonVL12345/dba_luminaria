@@ -4,13 +4,13 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\luminaria;
-use App\Models\accesorio;
-use App\Models\luminarias_reutilizada;
-use App\Models\proyecto;
+use App\Models\Luminaria;
+use App\Models\Accesorio;
+use App\Models\Luminarias_reutilizada;
+use App\Models\Proyecto;
 use Carbon\Carbon;
 
-class apiProyectoController extends Controller
+class ApiProyectoController extends Controller
 {
     /**
      * Display a listing of the resource.

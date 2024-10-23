@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\detalle;
+use App\Models\Detalle;
 
 class detalleseeder extends Seeder
 {

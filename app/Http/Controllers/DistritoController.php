@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\distrito;
-use App\Models\urbanizacion;
+use App\Models\Distrito;
+use App\Models\Urbanizacion;
 use GuzzleHttp\Promise\Create;
 use PhpParser\Node\Expr\FuncCall;
 use function PHPUnit\Framework\returnSelf;

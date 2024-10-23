@@ -4,13 +4,13 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\distrito;
-use App\Models\proyecto;
-use App\Models\detalle;
-use App\Models\inspeccion;
+use App\Models\Distrito;
+use App\Models\Proyecto;
+use App\Models\Detalle;
+use App\Models\Inspeccion;
 use Carbon\Carbon;
 
-class apiDashboardController extends Controller
+class ApiDashboardController extends Controller
 {
     /**
      * Display a listing of the resource.

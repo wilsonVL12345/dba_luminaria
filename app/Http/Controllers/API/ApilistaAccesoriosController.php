@@ -4,17 +4,18 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Lista_accesorio;
 
-class apiUserController extends Controller
+class ApilistaAccesoriosController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = User::all();
-        return response()->json($user);
+        $listaAccesorios = Lista_accesorio::select('id', 'Nombre_Item')
+            ->orderBy('id', 'desc')->get();
+        return response()->json($listaAccesorios);
     }
 
     /**

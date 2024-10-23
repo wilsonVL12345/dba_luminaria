@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\proyecto;
-use App\Models\distrito;
-use App\Models\accesorio;
-use App\Models\lista_accesorio;
-use App\Models\luminarias_reutilizada;
-use App\Models\luminaria;
-use App\Models\urbanizacion;
+use App\Models\Proyecto;
+use App\Models\Distrito;
+use App\Models\Accesorio;
+use App\Models\Lista_accesorio;
+use App\Models\Luminarias_reutilizada;
+use App\Models\Luminaria;
+use App\Models\Urbanizacion;
 use Illuminate\Foundation\Console\ViewMakeCommand;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;

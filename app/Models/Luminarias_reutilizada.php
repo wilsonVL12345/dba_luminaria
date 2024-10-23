@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Luminarias_reutilizada extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'Luminarias_Reutilizadas';
+    protected $table = 'luminarias_reutilizadas';
     protected $fillable =
     [
 

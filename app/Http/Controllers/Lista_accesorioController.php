@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\lista_accesorio;
+use App\Models\Lista_accesorio;
 use Yajra\DataTables\Facades\DataTables;
 
 use function PHPSTORM_META\sql_injection_subst;

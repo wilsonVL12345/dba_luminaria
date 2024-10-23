@@ -4,12 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\detalle;
-use App\Models\urbanizacion;
+use App\Models\Detalle;
+use App\Models\Urbanizacion;
 use PhpParser\Node\Expr\FuncCall;
 use Carbon\Carbon;
 
-class apiDetalleController extends Controller
+class ApiDetalleController extends Controller
 {
     /**
      * Display a listing of the resource.

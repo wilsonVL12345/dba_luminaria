@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\urbanizacion;
+use App\Models\Urbanizacion;
 use Illuminate\Http\Request;
 
 class UrbanizacionController extends Controller

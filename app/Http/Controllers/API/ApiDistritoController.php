@@ -4,17 +4,19 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\equipamiento;
+use App\Models\Distrito;
+use App\Models\Urbanizacion;
+use Yajra\DataTables\Facades\DataTables;
 
-class apiEquipamientoController extends Controller
+class ApiDistritoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $equipamiento = equipamiento::all();
-        return response()->json($equipamiento);
+        $urb = urbanizacion::select('id', 'Nrodistrito', 'nombre_urbanizacion')->get();
+        return response()->json($urb);
     }
 
     /**

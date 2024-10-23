@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\detalle;
-use App\Models\inspeccion;
-use App\Models\proyecto;
+use App\Models\Detalle;
+use App\Models\Inspeccion;
+use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Models\role;
+use App\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller

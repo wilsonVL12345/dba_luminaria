@@ -4,21 +4,19 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\distrito;
-use App\Models\urbanizacion;
-use Yajra\DataTables\Facades\DataTables;
+use App\Models\Inspeccion;
 
-class apiDistritoController extends Controller
+class ApiinspeccionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() {}
+    public function realizado()
     {
-        $urb = urbanizacion::select('id', 'Nrodistrito', 'nombre_urbanizacion')->get();
-        return response()->json($urb);
+        $inspeccion = inspeccion::where('Inspeccion', 'Realizado')->get();
+        return response()->json($inspeccion);
     }
-
     /**
      * Store a newly created resource in storage.
      */

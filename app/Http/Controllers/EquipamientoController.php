@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\distrito;
+use App\Models\Distrito;
 use Illuminate\Http\Request;
-use App\Models\equipamiento;
+use App\Models\Equipamiento;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
