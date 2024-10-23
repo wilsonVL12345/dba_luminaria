@@ -4,30 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class detalle extends Model
+class Proyecto extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
-
-    protected $table = 'detalles';
+    use HasFactory, SoftDeletes;
+    protected $table = 'proyectos';
     protected $fillable =
     [
-        'id',
-        'Nro_Sisco',
+        'Cuce_Cod',
         'Zona',
-        'Tipo_Trabajo',
-        'Foto_Carta',
-        'Puntos',
-        'Fecha_Programado',
-        'Fecha_Inicio',
+        'Tipo_Contratacion',
         'Estado',
+        'Subasta',
+        'Modalidad',
+        'Objeto_Contratacion',
+
+        'Tipo_Componentes',
+        'Ejecutado_Por',
+        'Fecha_Programada',
+        'Fecha_Ejecutada',
         'Observaciones',
-        'Detalles',
-        'EjecutadoPor',
+        'Realizado_Por',
+        'Trabajo',
+
+        'Proveedor',
         'Users_id',
         'Distritos_id'
     ];
@@ -42,10 +45,15 @@ class detalle extends Model
     }
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'Users_id');
+        return $this->belongsTo(user::class);
     }
+
     public function distrito(): BelongsTo
     {
         return $this->belongsTo(distrito::class, 'Distritos_id');
+    }
+    public function luminarias_reutilizadas(): HasMany
+    {
+        return $this->hasMany(luminarias_reutilizada::class);
     }
 }

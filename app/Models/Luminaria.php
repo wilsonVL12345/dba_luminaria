@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class luminaria extends Model
+class Luminaria extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'luminarias';

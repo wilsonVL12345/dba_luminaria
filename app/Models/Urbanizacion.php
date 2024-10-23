@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
-class urbanizacion extends Model
+class Urbanizacion extends Model
 {
 
     use HasFactory, SoftDeletes;

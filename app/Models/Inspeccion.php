@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class inspeccion extends Model
+class Inspeccion extends Model
 {
     use SoftDeletes;
     use HasFactory;

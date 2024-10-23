@@ -8,7 +8,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 use function PHPSTORM_META\sql_injection_subst;
 
-class lista_accesorioController extends Controller
+class Lista_accesorioController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 // use Illuminate\Database\Eloquent\SoftDeletes;
 
-class equipamiento extends Model
+class Equipamiento extends Model
 {
     use HasFactory;
     use SoftDeletes;

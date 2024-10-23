@@ -12,7 +12,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
 use App\DataTables\UrbanizacionDataTable;
 
-class distritoController extends Controller
+class DistritoController extends Controller
 {
     /* public function iindex(UrbanizacionDataTable $dataTable)
     {

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class distrito extends Model
+class Distrito extends Model
 {
     use HasFactory;
     use SoftDeletes;

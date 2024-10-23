@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
-class reelevamiento extends Model
+class Reelevamiento extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'reelevamientos';

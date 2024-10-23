@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class datos_luminaria_retirada extends Model
+class Datos_luminaria_retirada extends Model
 {
     use HasFactory;
     use SoftDeletes;

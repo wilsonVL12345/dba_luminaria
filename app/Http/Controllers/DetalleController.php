@@ -16,7 +16,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 
-class detalleController extends Controller
+class DetalleController extends Controller
 {
     // se encarga de mostrar todo de proyecto almacen en espera
     public function index()

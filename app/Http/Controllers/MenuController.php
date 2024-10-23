@@ -7,7 +7,7 @@ use App\Models\inspeccion;
 use App\Models\detalle;
 use App\Models\proyecto;
 
-class menuController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.

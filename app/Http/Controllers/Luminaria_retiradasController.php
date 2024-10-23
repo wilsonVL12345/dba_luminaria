@@ -15,7 +15,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 // use Barryvdh\Snappy\Facades\SnappyPdf;
 
-class luminaria_retiradasController extends Controller
+class Luminaria_retiradasController extends Controller
 {
     /**
      * Display a listing of the resource.

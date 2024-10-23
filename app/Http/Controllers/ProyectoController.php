@@ -16,7 +16,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Yajra\DataTables\Facades\DataTables;
 
 
-class proyectoController extends Controller
+class ProyectoController extends Controller
 {
     /**
      * Display a listing of the resource.

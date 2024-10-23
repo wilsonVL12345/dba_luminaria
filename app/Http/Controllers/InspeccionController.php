@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Debug\VirtualRequestStack;
 use Yajra\DataTables\Facades\DataTables;
 
 
-class inspeccionController extends Controller
+class InspeccionController extends Controller
 {
     /**
      * Display a listing of the resource.

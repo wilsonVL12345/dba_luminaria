@@ -8,7 +8,7 @@ use App\Models\equipamiento;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
-class equipamientoController extends Controller
+class EquipamientoController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -10,7 +10,7 @@ use PharIo\Manifest\Author;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
-class logincontroller extends Controller
+class Logincontroller extends Controller
 {
 
 
